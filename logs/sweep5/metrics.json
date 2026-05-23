@@ -1,0 +1,443 @@
+{
+  "experiment_name": "schema-linking-sft-sweep5",
+  "mlflow_experiment_id": 77,
+  "num_runs": 16,
+  "runs": [
+    {
+      "run_name": "1",
+      "mlflow_run_uuid": "179821f6cf7b4ddc98e6f5a14b5dc041",
+      "status": "RUNNING",
+      "start_time_ms": 1779415051028,
+      "end_time_ms": null,
+      "config": {
+        "model_name": "Qwen/Qwen2.5-0.5B-Instruct",
+        "training_args.learning_rate": "0.0003",
+        "training_args.max_steps": "300",
+        "training_args.num_train_epochs": "4",
+        "training_args.per_device_train_batch_size": "1",
+        "training_args.gradient_accumulation_steps": "4",
+        "training_args.lr_scheduler_type": "linear",
+        "training_args.max_length": "4096",
+        "training_args.save_strategy": "steps",
+        "training_args.save_steps": "100",
+        "peft_params.r": "16",
+        "peft_params.lora_alpha": "32",
+        "peft_params.target_modules": "['q_proj', 'k_proj', 'v_proj', 'o_proj']",
+        "peft_params.lora_dropout": "0.05"
+      },
+      "final_metrics": {}
+    },
+    {
+      "run_name": "2",
+      "mlflow_run_uuid": "f718fc604fd94c03b9f362fa43b901e1",
+      "status": "RUNNING",
+      "start_time_ms": 1779415051389,
+      "end_time_ms": null,
+      "config": {
+        "model_name": "Qwen/Qwen2.5-0.5B-Instruct",
+        "training_args.learning_rate": "0.0005",
+        "training_args.max_steps": "300",
+        "training_args.num_train_epochs": "4",
+        "training_args.per_device_train_batch_size": "1",
+        "training_args.gradient_accumulation_steps": "4",
+        "training_args.lr_scheduler_type": "linear",
+        "training_args.max_length": "4096",
+        "training_args.save_strategy": "steps",
+        "training_args.save_steps": "100",
+        "peft_params.r": "16",
+        "peft_params.lora_alpha": "32",
+        "peft_params.target_modules": "['q_proj', 'k_proj', 'v_proj', 'o_proj']",
+        "peft_params.lora_dropout": "0.05"
+      },
+      "final_metrics": {
+        "train_loss": {
+          "value": 1.33,
+          "step": 9
+        },
+        "mean_token_accuracy": {
+          "value": 0.6976,
+          "step": 9
+        },
+        "entropy": {
+          "value": 0.7538,
+          "step": 9
+        }
+      }
+    },
+    {
+      "run_name": "3",
+      "mlflow_run_uuid": "f96d61d7b2b3481daf056a4ff3a5e0de",
+      "status": "RUNNING",
+      "start_time_ms": 1779415051744,
+      "end_time_ms": null,
+      "config": {
+        "model_name": "Qwen/Qwen2.5-0.5B-Instruct",
+        "training_args.learning_rate": "0.0003",
+        "training_args.max_steps": "300",
+        "training_args.num_train_epochs": "4",
+        "training_args.per_device_train_batch_size": "1",
+        "training_args.gradient_accumulation_steps": "4",
+        "training_args.lr_scheduler_type": "linear",
+        "training_args.max_length": "4096",
+        "training_args.save_strategy": "steps",
+        "training_args.save_steps": "100",
+        "peft_params.r": "32",
+        "peft_params.lora_alpha": "64",
+        "peft_params.target_modules": "['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj']",
+        "peft_params.lora_dropout": "0.05"
+      },
+      "final_metrics": {
+        "train_loss": {
+          "value": 1.236,
+          "step": 9
+        },
+        "mean_token_accuracy": {
+          "value": 0.7168,
+          "step": 9
+        },
+        "entropy": {
+          "value": 0.8115,
+          "step": 9
+        }
+      }
+    },
+    {
+      "run_name": "4",
+      "mlflow_run_uuid": "02571382b87d461ba2ebed956b20bf91",
+      "status": "RUNNING",
+      "start_time_ms": 1779415052100,
+      "end_time_ms": null,
+      "config": {
+        "model_name": "Qwen/Qwen2.5-0.5B-Instruct",
+        "training_args.learning_rate": "0.0005",
+        "training_args.max_steps": "300",
+        "training_args.num_train_epochs": "4",
+        "training_args.per_device_train_batch_size": "1",
+        "training_args.gradient_accumulation_steps": "4",
+        "training_args.lr_scheduler_type": "linear",
+        "training_args.max_length": "4096",
+        "training_args.save_strategy": "steps",
+        "training_args.save_steps": "100",
+        "peft_params.r": "32",
+        "peft_params.lora_alpha": "64",
+        "peft_params.target_modules": "['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj']",
+        "peft_params.lora_dropout": "0.05"
+      },
+      "final_metrics": {}
+    },
+    {
+      "run_name": "5",
+      "mlflow_run_uuid": "74b6e779c6cf4f3688113247ebafb8e4",
+      "status": "RUNNING",
+      "start_time_ms": 1779415052466,
+      "end_time_ms": null,
+      "config": {
+        "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
+        "training_args.learning_rate": "0.0003",
+        "training_args.max_steps": "300",
+        "training_args.num_train_epochs": "4",
+        "training_args.per_device_train_batch_size": "1",
+        "training_args.gradient_accumulation_steps": "4",
+        "training_args.lr_scheduler_type": "linear",
+        "training_args.max_length": "4096",
+        "training_args.save_strategy": "steps",
+        "training_args.save_steps": "100",
+        "peft_params.r": "16",
+        "peft_params.lora_alpha": "32",
+        "peft_params.target_modules": "['q_proj', 'k_proj', 'v_proj', 'o_proj']",
+        "peft_params.lora_dropout": "0.05"
+      },
+      "final_metrics": {
+        "train_loss": {
+          "value": 1.0005,
+          "step": 9
+        },
+        "mean_token_accuracy": {
+          "value": 0.7885,
+          "step": 9
+        },
+        "entropy": {
+          "value": 0.3708,
+          "step": 9
+        }
+      }
+    },
+    {
+      "run_name": "6",
+      "mlflow_run_uuid": "b3d2def308cd4c57b65faa8e9204435c",
+      "status": "RUNNING",
+      "start_time_ms": 1779415052885,
+      "end_time_ms": null,
+      "config": {
+        "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
+        "training_args.learning_rate": "0.0005",
+        "training_args.max_steps": "300",
+        "training_args.num_train_epochs": "4",
+        "training_args.per_device_train_batch_size": "1",
+        "training_args.gradient_accumulation_steps": "4",
+        "training_args.lr_scheduler_type": "linear",
+        "training_args.max_length": "4096",
+        "training_args.save_strategy": "steps",
+        "training_args.save_steps": "100",
+        "peft_params.r": "16",
+        "peft_params.lora_alpha": "32",
+        "peft_params.target_modules": "['q_proj', 'k_proj', 'v_proj', 'o_proj']",
+        "peft_params.lora_dropout": "0.05"
+      },
+      "final_metrics": {
+        "train_loss": {
+          "value": 0.9406,
+          "step": 9
+        },
+        "mean_token_accuracy": {
+          "value": 0.7923,
+          "step": 9
+        },
+        "entropy": {
+          "value": 0.4104,
+          "step": 9
+        }
+      }
+    },
+    {
+      "run_name": "7",
+      "mlflow_run_uuid": "dcb9c4e0546c4857841d8416d4507ee2",
+      "status": "RUNNING",
+      "start_time_ms": 1779415053284,
+      "end_time_ms": null,
+      "config": {
+        "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
+        "training_args.learning_rate": "0.0003",
+        "training_args.max_steps": "300",
+        "training_args.num_train_epochs": "4",
+        "training_args.per_device_train_batch_size": "1",
+        "training_args.gradient_accumulation_steps": "4",
+        "training_args.lr_scheduler_type": "linear",
+        "training_args.max_length": "4096",
+        "training_args.save_strategy": "steps",
+        "training_args.save_steps": "100",
+        "peft_params.r": "32",
+        "peft_params.lora_alpha": "64",
+        "peft_params.target_modules": "['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj']",
+        "peft_params.lora_dropout": "0.05"
+      },
+      "final_metrics": {}
+    },
+    {
+      "run_name": "8",
+      "mlflow_run_uuid": "d95e977216754b4ba9598f79fad3b465",
+      "status": "RUNNING",
+      "start_time_ms": 1779415053694,
+      "end_time_ms": null,
+      "config": {
+        "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
+        "training_args.learning_rate": "0.0005",
+        "training_args.max_steps": "300",
+        "training_args.num_train_epochs": "4",
+        "training_args.per_device_train_batch_size": "1",
+        "training_args.gradient_accumulation_steps": "4",
+        "training_args.lr_scheduler_type": "linear",
+        "training_args.max_length": "4096",
+        "training_args.save_strategy": "steps",
+        "training_args.save_steps": "100",
+        "peft_params.r": "32",
+        "peft_params.lora_alpha": "64",
+        "peft_params.target_modules": "['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj']",
+        "peft_params.lora_dropout": "0.05"
+      },
+      "final_metrics": {}
+    },
+    {
+      "run_name": "9",
+      "mlflow_run_uuid": "e089a5ebc3a944a7ba6936057684aab9",
+      "status": "RUNNING",
+      "start_time_ms": 1779415598531,
+      "end_time_ms": null,
+      "config": {
+        "model_name": "Qwen/Qwen2.5-0.5B-Instruct",
+        "training_args.learning_rate": "0.0003",
+        "training_args.max_steps": "300",
+        "training_args.num_train_epochs": "4",
+        "training_args.per_device_train_batch_size": "1",
+        "training_args.gradient_accumulation_steps": "4",
+        "training_args.lr_scheduler_type": "linear",
+        "training_args.max_length": "4096",
+        "training_args.save_strategy": "steps",
+        "training_args.save_steps": "100",
+        "peft_params.r": "16",
+        "peft_params.lora_alpha": "32",
+        "peft_params.target_modules": "['q_proj', 'k_proj', 'v_proj', 'o_proj']",
+        "peft_params.lora_dropout": "0.05"
+      },
+      "final_metrics": {}
+    },
+    {
+      "run_name": "10",
+      "mlflow_run_uuid": "c3b6aa7a4118436fa82a3feafb18bc7a",
+      "status": "RUNNING",
+      "start_time_ms": 1779415598920,
+      "end_time_ms": null,
+      "config": {
+        "model_name": "Qwen/Qwen2.5-0.5B-Instruct",
+        "training_args.learning_rate": "0.0005",
+        "training_args.max_steps": "300",
+        "training_args.num_train_epochs": "4",
+        "training_args.per_device_train_batch_size": "1",
+        "training_args.gradient_accumulation_steps": "4",
+        "training_args.lr_scheduler_type": "linear",
+        "training_args.max_length": "4096",
+        "training_args.save_strategy": "steps",
+        "training_args.save_steps": "100",
+        "peft_params.r": "16",
+        "peft_params.lora_alpha": "32",
+        "peft_params.target_modules": "['q_proj', 'k_proj', 'v_proj', 'o_proj']",
+        "peft_params.lora_dropout": "0.05"
+      },
+      "final_metrics": {}
+    },
+    {
+      "run_name": "11",
+      "mlflow_run_uuid": "7122c9e26137422aa79606856849ef0e",
+      "status": "RUNNING",
+      "start_time_ms": 1779415599198,
+      "end_time_ms": null,
+      "config": {
+        "model_name": "Qwen/Qwen2.5-0.5B-Instruct",
+        "training_args.learning_rate": "0.0003",
+        "training_args.max_steps": "300",
+        "training_args.num_train_epochs": "4",
+        "training_args.per_device_train_batch_size": "1",
+        "training_args.gradient_accumulation_steps": "4",
+        "training_args.lr_scheduler_type": "linear",
+        "training_args.max_length": "4096",
+        "training_args.save_strategy": "steps",
+        "training_args.save_steps": "100",
+        "peft_params.r": "32",
+        "peft_params.lora_alpha": "64",
+        "peft_params.target_modules": "['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj']",
+        "peft_params.lora_dropout": "0.05"
+      },
+      "final_metrics": {}
+    },
+    {
+      "run_name": "12",
+      "mlflow_run_uuid": "8e7703ac408e4dbfad4c85f27c8d2e74",
+      "status": "RUNNING",
+      "start_time_ms": 1779415599473,
+      "end_time_ms": null,
+      "config": {
+        "model_name": "Qwen/Qwen2.5-0.5B-Instruct",
+        "training_args.learning_rate": "0.0005",
+        "training_args.max_steps": "300",
+        "training_args.num_train_epochs": "4",
+        "training_args.per_device_train_batch_size": "1",
+        "training_args.gradient_accumulation_steps": "4",
+        "training_args.lr_scheduler_type": "linear",
+        "training_args.max_length": "4096",
+        "training_args.save_strategy": "steps",
+        "training_args.save_steps": "100",
+        "peft_params.r": "32",
+        "peft_params.lora_alpha": "64",
+        "peft_params.target_modules": "['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj']",
+        "peft_params.lora_dropout": "0.05"
+      },
+      "final_metrics": {}
+    },
+    {
+      "run_name": "13",
+      "mlflow_run_uuid": "0b2cd9136361489eb7d767a5a06d7529",
+      "status": "RUNNING",
+      "start_time_ms": 1779415599765,
+      "end_time_ms": null,
+      "config": {
+        "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
+        "training_args.learning_rate": "0.0003",
+        "training_args.max_steps": "300",
+        "training_args.num_train_epochs": "4",
+        "training_args.per_device_train_batch_size": "1",
+        "training_args.gradient_accumulation_steps": "4",
+        "training_args.lr_scheduler_type": "linear",
+        "training_args.max_length": "4096",
+        "training_args.save_strategy": "steps",
+        "training_args.save_steps": "100",
+        "peft_params.r": "16",
+        "peft_params.lora_alpha": "32",
+        "peft_params.target_modules": "['q_proj', 'k_proj', 'v_proj', 'o_proj']",
+        "peft_params.lora_dropout": "0.05"
+      },
+      "final_metrics": {}
+    },
+    {
+      "run_name": "14",
+      "mlflow_run_uuid": "2f634fb0259c4e87a4cc0019834dd736",
+      "status": "RUNNING",
+      "start_time_ms": 1779415600044,
+      "end_time_ms": null,
+      "config": {
+        "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
+        "training_args.learning_rate": "0.0005",
+        "training_args.max_steps": "300",
+        "training_args.num_train_epochs": "4",
+        "training_args.per_device_train_batch_size": "1",
+        "training_args.gradient_accumulation_steps": "4",
+        "training_args.lr_scheduler_type": "linear",
+        "training_args.max_length": "4096",
+        "training_args.save_strategy": "steps",
+        "training_args.save_steps": "100",
+        "peft_params.r": "16",
+        "peft_params.lora_alpha": "32",
+        "peft_params.target_modules": "['q_proj', 'k_proj', 'v_proj', 'o_proj']",
+        "peft_params.lora_dropout": "0.05"
+      },
+      "final_metrics": {}
+    },
+    {
+      "run_name": "15",
+      "mlflow_run_uuid": "07834e81facd47f6986bfe1e4d10c610",
+      "status": "RUNNING",
+      "start_time_ms": 1779415600322,
+      "end_time_ms": null,
+      "config": {
+        "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
+        "training_args.learning_rate": "0.0003",
+        "training_args.max_steps": "300",
+        "training_args.num_train_epochs": "4",
+        "training_args.per_device_train_batch_size": "1",
+        "training_args.gradient_accumulation_steps": "4",
+        "training_args.lr_scheduler_type": "linear",
+        "training_args.max_length": "4096",
+        "training_args.save_strategy": "steps",
+        "training_args.save_steps": "100",
+        "peft_params.r": "32",
+        "peft_params.lora_alpha": "64",
+        "peft_params.target_modules": "['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj']",
+        "peft_params.lora_dropout": "0.05"
+      },
+      "final_metrics": {}
+    },
+    {
+      "run_name": "16",
+      "mlflow_run_uuid": "46c7a81c46144f91ad480149eccd62cf",
+      "status": "RUNNING",
+      "start_time_ms": 1779415600599,
+      "end_time_ms": null,
+      "config": {
+        "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
+        "training_args.learning_rate": "0.0005",
+        "training_args.max_steps": "300",
+        "training_args.num_train_epochs": "4",
+        "training_args.per_device_train_batch_size": "1",
+        "training_args.gradient_accumulation_steps": "4",
+        "training_args.lr_scheduler_type": "linear",
+        "training_args.max_length": "4096",
+        "training_args.save_strategy": "steps",
+        "training_args.save_steps": "100",
+        "peft_params.r": "32",
+        "peft_params.lora_alpha": "64",
+        "peft_params.target_modules": "['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj']",
+        "peft_params.lora_dropout": "0.05"
+      },
+      "final_metrics": {}
+    }
+  ]
+}

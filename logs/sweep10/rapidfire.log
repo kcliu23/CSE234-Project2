@@ -1,0 +1,100 @@
+2026-05-23 01:40:26 | schema-linking-sft-sweep10 | experiment | INFO | experiment.py:104 | Experiment schema-linking-sft-sweep10 created with Experiment ID: 10 and Metric Experiment ID: 82 at /home/kal115/rapidfireai/rapidfire_experiments/schema-linking-sft-sweep10
+2026-05-23 01:40:26 | schema-linking-sft-sweep10 | experiment | INFO | experiment.py:106 | Running RapidFire AI version 0.15.2
+2026-05-23 01:40:30 | schema-linking-sft-sweep10 | controller | DEBUG | controller.py:67 | Found 1 workers/GPUs.
+2026-05-23 01:40:30 | schema-linking-sft-sweep10 | controller | INFO | metric_rfmetric_manager.py:55 | Initialized MLflowMetricLogger: rf_mlflow
+2026-05-23 01:40:30 | schema-linking-sft-sweep10 | controller | DEBUG | controller.py:95 | Controller initialized
+2026-05-23 01:40:30 | schema-linking-sft-sweep10 | controller | DEBUG | controller.py:594 | Set experiment task to Create Models.
+2026-05-23 01:40:30 | schema-linking-sft-sweep10 | controller | DEBUG | controller.py:607 | Saved datasets to /home/kal115/rapidfireai/rapidfire_experiments/schema-linking-sft-sweep10/datasets.dill
+2026-05-23 01:40:30 | schema-linking-sft-sweep10 | controller | INFO | controller.py:613 | Set seed to 42
+2026-05-23 01:40:30 | schema-linking-sft-sweep10 | controller | INFO | metric_rfmetric_manager.py:141 | Created MLflow run: 54dd042aae19422a86d56206df5d64e5, 1
+2026-05-23 01:40:31 | schema-linking-sft-sweep10 | controller | DEBUG | controller.py:200 | Populated MetricLogger with model config info for run 1.
+2026-05-23 01:40:31 | schema-linking-sft-sweep10 | controller | INFO | metric_rfmetric_manager.py:141 | Created MLflow run: 7b2bed7fa8b54ce4a0033230c97a34e6, 2
+2026-05-23 01:40:31 | schema-linking-sft-sweep10 | controller | DEBUG | controller.py:200 | Populated MetricLogger with model config info for run 2.
+2026-05-23 01:40:31 | schema-linking-sft-sweep10 | controller | INFO | controller.py:220 | Created 2 runs - 
+{   1: {   'model_kwargs.device_map': 'auto',
+           'model_kwargs.use_cache': False,
+           'model_name': 'Qwen/Qwen2.5-1.5B-Instruct',
+           'model_type': 'causal_lm',
+           'peft_params.bias': 'none',
+           'peft_params.lora_alpha': 32,
+           'peft_params.lora_dropout': 0.05,
+           'peft_params.r': 16,
+           'peft_params.target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj'],
+           'tokenizer': None,
+           'tokenizer_kwargs': None,
+           'trainer_type': 'SFT',
+           'training_args.bf16': True,
+           'training_args.eval_steps': 50,
+           'training_args.eval_strategy': 'steps',
+           'training_args.gradient_accumulation_steps': 4,
+           'training_args.gradient_checkpointing': True,
+           'training_args.learning_rate': 0.0002,
+           'training_args.logging_steps': 10,
+           'training_args.lr_scheduler_type': 'linear',
+           'training_args.max_length': 4096,
+           'training_args.max_steps': 200,
+           'training_args.num_train_epochs': 4,
+           'training_args.per_device_eval_batch_size': 1,
+           'training_args.per_device_train_batch_size': 1,
+           'training_args.report_to': 'none',
+           'training_args.save_steps': 50,
+           'training_args.save_strategy': 'steps',
+           'training_args.save_total_limit': 3,
+           'training_args.warmup_ratio': 0.05},
+    2: {   'model_kwargs.device_map': 'auto',
+           'model_kwargs.use_cache': False,
+           'model_name': 'Qwen/Qwen2.5-1.5B-Instruct',
+           'model_type': 'causal_lm',
+           'peft_params.bias': 'none',
+           'peft_params.lora_alpha': 32,
+           'peft_params.lora_dropout': 0.05,
+           'peft_params.r': 16,
+           'peft_params.target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj'],
+           'tokenizer': None,
+           'tokenizer_kwargs': None,
+           'trainer_type': 'SFT',
+           'training_args.bf16': True,
+           'training_args.eval_steps': 50,
+           'training_args.eval_strategy': 'steps',
+           'training_args.gradient_accumulation_steps': 4,
+           'training_args.gradient_checkpointing': True,
+           'training_args.learning_rate': 0.0003,
+           'training_args.logging_steps': 10,
+           'training_args.lr_scheduler_type': 'linear',
+           'training_args.max_length': 4096,
+           'training_args.max_steps': 200,
+           'training_args.num_train_epochs': 4,
+           'training_args.per_device_eval_batch_size': 1,
+           'training_args.per_device_train_batch_size': 1,
+           'training_args.report_to': 'none',
+           'training_args.save_steps': 50,
+           'training_args.save_strategy': 'steps',
+           'training_args.save_total_limit': 3,
+           'training_args.warmup_ratio': 0.05}}
+2026-05-23 01:40:31 | schema-linking-sft-sweep10 | controller | DEBUG | controller.py:223 | Got 2 runs for Initial.
+2026-05-23 01:40:31 | schema-linking-sft-sweep10 | controller | DEBUG | controller.py:227 | Completed creating models.
+2026-05-23 01:40:31 | schema-linking-sft-sweep10 | controller | DEBUG | controller.py:625 | Created models.
+2026-05-23 01:40:31 | schema-linking-sft-sweep10 | controller | DEBUG | controller.py:631 | Set experiment task to Training and Validation.
+2026-05-23 01:40:31 | schema-linking-sft-sweep10 | worker_manager | DEBUG | worker_manager.py:115 | Creating 1 worker processes...
+2026-05-23 01:40:31 | schema-linking-sft-sweep10 | worker_manager | DEBUG | worker_manager.py:121 | Starting worker processes in process group 26063
+2026-05-23 01:40:31 | schema-linking-sft-sweep10 | worker_manager | DEBUG | worker_manager.py:149 | Started Worker 0 with PID 26386
+2026-05-23 01:40:31 | schema-linking-sft-sweep10 | worker_manager | INFO | worker_manager.py:156 | Started 1 worker processes successfully
+2026-05-23 01:40:31 | schema-linking-sft-sweep10 | controller | DEBUG | controller.py:637 | Created 1 workers.
+2026-05-23 01:40:31 | schema-linking-sft-sweep10 | controller | INFO | controller.py:659 | Starting Training and Validation
+2026-05-23 01:40:31 | schema-linking-sft-sweep10 | controller | DEBUG | controller.py:886 | Scheduled run 2 on workers (0,) for chunk 0
+2026-05-23 01:40:48 | schema-linking-sft-sweep10 | worker_0 | DEBUG | worker.py:157 | Worker 0 initialized with PID 26386
+2026-05-23 01:40:48 | schema-linking-sft-sweep10 | worker_0 | INFO | metric_rfmetric_manager.py:55 | Initialized MLflowMetricLogger: rf_mlflow
+2026-05-23 01:40:48 | schema-linking-sft-sweep10 | worker_0 | DEBUG | worker.py:192 | Loaded datasets
+2026-05-23 01:40:48 | schema-linking-sft-sweep10 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 2
+2026-05-23 01:40:48 | schema-linking-sft-sweep10 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 2 with chunk 0
+2026-05-23 01:42:06 | schema-linking-sft-sweep10 | worker-0-shm | DEBUG | shm_manager.py:348 | Saved base_model for run Qwen/Qwen2.5-1.5B-Instruct
+2026-05-23 01:42:09 | schema-linking-sft-sweep10 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 2 on chunk 0
+2026-05-23 01:46:54 | schema-linking-sft-sweep10 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:0 in-place, 7 new
+2026-05-23 01:46:54 | schema-linking-sft-sweep10 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 2 on chunk 0
+2026-05-23 01:46:56 | schema-linking-sft-sweep10 | controller | DEBUG | controller.py:714 | Completed task: run 2, chunk 0 on workers (0,)
+2026-05-23 01:46:56 | schema-linking-sft-sweep10 | controller | INFO | controller.py:717 | Run 2 completed steps - 76/200
+2026-05-23 01:46:56 | schema-linking-sft-sweep10 | controller | INFO | controller.py:773 | Run 2 has completed epoch (1/1 chunks)
+2026-05-23 01:46:56 | schema-linking-sft-sweep10 | controller | DEBUG | controller.py:886 | Scheduled run 1 on workers (0,) for chunk 0
+2026-05-23 01:46:56 | schema-linking-sft-sweep10 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 1
+2026-05-23 01:46:56 | schema-linking-sft-sweep10 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 1 with chunk 0
+2026-05-23 01:47:34 | schema-linking-sft-sweep10 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 1 on chunk 0

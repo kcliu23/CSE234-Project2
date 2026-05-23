@@ -1,0 +1,399 @@
+{
+  "experiment_name": "schema-linking-sft-sweep4",
+  "mlflow_experiment_id": 76,
+  "num_runs": 8,
+  "runs": [
+    {
+      "run_name": "1",
+      "mlflow_run_uuid": "1fd374a653a4424885a0d8abfeb88815",
+      "status": "RUNNING",
+      "start_time_ms": 1779400306352,
+      "end_time_ms": null,
+      "config": {
+        "model_name": "Qwen/Qwen2.5-0.5B-Instruct",
+        "training_args.learning_rate": "0.0001",
+        "training_args.max_steps": "225",
+        "training_args.num_train_epochs": "3",
+        "training_args.per_device_train_batch_size": "1",
+        "training_args.gradient_accumulation_steps": "4",
+        "training_args.lr_scheduler_type": "linear",
+        "training_args.max_length": "6144",
+        "training_args.save_strategy": "steps",
+        "training_args.save_steps": "100",
+        "peft_params.r": "8",
+        "peft_params.lora_alpha": "16",
+        "peft_params.target_modules": "['q_proj', 'v_proj']",
+        "peft_params.lora_dropout": "0.05"
+      },
+      "final_metrics": {
+        "train_loss": {
+          "value": 0.5992,
+          "step": 225
+        },
+        "loss": {
+          "value": 0.7559,
+          "step": 218
+        },
+        "mean_token_accuracy": {
+          "value": 0.7643,
+          "step": 225
+        },
+        "entropy": {
+          "value": 0.656,
+          "step": 225
+        },
+        "grad_norm": {
+          "value": 4.3718,
+          "step": 218
+        },
+        "learning_rate": {
+          "value": 0.0,
+          "step": 218
+        }
+      }
+    },
+    {
+      "run_name": "2",
+      "mlflow_run_uuid": "c425e8ddccee4f5886d9c90a82485c24",
+      "status": "RUNNING",
+      "start_time_ms": 1779400306922,
+      "end_time_ms": null,
+      "config": {
+        "model_name": "Qwen/Qwen2.5-0.5B-Instruct",
+        "training_args.learning_rate": "0.0002",
+        "training_args.max_steps": "225",
+        "training_args.num_train_epochs": "3",
+        "training_args.per_device_train_batch_size": "1",
+        "training_args.gradient_accumulation_steps": "4",
+        "training_args.lr_scheduler_type": "linear",
+        "training_args.max_length": "6144",
+        "training_args.save_strategy": "steps",
+        "training_args.save_steps": "100",
+        "peft_params.r": "8",
+        "peft_params.lora_alpha": "16",
+        "peft_params.target_modules": "['q_proj', 'v_proj']",
+        "peft_params.lora_dropout": "0.05"
+      },
+      "final_metrics": {
+        "train_loss": {
+          "value": 0.4226,
+          "step": 225
+        },
+        "loss": {
+          "value": 0.5662,
+          "step": 218
+        },
+        "mean_token_accuracy": {
+          "value": 0.8111,
+          "step": 225
+        },
+        "entropy": {
+          "value": 0.5235,
+          "step": 225
+        },
+        "grad_norm": {
+          "value": 4.4627,
+          "step": 218
+        },
+        "learning_rate": {
+          "value": 0.0,
+          "step": 218
+        }
+      }
+    },
+    {
+      "run_name": "3",
+      "mlflow_run_uuid": "7d653db7a95b49f68e86e06505289902",
+      "status": "RUNNING",
+      "start_time_ms": 1779400307392,
+      "end_time_ms": null,
+      "config": {
+        "model_name": "Qwen/Qwen2.5-0.5B-Instruct",
+        "training_args.learning_rate": "0.0001",
+        "training_args.max_steps": "225",
+        "training_args.num_train_epochs": "3",
+        "training_args.per_device_train_batch_size": "1",
+        "training_args.gradient_accumulation_steps": "4",
+        "training_args.lr_scheduler_type": "linear",
+        "training_args.max_length": "6144",
+        "training_args.save_strategy": "steps",
+        "training_args.save_steps": "100",
+        "peft_params.r": "16",
+        "peft_params.lora_alpha": "32",
+        "peft_params.target_modules": "['q_proj', 'k_proj', 'v_proj', 'o_proj']",
+        "peft_params.lora_dropout": "0.05"
+      },
+      "final_metrics": {
+        "train_loss": {
+          "value": 0.3352,
+          "step": 225
+        },
+        "loss": {
+          "value": 0.4602,
+          "step": 218
+        },
+        "mean_token_accuracy": {
+          "value": 0.8345,
+          "step": 225
+        },
+        "entropy": {
+          "value": 0.4378,
+          "step": 225
+        },
+        "grad_norm": {
+          "value": 6.368,
+          "step": 218
+        },
+        "learning_rate": {
+          "value": 0.0,
+          "step": 218
+        }
+      }
+    },
+    {
+      "run_name": "4",
+      "mlflow_run_uuid": "63c2bf600419476ba124795b6ab1c239",
+      "status": "RUNNING",
+      "start_time_ms": 1779400307855,
+      "end_time_ms": null,
+      "config": {
+        "model_name": "Qwen/Qwen2.5-0.5B-Instruct",
+        "training_args.learning_rate": "0.0002",
+        "training_args.max_steps": "225",
+        "training_args.num_train_epochs": "3",
+        "training_args.per_device_train_batch_size": "1",
+        "training_args.gradient_accumulation_steps": "4",
+        "training_args.lr_scheduler_type": "linear",
+        "training_args.max_length": "6144",
+        "training_args.save_strategy": "steps",
+        "training_args.save_steps": "100",
+        "peft_params.r": "16",
+        "peft_params.lora_alpha": "32",
+        "peft_params.target_modules": "['q_proj', 'k_proj', 'v_proj', 'o_proj']",
+        "peft_params.lora_dropout": "0.05"
+      },
+      "final_metrics": {
+        "train_loss": {
+          "value": 0.221,
+          "step": 225
+        },
+        "loss": {
+          "value": 0.3282,
+          "step": 218
+        },
+        "mean_token_accuracy": {
+          "value": 0.8721,
+          "step": 225
+        },
+        "entropy": {
+          "value": 0.3167,
+          "step": 225
+        },
+        "grad_norm": {
+          "value": 5.3045,
+          "step": 218
+        },
+        "learning_rate": {
+          "value": 0.0,
+          "step": 218
+        }
+      }
+    },
+    {
+      "run_name": "5",
+      "mlflow_run_uuid": "00720b6fbf974728aa4d59641c13780f",
+      "status": "RUNNING",
+      "start_time_ms": 1779400308314,
+      "end_time_ms": null,
+      "config": {
+        "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
+        "training_args.learning_rate": "0.0001",
+        "training_args.max_steps": "225",
+        "training_args.num_train_epochs": "3",
+        "training_args.per_device_train_batch_size": "1",
+        "training_args.gradient_accumulation_steps": "4",
+        "training_args.lr_scheduler_type": "linear",
+        "training_args.max_length": "6144",
+        "training_args.save_strategy": "steps",
+        "training_args.save_steps": "100",
+        "peft_params.r": "8",
+        "peft_params.lora_alpha": "16",
+        "peft_params.target_modules": "['q_proj', 'v_proj']",
+        "peft_params.lora_dropout": "0.05"
+      },
+      "final_metrics": {
+        "train_loss": {
+          "value": 0.413,
+          "step": 225
+        },
+        "loss": {
+          "value": 0.4655,
+          "step": 218
+        },
+        "mean_token_accuracy": {
+          "value": 0.8254,
+          "step": 225
+        },
+        "entropy": {
+          "value": 0.3868,
+          "step": 225
+        },
+        "grad_norm": {
+          "value": 3.4238,
+          "step": 218
+        },
+        "learning_rate": {
+          "value": 0.0,
+          "step": 218
+        }
+      }
+    },
+    {
+      "run_name": "6",
+      "mlflow_run_uuid": "41d96c452e8b4533bd6cca6f08a8bc0d",
+      "status": "RUNNING",
+      "start_time_ms": 1779400308769,
+      "end_time_ms": null,
+      "config": {
+        "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
+        "training_args.learning_rate": "0.0002",
+        "training_args.max_steps": "225",
+        "training_args.num_train_epochs": "3",
+        "training_args.per_device_train_batch_size": "1",
+        "training_args.gradient_accumulation_steps": "4",
+        "training_args.lr_scheduler_type": "linear",
+        "training_args.max_length": "6144",
+        "training_args.save_strategy": "steps",
+        "training_args.save_steps": "100",
+        "peft_params.r": "8",
+        "peft_params.lora_alpha": "16",
+        "peft_params.target_modules": "['q_proj', 'v_proj']",
+        "peft_params.lora_dropout": "0.05"
+      },
+      "final_metrics": {
+        "train_loss": {
+          "value": 0.2662,
+          "step": 225
+        },
+        "loss": {
+          "value": 0.3171,
+          "step": 218
+        },
+        "mean_token_accuracy": {
+          "value": 0.8688,
+          "step": 225
+        },
+        "entropy": {
+          "value": 0.2603,
+          "step": 225
+        },
+        "grad_norm": {
+          "value": 3.6391,
+          "step": 218
+        },
+        "learning_rate": {
+          "value": 0.0,
+          "step": 218
+        }
+      }
+    },
+    {
+      "run_name": "7",
+      "mlflow_run_uuid": "5ee6444a3fd84520a80bfc3b6a1fc23a",
+      "status": "RUNNING",
+      "start_time_ms": 1779400309224,
+      "end_time_ms": null,
+      "config": {
+        "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
+        "training_args.learning_rate": "0.0001",
+        "training_args.max_steps": "225",
+        "training_args.num_train_epochs": "3",
+        "training_args.per_device_train_batch_size": "1",
+        "training_args.gradient_accumulation_steps": "4",
+        "training_args.lr_scheduler_type": "linear",
+        "training_args.max_length": "6144",
+        "training_args.save_strategy": "steps",
+        "training_args.save_steps": "100",
+        "peft_params.r": "16",
+        "peft_params.lora_alpha": "32",
+        "peft_params.target_modules": "['q_proj', 'k_proj', 'v_proj', 'o_proj']",
+        "peft_params.lora_dropout": "0.05"
+      },
+      "final_metrics": {
+        "train_loss": {
+          "value": 0.2103,
+          "step": 225
+        },
+        "loss": {
+          "value": 0.2385,
+          "step": 218
+        },
+        "mean_token_accuracy": {
+          "value": 0.8782,
+          "step": 225
+        },
+        "entropy": {
+          "value": 0.1829,
+          "step": 225
+        },
+        "grad_norm": {
+          "value": 3.9141,
+          "step": 218
+        },
+        "learning_rate": {
+          "value": 0.0,
+          "step": 218
+        }
+      }
+    },
+    {
+      "run_name": "8",
+      "mlflow_run_uuid": "b0f0e31a79604088a2cc35fe9a0ee4f5",
+      "status": "RUNNING",
+      "start_time_ms": 1779400309677,
+      "end_time_ms": null,
+      "config": {
+        "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
+        "training_args.learning_rate": "0.0002",
+        "training_args.max_steps": "225",
+        "training_args.num_train_epochs": "3",
+        "training_args.per_device_train_batch_size": "1",
+        "training_args.gradient_accumulation_steps": "4",
+        "training_args.lr_scheduler_type": "linear",
+        "training_args.max_length": "6144",
+        "training_args.save_strategy": "steps",
+        "training_args.save_steps": "100",
+        "peft_params.r": "16",
+        "peft_params.lora_alpha": "32",
+        "peft_params.target_modules": "['q_proj', 'k_proj', 'v_proj', 'o_proj']",
+        "peft_params.lora_dropout": "0.05"
+      },
+      "final_metrics": {
+        "train_loss": {
+          "value": 0.1497,
+          "step": 225
+        },
+        "loss": {
+          "value": 0.1542,
+          "step": 218
+        },
+        "mean_token_accuracy": {
+          "value": 0.8985,
+          "step": 225
+        },
+        "entropy": {
+          "value": 0.0913,
+          "step": 225
+        },
+        "grad_norm": {
+          "value": 2.3251,
+          "step": 218
+        },
+        "learning_rate": {
+          "value": 0.0,
+          "step": 218
+        }
+      }
+    }
+  ]
+}

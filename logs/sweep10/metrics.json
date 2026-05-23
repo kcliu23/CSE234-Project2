@@ -1,0 +1,105 @@
+{
+  "experiment_name": "schema-linking-sft-sweep10",
+  "mlflow_experiment_id": 82,
+  "num_runs": 2,
+  "runs": [
+    {
+      "run_name": "1",
+      "mlflow_run_uuid": "54dd042aae19422a86d56206df5d64e5",
+      "status": "RUNNING",
+      "start_time_ms": 1779525630922,
+      "end_time_ms": null,
+      "config": {
+        "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
+        "training_args.learning_rate": "0.0002",
+        "training_args.max_steps": "200",
+        "training_args.num_train_epochs": "4",
+        "training_args.per_device_train_batch_size": "1",
+        "training_args.gradient_accumulation_steps": "4",
+        "training_args.lr_scheduler_type": "linear",
+        "training_args.max_length": "4096",
+        "training_args.save_strategy": "steps",
+        "training_args.save_steps": "50",
+        "peft_params.r": "16",
+        "peft_params.lora_alpha": "32",
+        "peft_params.target_modules": "['q_proj', 'k_proj', 'v_proj', 'o_proj']",
+        "peft_params.lora_dropout": "0.05"
+      },
+      "final_metrics": {
+        "train_loss": {
+          "value": 0.5129,
+          "step": 76
+        },
+        "loss": {
+          "value": 0.324,
+          "step": 70
+        },
+        "mean_token_accuracy": {
+          "value": 0.8891,
+          "step": 76
+        },
+        "entropy": {
+          "value": 0.314,
+          "step": 76
+        },
+        "grad_norm": {
+          "value": 3.2355,
+          "step": 70
+        },
+        "learning_rate": {
+          "value": 0.0001,
+          "step": 70
+        }
+      }
+    },
+    {
+      "run_name": "2",
+      "mlflow_run_uuid": "7b2bed7fa8b54ce4a0033230c97a34e6",
+      "status": "RUNNING",
+      "start_time_ms": 1779525631195,
+      "end_time_ms": null,
+      "config": {
+        "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
+        "training_args.learning_rate": "0.0003",
+        "training_args.max_steps": "200",
+        "training_args.num_train_epochs": "4",
+        "training_args.per_device_train_batch_size": "1",
+        "training_args.gradient_accumulation_steps": "4",
+        "training_args.lr_scheduler_type": "linear",
+        "training_args.max_length": "4096",
+        "training_args.save_strategy": "steps",
+        "training_args.save_steps": "50",
+        "peft_params.r": "16",
+        "peft_params.lora_alpha": "32",
+        "peft_params.target_modules": "['q_proj', 'k_proj', 'v_proj', 'o_proj']",
+        "peft_params.lora_dropout": "0.05"
+      },
+      "final_metrics": {
+        "train_loss": {
+          "value": 0.4865,
+          "step": 76
+        },
+        "loss": {
+          "value": 0.3082,
+          "step": 70
+        },
+        "mean_token_accuracy": {
+          "value": 0.9017,
+          "step": 76
+        },
+        "entropy": {
+          "value": 0.2929,
+          "step": 76
+        },
+        "grad_norm": {
+          "value": 2.9277,
+          "step": 70
+        },
+        "learning_rate": {
+          "value": 0.0002,
+          "step": 70
+        }
+      }
+    }
+  ]
+}

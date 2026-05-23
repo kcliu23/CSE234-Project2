@@ -1,0 +1,602 @@
+2026-05-21 18:57:24 | schema-linking-sft-sweep5 | experiment | INFO | experiment.py:104 | Experiment schema-linking-sft-sweep5 created with Experiment ID: 5 and Metric Experiment ID: 77 at /home/kal115/rapidfireai/rapidfire_experiments/schema-linking-sft-sweep5
+2026-05-21 18:57:24 | schema-linking-sft-sweep5 | experiment | INFO | experiment.py:106 | Running RapidFire AI version 0.15.2
+2026-05-21 18:57:30 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:67 | Found 1 workers/GPUs.
+2026-05-21 18:57:30 | schema-linking-sft-sweep5 | controller | INFO | metric_rfmetric_manager.py:55 | Initialized MLflowMetricLogger: rf_mlflow
+2026-05-21 18:57:30 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:95 | Controller initialized
+2026-05-21 18:57:30 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:594 | Set experiment task to Create Models.
+2026-05-21 18:57:31 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:607 | Saved datasets to /home/kal115/rapidfireai/rapidfire_experiments/schema-linking-sft-sweep5/datasets.dill
+2026-05-21 18:57:31 | schema-linking-sft-sweep5 | controller | INFO | controller.py:613 | Set seed to 42
+2026-05-21 18:57:31 | schema-linking-sft-sweep5 | controller | INFO | metric_rfmetric_manager.py:141 | Created MLflow run: 179821f6cf7b4ddc98e6f5a14b5dc041, 1
+2026-05-21 18:57:31 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:200 | Populated MetricLogger with model config info for run 1.
+2026-05-21 18:57:31 | schema-linking-sft-sweep5 | controller | INFO | metric_rfmetric_manager.py:141 | Created MLflow run: f718fc604fd94c03b9f362fa43b901e1, 2
+2026-05-21 18:57:31 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:200 | Populated MetricLogger with model config info for run 2.
+2026-05-21 18:57:31 | schema-linking-sft-sweep5 | controller | INFO | metric_rfmetric_manager.py:141 | Created MLflow run: f96d61d7b2b3481daf056a4ff3a5e0de, 3
+2026-05-21 18:57:32 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:200 | Populated MetricLogger with model config info for run 3.
+2026-05-21 18:57:32 | schema-linking-sft-sweep5 | controller | INFO | metric_rfmetric_manager.py:141 | Created MLflow run: 02571382b87d461ba2ebed956b20bf91, 4
+2026-05-21 18:57:32 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:200 | Populated MetricLogger with model config info for run 4.
+2026-05-21 18:57:32 | schema-linking-sft-sweep5 | controller | INFO | metric_rfmetric_manager.py:141 | Created MLflow run: 74b6e779c6cf4f3688113247ebafb8e4, 5
+2026-05-21 18:57:32 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:200 | Populated MetricLogger with model config info for run 5.
+2026-05-21 18:57:32 | schema-linking-sft-sweep5 | controller | INFO | metric_rfmetric_manager.py:141 | Created MLflow run: b3d2def308cd4c57b65faa8e9204435c, 6
+2026-05-21 18:57:33 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:200 | Populated MetricLogger with model config info for run 6.
+2026-05-21 18:57:33 | schema-linking-sft-sweep5 | controller | INFO | metric_rfmetric_manager.py:141 | Created MLflow run: dcb9c4e0546c4857841d8416d4507ee2, 7
+2026-05-21 18:57:33 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:200 | Populated MetricLogger with model config info for run 7.
+2026-05-21 18:57:33 | schema-linking-sft-sweep5 | controller | INFO | metric_rfmetric_manager.py:141 | Created MLflow run: d95e977216754b4ba9598f79fad3b465, 8
+2026-05-21 18:57:34 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:200 | Populated MetricLogger with model config info for run 8.
+2026-05-21 18:57:34 | schema-linking-sft-sweep5 | controller | INFO | controller.py:220 | Created 8 runs - 
+{   1: {   'model_kwargs.device_map': 'auto',
+           'model_kwargs.use_cache': False,
+           'model_name': 'Qwen/Qwen2.5-0.5B-Instruct',
+           'model_type': 'causal_lm',
+           'peft_params.bias': 'none',
+           'peft_params.lora_alpha': 32,
+           'peft_params.lora_dropout': 0.05,
+           'peft_params.r': 16,
+           'peft_params.target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj'],
+           'tokenizer': None,
+           'tokenizer_kwargs': None,
+           'trainer_type': 'SFT',
+           'training_args.bf16': True,
+           'training_args.eval_steps': 50,
+           'training_args.eval_strategy': 'steps',
+           'training_args.gradient_accumulation_steps': 4,
+           'training_args.gradient_checkpointing': True,
+           'training_args.learning_rate': 0.0003,
+           'training_args.logging_steps': 10,
+           'training_args.lr_scheduler_type': 'linear',
+           'training_args.max_length': 4096,
+           'training_args.max_steps': 300,
+           'training_args.num_train_epochs': 4,
+           'training_args.per_device_eval_batch_size': 1,
+           'training_args.per_device_train_batch_size': 1,
+           'training_args.report_to': 'none',
+           'training_args.save_steps': 100,
+           'training_args.save_strategy': 'steps',
+           'training_args.save_total_limit': 2,
+           'training_args.warmup_ratio': 0.05},
+    2: {   'model_kwargs.device_map': 'auto',
+           'model_kwargs.use_cache': False,
+           'model_name': 'Qwen/Qwen2.5-0.5B-Instruct',
+           'model_type': 'causal_lm',
+           'peft_params.bias': 'none',
+           'peft_params.lora_alpha': 32,
+           'peft_params.lora_dropout': 0.05,
+           'peft_params.r': 16,
+           'peft_params.target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj'],
+           'tokenizer': None,
+           'tokenizer_kwargs': None,
+           'trainer_type': 'SFT',
+           'training_args.bf16': True,
+           'training_args.eval_steps': 50,
+           'training_args.eval_strategy': 'steps',
+           'training_args.gradient_accumulation_steps': 4,
+           'training_args.gradient_checkpointing': True,
+           'training_args.learning_rate': 0.0005,
+           'training_args.logging_steps': 10,
+           'training_args.lr_scheduler_type': 'linear',
+           'training_args.max_length': 4096,
+           'training_args.max_steps': 300,
+           'training_args.num_train_epochs': 4,
+           'training_args.per_device_eval_batch_size': 1,
+           'training_args.per_device_train_batch_size': 1,
+           'training_args.report_to': 'none',
+           'training_args.save_steps': 100,
+           'training_args.save_strategy': 'steps',
+           'training_args.save_total_limit': 2,
+           'training_args.warmup_ratio': 0.05},
+    3: {   'model_kwargs.device_map': 'auto',
+           'model_kwargs.use_cache': False,
+           'model_name': 'Qwen/Qwen2.5-0.5B-Instruct',
+           'model_type': 'causal_lm',
+           'peft_params.bias': 'none',
+           'peft_params.lora_alpha': 64,
+           'peft_params.lora_dropout': 0.05,
+           'peft_params.r': 32,
+           'peft_params.target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'],
+           'tokenizer': None,
+           'tokenizer_kwargs': None,
+           'trainer_type': 'SFT',
+           'training_args.bf16': True,
+           'training_args.eval_steps': 50,
+           'training_args.eval_strategy': 'steps',
+           'training_args.gradient_accumulation_steps': 4,
+           'training_args.gradient_checkpointing': True,
+           'training_args.learning_rate': 0.0003,
+           'training_args.logging_steps': 10,
+           'training_args.lr_scheduler_type': 'linear',
+           'training_args.max_length': 4096,
+           'training_args.max_steps': 300,
+           'training_args.num_train_epochs': 4,
+           'training_args.per_device_eval_batch_size': 1,
+           'training_args.per_device_train_batch_size': 1,
+           'training_args.report_to': 'none',
+           'training_args.save_steps': 100,
+           'training_args.save_strategy': 'steps',
+           'training_args.save_total_limit': 2,
+           'training_args.warmup_ratio': 0.05},
+    4: {   'model_kwargs.device_map': 'auto',
+           'model_kwargs.use_cache': False,
+           'model_name': 'Qwen/Qwen2.5-0.5B-Instruct',
+           'model_type': 'causal_lm',
+           'peft_params.bias': 'none',
+           'peft_params.lora_alpha': 64,
+           'peft_params.lora_dropout': 0.05,
+           'peft_params.r': 32,
+           'peft_params.target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'],
+           'tokenizer': None,
+           'tokenizer_kwargs': None,
+           'trainer_type': 'SFT',
+           'training_args.bf16': True,
+           'training_args.eval_steps': 50,
+           'training_args.eval_strategy': 'steps',
+           'training_args.gradient_accumulation_steps': 4,
+           'training_args.gradient_checkpointing': True,
+           'training_args.learning_rate': 0.0005,
+           'training_args.logging_steps': 10,
+           'training_args.lr_scheduler_type': 'linear',
+           'training_args.max_length': 4096,
+           'training_args.max_steps': 300,
+           'training_args.num_train_epochs': 4,
+           'training_args.per_device_eval_batch_size': 1,
+           'training_args.per_device_train_batch_size': 1,
+           'training_args.report_to': 'none',
+           'training_args.save_steps': 100,
+           'training_args.save_strategy': 'steps',
+           'training_args.save_total_limit': 2,
+           'training_args.warmup_ratio': 0.05},
+    5: {   'model_kwargs.device_map': 'auto',
+           'model_kwargs.use_cache': False,
+           'model_name': 'Qwen/Qwen2.5-1.5B-Instruct',
+           'model_type': 'causal_lm',
+           'peft_params.bias': 'none',
+           'peft_params.lora_alpha': 32,
+           'peft_params.lora_dropout': 0.05,
+           'peft_params.r': 16,
+           'peft_params.target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj'],
+           'tokenizer': None,
+           'tokenizer_kwargs': None,
+           'trainer_type': 'SFT',
+           'training_args.bf16': True,
+           'training_args.eval_steps': 50,
+           'training_args.eval_strategy': 'steps',
+           'training_args.gradient_accumulation_steps': 4,
+           'training_args.gradient_checkpointing': True,
+           'training_args.learning_rate': 0.0003,
+           'training_args.logging_steps': 10,
+           'training_args.lr_scheduler_type': 'linear',
+           'training_args.max_length': 4096,
+           'training_args.max_steps': 300,
+           'training_args.num_train_epochs': 4,
+           'training_args.per_device_eval_batch_size': 1,
+           'training_args.per_device_train_batch_size': 1,
+           'training_args.report_to': 'none',
+           'training_args.save_steps': 100,
+           'training_args.save_strategy': 'steps',
+           'training_args.save_total_limit': 2,
+           'training_args.warmup_ratio': 0.05},
+    6: {   'model_kwargs.device_map': 'auto',
+           'model_kwargs.use_cache': False,
+           'model_name': 'Qwen/Qwen2.5-1.5B-Instruct',
+           'model_type': 'causal_lm',
+           'peft_params.bias': 'none',
+           'peft_params.lora_alpha': 32,
+           'peft_params.lora_dropout': 0.05,
+           'peft_params.r': 16,
+           'peft_params.target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj'],
+           'tokenizer': None,
+           'tokenizer_kwargs': None,
+           'trainer_type': 'SFT',
+           'training_args.bf16': True,
+           'training_args.eval_steps': 50,
+           'training_args.eval_strategy': 'steps',
+           'training_args.gradient_accumulation_steps': 4,
+           'training_args.gradient_checkpointing': True,
+           'training_args.learning_rate': 0.0005,
+           'training_args.logging_steps': 10,
+           'training_args.lr_scheduler_type': 'linear',
+           'training_args.max_length': 4096,
+           'training_args.max_steps': 300,
+           'training_args.num_train_epochs': 4,
+           'training_args.per_device_eval_batch_size': 1,
+           'training_args.per_device_train_batch_size': 1,
+           'training_args.report_to': 'none',
+           'training_args.save_steps': 100,
+           'training_args.save_strategy': 'steps',
+           'training_args.save_total_limit': 2,
+           'training_args.warmup_ratio': 0.05},
+    7: {   'model_kwargs.device_map': 'auto',
+           'model_kwargs.use_cache': False,
+           'model_name': 'Qwen/Qwen2.5-1.5B-Instruct',
+           'model_type': 'causal_lm',
+           'peft_params.bias': 'none',
+           'peft_params.lora_alpha': 64,
+           'peft_params.lora_dropout': 0.05,
+           'peft_params.r': 32,
+           'peft_params.target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'],
+           'tokenizer': None,
+           'tokenizer_kwargs': None,
+           'trainer_type': 'SFT',
+           'training_args.bf16': True,
+           'training_args.eval_steps': 50,
+           'training_args.eval_strategy': 'steps',
+           'training_args.gradient_accumulation_steps': 4,
+           'training_args.gradient_checkpointing': True,
+           'training_args.learning_rate': 0.0003,
+           'training_args.logging_steps': 10,
+           'training_args.lr_scheduler_type': 'linear',
+           'training_args.max_length': 4096,
+           'training_args.max_steps': 300,
+           'training_args.num_train_epochs': 4,
+           'training_args.per_device_eval_batch_size': 1,
+           'training_args.per_device_train_batch_size': 1,
+           'training_args.report_to': 'none',
+           'training_args.save_steps': 100,
+           'training_args.save_strategy': 'steps',
+           'training_args.save_total_limit': 2,
+           'training_args.warmup_ratio': 0.05},
+    8: {   'model_kwargs.device_map': 'auto',
+           'model_kwargs.use_cache': False,
+           'model_name': 'Qwen/Qwen2.5-1.5B-Instruct',
+           'model_type': 'causal_lm',
+           'peft_params.bias': 'none',
+           'peft_params.lora_alpha': 64,
+           'peft_params.lora_dropout': 0.05,
+           'peft_params.r': 32,
+           'peft_params.target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'],
+           'tokenizer': None,
+           'tokenizer_kwargs': None,
+           'trainer_type': 'SFT',
+           'training_args.bf16': True,
+           'training_args.eval_steps': 50,
+           'training_args.eval_strategy': 'steps',
+           'training_args.gradient_accumulation_steps': 4,
+           'training_args.gradient_checkpointing': True,
+           'training_args.learning_rate': 0.0005,
+           'training_args.logging_steps': 10,
+           'training_args.lr_scheduler_type': 'linear',
+           'training_args.max_length': 4096,
+           'training_args.max_steps': 300,
+           'training_args.num_train_epochs': 4,
+           'training_args.per_device_eval_batch_size': 1,
+           'training_args.per_device_train_batch_size': 1,
+           'training_args.report_to': 'none',
+           'training_args.save_steps': 100,
+           'training_args.save_strategy': 'steps',
+           'training_args.save_total_limit': 2,
+           'training_args.warmup_ratio': 0.05}}
+2026-05-21 18:57:34 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:223 | Got 8 runs for Initial.
+2026-05-21 18:57:34 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:227 | Completed creating models.
+2026-05-21 18:57:34 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:625 | Created models.
+2026-05-21 18:57:34 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:631 | Set experiment task to Training and Validation.
+2026-05-21 18:57:34 | schema-linking-sft-sweep5 | worker_manager | DEBUG | worker_manager.py:115 | Creating 1 worker processes...
+2026-05-21 18:57:34 | schema-linking-sft-sweep5 | worker_manager | DEBUG | worker_manager.py:121 | Starting worker processes in process group 18365
+2026-05-21 18:57:34 | schema-linking-sft-sweep5 | worker_manager | DEBUG | worker_manager.py:149 | Started Worker 0 with PID 18652
+2026-05-21 18:57:34 | schema-linking-sft-sweep5 | worker_manager | INFO | worker_manager.py:156 | Started 1 worker processes successfully
+2026-05-21 18:57:34 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:637 | Created 1 workers.
+2026-05-21 18:57:34 | schema-linking-sft-sweep5 | controller | INFO | controller.py:659 | Starting Training and Validation
+2026-05-21 18:57:35 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:886 | Scheduled run 2 on workers (0,) for chunk 0
+2026-05-21 18:57:54 | schema-linking-sft-sweep5 | worker_0 | DEBUG | worker.py:157 | Worker 0 initialized with PID 18652
+2026-05-21 18:57:54 | schema-linking-sft-sweep5 | worker_0 | INFO | metric_rfmetric_manager.py:55 | Initialized MLflowMetricLogger: rf_mlflow
+2026-05-21 18:57:54 | schema-linking-sft-sweep5 | worker_0 | DEBUG | worker.py:192 | Loaded datasets
+2026-05-21 18:57:54 | schema-linking-sft-sweep5 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 2
+2026-05-21 18:57:54 | schema-linking-sft-sweep5 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 2 with chunk 0
+2026-05-21 18:58:31 | schema-linking-sft-sweep5 | worker-0-shm | DEBUG | shm_manager.py:348 | Saved base_model for run Qwen/Qwen2.5-0.5B-Instruct
+2026-05-21 18:58:32 | schema-linking-sft-sweep5 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 2 on chunk 0
+2026-05-21 18:59:20 | schema-linking-sft-sweep5 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:0 in-place, 7 new
+2026-05-21 18:59:20 | schema-linking-sft-sweep5 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 2 on chunk 0
+2026-05-21 18:59:22 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:714 | Completed task: run 2, chunk 0 on workers (0,)
+2026-05-21 18:59:22 | schema-linking-sft-sweep5 | controller | INFO | controller.py:717 | Run 2 completed steps - 9/300
+2026-05-21 18:59:23 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:886 | Scheduled run 3 on workers (0,) for chunk 0
+2026-05-21 18:59:24 | schema-linking-sft-sweep5 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 3
+2026-05-21 18:59:24 | schema-linking-sft-sweep5 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 3 with chunk 0
+2026-05-21 18:59:50 | schema-linking-sft-sweep5 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 3 on chunk 0
+2026-05-21 19:01:53 | schema-linking-sft-sweep5 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:0 in-place, 7 new
+2026-05-21 19:01:53 | schema-linking-sft-sweep5 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 3 on chunk 0
+2026-05-21 19:01:55 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:714 | Completed task: run 3, chunk 0 on workers (0,)
+2026-05-21 19:01:55 | schema-linking-sft-sweep5 | controller | INFO | controller.py:717 | Run 3 completed steps - 9/300
+2026-05-21 19:01:56 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:886 | Scheduled run 6 on workers (0,) for chunk 0
+2026-05-21 19:01:56 | schema-linking-sft-sweep5 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 6
+2026-05-21 19:01:56 | schema-linking-sft-sweep5 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 6 with chunk 0
+2026-05-21 19:02:32 | schema-linking-sft-sweep5 | worker-0-shm | DEBUG | shm_manager.py:348 | Saved base_model for run Qwen/Qwen2.5-1.5B-Instruct
+2026-05-21 19:02:33 | schema-linking-sft-sweep5 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 6 on chunk 0
+2026-05-21 19:03:32 | schema-linking-sft-sweep5 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:0 in-place, 7 new
+2026-05-21 19:03:32 | schema-linking-sft-sweep5 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 6 on chunk 0
+2026-05-21 19:03:35 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:714 | Completed task: run 6, chunk 0 on workers (0,)
+2026-05-21 19:03:35 | schema-linking-sft-sweep5 | controller | INFO | controller.py:717 | Run 6 completed steps - 9/300
+2026-05-21 19:03:35 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:886 | Scheduled run 5 on workers (0,) for chunk 0
+2026-05-21 19:03:36 | schema-linking-sft-sweep5 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 5
+2026-05-21 19:03:36 | schema-linking-sft-sweep5 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 5 with chunk 0
+2026-05-21 19:03:55 | schema-linking-sft-sweep5 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 5 on chunk 0
+2026-05-21 19:06:32 | schema-linking-sft-sweep5 | schema-linking-sft-sweep5 | INFO | experiment_utils.py:270 | Task Training and Validation cancelled
+2026-05-21 19:06:32 | schema-linking-sft-sweep5 | schema-linking-sft-sweep5 | DEBUG | experiment_utils.py:271 | Reset experiment states and set current experiment task to idle
+2026-05-21 19:06:32 | schema-linking-sft-sweep5 | experiment | INFO | experiment.py:104 | Experiment schema-linking-sft-sweep5 is currently running. Returning the same experiment object.
+2026-05-21 19:06:32 | schema-linking-sft-sweep5 | experiment | INFO | experiment.py:104 | Task Training and Validation that was running has been cancelled.
+2026-05-21 19:06:32 | schema-linking-sft-sweep5 | experiment | INFO | experiment.py:106 | Running RapidFire AI version 0.15.2
+2026-05-21 19:06:38 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:67 | Found 1 workers/GPUs.
+2026-05-21 19:06:38 | schema-linking-sft-sweep5 | controller | INFO | metric_rfmetric_manager.py:55 | Initialized MLflowMetricLogger: rf_mlflow
+2026-05-21 19:06:38 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:95 | Controller initialized
+2026-05-21 19:06:38 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:594 | Set experiment task to Create Models.
+2026-05-21 19:06:38 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:607 | Saved datasets to /home/kal115/rapidfireai/rapidfire_experiments/schema-linking-sft-sweep5/datasets.dill
+2026-05-21 19:06:38 | schema-linking-sft-sweep5 | controller | INFO | controller.py:613 | Set seed to 42
+2026-05-21 19:06:38 | schema-linking-sft-sweep5 | controller | INFO | metric_rfmetric_manager.py:141 | Created MLflow run: e089a5ebc3a944a7ba6936057684aab9, 9
+2026-05-21 19:06:38 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:200 | Populated MetricLogger with model config info for run 9.
+2026-05-21 19:06:38 | schema-linking-sft-sweep5 | controller | INFO | metric_rfmetric_manager.py:141 | Created MLflow run: c3b6aa7a4118436fa82a3feafb18bc7a, 10
+2026-05-21 19:06:39 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:200 | Populated MetricLogger with model config info for run 10.
+2026-05-21 19:06:39 | schema-linking-sft-sweep5 | controller | INFO | metric_rfmetric_manager.py:141 | Created MLflow run: 7122c9e26137422aa79606856849ef0e, 11
+2026-05-21 19:06:39 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:200 | Populated MetricLogger with model config info for run 11.
+2026-05-21 19:06:39 | schema-linking-sft-sweep5 | controller | INFO | metric_rfmetric_manager.py:141 | Created MLflow run: 8e7703ac408e4dbfad4c85f27c8d2e74, 12
+2026-05-21 19:06:39 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:200 | Populated MetricLogger with model config info for run 12.
+2026-05-21 19:06:39 | schema-linking-sft-sweep5 | controller | INFO | metric_rfmetric_manager.py:141 | Created MLflow run: 0b2cd9136361489eb7d767a5a06d7529, 13
+2026-05-21 19:06:40 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:200 | Populated MetricLogger with model config info for run 13.
+2026-05-21 19:06:40 | schema-linking-sft-sweep5 | controller | INFO | metric_rfmetric_manager.py:141 | Created MLflow run: 2f634fb0259c4e87a4cc0019834dd736, 14
+2026-05-21 19:06:40 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:200 | Populated MetricLogger with model config info for run 14.
+2026-05-21 19:06:40 | schema-linking-sft-sweep5 | controller | INFO | metric_rfmetric_manager.py:141 | Created MLflow run: 07834e81facd47f6986bfe1e4d10c610, 15
+2026-05-21 19:06:40 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:200 | Populated MetricLogger with model config info for run 15.
+2026-05-21 19:06:40 | schema-linking-sft-sweep5 | controller | INFO | metric_rfmetric_manager.py:141 | Created MLflow run: 46c7a81c46144f91ad480149eccd62cf, 16
+2026-05-21 19:06:40 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:200 | Populated MetricLogger with model config info for run 16.
+2026-05-21 19:06:40 | schema-linking-sft-sweep5 | controller | INFO | controller.py:220 | Created 8 runs - 
+{   9: {   'model_kwargs.device_map': 'auto',
+           'model_kwargs.use_cache': False,
+           'model_name': 'Qwen/Qwen2.5-0.5B-Instruct',
+           'model_type': 'causal_lm',
+           'peft_params.bias': 'none',
+           'peft_params.lora_alpha': 32,
+           'peft_params.lora_dropout': 0.05,
+           'peft_params.r': 16,
+           'peft_params.target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj'],
+           'tokenizer': None,
+           'tokenizer_kwargs': None,
+           'trainer_type': 'SFT',
+           'training_args.bf16': True,
+           'training_args.eval_steps': 50,
+           'training_args.eval_strategy': 'steps',
+           'training_args.gradient_accumulation_steps': 4,
+           'training_args.gradient_checkpointing': True,
+           'training_args.learning_rate': 0.0003,
+           'training_args.logging_steps': 10,
+           'training_args.lr_scheduler_type': 'linear',
+           'training_args.max_length': 4096,
+           'training_args.max_steps': 300,
+           'training_args.num_train_epochs': 4,
+           'training_args.per_device_eval_batch_size': 1,
+           'training_args.per_device_train_batch_size': 1,
+           'training_args.report_to': 'none',
+           'training_args.save_steps': 100,
+           'training_args.save_strategy': 'steps',
+           'training_args.save_total_limit': 2,
+           'training_args.warmup_ratio': 0.05},
+    10: {   'model_kwargs.device_map': 'auto',
+            'model_kwargs.use_cache': False,
+            'model_name': 'Qwen/Qwen2.5-0.5B-Instruct',
+            'model_type': 'causal_lm',
+            'peft_params.bias': 'none',
+            'peft_params.lora_alpha': 32,
+            'peft_params.lora_dropout': 0.05,
+            'peft_params.r': 16,
+            'peft_params.target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj'],
+            'tokenizer': None,
+            'tokenizer_kwargs': None,
+            'trainer_type': 'SFT',
+            'training_args.bf16': True,
+            'training_args.eval_steps': 50,
+            'training_args.eval_strategy': 'steps',
+            'training_args.gradient_accumulation_steps': 4,
+            'training_args.gradient_checkpointing': True,
+            'training_args.learning_rate': 0.0005,
+            'training_args.logging_steps': 10,
+            'training_args.lr_scheduler_type': 'linear',
+            'training_args.max_length': 4096,
+            'training_args.max_steps': 300,
+            'training_args.num_train_epochs': 4,
+            'training_args.per_device_eval_batch_size': 1,
+            'training_args.per_device_train_batch_size': 1,
+            'training_args.report_to': 'none',
+            'training_args.save_steps': 100,
+            'training_args.save_strategy': 'steps',
+            'training_args.save_total_limit': 2,
+            'training_args.warmup_ratio': 0.05},
+    11: {   'model_kwargs.device_map': 'auto',
+            'model_kwargs.use_cache': False,
+            'model_name': 'Qwen/Qwen2.5-0.5B-Instruct',
+            'model_type': 'causal_lm',
+            'peft_params.bias': 'none',
+            'peft_params.lora_alpha': 64,
+            'peft_params.lora_dropout': 0.05,
+            'peft_params.r': 32,
+            'peft_params.target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'],
+            'tokenizer': None,
+            'tokenizer_kwargs': None,
+            'trainer_type': 'SFT',
+            'training_args.bf16': True,
+            'training_args.eval_steps': 50,
+            'training_args.eval_strategy': 'steps',
+            'training_args.gradient_accumulation_steps': 4,
+            'training_args.gradient_checkpointing': True,
+            'training_args.learning_rate': 0.0003,
+            'training_args.logging_steps': 10,
+            'training_args.lr_scheduler_type': 'linear',
+            'training_args.max_length': 4096,
+            'training_args.max_steps': 300,
+            'training_args.num_train_epochs': 4,
+            'training_args.per_device_eval_batch_size': 1,
+            'training_args.per_device_train_batch_size': 1,
+            'training_args.report_to': 'none',
+            'training_args.save_steps': 100,
+            'training_args.save_strategy': 'steps',
+            'training_args.save_total_limit': 2,
+            'training_args.warmup_ratio': 0.05},
+    12: {   'model_kwargs.device_map': 'auto',
+            'model_kwargs.use_cache': False,
+            'model_name': 'Qwen/Qwen2.5-0.5B-Instruct',
+            'model_type': 'causal_lm',
+            'peft_params.bias': 'none',
+            'peft_params.lora_alpha': 64,
+            'peft_params.lora_dropout': 0.05,
+            'peft_params.r': 32,
+            'peft_params.target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'],
+            'tokenizer': None,
+            'tokenizer_kwargs': None,
+            'trainer_type': 'SFT',
+            'training_args.bf16': True,
+            'training_args.eval_steps': 50,
+            'training_args.eval_strategy': 'steps',
+            'training_args.gradient_accumulation_steps': 4,
+            'training_args.gradient_checkpointing': True,
+            'training_args.learning_rate': 0.0005,
+            'training_args.logging_steps': 10,
+            'training_args.lr_scheduler_type': 'linear',
+            'training_args.max_length': 4096,
+            'training_args.max_steps': 300,
+            'training_args.num_train_epochs': 4,
+            'training_args.per_device_eval_batch_size': 1,
+            'training_args.per_device_train_batch_size': 1,
+            'training_args.report_to': 'none',
+            'training_args.save_steps': 100,
+            'training_args.save_strategy': 'steps',
+            'training_args.save_total_limit': 2,
+            'training_args.warmup_ratio': 0.05},
+    13: {   'model_kwargs.device_map': 'auto',
+            'model_kwargs.use_cache': False,
+            'model_name': 'Qwen/Qwen2.5-1.5B-Instruct',
+            'model_type': 'causal_lm',
+            'peft_params.bias': 'none',
+            'peft_params.lora_alpha': 32,
+            'peft_params.lora_dropout': 0.05,
+            'peft_params.r': 16,
+            'peft_params.target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj'],
+            'tokenizer': None,
+            'tokenizer_kwargs': None,
+            'trainer_type': 'SFT',
+            'training_args.bf16': True,
+            'training_args.eval_steps': 50,
+            'training_args.eval_strategy': 'steps',
+            'training_args.gradient_accumulation_steps': 4,
+            'training_args.gradient_checkpointing': True,
+            'training_args.learning_rate': 0.0003,
+            'training_args.logging_steps': 10,
+            'training_args.lr_scheduler_type': 'linear',
+            'training_args.max_length': 4096,
+            'training_args.max_steps': 300,
+            'training_args.num_train_epochs': 4,
+            'training_args.per_device_eval_batch_size': 1,
+            'training_args.per_device_train_batch_size': 1,
+            'training_args.report_to': 'none',
+            'training_args.save_steps': 100,
+            'training_args.save_strategy': 'steps',
+            'training_args.save_total_limit': 2,
+            'training_args.warmup_ratio': 0.05},
+    14: {   'model_kwargs.device_map': 'auto',
+            'model_kwargs.use_cache': False,
+            'model_name': 'Qwen/Qwen2.5-1.5B-Instruct',
+            'model_type': 'causal_lm',
+            'peft_params.bias': 'none',
+            'peft_params.lora_alpha': 32,
+            'peft_params.lora_dropout': 0.05,
+            'peft_params.r': 16,
+            'peft_params.target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj'],
+            'tokenizer': None,
+            'tokenizer_kwargs': None,
+            'trainer_type': 'SFT',
+            'training_args.bf16': True,
+            'training_args.eval_steps': 50,
+            'training_args.eval_strategy': 'steps',
+            'training_args.gradient_accumulation_steps': 4,
+            'training_args.gradient_checkpointing': True,
+            'training_args.learning_rate': 0.0005,
+            'training_args.logging_steps': 10,
+            'training_args.lr_scheduler_type': 'linear',
+            'training_args.max_length': 4096,
+            'training_args.max_steps': 300,
+            'training_args.num_train_epochs': 4,
+            'training_args.per_device_eval_batch_size': 1,
+            'training_args.per_device_train_batch_size': 1,
+            'training_args.report_to': 'none',
+            'training_args.save_steps': 100,
+            'training_args.save_strategy': 'steps',
+            'training_args.save_total_limit': 2,
+            'training_args.warmup_ratio': 0.05},
+    15: {   'model_kwargs.device_map': 'auto',
+            'model_kwargs.use_cache': False,
+            'model_name': 'Qwen/Qwen2.5-1.5B-Instruct',
+            'model_type': 'causal_lm',
+            'peft_params.bias': 'none',
+            'peft_params.lora_alpha': 64,
+            'peft_params.lora_dropout': 0.05,
+            'peft_params.r': 32,
+            'peft_params.target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'],
+            'tokenizer': None,
+            'tokenizer_kwargs': None,
+            'trainer_type': 'SFT',
+            'training_args.bf16': True,
+            'training_args.eval_steps': 50,
+            'training_args.eval_strategy': 'steps',
+            'training_args.gradient_accumulation_steps': 4,
+            'training_args.gradient_checkpointing': True,
+            'training_args.learning_rate': 0.0003,
+            'training_args.logging_steps': 10,
+            'training_args.lr_scheduler_type': 'linear',
+            'training_args.max_length': 4096,
+            'training_args.max_steps': 300,
+            'training_args.num_train_epochs': 4,
+            'training_args.per_device_eval_batch_size': 1,
+            'training_args.per_device_train_batch_size': 1,
+            'training_args.report_to': 'none',
+            'training_args.save_steps': 100,
+            'training_args.save_strategy': 'steps',
+            'training_args.save_total_limit': 2,
+            'training_args.warmup_ratio': 0.05},
+    16: {   'model_kwargs.device_map': 'auto',
+            'model_kwargs.use_cache': False,
+            'model_name': 'Qwen/Qwen2.5-1.5B-Instruct',
+            'model_type': 'causal_lm',
+            'peft_params.bias': 'none',
+            'peft_params.lora_alpha': 64,
+            'peft_params.lora_dropout': 0.05,
+            'peft_params.r': 32,
+            'peft_params.target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'],
+            'tokenizer': None,
+            'tokenizer_kwargs': None,
+            'trainer_type': 'SFT',
+            'training_args.bf16': True,
+            'training_args.eval_steps': 50,
+            'training_args.eval_strategy': 'steps',
+            'training_args.gradient_accumulation_steps': 4,
+            'training_args.gradient_checkpointing': True,
+            'training_args.learning_rate': 0.0005,
+            'training_args.logging_steps': 10,
+            'training_args.lr_scheduler_type': 'linear',
+            'training_args.max_length': 4096,
+            'training_args.max_steps': 300,
+            'training_args.num_train_epochs': 4,
+            'training_args.per_device_eval_batch_size': 1,
+            'training_args.per_device_train_batch_size': 1,
+            'training_args.report_to': 'none',
+            'training_args.save_steps': 100,
+            'training_args.save_strategy': 'steps',
+            'training_args.save_total_limit': 2,
+            'training_args.warmup_ratio': 0.05}}
+2026-05-21 19:06:40 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:223 | Got 8 runs for Initial.
+2026-05-21 19:06:40 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:227 | Completed creating models.
+2026-05-21 19:06:40 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:625 | Created models.
+2026-05-21 19:06:40 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:631 | Set experiment task to Training and Validation.
+2026-05-21 19:06:40 | schema-linking-sft-sweep5 | worker_manager | DEBUG | worker_manager.py:115 | Creating 1 worker processes...
+2026-05-21 19:06:40 | schema-linking-sft-sweep5 | worker_manager | DEBUG | worker_manager.py:121 | Starting worker processes in process group 3175
+2026-05-21 19:06:40 | schema-linking-sft-sweep5 | worker_manager | DEBUG | worker_manager.py:149 | Started Worker 0 with PID 4052
+2026-05-21 19:06:40 | schema-linking-sft-sweep5 | worker_manager | INFO | worker_manager.py:156 | Started 1 worker processes successfully
+2026-05-21 19:06:40 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:637 | Created 1 workers.
+2026-05-21 19:06:40 | schema-linking-sft-sweep5 | controller | INFO | controller.py:659 | Starting Training and Validation
+2026-05-21 19:06:41 | schema-linking-sft-sweep5 | controller | DEBUG | controller.py:886 | Scheduled run 16 on workers (0,) for chunk 0
+2026-05-21 19:06:57 | schema-linking-sft-sweep5 | worker_0 | DEBUG | worker.py:157 | Worker 0 initialized with PID 4052
+2026-05-21 19:06:57 | schema-linking-sft-sweep5 | worker_0 | INFO | metric_rfmetric_manager.py:55 | Initialized MLflowMetricLogger: rf_mlflow
+2026-05-21 19:06:58 | schema-linking-sft-sweep5 | worker_0 | DEBUG | worker.py:192 | Loaded datasets
+2026-05-21 19:06:58 | schema-linking-sft-sweep5 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 16
+2026-05-21 19:06:58 | schema-linking-sft-sweep5 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 16 with chunk 0
+2026-05-21 19:08:36 | schema-linking-sft-sweep5 | worker-0-shm | DEBUG | shm_manager.py:348 | Saved base_model for run Qwen/Qwen2.5-1.5B-Instruct
+2026-05-21 19:09:32 | schema-linking-sft-sweep5 | schema-linking-sft-sweep5 | INFO | experiment_utils.py:270 | Task Training and Validation cancelled
+2026-05-21 19:09:32 | schema-linking-sft-sweep5 | schema-linking-sft-sweep5 | DEBUG | experiment_utils.py:271 | Reset experiment states and set current experiment task to idle
+2026-05-21 19:09:34 | schema-linking-sft-sweep5 | worker_0 | DEBUG | worker_manager.py:46 | Worker 0 interrupted
+2026-05-21 19:09:34 | schema-linking-sft-sweep5 | worker_0 | INFO | worker_manager.py:50 | Worker 0 process exiting
+2026-05-21 19:09:34 | schema-linking-sft-sweep5 | worker_0 | DEBUG | worker.py:712 | Worker 0 shutdown requested
+2026-05-21 19:09:55 | schema-linking-sft-sweep5 | schema-linking-sft-sweep5 | DEBUG | experiment_utils.py:271 | Reset experiment states and set current experiment task to idle
+2026-05-21 19:09:55 | schema-linking-sft-sweep5 | schema-linking-sft-sweep5 | INFO | metric_rfmetric_manager.py:55 | Initialized MLflowMetricLogger: rf_mlflow
+2026-05-21 19:09:55 | schema-linking-sft-sweep5 | schema-linking-sft-sweep5 | INFO | metric_mlflow_manager.py:133 | No active MLflow run to clear
+2026-05-21 19:09:55 | schema-linking-sft-sweep5 | schema-linking-sft-sweep5 | INFO | experiment_utils.py:240 | Experiment schema-linking-sft-sweep5 ended

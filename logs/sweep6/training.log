@@ -1,0 +1,643 @@
+2026-05-21 19:13:22 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 10.7658, 'train_samples_per_second': 3.344, 'train_steps_per_second': 0.836, 'train_loss': 1.334978421529134, 'entropy': 0.7521930527355936, 'num_tokens': 61220.0, 'mean_token_accuracy': 0.6980318220125304, 'epoch': 1.0}
+
+2026-05-21 19:13:22 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 4930.77 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 14646.13 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  67%|██████▋   | 24/36 [00:00<00:00, 225.07 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 229.36 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  28%|██▊       | 28/101 [00:00<00:00, 267.69 examples/s]Tokenizing eval dataset:  55%|█████▌    | 56/101 [00:00<00:00, 258.53 examples/s]Tokenizing eval dataset:  92%|█████████▏| 93/101 [00:00<00:00, 244.22 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 221.26 examples/s]
+/opt/conda/envs/cse234/lib/python3.12/site-packages/transformers/trainer.py:2750: UserWarning: Seems like `optimizer.step()` has been overridden after learning rate scheduler initialization. Please, make sure to call `optimizer.step()` before `lr_scheduler.step()`. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  self.lr_scheduler.step()
+
+2026-05-21 19:18:53 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 13.8365, 'train_samples_per_second': 2.602, 'train_steps_per_second': 0.65, 'train_loss': 1.238858116997613, 'entropy': 0.8129152854283651, 'num_tokens': 61220.0, 'mean_token_accuracy': 0.7101218360993597, 'epoch': 1.0}
+
+2026-05-21 19:18:53 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6034.73 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11143.91 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  61%|██████    | 22/36 [00:00<00:00, 200.66 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 211.18 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 245.35 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 218.67 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 220.29 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 196.33 examples/s]
+/opt/conda/envs/cse234/lib/python3.12/site-packages/transformers/trainer.py:2750: UserWarning: Seems like `optimizer.step()` has been overridden after learning rate scheduler initialization. Please, make sure to call `optimizer.step()` before `lr_scheduler.step()`. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  self.lr_scheduler.step()
+
+2026-05-21 19:22:18 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 19.0029, 'train_samples_per_second': 1.894, 'train_steps_per_second': 0.474, 'train_loss': 0.9397864871554904, 'entropy': 0.4092905382729239, 'num_tokens': 61220.0, 'mean_token_accuracy': 0.7939275420374341, 'epoch': 1.0}
+
+2026-05-21 19:22:18 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 5608.61 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 12057.40 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  69%|██████▉   | 25/36 [00:00<00:00, 239.57 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 233.82 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  27%|██▋       | 27/101 [00:00<00:00, 255.46 examples/s]Tokenizing eval dataset:  52%|█████▏    | 53/101 [00:00<00:00, 251.15 examples/s]Tokenizing eval dataset:  87%|████████▋ | 88/101 [00:00<00:00, 236.77 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 213.30 examples/s]
+/opt/conda/envs/cse234/lib/python3.12/site-packages/transformers/trainer.py:2750: UserWarning: Seems like `optimizer.step()` has been overridden after learning rate scheduler initialization. Please, make sure to call `optimizer.step()` before `lr_scheduler.step()`. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  self.lr_scheduler.step()
+
+2026-05-21 19:25:08 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 19.3556, 'train_samples_per_second': 1.86, 'train_steps_per_second': 0.465, 'train_loss': 0.998637835184733, 'entropy': 0.37262714385158485, 'num_tokens': 61220.0, 'mean_token_accuracy': 0.7893600430753496, 'epoch': 1.0}
+
+2026-05-21 19:25:08 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 5599.04 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 10975.87 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  61%|██████    | 22/36 [00:00<00:00, 199.11 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 209.89 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 234.79 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 214.63 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 218.63 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 194.50 examples/s]
+/opt/conda/envs/cse234/lib/python3.12/site-packages/transformers/trainer.py:2750: UserWarning: Seems like `optimizer.step()` has been overridden after learning rate scheduler initialization. Please, make sure to call `optimizer.step()` before `lr_scheduler.step()`. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  self.lr_scheduler.step()
+
+2026-05-21 19:38:11 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 26.4273, 'train_samples_per_second': 1.362, 'train_steps_per_second': 0.341, 'train_loss': 0.848259343041314, 'entropy': 0.4877801440242264, 'num_tokens': 61220.0, 'mean_token_accuracy': 0.8083669195572535, 'epoch': 1.0}
+
+2026-05-21 19:38:11 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 4761.29 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 9598.82 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  58%|█████▊    | 21/36 [00:00<00:00, 200.67 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 207.24 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 241.68 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 216.85 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 220.26 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 196.99 examples/s]
+/opt/conda/envs/cse234/lib/python3.12/site-packages/transformers/trainer.py:2750: UserWarning: Seems like `optimizer.step()` has been overridden after learning rate scheduler initialization. Please, make sure to call `optimizer.step()` before `lr_scheduler.step()`. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  self.lr_scheduler.step()
+
+2026-05-21 19:43:55 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 13.9126, 'train_samples_per_second': 2.588, 'train_steps_per_second': 0.647, 'train_loss': 1.1693711810641818, 'entropy': 0.8571157190534804, 'num_tokens': 61220.0, 'mean_token_accuracy': 0.730216432776716, 'epoch': 1.0}
+
+2026-05-21 19:43:55 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 3117.73 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 8679.06 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  56%|█████▌    | 20/36 [00:00<00:00, 186.52 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 201.46 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 239.25 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 214.86 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 217.57 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 187.88 examples/s]
+/opt/conda/envs/cse234/lib/python3.12/site-packages/transformers/trainer.py:2750: UserWarning: Seems like `optimizer.step()` has been overridden after learning rate scheduler initialization. Please, make sure to call `optimizer.step()` before `lr_scheduler.step()`. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  self.lr_scheduler.step()
+
+2026-05-21 19:46:16 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 10.3722, 'train_samples_per_second': 3.471, 'train_steps_per_second': 0.868, 'train_loss': 1.4189268747965496, 'entropy': 0.7271003797650337, 'num_tokens': 61220.0, 'mean_token_accuracy': 0.6933569370044602, 'epoch': 1.0}
+
+2026-05-21 19:46:16 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 5774.41 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 10920.41 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  61%|██████    | 22/36 [00:00<00:00, 204.45 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 213.43 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 245.24 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 220.23 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 221.46 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 196.14 examples/s]
+/opt/conda/envs/cse234/lib/python3.12/site-packages/transformers/trainer.py:2750: UserWarning: Seems like `optimizer.step()` has been overridden after learning rate scheduler initialization. Please, make sure to call `optimizer.step()` before `lr_scheduler.step()`. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  self.lr_scheduler.step()
+
+2026-05-21 19:59:41 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 26.3722, 'train_samples_per_second': 1.365, 'train_steps_per_second': 0.341, 'train_loss': 0.7930357721116807, 'entropy': 0.506907124693195, 'num_tokens': 61220.0, 'mean_token_accuracy': 0.8195405751466751, 'epoch': 1.0}
+
+2026-05-21 19:59:41 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 5605.28 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 10139.17 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  61%|██████    | 22/36 [00:00<00:00, 203.23 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 212.67 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 239.63 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 215.88 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 217.70 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 194.38 examples/s]
+/opt/conda/envs/cse234/lib/python3.12/site-packages/transformers/trainer.py:2750: UserWarning: Seems like `optimizer.step()` has been overridden after learning rate scheduler initialization. Please, make sure to call `optimizer.step()` before `lr_scheduler.step()`. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  self.lr_scheduler.step()
+
+2026-05-21 20:00:38 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 12.6011, 'train_samples_per_second': 2.857, 'train_steps_per_second': 0.714, 'train_loss': 0.8862169053819444, 'entropy': 0.9811880017320315, 'num_tokens': 70733.0, 'mean_token_accuracy': 0.7332982354693942, 'epoch': 1.0}
+
+2026-05-21 20:00:38 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6169.10 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 10641.43 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  61%|██████    | 22/36 [00:00<00:00, 212.16 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 188.13 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 239.81 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 214.29 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 216.26 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 193.52 examples/s]
+
+2026-05-21 20:03:32 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 16.6127, 'train_samples_per_second': 2.167, 'train_steps_per_second': 0.542, 'train_loss': 0.8444985813564725, 'entropy': 0.7887735524111323, 'num_tokens': 70733.0, 'mean_token_accuracy': 0.7350851082139545, 'epoch': 1.0}
+
+2026-05-21 20:03:32 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 5582.48 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 10273.18 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  64%|██████▍   | 23/36 [00:00<00:00, 220.89 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 192.51 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  26%|██▌       | 26/101 [00:00<00:00, 239.24 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 221.87 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 223.65 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 198.91 examples/s]
+
+2026-05-21 20:04:44 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 22.3395, 'train_samples_per_second': 1.611, 'train_steps_per_second': 0.403, 'train_loss': 0.611096117231581, 'entropy': 0.636011345932881, 'num_tokens': 70733.0, 'mean_token_accuracy': 0.7996512336863412, 'epoch': 1.0}
+
+2026-05-21 20:04:44 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 5636.03 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 10339.88 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  64%|██████▍   | 23/36 [00:00<00:00, 223.77 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 193.70 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 242.15 examples/s]Tokenizing eval dataset:  56%|█████▋    | 57/101 [00:00<00:00, 216.97 examples/s]Tokenizing eval dataset:  80%|████████  | 81/101 [00:00<00:00, 222.10 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 196.59 examples/s]
+
+2026-05-21 20:05:56 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 22.3458, 'train_samples_per_second': 1.611, 'train_steps_per_second': 0.403, 'train_loss': 0.638232496049669, 'entropy': 0.6249501850042078, 'num_tokens': 70733.0, 'mean_token_accuracy': 0.7845456351836523, 'epoch': 1.0}
+
+2026-05-21 20:05:56 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6785.98 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11674.60 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  67%|██████▋   | 24/36 [00:00<00:00, 229.23 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 191.98 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 239.11 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 218.37 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 220.71 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 196.95 examples/s]
+
+2026-05-21 20:16:29 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 30.9715, 'train_samples_per_second': 1.162, 'train_steps_per_second': 0.291, 'train_loss': 0.5713543362087674, 'entropy': 0.5412328257742856, 'num_tokens': 70733.0, 'mean_token_accuracy': 0.8065307769510481, 'epoch': 1.0}
+
+2026-05-21 20:16:29 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6570.43 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11437.57 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  67%|██████▋   | 24/36 [00:00<00:00, 233.73 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 197.30 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  26%|██▌       | 26/101 [00:00<00:00, 244.15 examples/s]Tokenizing eval dataset:  60%|██████    | 61/101 [00:00<00:00, 229.51 examples/s]Tokenizing eval dataset:  92%|█████████▏| 93/101 [00:00<00:00, 217.06 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 199.03 examples/s]
+
+2026-05-21 20:26:49 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 30.9923, 'train_samples_per_second': 1.162, 'train_steps_per_second': 0.29, 'train_loss': 0.5693072213066949, 'entropy': 0.48833326358969015, 'num_tokens': 70733.0, 'mean_token_accuracy': 0.808517638179991, 'epoch': 1.0}
+
+2026-05-21 20:26:49 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 4219.27 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 10842.71 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  64%|██████▍   | 23/36 [00:00<00:00, 221.11 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 192.01 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  26%|██▌       | 26/101 [00:00<00:00, 238.81 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 220.84 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 221.93 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 198.07 examples/s]
+
+2026-05-21 20:30:01 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 16.5947, 'train_samples_per_second': 2.169, 'train_steps_per_second': 0.542, 'train_loss': 0.8684418466356065, 'entropy': 0.714907723168532, 'num_tokens': 70733.0, 'mean_token_accuracy': 0.7474717646837234, 'epoch': 1.0}
+
+2026-05-21 20:30:01 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 5871.63 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 10344.42 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  61%|██████    | 22/36 [00:00<00:00, 209.71 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 185.65 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 231.54 examples/s]Tokenizing eval dataset:  56%|█████▋    | 57/101 [00:00<00:00, 202.65 examples/s]Tokenizing eval dataset:  80%|████████  | 81/101 [00:00<00:00, 210.99 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 180.56 examples/s]
+
+2026-05-21 20:31:02 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 12.4453, 'train_samples_per_second': 2.893, 'train_steps_per_second': 0.723, 'train_loss': 0.9326784345838759, 'entropy': 1.0064628173907597, 'num_tokens': 70733.0, 'mean_token_accuracy': 0.7288782000541687, 'epoch': 1.0}
+
+2026-05-21 20:31:02 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6625.78 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11892.89 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  67%|██████▋   | 24/36 [00:00<00:00, 229.45 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 187.57 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  26%|██▌       | 26/101 [00:00<00:00, 241.36 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 223.47 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 224.74 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 200.15 examples/s]
+
+2026-05-21 20:32:21 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 25.0951, 'train_samples_per_second': 1.435, 'train_steps_per_second': 0.359, 'train_loss': 0.46664079030354816, 'entropy': 0.4427589554753568, 'num_tokens': 79615.0, 'mean_token_accuracy': 0.8039062321186066, 'epoch': 1.0}
+
+2026-05-21 20:32:21 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6477.13 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 10094.96 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  53%|█████▎    | 19/36 [00:00<00:00, 181.86 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 160.11 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 230.31 examples/s]Tokenizing eval dataset:  56%|█████▋    | 57/101 [00:00<00:00, 207.57 examples/s]Tokenizing eval dataset:  80%|████████  | 81/101 [00:00<00:00, 210.17 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 186.28 examples/s]
+
+2026-05-21 20:33:22 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 13.5295, 'train_samples_per_second': 2.661, 'train_steps_per_second': 0.665, 'train_loss': 0.7174373732672797, 'entropy': 0.5983286909759045, 'num_tokens': 79615.0, 'mean_token_accuracy': 0.7656147148874071, 'epoch': 1.0}
+
+2026-05-21 20:33:22 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6184.01 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11838.05 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  50%|█████     | 18/36 [00:00<00:00, 172.69 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 156.06 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 157.34 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 228.40 examples/s]Tokenizing eval dataset:  56%|█████▋    | 57/101 [00:00<00:00, 206.52 examples/s]Tokenizing eval dataset:  80%|████████  | 81/101 [00:00<00:00, 209.08 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 185.61 examples/s]
+
+2026-05-21 20:44:44 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 34.8101, 'train_samples_per_second': 1.034, 'train_steps_per_second': 0.259, 'train_loss': 0.4551615185207791, 'entropy': 0.35640348380224574, 'num_tokens': 79615.0, 'mean_token_accuracy': 0.8153960853815079, 'epoch': 1.0}
+
+2026-05-21 20:44:44 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 4940.13 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 10083.42 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  56%|█████▌    | 20/36 [00:00<00:00, 190.39 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 166.17 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 241.24 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 217.03 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 219.17 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 195.66 examples/s]
+
+2026-05-21 20:45:47 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 13.7435, 'train_samples_per_second': 2.619, 'train_steps_per_second': 0.655, 'train_loss': 0.7220205730862088, 'entropy': 0.702193869691756, 'num_tokens': 79615.0, 'mean_token_accuracy': 0.7537583973672655, 'epoch': 1.0}
+
+2026-05-21 20:45:47 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 4899.57 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 9189.06 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  61%|██████    | 22/36 [00:00<00:00, 200.92 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 170.53 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 228.32 examples/s]Tokenizing eval dataset:  56%|█████▋    | 57/101 [00:00<00:00, 201.18 examples/s]Tokenizing eval dataset:  80%|████████  | 81/101 [00:00<00:00, 207.86 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 181.83 examples/s]
+
+2026-05-21 20:49:05 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 18.1261, 'train_samples_per_second': 1.986, 'train_steps_per_second': 0.497, 'train_loss': 0.7025931676228842, 'entropy': 0.5715958070423868, 'num_tokens': 79615.0, 'mean_token_accuracy': 0.7552404453357061, 'epoch': 1.0}
+
+2026-05-21 20:49:05 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6424.50 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 12457.72 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  53%|█████▎    | 19/36 [00:00<00:00, 183.83 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 160.46 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 231.13 examples/s]Tokenizing eval dataset:  56%|█████▋    | 57/101 [00:00<00:00, 208.67 examples/s]Tokenizing eval dataset:  80%|████████  | 81/101 [00:00<00:00, 210.64 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 186.83 examples/s]
+
+2026-05-21 21:00:24 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 34.9533, 'train_samples_per_second': 1.03, 'train_steps_per_second': 0.257, 'train_loss': 0.5361993577745225, 'entropy': 0.4328041297073166, 'num_tokens': 79615.0, 'mean_token_accuracy': 0.8070807920561897, 'epoch': 1.0}
+
+2026-05-21 21:00:24 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6297.75 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11027.59 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  61%|██████    | 22/36 [00:00<00:00, 198.87 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 168.03 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 241.10 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 215.98 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 217.76 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 193.68 examples/s]
+
+2026-05-21 21:01:46 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 25.0915, 'train_samples_per_second': 1.435, 'train_steps_per_second': 0.359, 'train_loss': 0.4295097457038032, 'entropy': 0.3536257565849357, 'num_tokens': 79615.0, 'mean_token_accuracy': 0.8162098675966263, 'epoch': 1.0}
+
+2026-05-21 21:01:46 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 4854.99 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 9290.63 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  50%|█████     | 18/36 [00:00<00:00, 170.63 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 155.43 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 156.54 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  22%|██▏       | 22/101 [00:00<00:00, 213.69 examples/s]Tokenizing eval dataset:  54%|█████▍    | 55/101 [00:00<00:00, 204.68 examples/s]Tokenizing eval dataset:  76%|███████▌  | 77/101 [00:00<00:00, 204.55 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 168.80 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 180.58 examples/s]
+
+2026-05-21 21:05:03 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 18.2953, 'train_samples_per_second': 1.968, 'train_steps_per_second': 0.492, 'train_loss': 0.774683051639133, 'entropy': 0.6505119279026985, 'num_tokens': 79615.0, 'mean_token_accuracy': 0.7484854757785797, 'epoch': 1.0}
+
+2026-05-21 21:05:03 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 5051.35 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 10709.22 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  56%|█████▌    | 20/36 [00:00<00:00, 189.03 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 165.52 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 240.10 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 216.41 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 217.63 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 194.52 examples/s]
+
+2026-05-21 21:06:18 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 19.4338, 'train_samples_per_second': 1.852, 'train_steps_per_second': 0.463, 'train_loss': 0.5374362733629015, 'entropy': 0.41807536594569683, 'num_tokens': 61682.0, 'mean_token_accuracy': 0.7648316770792007, 'epoch': 1.0}
+
+2026-05-21 21:06:18 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6197.46 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11715.93 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  58%|█████▊    | 21/36 [00:00<00:00, 196.56 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 189.90 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  23%|██▎       | 23/101 [00:00<00:00, 225.75 examples/s]Tokenizing eval dataset:  56%|█████▋    | 57/101 [00:00<00:00, 215.43 examples/s]Tokenizing eval dataset:  80%|████████  | 81/101 [00:00<00:00, 218.78 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 192.23 examples/s]
+
+2026-05-21 21:07:17 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 10.4899, 'train_samples_per_second': 3.432, 'train_steps_per_second': 0.858, 'train_loss': 0.7756213612026639, 'entropy': 0.6750667461504539, 'num_tokens': 61682.0, 'mean_token_accuracy': 0.7216144866413541, 'epoch': 1.0}
+
+2026-05-21 21:07:17 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6318.04 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11048.01 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  58%|█████▊    | 21/36 [00:00<00:00, 191.73 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 194.92 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 243.06 examples/s]Tokenizing eval dataset:  56%|█████▋    | 57/101 [00:00<00:00, 207.29 examples/s]Tokenizing eval dataset:  80%|████████  | 81/101 [00:00<00:00, 211.91 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 187.33 examples/s]
+
+2026-05-21 21:18:12 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 26.876, 'train_samples_per_second': 1.339, 'train_steps_per_second': 0.335, 'train_loss': 0.5641482141282823, 'entropy': 0.40695339089466465, 'num_tokens': 61682.0, 'mean_token_accuracy': 0.7557739085621304, 'epoch': 1.0}
+
+2026-05-21 21:18:12 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6032.56 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11702.66 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  58%|█████▊    | 21/36 [00:00<00:00, 189.88 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 193.53 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 233.98 examples/s]Tokenizing eval dataset:  56%|█████▋    | 57/101 [00:00<00:00, 211.52 examples/s]Tokenizing eval dataset:  80%|████████  | 81/101 [00:00<00:00, 214.13 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 189.49 examples/s]
+
+2026-05-21 21:19:09 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 10.402, 'train_samples_per_second': 3.461, 'train_steps_per_second': 0.865, 'train_loss': 0.8096862898932563, 'entropy': 0.6576311488946279, 'num_tokens': 61682.0, 'mean_token_accuracy': 0.7162906577189764, 'epoch': 1.0}
+
+2026-05-21 21:19:09 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 5743.65 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 9547.98 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  58%|█████▊    | 21/36 [00:00<00:00, 199.01 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 200.63 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  26%|██▌       | 26/101 [00:00<00:00, 240.37 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 221.92 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 220.89 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 197.01 examples/s]
+
+2026-05-21 21:22:10 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 14.0851, 'train_samples_per_second': 2.556, 'train_steps_per_second': 0.639, 'train_loss': 0.7551161448160807, 'entropy': 0.6144854856861962, 'num_tokens': 61682.0, 'mean_token_accuracy': 0.7120059927304586, 'epoch': 1.0}
+
+2026-05-21 21:22:10 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 5999.48 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 10932.53 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  58%|█████▊    | 21/36 [00:00<00:00, 184.78 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 188.40 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 231.57 examples/s]Tokenizing eval dataset:  55%|█████▌    | 56/101 [00:00<00:00, 201.03 examples/s]Tokenizing eval dataset:  77%|███████▋  | 78/101 [00:00<00:00, 203.68 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 168.67 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 181.21 examples/s]
+
+2026-05-21 21:33:01 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 26.4752, 'train_samples_per_second': 1.36, 'train_steps_per_second': 0.34, 'train_loss': 0.6151804394192166, 'entropy': 0.4213823266327381, 'num_tokens': 61682.0, 'mean_token_accuracy': 0.753715756866667, 'epoch': 1.0}
+
+2026-05-21 21:33:01 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 5698.78 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11680.72 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  58%|█████▊    | 21/36 [00:00<00:00, 197.63 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 198.98 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 242.10 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 220.15 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 221.28 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 196.35 examples/s]
+
+2026-05-21 21:34:14 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 19.0081, 'train_samples_per_second': 1.894, 'train_steps_per_second': 0.473, 'train_loss': 0.5524285634358724, 'entropy': 0.415696468618181, 'num_tokens': 61682.0, 'mean_token_accuracy': 0.7609440071715249, 'epoch': 1.0}
+
+2026-05-21 21:34:14 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6051.17 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11125.47 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  58%|█████▊    | 21/36 [00:00<00:00, 190.91 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 193.50 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 239.15 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 214.57 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 215.58 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 192.24 examples/s]
+
+2026-05-21 21:37:12 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 13.8924, 'train_samples_per_second': 2.591, 'train_steps_per_second': 0.648, 'train_loss': 0.8397043016221788, 'entropy': 0.6445825894673666, 'num_tokens': 61682.0, 'mean_token_accuracy': 0.7186318867736392, 'epoch': 1.0}
+
+2026-05-21 21:37:12 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 5394.99 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 10684.37 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  58%|█████▊    | 21/36 [00:00<00:00, 185.17 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 188.32 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 230.60 examples/s]Tokenizing eval dataset:  56%|█████▋    | 57/101 [00:00<00:00, 207.47 examples/s]Tokenizing eval dataset:  80%|████████  | 81/101 [00:00<00:00, 209.38 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 185.41 examples/s]
+
+2026-05-21 21:38:20 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.3582, 'grad_norm': 1.8718258142471313, 'learning_rate': 0.00025499999999999996, 'entropy': 0.389535578712821, 'num_tokens': 60365.0, 'mean_token_accuracy': 0.886009007692337, 'epoch': 1.0}
+{'train_runtime': 18.9763, 'train_samples_per_second': 2.108, 'train_steps_per_second': 0.527, 'train_loss': 0.3581510305404663, 'epoch': 1.0}
+
+2026-05-21 21:38:20 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/40 [00:00<?, ? examples/s]Map: 100%|██████████| 40/40 [00:00<00:00, 7118.94 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11390.82 examples/s]
+Tokenizing train dataset:   0%|          | 0/40 [00:00<?, ? examples/s]Tokenizing train dataset:  78%|███████▊  | 31/40 [00:00<00:00, 275.20 examples/s]Tokenizing train dataset: 100%|██████████| 40/40 [00:00<00:00, 227.03 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 234.25 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 210.32 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 212.77 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 189.80 examples/s]
+
+2026-05-21 21:39:17 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.5536, 'grad_norm': 4.471234321594238, 'learning_rate': 0.000425, 'entropy': 0.5903721556067467, 'num_tokens': 60365.0, 'mean_token_accuracy': 0.8361006677150726, 'epoch': 1.0}
+{'train_runtime': 10.7463, 'train_samples_per_second': 3.722, 'train_steps_per_second': 0.931, 'train_loss': 0.553552770614624, 'epoch': 1.0}
+
+2026-05-21 21:39:17 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/40 [00:00<?, ? examples/s]Map: 100%|██████████| 40/40 [00:00<00:00, 6811.15 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11523.44 examples/s]
+Tokenizing train dataset:   0%|          | 0/40 [00:00<?, ? examples/s]Tokenizing train dataset:  72%|███████▎  | 29/40 [00:00<00:00, 281.56 examples/s]Tokenizing train dataset: 100%|██████████| 40/40 [00:00<00:00, 221.50 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 229.40 examples/s]Tokenizing eval dataset:  56%|█████▋    | 57/101 [00:00<00:00, 197.67 examples/s]Tokenizing eval dataset:  80%|████████  | 81/101 [00:00<00:00, 204.64 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 182.81 examples/s]
+
+2026-05-21 21:49:45 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.3575, 'grad_norm': 2.7835395336151123, 'learning_rate': 0.00025499999999999996, 'entropy': 0.3971151940524578, 'num_tokens': 60365.0, 'mean_token_accuracy': 0.8768254309892655, 'epoch': 1.0}
+{'train_runtime': 26.7332, 'train_samples_per_second': 1.496, 'train_steps_per_second': 0.374, 'train_loss': 0.35746140480041505, 'epoch': 1.0}
+
+2026-05-21 21:49:45 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/40 [00:00<?, ? examples/s]Map: 100%|██████████| 40/40 [00:00<00:00, 6791.30 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 10773.77 examples/s]
+Tokenizing train dataset:   0%|          | 0/40 [00:00<?, ? examples/s]Tokenizing train dataset:  72%|███████▎  | 29/40 [00:00<00:00, 284.43 examples/s]Tokenizing train dataset: 100%|██████████| 40/40 [00:00<00:00, 223.02 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 230.19 examples/s]Tokenizing eval dataset:  56%|█████▋    | 57/101 [00:00<00:00, 206.90 examples/s]Tokenizing eval dataset:  80%|████████  | 81/101 [00:00<00:00, 209.94 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 185.95 examples/s]
+
+2026-05-21 21:50:41 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.5922, 'grad_norm': 4.205777645111084, 'learning_rate': 0.00025499999999999996, 'entropy': 0.6716835394501686, 'num_tokens': 60365.0, 'mean_token_accuracy': 0.8224901616573334, 'epoch': 1.0}
+{'train_runtime': 10.6179, 'train_samples_per_second': 3.767, 'train_steps_per_second': 0.942, 'train_loss': 0.5922078609466552, 'epoch': 1.0}
+
+2026-05-21 21:50:41 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/40 [00:00<?, ? examples/s]Map: 100%|██████████| 40/40 [00:00<00:00, 6807.55 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11861.92 examples/s]
+Tokenizing train dataset:   0%|          | 0/40 [00:00<?, ? examples/s]Tokenizing train dataset:  70%|███████   | 28/40 [00:00<00:00, 272.33 examples/s]Tokenizing train dataset: 100%|██████████| 40/40 [00:00<00:00, 219.69 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 227.82 examples/s]Tokenizing eval dataset:  56%|█████▋    | 57/101 [00:00<00:00, 205.00 examples/s]Tokenizing eval dataset:  80%|████████  | 81/101 [00:00<00:00, 207.94 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 184.44 examples/s]
+
+2026-05-21 21:53:41 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.5392, 'grad_norm': 6.5715436935424805, 'learning_rate': 0.00025499999999999996, 'entropy': 0.5076179943978787, 'num_tokens': 60365.0, 'mean_token_accuracy': 0.834263764321804, 'epoch': 1.0}
+{'train_runtime': 14.1774, 'train_samples_per_second': 2.821, 'train_steps_per_second': 0.705, 'train_loss': 0.5391691207885743, 'epoch': 1.0}
+
+2026-05-21 21:53:41 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/40 [00:00<?, ? examples/s]Map: 100%|██████████| 40/40 [00:00<00:00, 6983.81 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11166.53 examples/s]
+Tokenizing train dataset:   0%|          | 0/40 [00:00<?, ? examples/s]Tokenizing train dataset:  78%|███████▊  | 31/40 [00:00<00:00, 287.71 examples/s]Tokenizing train dataset: 100%|██████████| 40/40 [00:00<00:00, 236.27 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 243.66 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 218.88 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 220.08 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 196.51 examples/s]
+
+2026-05-21 22:03:37 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.3808, 'grad_norm': 3.285205125808716, 'learning_rate': 0.000425, 'entropy': 0.4233014078810811, 'num_tokens': 60365.0, 'mean_token_accuracy': 0.8885416269302369, 'epoch': 1.0}
+{'train_runtime': 26.5909, 'train_samples_per_second': 1.504, 'train_steps_per_second': 0.376, 'train_loss': 0.3807593107223511, 'epoch': 1.0}
+
+2026-05-21 22:03:37 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/40 [00:00<?, ? examples/s]Map: 100%|██████████| 40/40 [00:00<00:00, 7297.93 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11140.40 examples/s]
+Tokenizing train dataset:   0%|          | 0/40 [00:00<?, ? examples/s]Tokenizing train dataset:  70%|███████   | 28/40 [00:00<00:00, 274.14 examples/s]Tokenizing train dataset: 100%|██████████| 40/40 [00:00<00:00, 220.64 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 226.49 examples/s]Tokenizing eval dataset:  56%|█████▋    | 57/101 [00:00<00:00, 204.40 examples/s]Tokenizing eval dataset:  80%|████████  | 81/101 [00:00<00:00, 207.46 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 184.04 examples/s]
+
+2026-05-21 22:04:45 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.3618, 'grad_norm': 2.0838944911956787, 'learning_rate': 0.000425, 'entropy': 0.4110949508845806, 'num_tokens': 60365.0, 'mean_token_accuracy': 0.8957122266292572, 'epoch': 1.0}
+{'train_runtime': 18.783, 'train_samples_per_second': 2.13, 'train_steps_per_second': 0.532, 'train_loss': 0.36175010204315183, 'epoch': 1.0}
+
+2026-05-21 22:04:45 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/40 [00:00<?, ? examples/s]Map: 100%|██████████| 40/40 [00:00<00:00, 6754.11 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 10697.59 examples/s]
+Tokenizing train dataset:   0%|          | 0/40 [00:00<?, ? examples/s]Tokenizing train dataset:  72%|███████▎  | 29/40 [00:00<00:00, 285.43 examples/s]Tokenizing train dataset: 100%|██████████| 40/40 [00:00<00:00, 225.14 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 232.22 examples/s]Tokenizing eval dataset:  56%|█████▋    | 57/101 [00:00<00:00, 211.29 examples/s]Tokenizing eval dataset:  80%|████████  | 81/101 [00:00<00:00, 215.82 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 190.59 examples/s]
+
+2026-05-21 22:07:50 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.6446, 'grad_norm': 7.927976608276367, 'learning_rate': 0.000425, 'entropy': 0.6071617912501097, 'num_tokens': 60365.0, 'mean_token_accuracy': 0.8241288259625434, 'epoch': 1.0}
+{'train_runtime': 13.9706, 'train_samples_per_second': 2.863, 'train_steps_per_second': 0.716, 'train_loss': 0.644579267501831, 'epoch': 1.0}
+
+2026-05-21 22:07:50 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/40 [00:00<?, ? examples/s]Map: 100%|██████████| 40/40 [00:00<00:00, 6456.00 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11728.26 examples/s]
+Tokenizing train dataset:   0%|          | 0/40 [00:00<?, ? examples/s]Tokenizing train dataset:  78%|███████▊  | 31/40 [00:00<00:00, 283.15 examples/s]Tokenizing train dataset: 100%|██████████| 40/40 [00:00<00:00, 232.91 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 239.75 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 215.50 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 216.11 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 192.61 examples/s]
+
+2026-05-21 22:10:51 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.664, 'grad_norm': 6.364160060882568, 'learning_rate': 0.00040833333333333336, 'entropy': 0.573123512417078, 'num_tokens': 85526.0, 'mean_token_accuracy': 0.7308074340224266, 'epoch': 1.0}
+{'train_runtime': 19.4595, 'train_samples_per_second': 2.056, 'train_steps_per_second': 0.514, 'train_loss': 0.664019250869751, 'epoch': 1.0}
+
+2026-05-21 22:10:51 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/40 [00:00<?, ? examples/s]Map: 100%|██████████| 40/40 [00:00<00:00, 6588.34 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11490.31 examples/s]
+Tokenizing train dataset:   0%|          | 0/40 [00:00<?, ? examples/s]Tokenizing train dataset:  52%|█████▎    | 21/40 [00:00<00:00, 196.41 examples/s]Tokenizing train dataset: 100%|██████████| 40/40 [00:00<00:00, 173.52 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 233.32 examples/s]Tokenizing eval dataset:  56%|█████▋    | 57/101 [00:00<00:00, 202.84 examples/s]Tokenizing eval dataset:  80%|████████  | 81/101 [00:00<00:00, 204.42 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 185.35 examples/s]
+
+2026-05-21 22:13:47 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.6355, 'grad_norm': 8.536845207214355, 'learning_rate': 0.000245, 'entropy': 0.49939588382840155, 'num_tokens': 85526.0, 'mean_token_accuracy': 0.7344381392002106, 'epoch': 1.0}
+{'train_runtime': 19.3129, 'train_samples_per_second': 2.071, 'train_steps_per_second': 0.518, 'train_loss': 0.6355261325836181, 'epoch': 1.0}
+
+2026-05-21 22:13:47 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/40 [00:00<?, ? examples/s]Map: 100%|██████████| 40/40 [00:00<00:00, 6514.92 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 10245.84 examples/s]
+Tokenizing train dataset:   0%|          | 0/40 [00:00<?, ? examples/s]Tokenizing train dataset:  52%|█████▎    | 21/40 [00:00<00:00, 196.16 examples/s]Tokenizing train dataset: 100%|██████████| 40/40 [00:00<00:00, 174.40 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 238.51 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 215.86 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 217.84 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 194.01 examples/s]
+
+2026-05-21 22:15:03 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.4291, 'grad_norm': 2.233036756515503, 'learning_rate': 0.000245, 'entropy': 0.337692778930068, 'num_tokens': 85526.0, 'mean_token_accuracy': 0.77090123295784, 'epoch': 1.0}
+{'train_runtime': 27.244, 'train_samples_per_second': 1.468, 'train_steps_per_second': 0.367, 'train_loss': 0.4290661334991455, 'epoch': 1.0}
+
+2026-05-21 22:15:03 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/40 [00:00<?, ? examples/s]Map: 100%|██████████| 40/40 [00:00<00:00, 6666.62 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11722.74 examples/s]
+Tokenizing train dataset:   0%|          | 0/40 [00:00<?, ? examples/s]Tokenizing train dataset:  52%|█████▎    | 21/40 [00:00<00:00, 197.32 examples/s]Tokenizing train dataset: 100%|██████████| 40/40 [00:00<00:00, 174.85 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 239.68 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 217.09 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 219.03 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 195.27 examples/s]
+
+2026-05-21 22:25:26 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.4489, 'grad_norm': 2.032494306564331, 'learning_rate': 0.000245, 'entropy': 0.3269432071596384, 'num_tokens': 85526.0, 'mean_token_accuracy': 0.7677599415183067, 'epoch': 1.0}
+{'train_runtime': 37.249, 'train_samples_per_second': 1.074, 'train_steps_per_second': 0.268, 'train_loss': 0.4488541603088379, 'epoch': 1.0}
+
+2026-05-21 22:25:26 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/40 [00:00<?, ? examples/s]Map: 100%|██████████| 40/40 [00:00<00:00, 6346.11 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 12088.02 examples/s]
+Tokenizing train dataset:   0%|          | 0/40 [00:00<?, ? examples/s]Tokenizing train dataset:  50%|█████     | 20/40 [00:00<00:00, 185.76 examples/s]Tokenizing train dataset: 100%|██████████| 40/40 [00:00<00:00, 166.27 examples/s]Tokenizing train dataset: 100%|██████████| 40/40 [00:00<00:00, 167.88 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  22%|██▏       | 22/101 [00:00<00:00, 200.92 examples/s]Tokenizing eval dataset:  43%|████▎     | 43/101 [00:00<00:00, 204.78 examples/s]Tokenizing eval dataset:  65%|██████▌   | 66/101 [00:00<00:00, 213.33 examples/s]Tokenizing eval dataset:  97%|█████████▋| 98/101 [00:00<00:00, 209.46 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 188.15 examples/s]
+
+2026-05-21 22:36:01 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.5644, 'grad_norm': 3.9150233268737793, 'learning_rate': 0.00040833333333333336, 'entropy': 0.3893149867653847, 'num_tokens': 85526.0, 'mean_token_accuracy': 0.7552343636751175, 'epoch': 1.0}
+{'train_runtime': 37.7768, 'train_samples_per_second': 1.059, 'train_steps_per_second': 0.265, 'train_loss': 0.5644233226776123, 'epoch': 1.0}
+
+2026-05-21 22:36:01 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/40 [00:00<?, ? examples/s]Map: 100%|██████████| 40/40 [00:00<00:00, 6258.29 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 12548.13 examples/s]
+Tokenizing train dataset:   0%|          | 0/40 [00:00<?, ? examples/s]Tokenizing train dataset:  50%|█████     | 20/40 [00:00<00:00, 190.99 examples/s]Tokenizing train dataset: 100%|██████████| 40/40 [00:00<00:00, 170.69 examples/s]Tokenizing train dataset: 100%|██████████| 40/40 [00:00<00:00, 172.35 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 234.35 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 211.73 examples/s]Tokenizing eval dataset:  81%|████████  | 82/101 [00:00<00:00, 212.40 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 187.80 examples/s]
+
+2026-05-21 22:36:59 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.5959, 'grad_norm': 5.066986560821533, 'learning_rate': 0.00040833333333333336, 'entropy': 0.5200566072016954, 'num_tokens': 85526.0, 'mean_token_accuracy': 0.74304957985878, 'epoch': 1.0}
+{'train_runtime': 14.4306, 'train_samples_per_second': 2.772, 'train_steps_per_second': 0.693, 'train_loss': 0.5959132194519043, 'epoch': 1.0}
+
+2026-05-21 22:36:59 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/40 [00:00<?, ? examples/s]Map: 100%|██████████| 40/40 [00:00<00:00, 5833.73 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 10308.68 examples/s]
+Tokenizing train dataset:   0%|          | 0/40 [00:00<?, ? examples/s]Tokenizing train dataset:  48%|████▊     | 19/40 [00:00<00:00, 179.78 examples/s]Tokenizing train dataset:  95%|█████████▌| 38/40 [00:00<00:00, 184.28 examples/s]Tokenizing train dataset: 100%|██████████| 40/40 [00:00<00:00, 163.89 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  22%|██▏       | 22/101 [00:00<00:00, 212.05 examples/s]Tokenizing eval dataset:  55%|█████▌    | 56/101 [00:00<00:00, 216.04 examples/s]Tokenizing eval dataset:  77%|███████▋  | 78/101 [00:00<00:00, 215.01 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 174.36 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 187.29 examples/s]
+
+2026-05-21 22:37:59 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.5848, 'grad_norm': 5.084952354431152, 'learning_rate': 0.000245, 'entropy': 0.551318596675992, 'num_tokens': 85526.0, 'mean_token_accuracy': 0.7411995872855186, 'epoch': 1.0}
+{'train_runtime': 14.4224, 'train_samples_per_second': 2.773, 'train_steps_per_second': 0.693, 'train_loss': 0.584762716293335, 'epoch': 1.0}
+
+2026-05-21 22:37:59 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/40 [00:00<?, ? examples/s]Map: 100%|██████████| 40/40 [00:00<00:00, 6426.57 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11392.66 examples/s]
+Tokenizing train dataset:   0%|          | 0/40 [00:00<?, ? examples/s]Tokenizing train dataset:  50%|█████     | 20/40 [00:00<00:00, 186.97 examples/s]Tokenizing train dataset: 100%|██████████| 40/40 [00:00<00:00, 167.80 examples/s]Tokenizing train dataset: 100%|██████████| 40/40 [00:00<00:00, 169.41 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 229.45 examples/s]Tokenizing eval dataset:  55%|█████▌    | 56/101 [00:00<00:00, 207.42 examples/s]Tokenizing eval dataset:  77%|███████▋  | 78/101 [00:00<00:00, 208.32 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 170.70 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 183.92 examples/s]
+
+2026-05-21 22:39:17 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.4388, 'grad_norm': 2.299356460571289, 'learning_rate': 0.00040833333333333336, 'entropy': 0.33089661933481695, 'num_tokens': 85526.0, 'mean_token_accuracy': 0.7641743659973145, 'epoch': 1.0}
+{'train_runtime': 26.7676, 'train_samples_per_second': 1.494, 'train_steps_per_second': 0.374, 'train_loss': 0.43883800506591797, 'epoch': 1.0}
+
+2026-05-21 22:39:17 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/40 [00:00<?, ? examples/s]Map: 100%|██████████| 40/40 [00:00<00:00, 6586.02 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11565.91 examples/s]
+Tokenizing train dataset:   0%|          | 0/40 [00:00<?, ? examples/s]Tokenizing train dataset:  50%|█████     | 20/40 [00:00<00:00, 187.79 examples/s]Tokenizing train dataset: 100%|██████████| 40/40 [00:00<00:00, 169.15 examples/s]Tokenizing train dataset: 100%|██████████| 40/40 [00:00<00:00, 170.69 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 233.18 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 210.47 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 212.34 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 189.22 examples/s]
+
+2026-05-21 22:49:24 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.4828, 'grad_norm': 2.468869686126709, 'learning_rate': 0.00023499999999999997, 'entropy': 0.3838233035057783, 'num_tokens': 80855.0, 'mean_token_accuracy': 0.7537749037146568, 'epoch': 1.0}
+{'train_runtime': 35.8332, 'train_samples_per_second': 1.116, 'train_steps_per_second': 0.279, 'train_loss': 0.4827551364898682, 'epoch': 1.0}
+
+2026-05-21 22:49:24 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/40 [00:00<?, ? examples/s]Map: 100%|██████████| 40/40 [00:00<00:00, 5955.91 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 12667.82 examples/s]
+Tokenizing train dataset:   0%|          | 0/40 [00:00<?, ? examples/s]Tokenizing train dataset:  55%|█████▌    | 22/40 [00:00<00:00, 205.07 examples/s]Tokenizing train dataset: 100%|██████████| 40/40 [00:00<00:00, 176.59 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 242.18 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 215.98 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 217.49 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 191.09 examples/s]
+
+2026-05-21 22:59:58 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.4986, 'grad_norm': 2.9087419509887695, 'learning_rate': 0.0003916666666666667, 'entropy': 0.42676952034235, 'num_tokens': 80855.0, 'mean_token_accuracy': 0.7371545046567917, 'epoch': 1.0}
+{'train_runtime': 36.2239, 'train_samples_per_second': 1.104, 'train_steps_per_second': 0.276, 'train_loss': 0.49861888885498046, 'epoch': 1.0}
+
+2026-05-21 22:59:58 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/40 [00:00<?, ? examples/s]Map: 100%|██████████| 40/40 [00:00<00:00, 6250.83 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 10090.87 examples/s]
+Tokenizing train dataset:   0%|          | 0/40 [00:00<?, ? examples/s]Tokenizing train dataset:  55%|█████▌    | 22/40 [00:00<00:00, 203.25 examples/s]Tokenizing train dataset: 100%|██████████| 40/40 [00:00<00:00, 176.34 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 242.00 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 216.38 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 218.37 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 194.51 examples/s]
+
+2026-05-21 23:03:13 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.7526, 'grad_norm': 5.341424465179443, 'learning_rate': 0.0003916666666666667, 'entropy': 0.6371334388852119, 'num_tokens': 80855.0, 'mean_token_accuracy': 0.691777691245079, 'epoch': 1.0}
+{'train_runtime': 19.1321, 'train_samples_per_second': 2.091, 'train_steps_per_second': 0.523, 'train_loss': 0.7525865077972412, 'epoch': 1.0}
+
+2026-05-21 23:03:13 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/40 [00:00<?, ? examples/s]Map: 100%|██████████| 40/40 [00:00<00:00, 6311.02 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11953.63 examples/s]
+Tokenizing train dataset:   0%|          | 0/40 [00:00<?, ? examples/s]Tokenizing train dataset:  55%|█████▌    | 22/40 [00:00<00:00, 204.84 examples/s]Tokenizing train dataset: 100%|██████████| 40/40 [00:00<00:00, 177.23 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 241.02 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 215.50 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 217.64 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 194.22 examples/s]
+
+2026-05-21 23:06:15 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.7002, 'grad_norm': 5.286055088043213, 'learning_rate': 0.00023499999999999997, 'entropy': 0.5737996257841587, 'num_tokens': 80855.0, 'mean_token_accuracy': 0.7046998679637909, 'epoch': 1.0}
+{'train_runtime': 18.9321, 'train_samples_per_second': 2.113, 'train_steps_per_second': 0.528, 'train_loss': 0.7001781940460206, 'epoch': 1.0}
+
+2026-05-21 23:06:15 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/40 [00:00<?, ? examples/s]Map: 100%|██████████| 40/40 [00:00<00:00, 6441.13 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11907.93 examples/s]
+Tokenizing train dataset:   0%|          | 0/40 [00:00<?, ? examples/s]Tokenizing train dataset:  55%|█████▌    | 22/40 [00:00<00:00, 205.26 examples/s]Tokenizing train dataset: 100%|██████████| 40/40 [00:00<00:00, 176.22 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 242.13 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 215.72 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 217.37 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 193.84 examples/s]
+
+2026-05-21 23:07:13 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.6467, 'grad_norm': 5.4248857498168945, 'learning_rate': 0.0003916666666666667, 'entropy': 0.5504091590642929, 'num_tokens': 80855.0, 'mean_token_accuracy': 0.7042912095785141, 'epoch': 1.0}
+{'train_runtime': 14.3503, 'train_samples_per_second': 2.787, 'train_steps_per_second': 0.697, 'train_loss': 0.6466792583465576, 'epoch': 1.0}
+
+2026-05-21 23:07:13 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/40 [00:00<?, ? examples/s]Map: 100%|██████████| 40/40 [00:00<00:00, 6781.14 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 12838.67 examples/s]
+Tokenizing train dataset:   0%|          | 0/40 [00:00<?, ? examples/s]Tokenizing train dataset:  55%|█████▌    | 22/40 [00:00<00:00, 207.04 examples/s]Tokenizing train dataset: 100%|██████████| 40/40 [00:00<00:00, 178.02 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 243.85 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 218.23 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 220.25 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 195.90 examples/s]
+
+2026-05-21 23:08:31 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.4468, 'grad_norm': 3.110203742980957, 'learning_rate': 0.00023499999999999997, 'entropy': 0.36385694332420826, 'num_tokens': 80855.0, 'mean_token_accuracy': 0.7464678645133972, 'epoch': 1.0}
+{'train_runtime': 26.2012, 'train_samples_per_second': 1.527, 'train_steps_per_second': 0.382, 'train_loss': 0.44678025245666503, 'epoch': 1.0}
+
+2026-05-21 23:08:31 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/40 [00:00<?, ? examples/s]Map: 100%|██████████| 40/40 [00:00<00:00, 6807.55 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 12927.21 examples/s]
+Tokenizing train dataset:   0%|          | 0/40 [00:00<?, ? examples/s]Tokenizing train dataset:  55%|█████▌    | 22/40 [00:00<00:00, 208.72 examples/s]Tokenizing train dataset: 100%|██████████| 40/40 [00:00<00:00, 179.26 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 245.95 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 219.72 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 221.87 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 197.42 examples/s]
+
+2026-05-21 23:09:27 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.6653, 'grad_norm': 5.248800277709961, 'learning_rate': 0.00023499999999999997, 'entropy': 0.5204733476042748, 'num_tokens': 80855.0, 'mean_token_accuracy': 0.7057540163397789, 'epoch': 1.0}
+{'train_runtime': 14.4399, 'train_samples_per_second': 2.77, 'train_steps_per_second': 0.693, 'train_loss': 0.6653491497039795, 'epoch': 1.0}
+
+2026-05-21 23:09:27 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/40 [00:00<?, ? examples/s]Map: 100%|██████████| 40/40 [00:00<00:00, 6656.83 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 12012.27 examples/s]
+Tokenizing train dataset:   0%|          | 0/40 [00:00<?, ? examples/s]Tokenizing train dataset:  55%|█████▌    | 22/40 [00:00<00:00, 208.98 examples/s]Tokenizing train dataset: 100%|██████████| 40/40 [00:00<00:00, 180.09 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 245.28 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 218.43 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 220.80 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 196.64 examples/s]
+
+2026-05-21 23:10:45 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.4819, 'grad_norm': 2.6664950847625732, 'learning_rate': 0.0003916666666666667, 'entropy': 0.3477133709937334, 'num_tokens': 80855.0, 'mean_token_accuracy': 0.746545435488224, 'epoch': 1.0}
+{'train_runtime': 25.8922, 'train_samples_per_second': 1.545, 'train_steps_per_second': 0.386, 'train_loss': 0.48187904357910155, 'epoch': 1.0}
+
+2026-05-21 23:10:45 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/40 [00:00<?, ? examples/s]Map: 100%|██████████| 40/40 [00:00<00:00, 6818.62 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 12217.01 examples/s]
+Tokenizing train dataset:   0%|          | 0/40 [00:00<?, ? examples/s]Tokenizing train dataset:  55%|█████▌    | 22/40 [00:00<00:00, 209.49 examples/s]Tokenizing train dataset: 100%|██████████| 40/40 [00:00<00:00, 181.00 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 246.89 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 220.60 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 222.63 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 197.85 examples/s]
+
+2026-05-21 23:21:31 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.3899, 'grad_norm': 5.896200656890869, 'learning_rate': 0.000225, 'entropy': 0.33727299019291596, 'num_tokens': 79232.0, 'mean_token_accuracy': 0.8477400863492811, 'epoch': 1.0}
+{'train_runtime': 34.6933, 'train_samples_per_second': 1.066, 'train_steps_per_second': 0.288, 'train_loss': 0.389913535118103, 'epoch': 1.0}
+
+2026-05-21 23:21:31 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/37 [00:00<?, ? examples/s]Map: 100%|██████████| 37/37 [00:00<00:00, 6536.21 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11621.44 examples/s]
+Tokenizing train dataset:   0%|          | 0/37 [00:00<?, ? examples/s]Tokenizing train dataset:  54%|█████▍    | 20/37 [00:00<00:00, 180.44 examples/s]Tokenizing train dataset: 100%|██████████| 37/37 [00:00<00:00, 177.93 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 243.56 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 217.47 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 219.12 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 195.34 examples/s]
+
+2026-05-21 23:32:05 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.5144, 'grad_norm': 4.220211505889893, 'learning_rate': 0.000375, 'entropy': 0.4379127818990398, 'num_tokens': 79232.0, 'mean_token_accuracy': 0.8028665539380666, 'epoch': 1.0}
+{'train_runtime': 35.0317, 'train_samples_per_second': 1.056, 'train_steps_per_second': 0.285, 'train_loss': 0.5144111156463623, 'epoch': 1.0}
+
+2026-05-21 23:32:05 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/37 [00:00<?, ? examples/s]Map: 100%|██████████| 37/37 [00:00<00:00, 6200.87 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11157.71 examples/s]
+Tokenizing train dataset:   0%|          | 0/37 [00:00<?, ? examples/s]Tokenizing train dataset:  51%|█████▏    | 19/37 [00:00<00:00, 178.69 examples/s]Tokenizing train dataset: 100%|██████████| 37/37 [00:00<00:00, 170.43 examples/s]Tokenizing train dataset: 100%|██████████| 37/37 [00:00<00:00, 170.52 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 233.58 examples/s]Tokenizing eval dataset:  56%|█████▋    | 57/101 [00:00<00:00, 208.94 examples/s]Tokenizing eval dataset:  80%|████████  | 81/101 [00:00<00:00, 211.13 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 186.73 examples/s]
+
+2026-05-21 23:33:04 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.5259, 'grad_norm': 5.8197479248046875, 'learning_rate': 0.000375, 'entropy': 0.5466348009335028, 'num_tokens': 79232.0, 'mean_token_accuracy': 0.7922410642778551, 'epoch': 1.0}
+{'train_runtime': 13.7215, 'train_samples_per_second': 2.696, 'train_steps_per_second': 0.729, 'train_loss': 0.5258842468261719, 'epoch': 1.0}
+
+2026-05-21 23:33:04 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/37 [00:00<?, ? examples/s]Map: 100%|██████████| 37/37 [00:00<00:00, 6250.57 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11823.51 examples/s]
+Tokenizing train dataset:   0%|          | 0/37 [00:00<?, ? examples/s]Tokenizing train dataset:  51%|█████▏    | 19/37 [00:00<00:00, 181.97 examples/s]Tokenizing train dataset: 100%|██████████| 37/37 [00:00<00:00, 174.06 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 237.22 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 213.58 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 214.11 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 191.11 examples/s]
+
+2026-05-21 23:36:11 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.5887, 'grad_norm': 6.964017868041992, 'learning_rate': 0.000225, 'entropy': 0.5856077662996344, 'num_tokens': 79232.0, 'mean_token_accuracy': 0.7858834331100052, 'epoch': 1.0}
+{'train_runtime': 18.2692, 'train_samples_per_second': 2.025, 'train_steps_per_second': 0.547, 'train_loss': 0.5887466430664062, 'epoch': 1.0}
+
+2026-05-21 23:36:11 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/37 [00:00<?, ? examples/s]Map: 100%|██████████| 37/37 [00:00<00:00, 4620.52 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 12339.06 examples/s]
+Tokenizing train dataset:   0%|          | 0/37 [00:00<?, ? examples/s]Tokenizing train dataset:  51%|█████▏    | 19/37 [00:00<00:00, 184.77 examples/s]Tokenizing train dataset: 100%|██████████| 37/37 [00:00<00:00, 176.96 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 243.09 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 217.18 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 218.45 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 194.86 examples/s]
+
+2026-05-21 23:39:16 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.6738, 'grad_norm': 16.66849136352539, 'learning_rate': 0.000375, 'entropy': 0.6379621645083299, 'num_tokens': 79232.0, 'mean_token_accuracy': 0.7892103694580697, 'epoch': 1.0}
+{'train_runtime': 18.0465, 'train_samples_per_second': 2.05, 'train_steps_per_second': 0.554, 'train_loss': 0.6738134860992432, 'epoch': 1.0}
+
+2026-05-21 23:39:16 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/37 [00:00<?, ? examples/s]Map: 100%|██████████| 37/37 [00:00<00:00, 6284.75 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 10274.17 examples/s]
+Tokenizing train dataset:   0%|          | 0/37 [00:00<?, ? examples/s]Tokenizing train dataset:  54%|█████▍    | 20/37 [00:00<00:00, 182.42 examples/s]Tokenizing train dataset: 100%|██████████| 37/37 [00:00<00:00, 179.32 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  26%|██▌       | 26/101 [00:00<00:00, 242.06 examples/s]Tokenizing eval dataset:  56%|█████▋    | 57/101 [00:00<00:00, 215.48 examples/s]Tokenizing eval dataset:  78%|███████▊  | 79/101 [00:00<00:00, 211.22 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 171.70 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 186.80 examples/s]
+
+2026-05-21 23:40:35 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.3671, 'grad_norm': 1.8240783214569092, 'learning_rate': 0.000225, 'entropy': 0.33880041479258927, 'num_tokens': 79232.0, 'mean_token_accuracy': 0.846665345333718, 'epoch': 1.0}
+{'train_runtime': 24.9703, 'train_samples_per_second': 1.482, 'train_steps_per_second': 0.4, 'train_loss': 0.3670828104019165, 'epoch': 1.0}
+
+2026-05-21 23:40:35 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/37 [00:00<?, ? examples/s]Map: 100%|██████████| 37/37 [00:00<00:00, 6203.85 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11399.41 examples/s]
+Tokenizing train dataset:   0%|          | 0/37 [00:00<?, ? examples/s]Tokenizing train dataset:  51%|█████▏    | 19/37 [00:00<00:00, 181.08 examples/s]Tokenizing train dataset: 100%|██████████| 37/37 [00:00<00:00, 168.86 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  27%|██▋       | 27/101 [00:00<00:00, 244.09 examples/s]Tokenizing eval dataset:  62%|██████▏   | 63/101 [00:00<00:00, 235.02 examples/s]Tokenizing eval dataset:  94%|█████████▍| 95/101 [00:00<00:00, 220.64 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 202.90 examples/s]
+
+2026-05-21 23:41:37 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.5169, 'grad_norm': 4.6980204582214355, 'learning_rate': 0.000225, 'entropy': 0.5959111315173071, 'num_tokens': 79232.0, 'mean_token_accuracy': 0.8123343151968878, 'epoch': 1.0}
+{'train_runtime': 13.6102, 'train_samples_per_second': 2.719, 'train_steps_per_second': 0.735, 'train_loss': 0.5169305324554443, 'epoch': 1.0}
+
+2026-05-21 23:41:37 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/37 [00:00<?, ? examples/s]Map: 100%|██████████| 37/37 [00:00<00:00, 6298.26 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 10715.72 examples/s]
+Tokenizing train dataset:   0%|          | 0/37 [00:00<?, ? examples/s]Tokenizing train dataset:  54%|█████▍    | 20/37 [00:00<00:00, 187.24 examples/s]Tokenizing train dataset: 100%|██████████| 37/37 [00:00<00:00, 183.62 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  24%|██▍       | 24/101 [00:00<00:00, 215.52 examples/s]Tokenizing eval dataset:  46%|████▌     | 46/101 [00:00<00:00, 214.03 examples/s]Tokenizing eval dataset:  69%|██████▉   | 70/101 [00:00<00:00, 225.30 examples/s]Tokenizing eval dataset:  92%|█████████▏| 93/101 [00:00<00:00, 219.93 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 197.43 examples/s]
+
+2026-05-21 23:42:55 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'loss': 0.3445, 'grad_norm': 3.580392360687256, 'learning_rate': 0.000375, 'entropy': 0.34091336723114996, 'num_tokens': 79232.0, 'mean_token_accuracy': 0.8455098416354205, 'epoch': 1.0}
+{'train_runtime': 24.9687, 'train_samples_per_second': 1.482, 'train_steps_per_second': 0.401, 'train_loss': 0.34450862407684324, 'epoch': 1.0}
+
+2026-05-21 23:42:55 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/37 [00:00<?, ? examples/s]Map: 100%|██████████| 37/37 [00:00<00:00, 6177.92 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 8931.77 examples/s]
+Tokenizing train dataset:   0%|          | 0/37 [00:00<?, ? examples/s]Tokenizing train dataset:  54%|█████▍    | 20/37 [00:00<00:00, 185.86 examples/s]Tokenizing train dataset: 100%|██████████| 37/37 [00:00<00:00, 169.81 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 234.91 examples/s]Tokenizing eval dataset:  56%|█████▋    | 57/101 [00:00<00:00, 211.83 examples/s]Tokenizing eval dataset:  80%|████████  | 81/101 [00:00<00:00, 214.86 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 189.81 examples/s]
+
+2026-05-21 23:43:51 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 10.6638, 'train_samples_per_second': 3.376, 'train_steps_per_second': 0.844, 'train_loss': 0.4424150784810384, 'entropy': 0.5178717981196113, 'num_tokens': 61220.0, 'mean_token_accuracy': 0.8645641820298301, 'epoch': 1.0}
+
+2026-05-21 23:43:51 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6392.67 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11654.69 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  61%|██████    | 22/36 [00:00<00:00, 196.91 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 207.12 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 232.90 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 210.14 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 212.14 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 188.89 examples/s]
+
+2026-05-21 23:46:50 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 14.1283, 'train_samples_per_second': 2.548, 'train_steps_per_second': 0.637, 'train_loss': 0.43829184108310276, 'entropy': 0.446201431668467, 'num_tokens': 61220.0, 'mean_token_accuracy': 0.8669021824995676, 'epoch': 1.0}
+
+2026-05-21 23:46:50 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6537.71 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11719.50 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  61%|██████    | 22/36 [00:00<00:00, 195.73 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 206.18 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  22%|██▏       | 22/101 [00:00<00:00, 209.78 examples/s]Tokenizing eval dataset:  43%|████▎     | 43/101 [00:00<00:00, 205.99 examples/s]Tokenizing eval dataset:  65%|██████▌   | 66/101 [00:00<00:00, 210.74 examples/s]Tokenizing eval dataset:  97%|█████████▋| 98/101 [00:00<00:00, 205.34 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 186.08 examples/s]
+
+2026-05-21 23:47:59 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 19.3695, 'train_samples_per_second': 1.859, 'train_steps_per_second': 0.465, 'train_loss': 0.27433986133999294, 'entropy': 0.30273146989444893, 'num_tokens': 61220.0, 'mean_token_accuracy': 0.9200011822912428, 'epoch': 1.0}
+
+2026-05-21 23:47:59 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6551.61 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 12141.03 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  61%|██████    | 22/36 [00:00<00:00, 200.25 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 210.70 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 235.60 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 213.46 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 216.08 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 192.19 examples/s]
+
+2026-05-21 23:49:08 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 19.3164, 'train_samples_per_second': 1.864, 'train_steps_per_second': 0.466, 'train_loss': 0.25906266106499565, 'entropy': 0.31369426743023926, 'num_tokens': 61220.0, 'mean_token_accuracy': 0.9197612305482229, 'epoch': 1.0}
+
+2026-05-21 23:49:08 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6513.74 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 9606.66 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  67%|██████▋   | 24/36 [00:00<00:00, 222.98 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 223.51 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  27%|██▋       | 27/101 [00:00<00:00, 242.31 examples/s]Tokenizing eval dataset:  62%|██████▏   | 63/101 [00:00<00:00, 234.02 examples/s]Tokenizing eval dataset:  95%|█████████▌| 96/101 [00:00<00:00, 224.59 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 203.71 examples/s]
+
+2026-05-21 23:59:34 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 26.5536, 'train_samples_per_second': 1.356, 'train_steps_per_second': 0.339, 'train_loss': 0.30228802892896867, 'entropy': 0.29972802433702683, 'num_tokens': 61220.0, 'mean_token_accuracy': 0.906797738538848, 'epoch': 1.0}
+
+2026-05-21 23:59:34 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6438.47 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 12260.50 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  67%|██████▋   | 24/36 [00:00<00:00, 219.86 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 220.50 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  26%|██▌       | 26/101 [00:00<00:00, 240.55 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 223.69 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 225.34 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 199.34 examples/s]
+
+2026-05-22 00:02:31 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 13.9536, 'train_samples_per_second': 2.58, 'train_steps_per_second': 0.645, 'train_loss': 0.5299224853515625, 'entropy': 0.5011820499267843, 'num_tokens': 61220.0, 'mean_token_accuracy': 0.8463606072796716, 'epoch': 1.0}
+
+2026-05-22 00:02:31 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6478.25 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11884.21 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  58%|█████▊    | 21/36 [00:00<00:00, 199.02 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 205.12 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 229.26 examples/s]Tokenizing eval dataset:  56%|█████▋    | 57/101 [00:00<00:00, 206.98 examples/s]Tokenizing eval dataset:  80%|████████  | 81/101 [00:00<00:00, 210.09 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 185.94 examples/s]
+
+2026-05-22 00:03:27 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 10.5909, 'train_samples_per_second': 3.399, 'train_steps_per_second': 0.85, 'train_loss': 0.47018586264716256, 'entropy': 0.5439594917827182, 'num_tokens': 61220.0, 'mean_token_accuracy': 0.859567360745536, 'epoch': 1.0}
+
+2026-05-22 00:03:27 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6698.68 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 12101.83 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  56%|█████▌    | 20/36 [00:00<00:00, 191.24 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 204.06 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 228.37 examples/s]Tokenizing eval dataset:  56%|█████▋    | 57/101 [00:00<00:00, 206.21 examples/s]Tokenizing eval dataset:  80%|████████  | 81/101 [00:00<00:00, 209.35 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 182.42 examples/s]
+
+2026-05-22 00:14:05 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 26.4588, 'train_samples_per_second': 1.361, 'train_steps_per_second': 0.34, 'train_loss': 0.3585304419199626, 'entropy': 0.2839712283263604, 'num_tokens': 61220.0, 'mean_token_accuracy': 0.9021483063697815, 'epoch': 1.0}
+
+2026-05-22 00:14:06 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6726.13 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11704.60 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  58%|█████▊    | 21/36 [00:00<00:00, 200.91 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 206.58 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 229.62 examples/s]Tokenizing eval dataset:  56%|█████▋    | 57/101 [00:00<00:00, 207.75 examples/s]Tokenizing eval dataset:  80%|████████  | 81/101 [00:00<00:00, 210.69 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 186.65 examples/s]
+
+2026-05-22 00:15:03 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 12.5982, 'train_samples_per_second': 2.858, 'train_steps_per_second': 0.714, 'train_loss': 0.3985401789347331, 'entropy': 0.4135272378722827, 'num_tokens': 70733.0, 'mean_token_accuracy': 0.8482449650764465, 'epoch': 1.0}
+
+2026-05-22 00:15:03 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 5958.76 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11837.06 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  61%|██████    | 22/36 [00:00<00:00, 205.80 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 183.29 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 233.57 examples/s]Tokenizing eval dataset:  56%|█████▋    | 57/101 [00:00<00:00, 210.02 examples/s]Tokenizing eval dataset:  80%|████████  | 81/101 [00:00<00:00, 212.42 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 188.10 examples/s]
+
+2026-05-22 00:18:14 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 16.6983, 'train_samples_per_second': 2.156, 'train_steps_per_second': 0.539, 'train_loss': 0.3578438229031033, 'entropy': 0.31789180222484803, 'num_tokens': 70733.0, 'mean_token_accuracy': 0.8563879099157121, 'epoch': 1.0}
+
+2026-05-22 00:18:14 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6674.40 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11747.77 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  61%|██████    | 22/36 [00:00<00:00, 203.16 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 180.97 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  22%|██▏       | 22/101 [00:00<00:00, 213.11 examples/s]Tokenizing eval dataset:  54%|█████▍    | 55/101 [00:00<00:00, 214.10 examples/s]Tokenizing eval dataset:  76%|███████▌  | 77/101 [00:00<00:00, 210.28 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 170.12 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 183.29 examples/s]
+
+2026-05-22 00:19:28 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 22.4894, 'train_samples_per_second': 1.601, 'train_steps_per_second': 0.4, 'train_loss': 0.24097235997517905, 'entropy': 0.24833343302210173, 'num_tokens': 70733.0, 'mean_token_accuracy': 0.9015734195709229, 'epoch': 1.0}
+
+2026-05-22 00:19:28 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6563.00 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 10855.21 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  61%|██████    | 22/36 [00:00<00:00, 209.82 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 186.05 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 236.57 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 211.96 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 213.69 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 190.60 examples/s]
+
+2026-05-22 00:20:45 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 22.6326, 'train_samples_per_second': 1.591, 'train_steps_per_second': 0.398, 'train_loss': 0.25687331623501247, 'entropy': 0.2635376507209407, 'num_tokens': 70733.0, 'mean_token_accuracy': 0.9040736539496316, 'epoch': 1.0}
+
+2026-05-22 00:20:45 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6573.57 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11199.60 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  61%|██████    | 22/36 [00:00<00:00, 210.95 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 181.50 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 242.16 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 221.82 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 224.35 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 199.17 examples/s]
+
+2026-05-22 00:31:43 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 31.6526, 'train_samples_per_second': 1.137, 'train_steps_per_second': 0.284, 'train_loss': 0.23264604144626194, 'entropy': 0.22529158906804192, 'num_tokens': 70733.0, 'mean_token_accuracy': 0.9018858025471369, 'epoch': 1.0}
+
+2026-05-22 00:31:43 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6329.17 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 9306.55 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  61%|██████    | 22/36 [00:00<00:00, 214.84 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 189.88 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 244.03 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 217.83 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 219.19 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 195.18 examples/s]
+
+2026-05-22 00:42:45 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 31.3561, 'train_samples_per_second': 1.148, 'train_steps_per_second': 0.287, 'train_loss': 0.3170733716752794, 'entropy': 0.291433571320441, 'num_tokens': 70733.0, 'mean_token_accuracy': 0.8785481088691287, 'epoch': 1.0}
+
+2026-05-22 00:42:45 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 5628.05 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 10705.43 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  61%|██████    | 22/36 [00:00<00:00, 206.31 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 175.87 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 236.34 examples/s]Tokenizing eval dataset:  55%|█████▌    | 56/101 [00:00<00:00, 211.66 examples/s]Tokenizing eval dataset:  78%|███████▊  | 79/101 [00:00<00:00, 213.56 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 173.96 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 187.81 examples/s]
+
+2026-05-22 00:45:51 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 16.5228, 'train_samples_per_second': 2.179, 'train_steps_per_second': 0.545, 'train_loss': 0.4553716977437337, 'entropy': 0.39539443742897773, 'num_tokens': 70733.0, 'mean_token_accuracy': 0.8319729798369937, 'epoch': 1.0}
+
+2026-05-22 00:45:51 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6759.25 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11846.66 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  61%|██████    | 22/36 [00:00<00:00, 216.57 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 192.06 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  26%|██▌       | 26/101 [00:00<00:00, 237.35 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 220.51 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 221.16 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 196.02 examples/s]
+
+2026-05-22 00:46:51 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 12.5077, 'train_samples_per_second': 2.878, 'train_steps_per_second': 0.72, 'train_loss': 0.4079495800866021, 'entropy': 0.4734531868663099, 'num_tokens': 70733.0, 'mean_token_accuracy': 0.8481522483958138, 'epoch': 1.0}
+
+2026-05-22 00:46:51 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 7333.41 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 13147.47 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  61%|██████    | 22/36 [00:00<00:00, 208.69 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 189.66 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  26%|██▌       | 26/101 [00:00<00:00, 240.43 examples/s]Tokenizing eval dataset:  60%|██████    | 61/101 [00:00<00:00, 227.06 examples/s]Tokenizing eval dataset:  83%|████████▎ | 84/101 [00:00<00:00, 224.00 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 200.07 examples/s]
+
+2026-05-22 00:48:11 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 25.0632, 'train_samples_per_second': 1.436, 'train_steps_per_second': 0.359, 'train_loss': 0.20094801319970024, 'entropy': 0.19477028901585275, 'num_tokens': 79615.0, 'mean_token_accuracy': 0.8828700201378928, 'epoch': 1.0}
+
+2026-05-22 00:48:11 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6083.11 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11417.22 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  56%|█████▌    | 20/36 [00:00<00:00, 190.05 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 166.41 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 236.43 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 212.38 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 214.43 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 191.25 examples/s]
+
+2026-05-22 00:49:09 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 13.7047, 'train_samples_per_second': 2.627, 'train_steps_per_second': 0.657, 'train_loss': 0.35080888536241317, 'entropy': 0.3460019323974848, 'num_tokens': 79615.0, 'mean_token_accuracy': 0.8418804440233443, 'epoch': 1.0}
+
+2026-05-22 00:49:09 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6523.31 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11589.01 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  50%|█████     | 18/36 [00:00<00:00, 168.95 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 159.45 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 159.78 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 239.99 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 216.38 examples/s]Tokenizing eval dataset:  81%|████████  | 82/101 [00:00<00:00, 214.15 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 191.86 examples/s]
+
+2026-05-22 00:59:47 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 34.7828, 'train_samples_per_second': 1.035, 'train_steps_per_second': 0.259, 'train_loss': 0.20582940843370226, 'entropy': 0.21976153066174853, 'num_tokens': 79615.0, 'mean_token_accuracy': 0.8804269548919466, 'epoch': 1.0}
+
+2026-05-22 00:59:47 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 5953.82 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 8894.07 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  56%|█████▌    | 20/36 [00:00<00:00, 190.99 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 166.31 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 241.25 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 217.10 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 219.08 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 194.87 examples/s]
+
+2026-05-22 01:00:48 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 13.5051, 'train_samples_per_second': 2.666, 'train_steps_per_second': 0.666, 'train_loss': 0.3392339282565647, 'entropy': 0.3655588945580853, 'num_tokens': 79615.0, 'mean_token_accuracy': 0.8409352269437578, 'epoch': 1.0}
+
+2026-05-22 01:00:48 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6922.56 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 12652.69 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  61%|██████    | 22/36 [00:00<00:00, 199.46 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 167.99 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 240.70 examples/s]Tokenizing eval dataset:  58%|█████▊    | 59/101 [00:00<00:00, 217.57 examples/s]Tokenizing eval dataset:  82%|████████▏ | 83/101 [00:00<00:00, 219.27 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 194.98 examples/s]
+
+2026-05-22 01:04:00 | schema-linking-sft-sweep6 | worker_0 | INFO | worker.py:644 | {'train_runtime': 18.0681, 'train_samples_per_second': 1.992, 'train_steps_per_second': 0.498, 'train_loss': 0.30996976958380806, 'entropy': 0.3317591959817542, 'num_tokens': 79615.0, 'mean_token_accuracy': 0.8405710839562945, 'epoch': 1.0}
+
+2026-05-22 01:04:00 | schema-linking-sft-sweep6 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 6452.22 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 11876.55 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  61%|██████    | 22/36 [00:00<00:00, 202.45 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 171.16 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  25%|██▍       | 25/101 [00:00<00:00, 241.55 examples/s]Tokenizing eval dataset:  56%|█████▋    | 57/101 [00:00<00:00, 210.07 examples/s]Tokenizing eval dataset:  80%|████████  | 81/101 [00:00<00:00, 215.73 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 191.38 examples/s]
+

@@ -1,0 +1,976 @@
+2026-05-21 19:09:55 | schema-linking-sft-sweep6 | experiment | INFO | experiment.py:104 | The previously running experiment schema-linking-sft-sweep5 was forcibly ended. Created a new experiment 'schema-linking-sft-sweep6' with Experiment ID: 6 and Metric Experiment ID: 78 at /home/kal115/rapidfireai/rapidfire_experiments/schema-linking-sft-sweep6
+2026-05-21 19:09:55 | schema-linking-sft-sweep6 | experiment | INFO | experiment.py:106 | Running RapidFire AI version 0.15.2
+2026-05-21 19:10:01 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:67 | Found 1 workers/GPUs.
+2026-05-21 19:10:01 | schema-linking-sft-sweep6 | controller | INFO | metric_rfmetric_manager.py:55 | Initialized MLflowMetricLogger: rf_mlflow
+2026-05-21 19:10:01 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:95 | Controller initialized
+2026-05-21 19:10:01 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:594 | Set experiment task to Create Models.
+2026-05-21 19:10:01 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:607 | Saved datasets to /home/kal115/rapidfireai/rapidfire_experiments/schema-linking-sft-sweep6/datasets.dill
+2026-05-21 19:10:01 | schema-linking-sft-sweep6 | controller | INFO | controller.py:613 | Set seed to 42
+2026-05-21 19:10:01 | schema-linking-sft-sweep6 | controller | INFO | metric_rfmetric_manager.py:141 | Created MLflow run: 96a9295021b84282844f20f9212c3060, 1
+2026-05-21 19:10:01 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:200 | Populated MetricLogger with model config info for run 1.
+2026-05-21 19:10:01 | schema-linking-sft-sweep6 | controller | INFO | metric_rfmetric_manager.py:141 | Created MLflow run: 36a5007607954b0fa49efed3af84a008, 2
+2026-05-21 19:10:01 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:200 | Populated MetricLogger with model config info for run 2.
+2026-05-21 19:10:01 | schema-linking-sft-sweep6 | controller | INFO | metric_rfmetric_manager.py:141 | Created MLflow run: 364d9374203c40289e55974db4ef7dfe, 3
+2026-05-21 19:10:01 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:200 | Populated MetricLogger with model config info for run 3.
+2026-05-21 19:10:01 | schema-linking-sft-sweep6 | controller | INFO | metric_rfmetric_manager.py:141 | Created MLflow run: bccce91595834f528bd834af6da8be31, 4
+2026-05-21 19:10:02 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:200 | Populated MetricLogger with model config info for run 4.
+2026-05-21 19:10:02 | schema-linking-sft-sweep6 | controller | INFO | metric_rfmetric_manager.py:141 | Created MLflow run: e341492b6ea64b67b95330da74de39b8, 5
+2026-05-21 19:10:02 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:200 | Populated MetricLogger with model config info for run 5.
+2026-05-21 19:10:02 | schema-linking-sft-sweep6 | controller | INFO | metric_rfmetric_manager.py:141 | Created MLflow run: 9fbb63bb62634225889af8914a459d45, 6
+2026-05-21 19:10:02 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:200 | Populated MetricLogger with model config info for run 6.
+2026-05-21 19:10:02 | schema-linking-sft-sweep6 | controller | INFO | metric_rfmetric_manager.py:141 | Created MLflow run: bb46980976aa4974aba416bd8ce5d32b, 7
+2026-05-21 19:10:03 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:200 | Populated MetricLogger with model config info for run 7.
+2026-05-21 19:10:03 | schema-linking-sft-sweep6 | controller | INFO | metric_rfmetric_manager.py:141 | Created MLflow run: 0a0dcfa7c2e84166ba919ca4c0468784, 8
+2026-05-21 19:10:03 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:200 | Populated MetricLogger with model config info for run 8.
+2026-05-21 19:10:03 | schema-linking-sft-sweep6 | controller | INFO | controller.py:220 | Created 8 runs - 
+{   1: {   'model_kwargs.device_map': 'auto',
+           'model_kwargs.use_cache': False,
+           'model_name': 'Qwen/Qwen2.5-0.5B-Instruct',
+           'model_type': 'causal_lm',
+           'peft_params.bias': 'none',
+           'peft_params.lora_alpha': 32,
+           'peft_params.lora_dropout': 0.05,
+           'peft_params.r': 16,
+           'peft_params.target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj'],
+           'tokenizer': None,
+           'tokenizer_kwargs': None,
+           'trainer_type': 'SFT',
+           'training_args.bf16': True,
+           'training_args.eval_steps': 50,
+           'training_args.eval_strategy': 'steps',
+           'training_args.gradient_accumulation_steps': 4,
+           'training_args.gradient_checkpointing': True,
+           'training_args.learning_rate': 0.0003,
+           'training_args.logging_steps': 10,
+           'training_args.lr_scheduler_type': 'linear',
+           'training_args.max_length': 4096,
+           'training_args.max_steps': 300,
+           'training_args.num_train_epochs': 4,
+           'training_args.per_device_eval_batch_size': 1,
+           'training_args.per_device_train_batch_size': 1,
+           'training_args.report_to': 'none',
+           'training_args.save_steps': 100,
+           'training_args.save_strategy': 'steps',
+           'training_args.save_total_limit': 2,
+           'training_args.warmup_ratio': 0.05},
+    2: {   'model_kwargs.device_map': 'auto',
+           'model_kwargs.use_cache': False,
+           'model_name': 'Qwen/Qwen2.5-0.5B-Instruct',
+           'model_type': 'causal_lm',
+           'peft_params.bias': 'none',
+           'peft_params.lora_alpha': 32,
+           'peft_params.lora_dropout': 0.05,
+           'peft_params.r': 16,
+           'peft_params.target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj'],
+           'tokenizer': None,
+           'tokenizer_kwargs': None,
+           'trainer_type': 'SFT',
+           'training_args.bf16': True,
+           'training_args.eval_steps': 50,
+           'training_args.eval_strategy': 'steps',
+           'training_args.gradient_accumulation_steps': 4,
+           'training_args.gradient_checkpointing': True,
+           'training_args.learning_rate': 0.0005,
+           'training_args.logging_steps': 10,
+           'training_args.lr_scheduler_type': 'linear',
+           'training_args.max_length': 4096,
+           'training_args.max_steps': 300,
+           'training_args.num_train_epochs': 4,
+           'training_args.per_device_eval_batch_size': 1,
+           'training_args.per_device_train_batch_size': 1,
+           'training_args.report_to': 'none',
+           'training_args.save_steps': 100,
+           'training_args.save_strategy': 'steps',
+           'training_args.save_total_limit': 2,
+           'training_args.warmup_ratio': 0.05},
+    3: {   'model_kwargs.device_map': 'auto',
+           'model_kwargs.use_cache': False,
+           'model_name': 'Qwen/Qwen2.5-0.5B-Instruct',
+           'model_type': 'causal_lm',
+           'peft_params.bias': 'none',
+           'peft_params.lora_alpha': 64,
+           'peft_params.lora_dropout': 0.05,
+           'peft_params.r': 32,
+           'peft_params.target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'],
+           'tokenizer': None,
+           'tokenizer_kwargs': None,
+           'trainer_type': 'SFT',
+           'training_args.bf16': True,
+           'training_args.eval_steps': 50,
+           'training_args.eval_strategy': 'steps',
+           'training_args.gradient_accumulation_steps': 4,
+           'training_args.gradient_checkpointing': True,
+           'training_args.learning_rate': 0.0003,
+           'training_args.logging_steps': 10,
+           'training_args.lr_scheduler_type': 'linear',
+           'training_args.max_length': 4096,
+           'training_args.max_steps': 300,
+           'training_args.num_train_epochs': 4,
+           'training_args.per_device_eval_batch_size': 1,
+           'training_args.per_device_train_batch_size': 1,
+           'training_args.report_to': 'none',
+           'training_args.save_steps': 100,
+           'training_args.save_strategy': 'steps',
+           'training_args.save_total_limit': 2,
+           'training_args.warmup_ratio': 0.05},
+    4: {   'model_kwargs.device_map': 'auto',
+           'model_kwargs.use_cache': False,
+           'model_name': 'Qwen/Qwen2.5-0.5B-Instruct',
+           'model_type': 'causal_lm',
+           'peft_params.bias': 'none',
+           'peft_params.lora_alpha': 64,
+           'peft_params.lora_dropout': 0.05,
+           'peft_params.r': 32,
+           'peft_params.target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'],
+           'tokenizer': None,
+           'tokenizer_kwargs': None,
+           'trainer_type': 'SFT',
+           'training_args.bf16': True,
+           'training_args.eval_steps': 50,
+           'training_args.eval_strategy': 'steps',
+           'training_args.gradient_accumulation_steps': 4,
+           'training_args.gradient_checkpointing': True,
+           'training_args.learning_rate': 0.0005,
+           'training_args.logging_steps': 10,
+           'training_args.lr_scheduler_type': 'linear',
+           'training_args.max_length': 4096,
+           'training_args.max_steps': 300,
+           'training_args.num_train_epochs': 4,
+           'training_args.per_device_eval_batch_size': 1,
+           'training_args.per_device_train_batch_size': 1,
+           'training_args.report_to': 'none',
+           'training_args.save_steps': 100,
+           'training_args.save_strategy': 'steps',
+           'training_args.save_total_limit': 2,
+           'training_args.warmup_ratio': 0.05},
+    5: {   'model_kwargs.device_map': 'auto',
+           'model_kwargs.use_cache': False,
+           'model_name': 'Qwen/Qwen2.5-1.5B-Instruct',
+           'model_type': 'causal_lm',
+           'peft_params.bias': 'none',
+           'peft_params.lora_alpha': 32,
+           'peft_params.lora_dropout': 0.05,
+           'peft_params.r': 16,
+           'peft_params.target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj'],
+           'tokenizer': None,
+           'tokenizer_kwargs': None,
+           'trainer_type': 'SFT',
+           'training_args.bf16': True,
+           'training_args.eval_steps': 50,
+           'training_args.eval_strategy': 'steps',
+           'training_args.gradient_accumulation_steps': 4,
+           'training_args.gradient_checkpointing': True,
+           'training_args.learning_rate': 0.0003,
+           'training_args.logging_steps': 10,
+           'training_args.lr_scheduler_type': 'linear',
+           'training_args.max_length': 4096,
+           'training_args.max_steps': 300,
+           'training_args.num_train_epochs': 4,
+           'training_args.per_device_eval_batch_size': 1,
+           'training_args.per_device_train_batch_size': 1,
+           'training_args.report_to': 'none',
+           'training_args.save_steps': 100,
+           'training_args.save_strategy': 'steps',
+           'training_args.save_total_limit': 2,
+           'training_args.warmup_ratio': 0.05},
+    6: {   'model_kwargs.device_map': 'auto',
+           'model_kwargs.use_cache': False,
+           'model_name': 'Qwen/Qwen2.5-1.5B-Instruct',
+           'model_type': 'causal_lm',
+           'peft_params.bias': 'none',
+           'peft_params.lora_alpha': 32,
+           'peft_params.lora_dropout': 0.05,
+           'peft_params.r': 16,
+           'peft_params.target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj'],
+           'tokenizer': None,
+           'tokenizer_kwargs': None,
+           'trainer_type': 'SFT',
+           'training_args.bf16': True,
+           'training_args.eval_steps': 50,
+           'training_args.eval_strategy': 'steps',
+           'training_args.gradient_accumulation_steps': 4,
+           'training_args.gradient_checkpointing': True,
+           'training_args.learning_rate': 0.0005,
+           'training_args.logging_steps': 10,
+           'training_args.lr_scheduler_type': 'linear',
+           'training_args.max_length': 4096,
+           'training_args.max_steps': 300,
+           'training_args.num_train_epochs': 4,
+           'training_args.per_device_eval_batch_size': 1,
+           'training_args.per_device_train_batch_size': 1,
+           'training_args.report_to': 'none',
+           'training_args.save_steps': 100,
+           'training_args.save_strategy': 'steps',
+           'training_args.save_total_limit': 2,
+           'training_args.warmup_ratio': 0.05},
+    7: {   'model_kwargs.device_map': 'auto',
+           'model_kwargs.use_cache': False,
+           'model_name': 'Qwen/Qwen2.5-1.5B-Instruct',
+           'model_type': 'causal_lm',
+           'peft_params.bias': 'none',
+           'peft_params.lora_alpha': 64,
+           'peft_params.lora_dropout': 0.05,
+           'peft_params.r': 32,
+           'peft_params.target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'],
+           'tokenizer': None,
+           'tokenizer_kwargs': None,
+           'trainer_type': 'SFT',
+           'training_args.bf16': True,
+           'training_args.eval_steps': 50,
+           'training_args.eval_strategy': 'steps',
+           'training_args.gradient_accumulation_steps': 4,
+           'training_args.gradient_checkpointing': True,
+           'training_args.learning_rate': 0.0003,
+           'training_args.logging_steps': 10,
+           'training_args.lr_scheduler_type': 'linear',
+           'training_args.max_length': 4096,
+           'training_args.max_steps': 300,
+           'training_args.num_train_epochs': 4,
+           'training_args.per_device_eval_batch_size': 1,
+           'training_args.per_device_train_batch_size': 1,
+           'training_args.report_to': 'none',
+           'training_args.save_steps': 100,
+           'training_args.save_strategy': 'steps',
+           'training_args.save_total_limit': 2,
+           'training_args.warmup_ratio': 0.05},
+    8: {   'model_kwargs.device_map': 'auto',
+           'model_kwargs.use_cache': False,
+           'model_name': 'Qwen/Qwen2.5-1.5B-Instruct',
+           'model_type': 'causal_lm',
+           'peft_params.bias': 'none',
+           'peft_params.lora_alpha': 64,
+           'peft_params.lora_dropout': 0.05,
+           'peft_params.r': 32,
+           'peft_params.target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'],
+           'tokenizer': None,
+           'tokenizer_kwargs': None,
+           'trainer_type': 'SFT',
+           'training_args.bf16': True,
+           'training_args.eval_steps': 50,
+           'training_args.eval_strategy': 'steps',
+           'training_args.gradient_accumulation_steps': 4,
+           'training_args.gradient_checkpointing': True,
+           'training_args.learning_rate': 0.0005,
+           'training_args.logging_steps': 10,
+           'training_args.lr_scheduler_type': 'linear',
+           'training_args.max_length': 4096,
+           'training_args.max_steps': 300,
+           'training_args.num_train_epochs': 4,
+           'training_args.per_device_eval_batch_size': 1,
+           'training_args.per_device_train_batch_size': 1,
+           'training_args.report_to': 'none',
+           'training_args.save_steps': 100,
+           'training_args.save_strategy': 'steps',
+           'training_args.save_total_limit': 2,
+           'training_args.warmup_ratio': 0.05}}
+2026-05-21 19:10:03 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:223 | Got 8 runs for Initial.
+2026-05-21 19:10:03 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:227 | Completed creating models.
+2026-05-21 19:10:03 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:625 | Created models.
+2026-05-21 19:10:03 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:631 | Set experiment task to Training and Validation.
+2026-05-21 19:10:03 | schema-linking-sft-sweep6 | worker_manager | DEBUG | worker_manager.py:115 | Creating 1 worker processes...
+2026-05-21 19:10:03 | schema-linking-sft-sweep6 | worker_manager | DEBUG | worker_manager.py:121 | Starting worker processes in process group 4789
+2026-05-21 19:10:03 | schema-linking-sft-sweep6 | worker_manager | DEBUG | worker_manager.py:149 | Started Worker 0 with PID 5128
+2026-05-21 19:10:03 | schema-linking-sft-sweep6 | worker_manager | INFO | worker_manager.py:156 | Started 1 worker processes successfully
+2026-05-21 19:10:03 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:637 | Created 1 workers.
+2026-05-21 19:10:03 | schema-linking-sft-sweep6 | controller | INFO | controller.py:659 | Starting Training and Validation
+2026-05-21 19:10:04 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 2 on workers (0,) for chunk 0
+2026-05-21 19:10:19 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:157 | Worker 0 initialized with PID 5128
+2026-05-21 19:10:19 | schema-linking-sft-sweep6 | worker_0 | INFO | metric_rfmetric_manager.py:55 | Initialized MLflowMetricLogger: rf_mlflow
+2026-05-21 19:10:19 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:192 | Loaded datasets
+2026-05-21 19:10:19 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 2
+2026-05-21 19:10:19 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 2 with chunk 0
+2026-05-21 19:11:39 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:348 | Saved base_model for run Qwen/Qwen2.5-0.5B-Instruct
+2026-05-21 19:11:41 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 2 on chunk 0
+2026-05-21 19:13:20 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:0 in-place, 7 new
+2026-05-21 19:13:20 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 2 on chunk 0
+2026-05-21 19:13:22 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 2, chunk 0 on workers (0,)
+2026-05-21 19:13:22 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 2 completed steps - 9/300
+2026-05-21 19:13:23 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 3 on workers (0,) for chunk 0
+2026-05-21 19:13:24 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 3
+2026-05-21 19:13:24 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 3 with chunk 0
+2026-05-21 19:14:25 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 3 on chunk 0
+2026-05-21 19:18:51 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:0 in-place, 7 new
+2026-05-21 19:18:51 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 3 on chunk 0
+2026-05-21 19:18:54 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 3, chunk 0 on workers (0,)
+2026-05-21 19:18:54 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 3 completed steps - 9/300
+2026-05-21 19:18:54 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 6 on workers (0,) for chunk 0
+2026-05-21 19:18:55 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 6
+2026-05-21 19:18:55 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 6 with chunk 0
+2026-05-21 19:20:13 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:348 | Saved base_model for run Qwen/Qwen2.5-1.5B-Instruct
+2026-05-21 19:20:14 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 6 on chunk 0
+2026-05-21 19:22:15 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:0 in-place, 7 new
+2026-05-21 19:22:15 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 6 on chunk 0
+2026-05-21 19:22:19 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 6, chunk 0 on workers (0,)
+2026-05-21 19:22:19 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 6 completed steps - 9/300
+2026-05-21 19:22:20 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 5 on workers (0,) for chunk 0
+2026-05-21 19:22:20 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 5
+2026-05-21 19:22:20 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 5 with chunk 0
+2026-05-21 19:23:02 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 5 on chunk 0
+2026-05-21 19:25:06 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:0 in-place, 7 new
+2026-05-21 19:25:06 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 5 on chunk 0
+2026-05-21 19:25:09 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 5, chunk 0 on workers (0,)
+2026-05-21 19:25:09 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 5 completed steps - 9/300
+2026-05-21 19:25:10 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 7 on workers (0,) for chunk 0
+2026-05-21 19:25:10 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 7
+2026-05-21 19:25:10 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 7 with chunk 0
+2026-05-21 19:27:29 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 7 on chunk 0
+2026-05-21 19:38:09 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:0 in-place, 7 new
+2026-05-21 19:38:09 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 7 on chunk 0
+2026-05-21 19:38:11 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 7, chunk 0 on workers (0,)
+2026-05-21 19:38:11 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 7 completed steps - 9/300
+2026-05-21 19:38:12 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 4 on workers (0,) for chunk 0
+2026-05-21 19:38:12 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 4
+2026-05-21 19:38:12 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 4 with chunk 0
+2026-05-21 19:39:13 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 4 on chunk 0
+2026-05-21 19:43:54 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:0 in-place, 7 new
+2026-05-21 19:43:54 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 4 on chunk 0
+2026-05-21 19:43:56 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 4, chunk 0 on workers (0,)
+2026-05-21 19:43:56 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 4 completed steps - 9/300
+2026-05-21 19:43:57 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 1 on workers (0,) for chunk 0
+2026-05-21 19:43:57 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 1
+2026-05-21 19:43:57 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 1 with chunk 0
+2026-05-21 19:44:34 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 1 on chunk 0
+2026-05-21 19:46:15 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:0 in-place, 7 new
+2026-05-21 19:46:15 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 1 on chunk 0
+2026-05-21 19:46:17 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 1, chunk 0 on workers (0,)
+2026-05-21 19:46:17 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 1 completed steps - 9/300
+2026-05-21 19:46:18 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 8 on workers (0,) for chunk 0
+2026-05-21 19:46:18 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 8
+2026-05-21 19:46:18 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 8 with chunk 0
+2026-05-21 19:48:39 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 8 on chunk 0
+2026-05-21 19:59:39 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:0 in-place, 7 new
+2026-05-21 19:59:39 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 8 on chunk 0
+2026-05-21 19:59:41 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 8, chunk 0 on workers (0,)
+2026-05-21 19:59:41 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 8 completed steps - 9/300
+2026-05-21 19:59:42 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 2 on workers (0,) for chunk 1
+2026-05-21 19:59:42 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 2
+2026-05-21 19:59:42 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 2 with chunk 1
+2026-05-21 20:00:21 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 2 on chunk 1
+2026-05-21 20:00:36 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:768 in-place, 0 new
+2026-05-21 20:00:36 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 2 on chunk 1
+2026-05-21 20:00:38 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 2, chunk 1 on workers (0,)
+2026-05-21 20:00:38 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 2 completed steps - 18/300
+2026-05-21 20:00:39 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 3 on workers (0,) for chunk 1
+2026-05-21 20:00:40 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 3
+2026-05-21 20:00:40 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 3 with chunk 1
+2026-05-21 20:01:41 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 3 on chunk 1
+2026-05-21 20:03:30 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1344 in-place, 0 new
+2026-05-21 20:03:30 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 3 on chunk 1
+2026-05-21 20:03:33 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 3, chunk 1 on workers (0,)
+2026-05-21 20:03:33 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 3 completed steps - 18/300
+2026-05-21 20:03:33 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 6 on workers (0,) for chunk 1
+2026-05-21 20:03:34 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 6
+2026-05-21 20:03:34 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 6 with chunk 1
+2026-05-21 20:04:17 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 6 on chunk 1
+2026-05-21 20:04:41 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:896 in-place, 0 new
+2026-05-21 20:04:41 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 6 on chunk 1
+2026-05-21 20:04:44 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 6, chunk 1 on workers (0,)
+2026-05-21 20:04:44 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 6 completed steps - 18/300
+2026-05-21 20:04:44 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 5 on workers (0,) for chunk 1
+2026-05-21 20:04:45 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 5
+2026-05-21 20:04:45 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 5 with chunk 1
+2026-05-21 20:05:29 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 5 on chunk 1
+2026-05-21 20:05:54 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:896 in-place, 0 new
+2026-05-21 20:05:54 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 5 on chunk 1
+2026-05-21 20:05:57 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 5, chunk 1 on workers (0,)
+2026-05-21 20:05:57 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 5 completed steps - 18/300
+2026-05-21 20:05:57 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 7 on workers (0,) for chunk 1
+2026-05-21 20:05:57 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 7
+2026-05-21 20:05:57 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 7 with chunk 1
+2026-05-21 20:08:26 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 7 on chunk 1
+2026-05-21 20:16:27 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1568 in-place, 0 new
+2026-05-21 20:16:27 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 7 on chunk 1
+2026-05-21 20:16:29 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 7, chunk 1 on workers (0,)
+2026-05-21 20:16:29 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 7 completed steps - 18/300
+2026-05-21 20:16:30 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 8 on workers (0,) for chunk 1
+2026-05-21 20:16:30 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 8
+2026-05-21 20:16:30 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 8 with chunk 1
+2026-05-21 20:19:01 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 8 on chunk 1
+2026-05-21 20:26:47 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1568 in-place, 0 new
+2026-05-21 20:26:47 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 8 on chunk 1
+2026-05-21 20:26:50 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 8, chunk 1 on workers (0,)
+2026-05-21 20:26:50 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 8 completed steps - 18/300
+2026-05-21 20:26:50 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 4 on workers (0,) for chunk 1
+2026-05-21 20:26:51 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 4
+2026-05-21 20:26:51 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 4 with chunk 1
+2026-05-21 20:28:00 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 4 on chunk 1
+2026-05-21 20:30:00 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1344 in-place, 0 new
+2026-05-21 20:30:00 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 4 on chunk 1
+2026-05-21 20:30:02 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 4, chunk 1 on workers (0,)
+2026-05-21 20:30:02 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 4 completed steps - 18/300
+2026-05-21 20:30:03 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 1 on workers (0,) for chunk 1
+2026-05-21 20:30:03 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 1
+2026-05-21 20:30:03 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 1 with chunk 1
+2026-05-21 20:30:45 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 1 on chunk 1
+2026-05-21 20:31:00 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:768 in-place, 0 new
+2026-05-21 20:31:00 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 1 on chunk 1
+2026-05-21 20:31:03 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 1, chunk 1 on workers (0,)
+2026-05-21 20:31:03 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 1 completed steps - 18/300
+2026-05-21 20:31:04 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 5 on workers (0,) for chunk 2
+2026-05-21 20:31:04 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 5
+2026-05-21 20:31:04 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 5 with chunk 2
+2026-05-21 20:31:50 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 5 on chunk 2
+2026-05-21 20:32:18 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:896 in-place, 0 new
+2026-05-21 20:32:18 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 5 on chunk 2
+2026-05-21 20:32:22 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 5, chunk 2 on workers (0,)
+2026-05-21 20:32:22 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 5 completed steps - 27/300
+2026-05-21 20:32:22 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 2 on workers (0,) for chunk 2
+2026-05-21 20:32:23 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 2
+2026-05-21 20:32:23 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 2 with chunk 2
+2026-05-21 20:33:04 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 2 on chunk 2
+2026-05-21 20:33:20 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:768 in-place, 0 new
+2026-05-21 20:33:20 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 2 on chunk 2
+2026-05-21 20:33:23 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 2, chunk 2 on workers (0,)
+2026-05-21 20:33:23 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 2 completed steps - 27/300
+2026-05-21 20:33:23 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 7 on workers (0,) for chunk 2
+2026-05-21 20:33:24 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 7
+2026-05-21 20:33:24 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 7 with chunk 2
+2026-05-21 20:36:04 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 7 on chunk 2
+2026-05-21 20:44:42 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1568 in-place, 0 new
+2026-05-21 20:44:42 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 7 on chunk 2
+2026-05-21 20:44:44 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 7, chunk 2 on workers (0,)
+2026-05-21 20:44:44 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 7 completed steps - 27/300
+2026-05-21 20:44:44 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 1 on workers (0,) for chunk 2
+2026-05-21 20:44:45 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 1
+2026-05-21 20:44:45 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 1 with chunk 2
+2026-05-21 20:45:28 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 1 on chunk 2
+2026-05-21 20:45:44 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:768 in-place, 0 new
+2026-05-21 20:45:44 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 1 on chunk 2
+2026-05-21 20:45:48 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 1, chunk 2 on workers (0,)
+2026-05-21 20:45:48 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 1 completed steps - 27/300
+2026-05-21 20:45:48 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 3 on workers (0,) for chunk 2
+2026-05-21 20:45:49 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 3
+2026-05-21 20:45:49 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 3 with chunk 2
+2026-05-21 20:46:59 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 3 on chunk 2
+2026-05-21 20:49:03 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1344 in-place, 0 new
+2026-05-21 20:49:03 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 3 on chunk 2
+2026-05-21 20:49:05 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 3, chunk 2 on workers (0,)
+2026-05-21 20:49:05 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 3 completed steps - 27/300
+2026-05-21 20:49:06 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 8 on workers (0,) for chunk 2
+2026-05-21 20:49:06 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 8
+2026-05-21 20:49:06 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 8 with chunk 2
+2026-05-21 20:51:49 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 8 on chunk 2
+2026-05-21 21:00:22 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1568 in-place, 0 new
+2026-05-21 21:00:22 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 8 on chunk 2
+2026-05-21 21:00:25 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 8, chunk 2 on workers (0,)
+2026-05-21 21:00:25 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 8 completed steps - 27/300
+2026-05-21 21:00:25 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 6 on workers (0,) for chunk 2
+2026-05-21 21:00:26 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 6
+2026-05-21 21:00:26 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 6 with chunk 2
+2026-05-21 21:01:16 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 6 on chunk 2
+2026-05-21 21:01:44 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:896 in-place, 0 new
+2026-05-21 21:01:44 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 6 on chunk 2
+2026-05-21 21:01:46 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 6, chunk 2 on workers (0,)
+2026-05-21 21:01:46 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 6 completed steps - 27/300
+2026-05-21 21:01:47 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 4 on workers (0,) for chunk 2
+2026-05-21 21:01:47 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 4
+2026-05-21 21:01:47 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 4 with chunk 2
+2026-05-21 21:02:58 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 4 on chunk 2
+2026-05-21 21:05:00 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1344 in-place, 0 new
+2026-05-21 21:05:01 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 4 on chunk 2
+2026-05-21 21:05:03 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 4, chunk 2 on workers (0,)
+2026-05-21 21:05:03 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 4 completed steps - 27/300
+2026-05-21 21:05:03 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 5 on workers (0,) for chunk 3
+2026-05-21 21:05:04 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 5
+2026-05-21 21:05:04 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 5 with chunk 3
+2026-05-21 21:05:53 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 5 on chunk 3
+2026-05-21 21:06:15 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:896 in-place, 0 new
+2026-05-21 21:06:15 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 5 on chunk 3
+2026-05-21 21:06:19 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 5, chunk 3 on workers (0,)
+2026-05-21 21:06:19 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 5 completed steps - 36/300
+2026-05-21 21:06:19 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 2 on workers (0,) for chunk 3
+2026-05-21 21:06:20 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 2
+2026-05-21 21:06:20 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 2 with chunk 3
+2026-05-21 21:07:02 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 2 on chunk 3
+2026-05-21 21:07:15 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:768 in-place, 0 new
+2026-05-21 21:07:15 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 2 on chunk 3
+2026-05-21 21:07:18 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 2, chunk 3 on workers (0,)
+2026-05-21 21:07:18 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 2 completed steps - 36/300
+2026-05-21 21:07:18 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 7 on workers (0,) for chunk 3
+2026-05-21 21:07:19 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 7
+2026-05-21 21:07:19 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 7 with chunk 3
+2026-05-21 21:09:55 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 7 on chunk 3
+2026-05-21 21:18:10 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1568 in-place, 0 new
+2026-05-21 21:18:10 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 7 on chunk 3
+2026-05-21 21:18:12 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 7, chunk 3 on workers (0,)
+2026-05-21 21:18:12 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 7 completed steps - 36/300
+2026-05-21 21:18:13 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 1 on workers (0,) for chunk 3
+2026-05-21 21:18:13 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 1
+2026-05-21 21:18:13 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 1 with chunk 3
+2026-05-21 21:18:54 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 1 on chunk 3
+2026-05-21 21:19:07 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:768 in-place, 0 new
+2026-05-21 21:19:07 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 1 on chunk 3
+2026-05-21 21:19:10 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 1, chunk 3 on workers (0,)
+2026-05-21 21:19:10 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 1 completed steps - 36/300
+2026-05-21 21:19:10 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 3 on workers (0,) for chunk 3
+2026-05-21 21:19:10 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 3
+2026-05-21 21:19:10 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 3 with chunk 3
+2026-05-21 21:20:19 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 3 on chunk 3
+2026-05-21 21:22:08 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1344 in-place, 0 new
+2026-05-21 21:22:08 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 3 on chunk 3
+2026-05-21 21:22:10 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 3, chunk 3 on workers (0,)
+2026-05-21 21:22:10 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 3 completed steps - 36/300
+2026-05-21 21:22:10 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 8 on workers (0,) for chunk 3
+2026-05-21 21:22:11 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 8
+2026-05-21 21:22:11 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 8 with chunk 3
+2026-05-21 21:24:49 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 8 on chunk 3
+2026-05-21 21:32:59 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1568 in-place, 0 new
+2026-05-21 21:32:59 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 8 on chunk 3
+2026-05-21 21:33:01 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 8, chunk 3 on workers (0,)
+2026-05-21 21:33:01 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 8 completed steps - 36/300
+2026-05-21 21:33:02 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 6 on workers (0,) for chunk 3
+2026-05-21 21:33:02 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 6
+2026-05-21 21:33:02 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 6 with chunk 3
+2026-05-21 21:33:50 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 6 on chunk 3
+2026-05-21 21:34:12 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:896 in-place, 0 new
+2026-05-21 21:34:12 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 6 on chunk 3
+2026-05-21 21:34:15 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 6, chunk 3 on workers (0,)
+2026-05-21 21:34:15 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 6 completed steps - 36/300
+2026-05-21 21:34:15 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 4 on workers (0,) for chunk 3
+2026-05-21 21:34:16 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 4
+2026-05-21 21:34:16 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 4 with chunk 3
+2026-05-21 21:35:23 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 4 on chunk 3
+2026-05-21 21:37:10 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1344 in-place, 0 new
+2026-05-21 21:37:10 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 4 on chunk 3
+2026-05-21 21:37:13 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 4, chunk 3 on workers (0,)
+2026-05-21 21:37:13 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 4 completed steps - 36/300
+2026-05-21 21:37:13 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 5 on workers (0,) for chunk 4
+2026-05-21 21:37:13 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 5
+2026-05-21 21:37:13 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 5 with chunk 4
+2026-05-21 21:37:56 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 5 on chunk 4
+2026-05-21 21:38:18 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:896 in-place, 0 new
+2026-05-21 21:38:18 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 5 on chunk 4
+2026-05-21 21:38:21 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 5, chunk 4 on workers (0,)
+2026-05-21 21:38:21 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 5 completed steps - 46/300
+2026-05-21 21:38:21 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 2 on workers (0,) for chunk 4
+2026-05-21 21:38:22 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 2
+2026-05-21 21:38:22 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 2 with chunk 4
+2026-05-21 21:39:02 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 2 on chunk 4
+2026-05-21 21:39:15 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:768 in-place, 0 new
+2026-05-21 21:39:15 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 2 on chunk 4
+2026-05-21 21:39:17 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 2, chunk 4 on workers (0,)
+2026-05-21 21:39:17 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 2 completed steps - 46/300
+2026-05-21 21:39:18 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 7 on workers (0,) for chunk 4
+2026-05-21 21:39:18 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 7
+2026-05-21 21:39:18 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 7 with chunk 4
+2026-05-21 21:41:55 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 7 on chunk 4
+2026-05-21 21:49:43 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1568 in-place, 0 new
+2026-05-21 21:49:43 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 7 on chunk 4
+2026-05-21 21:49:46 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 7, chunk 4 on workers (0,)
+2026-05-21 21:49:46 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 7 completed steps - 46/300
+2026-05-21 21:49:46 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 1 on workers (0,) for chunk 4
+2026-05-21 21:49:46 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 1
+2026-05-21 21:49:46 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 1 with chunk 4
+2026-05-21 21:50:26 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 1 on chunk 4
+2026-05-21 21:50:39 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:768 in-place, 0 new
+2026-05-21 21:50:39 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 1 on chunk 4
+2026-05-21 21:50:42 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 1, chunk 4 on workers (0,)
+2026-05-21 21:50:42 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 1 completed steps - 46/300
+2026-05-21 21:50:42 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 3 on workers (0,) for chunk 4
+2026-05-21 21:50:43 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 3
+2026-05-21 21:50:43 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 3 with chunk 4
+2026-05-21 21:51:51 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 3 on chunk 4
+2026-05-21 21:53:39 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1344 in-place, 0 new
+2026-05-21 21:53:39 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 3 on chunk 4
+2026-05-21 21:53:42 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 3, chunk 4 on workers (0,)
+2026-05-21 21:53:42 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 3 completed steps - 46/300
+2026-05-21 21:53:42 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 8 on workers (0,) for chunk 4
+2026-05-21 21:53:43 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 8
+2026-05-21 21:53:43 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 8 with chunk 4
+2026-05-21 21:56:08 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 8 on chunk 4
+2026-05-21 22:03:35 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1568 in-place, 0 new
+2026-05-21 22:03:35 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 8 on chunk 4
+2026-05-21 22:03:38 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 8, chunk 4 on workers (0,)
+2026-05-21 22:03:38 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 8 completed steps - 46/300
+2026-05-21 22:03:38 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 6 on workers (0,) for chunk 4
+2026-05-21 22:03:38 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 6
+2026-05-21 22:03:38 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 6 with chunk 4
+2026-05-21 22:04:22 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 6 on chunk 4
+2026-05-21 22:04:43 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:896 in-place, 0 new
+2026-05-21 22:04:43 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 6 on chunk 4
+2026-05-21 22:04:46 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 6, chunk 4 on workers (0,)
+2026-05-21 22:04:46 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 6 completed steps - 46/300
+2026-05-21 22:04:46 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 4 on workers (0,) for chunk 4
+2026-05-21 22:04:47 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 4
+2026-05-21 22:04:47 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 4 with chunk 4
+2026-05-21 22:05:55 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 4 on chunk 4
+2026-05-21 22:07:48 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1344 in-place, 0 new
+2026-05-21 22:07:48 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 4 on chunk 4
+2026-05-21 22:07:51 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 4, chunk 4 on workers (0,)
+2026-05-21 22:07:51 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 4 completed steps - 46/300
+2026-05-21 22:07:51 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 4 on workers (0,) for chunk 5
+2026-05-21 22:07:52 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 4
+2026-05-21 22:07:52 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 4 with chunk 5
+2026-05-21 22:08:55 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 4 on chunk 5
+2026-05-21 22:10:49 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1344 in-place, 0 new
+2026-05-21 22:10:49 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 4 on chunk 5
+2026-05-21 22:10:52 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 4, chunk 5 on workers (0,)
+2026-05-21 22:10:52 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 4 completed steps - 56/300
+2026-05-21 22:10:52 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 3 on workers (0,) for chunk 5
+2026-05-21 22:10:52 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 3
+2026-05-21 22:10:52 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 3 with chunk 5
+2026-05-21 22:11:55 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 3 on chunk 5
+2026-05-21 22:13:44 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1344 in-place, 0 new
+2026-05-21 22:13:44 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 3 on chunk 5
+2026-05-21 22:13:48 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 3, chunk 5 on workers (0,)
+2026-05-21 22:13:48 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 3 completed steps - 56/300
+2026-05-21 22:13:48 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 5 on workers (0,) for chunk 5
+2026-05-21 22:13:49 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 5
+2026-05-21 22:13:49 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 5 with chunk 5
+2026-05-21 22:14:32 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 5 on chunk 5
+2026-05-21 22:15:01 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:896 in-place, 0 new
+2026-05-21 22:15:01 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 5 on chunk 5
+2026-05-21 22:15:03 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 5, chunk 5 on workers (0,)
+2026-05-21 22:15:03 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 5 completed steps - 56/300
+2026-05-21 22:15:04 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 7 on workers (0,) for chunk 5
+2026-05-21 22:15:04 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 7
+2026-05-21 22:15:04 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 7 with chunk 5
+2026-05-21 22:17:38 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 7 on chunk 5
+2026-05-21 22:25:23 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1568 in-place, 0 new
+2026-05-21 22:25:23 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 7 on chunk 5
+2026-05-21 22:25:26 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 7, chunk 5 on workers (0,)
+2026-05-21 22:25:26 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 7 completed steps - 56/300
+2026-05-21 22:25:27 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 8 on workers (0,) for chunk 5
+2026-05-21 22:25:28 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 8
+2026-05-21 22:25:28 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 8 with chunk 5
+2026-05-21 22:27:59 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 8 on chunk 5
+2026-05-21 22:35:59 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1568 in-place, 0 new
+2026-05-21 22:35:59 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 8 on chunk 5
+2026-05-21 22:36:01 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 8, chunk 5 on workers (0,)
+2026-05-21 22:36:01 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 8 completed steps - 56/300
+2026-05-21 22:36:01 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 2 on workers (0,) for chunk 5
+2026-05-21 22:36:02 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 2
+2026-05-21 22:36:02 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 2 with chunk 5
+2026-05-21 22:36:40 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 2 on chunk 5
+2026-05-21 22:36:57 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:768 in-place, 0 new
+2026-05-21 22:36:57 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 2 on chunk 5
+2026-05-21 22:37:00 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 2, chunk 5 on workers (0,)
+2026-05-21 22:37:00 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 2 completed steps - 56/300
+2026-05-21 22:37:00 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 1 on workers (0,) for chunk 5
+2026-05-21 22:37:00 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 1
+2026-05-21 22:37:00 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 1 with chunk 5
+2026-05-21 22:37:40 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 1 on chunk 5
+2026-05-21 22:37:56 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:768 in-place, 0 new
+2026-05-21 22:37:56 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 1 on chunk 5
+2026-05-21 22:37:59 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 1, chunk 5 on workers (0,)
+2026-05-21 22:37:59 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 1 completed steps - 56/300
+2026-05-21 22:37:59 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 6 on workers (0,) for chunk 5
+2026-05-21 22:38:00 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 6
+2026-05-21 22:38:00 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 6 with chunk 5
+2026-05-21 22:38:46 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 6 on chunk 5
+2026-05-21 22:39:15 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:896 in-place, 0 new
+2026-05-21 22:39:15 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 6 on chunk 5
+2026-05-21 22:39:17 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 6, chunk 5 on workers (0,)
+2026-05-21 22:39:17 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 6 completed steps - 56/300
+2026-05-21 22:39:18 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 7 on workers (0,) for chunk 6
+2026-05-21 22:39:18 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 7
+2026-05-21 22:39:18 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 7 with chunk 6
+2026-05-21 22:41:42 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 7 on chunk 6
+2026-05-21 22:49:22 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1568 in-place, 0 new
+2026-05-21 22:49:22 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 7 on chunk 6
+2026-05-21 22:49:24 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 7, chunk 6 on workers (0,)
+2026-05-21 22:49:24 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 7 completed steps - 66/300
+2026-05-21 22:49:24 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 8 on workers (0,) for chunk 6
+2026-05-21 22:49:25 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 8
+2026-05-21 22:49:25 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 8 with chunk 6
+2026-05-21 22:51:59 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 8 on chunk 6
+2026-05-21 22:59:55 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1568 in-place, 0 new
+2026-05-21 22:59:55 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 8 on chunk 6
+2026-05-21 22:59:58 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 8, chunk 6 on workers (0,)
+2026-05-21 22:59:58 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 8 completed steps - 66/300
+2026-05-21 22:59:59 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 4 on workers (0,) for chunk 6
+2026-05-21 22:59:59 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 4
+2026-05-21 22:59:59 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 4 with chunk 6
+2026-05-21 23:01:08 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 4 on chunk 6
+2026-05-21 23:03:11 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1344 in-place, 0 new
+2026-05-21 23:03:11 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 4 on chunk 6
+2026-05-21 23:03:13 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 4, chunk 6 on workers (0,)
+2026-05-21 23:03:13 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 4 completed steps - 66/300
+2026-05-21 23:03:13 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 3 on workers (0,) for chunk 6
+2026-05-21 23:03:14 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 3
+2026-05-21 23:03:14 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 3 with chunk 6
+2026-05-21 23:04:21 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 3 on chunk 6
+2026-05-21 23:06:13 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1344 in-place, 0 new
+2026-05-21 23:06:13 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 3 on chunk 6
+2026-05-21 23:06:16 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 3, chunk 6 on workers (0,)
+2026-05-21 23:06:16 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 3 completed steps - 66/300
+2026-05-21 23:06:16 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 2 on workers (0,) for chunk 6
+2026-05-21 23:06:17 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 2
+2026-05-21 23:06:17 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 2 with chunk 6
+2026-05-21 23:06:54 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 2 on chunk 6
+2026-05-21 23:07:11 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:768 in-place, 0 new
+2026-05-21 23:07:11 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 2 on chunk 6
+2026-05-21 23:07:14 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 2, chunk 6 on workers (0,)
+2026-05-21 23:07:14 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 2 completed steps - 66/300
+2026-05-21 23:07:14 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 5 on workers (0,) for chunk 6
+2026-05-21 23:07:15 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 5
+2026-05-21 23:07:15 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 5 with chunk 6
+2026-05-21 23:08:01 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 5 on chunk 6
+2026-05-21 23:08:30 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:896 in-place, 0 new
+2026-05-21 23:08:30 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 5 on chunk 6
+2026-05-21 23:08:32 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 5, chunk 6 on workers (0,)
+2026-05-21 23:08:32 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 5 completed steps - 66/300
+2026-05-21 23:08:32 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 1 on workers (0,) for chunk 6
+2026-05-21 23:08:33 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 1
+2026-05-21 23:08:33 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 1 with chunk 6
+2026-05-21 23:09:09 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 1 on chunk 6
+2026-05-21 23:09:25 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:768 in-place, 0 new
+2026-05-21 23:09:25 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 1 on chunk 6
+2026-05-21 23:09:28 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 1, chunk 6 on workers (0,)
+2026-05-21 23:09:28 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 1 completed steps - 66/300
+2026-05-21 23:09:28 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 6 on workers (0,) for chunk 6
+2026-05-21 23:09:28 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 6
+2026-05-21 23:09:28 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 6 with chunk 6
+2026-05-21 23:10:15 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 6 on chunk 6
+2026-05-21 23:10:43 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:896 in-place, 0 new
+2026-05-21 23:10:43 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 6 on chunk 6
+2026-05-21 23:10:45 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 6, chunk 6 on workers (0,)
+2026-05-21 23:10:45 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 6 completed steps - 66/300
+2026-05-21 23:10:45 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 7 on workers (0,) for chunk 7
+2026-05-21 23:10:46 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 7
+2026-05-21 23:10:46 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 7 with chunk 7
+2026-05-21 23:13:23 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 7 on chunk 7
+2026-05-21 23:21:29 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1568 in-place, 0 new
+2026-05-21 23:21:29 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 7 on chunk 7
+2026-05-21 23:21:31 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 7, chunk 7 on workers (0,)
+2026-05-21 23:21:31 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 7 completed steps - 76/300
+2026-05-21 23:21:31 | schema-linking-sft-sweep6 | controller | INFO | controller.py:773 | Run 7 has completed epoch (8/8 chunks)
+2026-05-21 23:21:32 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 8 on workers (0,) for chunk 7
+2026-05-21 23:21:32 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 8
+2026-05-21 23:21:32 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 8 with chunk 7
+2026-05-21 23:23:57 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 8 on chunk 7
+2026-05-21 23:32:03 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1568 in-place, 0 new
+2026-05-21 23:32:03 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 8 on chunk 7
+2026-05-21 23:32:06 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 8, chunk 7 on workers (0,)
+2026-05-21 23:32:06 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 8 completed steps - 76/300
+2026-05-21 23:32:06 | schema-linking-sft-sweep6 | controller | INFO | controller.py:773 | Run 8 has completed epoch (8/8 chunks)
+2026-05-21 23:32:06 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 2 on workers (0,) for chunk 7
+2026-05-21 23:32:06 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 2
+2026-05-21 23:32:06 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 2 with chunk 7
+2026-05-21 23:32:46 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 2 on chunk 7
+2026-05-21 23:33:02 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:768 in-place, 0 new
+2026-05-21 23:33:02 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 2 on chunk 7
+2026-05-21 23:33:05 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 2, chunk 7 on workers (0,)
+2026-05-21 23:33:05 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 2 completed steps - 76/300
+2026-05-21 23:33:05 | schema-linking-sft-sweep6 | controller | INFO | controller.py:773 | Run 2 has completed epoch (8/8 chunks)
+2026-05-21 23:33:05 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 3 on workers (0,) for chunk 7
+2026-05-21 23:33:05 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 3
+2026-05-21 23:33:05 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 3 with chunk 7
+2026-05-21 23:34:12 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 3 on chunk 7
+2026-05-21 23:36:09 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1344 in-place, 0 new
+2026-05-21 23:36:09 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 3 on chunk 7
+2026-05-21 23:36:12 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 3, chunk 7 on workers (0,)
+2026-05-21 23:36:12 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 3 completed steps - 76/300
+2026-05-21 23:36:12 | schema-linking-sft-sweep6 | controller | INFO | controller.py:773 | Run 3 has completed epoch (8/8 chunks)
+2026-05-21 23:36:12 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 4 on workers (0,) for chunk 7
+2026-05-21 23:36:13 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 4
+2026-05-21 23:36:13 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 4 with chunk 7
+2026-05-21 23:37:19 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 4 on chunk 7
+2026-05-21 23:39:14 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1344 in-place, 0 new
+2026-05-21 23:39:14 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 4 on chunk 7
+2026-05-21 23:39:17 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 4, chunk 7 on workers (0,)
+2026-05-21 23:39:17 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 4 completed steps - 76/300
+2026-05-21 23:39:17 | schema-linking-sft-sweep6 | controller | INFO | controller.py:773 | Run 4 has completed epoch (8/8 chunks)
+2026-05-21 23:39:17 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 5 on workers (0,) for chunk 7
+2026-05-21 23:39:18 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 5
+2026-05-21 23:39:18 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 5 with chunk 7
+2026-05-21 23:40:05 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 5 on chunk 7
+2026-05-21 23:40:33 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:896 in-place, 0 new
+2026-05-21 23:40:33 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 5 on chunk 7
+2026-05-21 23:40:35 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 5, chunk 7 on workers (0,)
+2026-05-21 23:40:35 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 5 completed steps - 76/300
+2026-05-21 23:40:35 | schema-linking-sft-sweep6 | controller | INFO | controller.py:773 | Run 5 has completed epoch (8/8 chunks)
+2026-05-21 23:40:36 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 1 on workers (0,) for chunk 7
+2026-05-21 23:40:37 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 1
+2026-05-21 23:40:37 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 1 with chunk 7
+2026-05-21 23:41:19 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 1 on chunk 7
+2026-05-21 23:41:34 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:768 in-place, 0 new
+2026-05-21 23:41:34 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 1 on chunk 7
+2026-05-21 23:41:37 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 1, chunk 7 on workers (0,)
+2026-05-21 23:41:37 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 1 completed steps - 76/300
+2026-05-21 23:41:37 | schema-linking-sft-sweep6 | controller | INFO | controller.py:773 | Run 1 has completed epoch (8/8 chunks)
+2026-05-21 23:41:38 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 6 on workers (0,) for chunk 7
+2026-05-21 23:41:39 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 6
+2026-05-21 23:41:39 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 6 with chunk 7
+2026-05-21 23:42:26 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 6 on chunk 7
+2026-05-21 23:42:53 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:896 in-place, 0 new
+2026-05-21 23:42:53 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 6 on chunk 7
+2026-05-21 23:42:55 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 6, chunk 7 on workers (0,)
+2026-05-21 23:42:55 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 6 completed steps - 76/300
+2026-05-21 23:42:55 | schema-linking-sft-sweep6 | controller | INFO | controller.py:773 | Run 6 has completed epoch (8/8 chunks)
+2026-05-21 23:42:56 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 2 on workers (0,) for chunk 0
+2026-05-21 23:42:57 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 2
+2026-05-21 23:42:57 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 2 with chunk 0
+2026-05-21 23:43:36 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 2 on chunk 0
+2026-05-21 23:43:49 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:768 in-place, 0 new
+2026-05-21 23:43:49 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 2 on chunk 0
+2026-05-21 23:43:51 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 2, chunk 0 on workers (0,)
+2026-05-21 23:43:51 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 2 completed steps - 85/300
+2026-05-21 23:43:52 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 3 on workers (0,) for chunk 0
+2026-05-21 23:43:52 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 3
+2026-05-21 23:43:52 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 3 with chunk 0
+2026-05-21 23:44:54 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 3 on chunk 0
+2026-05-21 23:46:48 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1344 in-place, 0 new
+2026-05-21 23:46:48 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 3 on chunk 0
+2026-05-21 23:46:50 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 3, chunk 0 on workers (0,)
+2026-05-21 23:46:50 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 3 completed steps - 85/300
+2026-05-21 23:46:51 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 6 on workers (0,) for chunk 0
+2026-05-21 23:46:52 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 6
+2026-05-21 23:46:52 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 6 with chunk 0
+2026-05-21 23:47:35 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 6 on chunk 0
+2026-05-21 23:47:57 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:896 in-place, 0 new
+2026-05-21 23:47:57 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 6 on chunk 0
+2026-05-21 23:48:00 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 6, chunk 0 on workers (0,)
+2026-05-21 23:48:00 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 6 completed steps - 85/300
+2026-05-21 23:48:00 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 5 on workers (0,) for chunk 0
+2026-05-21 23:48:01 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 5
+2026-05-21 23:48:01 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 5 with chunk 0
+2026-05-21 23:48:44 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 5 on chunk 0
+2026-05-21 23:49:05 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:896 in-place, 0 new
+2026-05-21 23:49:05 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 5 on chunk 0
+2026-05-21 23:49:08 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 5, chunk 0 on workers (0,)
+2026-05-21 23:49:08 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 5 completed steps - 85/300
+2026-05-21 23:49:09 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 7 on workers (0,) for chunk 0
+2026-05-21 23:49:10 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 7
+2026-05-21 23:49:10 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 7 with chunk 0
+2026-05-21 23:51:46 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 7 on chunk 0
+2026-05-21 23:59:32 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1568 in-place, 0 new
+2026-05-21 23:59:32 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 7 on chunk 0
+2026-05-21 23:59:35 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 7, chunk 0 on workers (0,)
+2026-05-21 23:59:35 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 7 completed steps - 85/300
+2026-05-21 23:59:36 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 4 on workers (0,) for chunk 0
+2026-05-21 23:59:36 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 4
+2026-05-21 23:59:36 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 4 with chunk 0
+2026-05-22 00:00:38 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 4 on chunk 0
+2026-05-22 00:02:29 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1344 in-place, 0 new
+2026-05-22 00:02:29 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 4 on chunk 0
+2026-05-22 00:02:31 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 4, chunk 0 on workers (0,)
+2026-05-22 00:02:31 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 4 completed steps - 85/300
+2026-05-22 00:02:32 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 1 on workers (0,) for chunk 0
+2026-05-22 00:02:32 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 1
+2026-05-22 00:02:32 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 1 with chunk 0
+2026-05-22 00:03:12 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 1 on chunk 0
+2026-05-22 00:03:25 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:768 in-place, 0 new
+2026-05-22 00:03:25 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 1 on chunk 0
+2026-05-22 00:03:28 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 1, chunk 0 on workers (0,)
+2026-05-22 00:03:28 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 1 completed steps - 85/300
+2026-05-22 00:03:28 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 8 on workers (0,) for chunk 0
+2026-05-22 00:03:29 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 8
+2026-05-22 00:03:29 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 8 with chunk 0
+2026-05-22 00:06:06 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 8 on chunk 0
+2026-05-22 00:14:03 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1568 in-place, 0 new
+2026-05-22 00:14:03 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 8 on chunk 0
+2026-05-22 00:14:06 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 8, chunk 0 on workers (0,)
+2026-05-22 00:14:06 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 8 completed steps - 85/300
+2026-05-22 00:14:06 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 2 on workers (0,) for chunk 1
+2026-05-22 00:14:07 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 2
+2026-05-22 00:14:07 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 2 with chunk 1
+2026-05-22 00:14:46 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 2 on chunk 1
+2026-05-22 00:15:01 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:768 in-place, 0 new
+2026-05-22 00:15:01 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 2 on chunk 1
+2026-05-22 00:15:04 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 2, chunk 1 on workers (0,)
+2026-05-22 00:15:04 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 2 completed steps - 94/300
+2026-05-22 00:15:04 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 3 on workers (0,) for chunk 1
+2026-05-22 00:15:05 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 3
+2026-05-22 00:15:05 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 3 with chunk 1
+2026-05-22 00:16:16 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 3 on chunk 1
+2026-05-22 00:18:12 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1344 in-place, 0 new
+2026-05-22 00:18:12 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 3 on chunk 1
+2026-05-22 00:18:14 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 3, chunk 1 on workers (0,)
+2026-05-22 00:18:14 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 3 completed steps - 94/300
+2026-05-22 00:18:14 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 6 on workers (0,) for chunk 1
+2026-05-22 00:18:15 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 6
+2026-05-22 00:18:15 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 6 with chunk 1
+2026-05-22 00:19:01 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 6 on chunk 1
+2026-05-22 00:19:26 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:896 in-place, 0 new
+2026-05-22 00:19:26 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 6 on chunk 1
+2026-05-22 00:19:28 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 6, chunk 1 on workers (0,)
+2026-05-22 00:19:28 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 6 completed steps - 94/300
+2026-05-22 00:19:29 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 5 on workers (0,) for chunk 1
+2026-05-22 00:19:30 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 5
+2026-05-22 00:19:30 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 5 with chunk 1
+2026-05-22 00:20:18 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 5 on chunk 1
+2026-05-22 00:20:43 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:896 in-place, 0 new
+2026-05-22 00:20:43 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 5 on chunk 1
+2026-05-22 00:20:46 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 5, chunk 1 on workers (0,)
+2026-05-22 00:20:46 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 5 completed steps - 94/300
+2026-05-22 00:20:46 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 7 on workers (0,) for chunk 1
+2026-05-22 00:20:46 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 7
+2026-05-22 00:20:46 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 7 with chunk 1
+2026-05-22 00:23:26 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 7 on chunk 1
+2026-05-22 00:31:41 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1568 in-place, 0 new
+2026-05-22 00:31:41 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 7 on chunk 1
+2026-05-22 00:31:43 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 7, chunk 1 on workers (0,)
+2026-05-22 00:31:43 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 7 completed steps - 94/300
+2026-05-22 00:31:43 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 8 on workers (0,) for chunk 1
+2026-05-22 00:31:44 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 8
+2026-05-22 00:31:44 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 8 with chunk 1
+2026-05-22 00:34:21 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 8 on chunk 1
+2026-05-22 00:42:43 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1568 in-place, 0 new
+2026-05-22 00:42:43 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 8 on chunk 1
+2026-05-22 00:42:45 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 8, chunk 1 on workers (0,)
+2026-05-22 00:42:45 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 8 completed steps - 94/300
+2026-05-22 00:42:46 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 4 on workers (0,) for chunk 1
+2026-05-22 00:42:46 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 4
+2026-05-22 00:42:46 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 4 with chunk 1
+2026-05-22 00:43:54 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 4 on chunk 1
+2026-05-22 00:45:49 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1344 in-place, 0 new
+2026-05-22 00:45:49 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 4 on chunk 1
+2026-05-22 00:45:52 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 4, chunk 1 on workers (0,)
+2026-05-22 00:45:52 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 4 completed steps - 94/300
+2026-05-22 00:45:53 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 1 on workers (0,) for chunk 1
+2026-05-22 00:45:54 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 1
+2026-05-22 00:45:54 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 1 with chunk 1
+2026-05-22 00:46:35 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 1 on chunk 1
+2026-05-22 00:46:50 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:768 in-place, 0 new
+2026-05-22 00:46:50 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 1 on chunk 1
+2026-05-22 00:46:52 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 1, chunk 1 on workers (0,)
+2026-05-22 00:46:52 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 1 completed steps - 94/300
+2026-05-22 00:46:52 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 5 on workers (0,) for chunk 2
+2026-05-22 00:46:52 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 5
+2026-05-22 00:46:52 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 5 with chunk 2
+2026-05-22 00:47:41 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 5 on chunk 2
+2026-05-22 00:48:09 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:896 in-place, 0 new
+2026-05-22 00:48:09 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 5 on chunk 2
+2026-05-22 00:48:11 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 5, chunk 2 on workers (0,)
+2026-05-22 00:48:11 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 5 completed steps - 103/300
+2026-05-22 00:48:12 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 2 on workers (0,) for chunk 2
+2026-05-22 00:48:12 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 2
+2026-05-22 00:48:12 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 2 with chunk 2
+2026-05-22 00:48:51 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 2 on chunk 2
+2026-05-22 00:49:07 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:768 in-place, 0 new
+2026-05-22 00:49:07 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 2 on chunk 2
+2026-05-22 00:49:10 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 2, chunk 2 on workers (0,)
+2026-05-22 00:49:10 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 2 completed steps - 103/300
+2026-05-22 00:49:10 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 7 on workers (0,) for chunk 2
+2026-05-22 00:49:11 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 7
+2026-05-22 00:49:11 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 7 with chunk 2
+2026-05-22 00:51:41 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 7 on chunk 2
+2026-05-22 00:59:45 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1568 in-place, 0 new
+2026-05-22 00:59:45 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 7 on chunk 2
+2026-05-22 00:59:48 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 7, chunk 2 on workers (0,)
+2026-05-22 00:59:48 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 7 completed steps - 103/300
+2026-05-22 00:59:48 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 1 on workers (0,) for chunk 2
+2026-05-22 00:59:49 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 1
+2026-05-22 00:59:49 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 1 with chunk 2
+2026-05-22 01:00:30 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 1 on chunk 2
+2026-05-22 01:00:46 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:768 in-place, 0 new
+2026-05-22 01:00:46 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 1 on chunk 2
+2026-05-22 01:00:49 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 1, chunk 2 on workers (0,)
+2026-05-22 01:00:49 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 1 completed steps - 103/300
+2026-05-22 01:00:49 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 3 on workers (0,) for chunk 2
+2026-05-22 01:00:49 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 3
+2026-05-22 01:00:49 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 3 with chunk 2
+2026-05-22 01:02:00 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 3 on chunk 2
+2026-05-22 01:03:58 | schema-linking-sft-sweep6 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1344 in-place, 0 new
+2026-05-22 01:03:58 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 3 on chunk 2
+2026-05-22 01:04:01 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:714 | Completed task: run 3, chunk 2 on workers (0,)
+2026-05-22 01:04:01 | schema-linking-sft-sweep6 | controller | INFO | controller.py:717 | Run 3 completed steps - 103/300
+2026-05-22 01:04:01 | schema-linking-sft-sweep6 | controller | DEBUG | controller.py:886 | Scheduled run 8 on workers (0,) for chunk 2
+2026-05-22 01:04:01 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 8
+2026-05-22 01:04:01 | schema-linking-sft-sweep6 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 8 with chunk 2
+2026-05-22 02:54:53 | schema-linking-sft-sweep6 | schema-linking-sft-sweep6 | INFO | experiment_utils.py:270 | Task Training and Validation cancelled
+2026-05-22 02:54:53 | schema-linking-sft-sweep6 | schema-linking-sft-sweep6 | DEBUG | experiment_utils.py:271 | Reset experiment states and set current experiment task to idle
+2026-05-22 02:54:53 | schema-linking-sft-sweep6 | schema-linking-sft-sweep6 | INFO | metric_rfmetric_manager.py:55 | Initialized MLflowMetricLogger: rf_mlflow
+2026-05-22 02:54:53 | schema-linking-sft-sweep6 | schema-linking-sft-sweep6 | INFO | metric_mlflow_manager.py:133 | No active MLflow run to clear
+2026-05-22 02:54:53 | schema-linking-sft-sweep6 | schema-linking-sft-sweep6 | INFO | experiment_utils.py:240 | Experiment schema-linking-sft-sweep6 ended

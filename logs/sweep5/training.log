@@ -1,0 +1,27 @@
+2026-05-21 18:59:22 | schema-linking-sft-sweep5 | worker_0 | INFO | worker.py:644 | {'train_runtime': 10.0569, 'train_samples_per_second': 3.58, 'train_steps_per_second': 0.895, 'train_loss': 1.3300082948472765, 'entropy': 0.7537720302740732, 'num_tokens': 61220.0, 'mean_token_accuracy': 0.6976233729057841, 'epoch': 1.0}
+
+2026-05-21 18:59:22 | schema-linking-sft-sweep5 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 4757.09 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 9984.79 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  44%|████▍     | 16/36 [00:00<00:00, 150.50 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 177.27 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  22%|██▏       | 22/101 [00:00<00:00, 214.76 examples/s]Tokenizing eval dataset:  54%|█████▍    | 55/101 [00:00<00:00, 213.98 examples/s]Tokenizing eval dataset:  76%|███████▌  | 77/101 [00:00<00:00, 209.99 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 167.55 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 181.34 examples/s]
+/opt/conda/envs/cse234/lib/python3.12/site-packages/transformers/trainer.py:2750: UserWarning: Seems like `optimizer.step()` has been overridden after learning rate scheduler initialization. Please, make sure to call `optimizer.step()` before `lr_scheduler.step()`. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  self.lr_scheduler.step()
+
+2026-05-21 19:01:54 | schema-linking-sft-sweep5 | worker_0 | INFO | worker.py:644 | {'train_runtime': 13.2837, 'train_samples_per_second': 2.71, 'train_steps_per_second': 0.678, 'train_loss': 1.2359820471869574, 'entropy': 0.8115262670649422, 'num_tokens': 61220.0, 'mean_token_accuracy': 0.716764354871379, 'epoch': 1.0}
+
+2026-05-21 19:01:54 | schema-linking-sft-sweep5 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 5364.13 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 8988.24 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  53%|█████▎    | 19/36 [00:00<00:00, 180.19 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 187.27 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  22%|██▏       | 22/101 [00:00<00:00, 199.99 examples/s]Tokenizing eval dataset:  52%|█████▏    | 53/101 [00:00<00:00, 195.96 examples/s]Tokenizing eval dataset:  81%|████████  | 82/101 [00:00<00:00, 191.22 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 167.96 examples/s]
+/opt/conda/envs/cse234/lib/python3.12/site-packages/transformers/trainer.py:2750: UserWarning: Seems like `optimizer.step()` has been overridden after learning rate scheduler initialization. Please, make sure to call `optimizer.step()` before `lr_scheduler.step()`. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  self.lr_scheduler.step()
+
+2026-05-21 19:03:34 | schema-linking-sft-sweep5 | worker_0 | INFO | worker.py:644 | {'train_runtime': 15.4087, 'train_samples_per_second': 2.336, 'train_steps_per_second': 0.584, 'train_loss': 0.9405864079793295, 'entropy': 0.4103853114777141, 'num_tokens': 61220.0, 'mean_token_accuracy': 0.7923251556025611, 'epoch': 1.0}
+
+2026-05-21 19:03:34 | schema-linking-sft-sweep5 | worker_0 | ERROR | worker.py:646 | Map:   0%|          | 0/36 [00:00<?, ? examples/s]Map: 100%|██████████| 36/36 [00:00<00:00, 5248.89 examples/s]
+Map:   0%|          | 0/101 [00:00<?, ? examples/s]Map: 100%|██████████| 101/101 [00:00<00:00, 8933.84 examples/s]
+Tokenizing train dataset:   0%|          | 0/36 [00:00<?, ? examples/s]Tokenizing train dataset:  53%|█████▎    | 19/36 [00:00<00:00, 186.36 examples/s]Tokenizing train dataset: 100%|██████████| 36/36 [00:00<00:00, 193.60 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  22%|██▏       | 22/101 [00:00<00:00, 208.15 examples/s]Tokenizing eval dataset:  54%|█████▍    | 55/101 [00:00<00:00, 206.66 examples/s]Tokenizing eval dataset:  84%|████████▍ | 85/101 [00:00<00:00, 195.68 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 176.07 examples/s]
+/opt/conda/envs/cse234/lib/python3.12/site-packages/transformers/trainer.py:2750: UserWarning: Seems like `optimizer.step()` has been overridden after learning rate scheduler initialization. Please, make sure to call `optimizer.step()` before `lr_scheduler.step()`. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  self.lr_scheduler.step()
+

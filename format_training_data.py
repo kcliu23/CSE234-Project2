@@ -25,7 +25,7 @@ from prompt import build_messages, target_string
 from schema_utils import load_schema
 
 
-def format_split(input_path: str, schemas_dir: str, output_path: str) -> None:
+def format_split(input_path: str, schemas_dir: str, output_path: str, style: str = 'compact') -> None:
     with open(input_path) as f:
         items = json.load(f)
 
@@ -42,7 +42,7 @@ def format_split(input_path: str, schemas_dir: str, output_path: str) -> None:
             # Pass gold_links so the filtered serializer oracle-includes any
             # gold columns that BM25 missed. Inference passes gold_links=None.
             msgs: List[Dict[str, str]] = build_messages(
-                db_id, ex['question'], sch, gold_links=ex['schema_links'],
+                db_id, ex['question'], sch, gold_links=ex['schema_links'], style=style,
             )
             msgs.append({'role': 'assistant', 'content': target_string(ex['schema_links'])})
 
@@ -53,7 +53,7 @@ def format_split(input_path: str, schemas_dir: str, output_path: str) -> None:
             if total_chars > max_chars:
                 max_chars = total_chars
 
-    print(f"Wrote {n_written} examples to {output_path}")
+    print(f"Wrote {n_written} examples to {output_path}  (style={style})")
     print(f"Max example char-length: {max_chars}  (rough ~{max_chars // 4} tokens)")
 
 
@@ -62,8 +62,11 @@ def main():
     ap.add_argument('--input',  required=True, help='train.json or validation.json')
     ap.add_argument('--output', required=True, help='Output JSONL path')
     ap.add_argument('--schemas_dir', default='./schemas')
+    ap.add_argument('--prompt_style', default='compact',
+                    choices=['compact', 'types', 'keys', 'types_keys'],
+                    help='Schema serialization style. MUST match the style main.py uses at inference.')
     args = ap.parse_args()
-    format_split(args.input, args.schemas_dir, args.output)
+    format_split(args.input, args.schemas_dir, args.output, style=args.prompt_style)
 
 
 if __name__ == '__main__':

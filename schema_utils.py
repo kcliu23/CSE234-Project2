@@ -114,6 +114,30 @@ def serialize_schema_with_keys(schema: Dict) -> str:
     return '\n'.join(lines)
 
 
+def _format_columns(t: str, schema: Dict, style: str) -> List[str]:
+    """Per-column string formatter for the requested style. Shared by the
+    full and the BM25-filtered serializers so the two stay in lockstep."""
+    cols = schema['columns'][t]
+    types = schema['col_types'][t] if style in ('types', 'types_keys') else {}
+    if style in ('keys', 'types_keys'):
+        pk_set = set(schema['primary_keys'])
+        fk_index = {(ft, fc): (tt, tc) for ((ft, fc), (tt, tc)) in schema['foreign_keys']}
+    else:
+        pk_set, fk_index = set(), {}
+    parts = []
+    for c in cols:
+        s = c
+        if style in ('types', 'types_keys'):
+            s += f" ({types.get(c, 'TEXT').lower()})"
+        if style in ('keys', 'types_keys') and (t, c) in pk_set:
+            s += "*"
+        if style in ('keys', 'types_keys') and (t, c) in fk_index:
+            t2, c2 = fk_index[(t, c)]
+            s += f"->{t2}.{c2}"
+        parts.append(s)
+    return parts
+
+
 _TOKEN_SPLIT_RE = re.compile(r'([a-z])([A-Z])')
 _TOKEN_SPLIT_RE2 = re.compile(r'([A-Z]+)([A-Z][a-z])')
 _TOKEN_WORD_RE = re.compile(r'\w+')
@@ -220,24 +244,44 @@ def serialize_schema_filtered(
     gold_links: Optional[Dict[str, List[str]]] = None,
     max_tables: int = 20,
     threshold_cols: int = 500,
+    style: str = 'compact',
 ) -> str:
     """Schema serialization with table-level BM25 filtering for big schemas.
 
     Strategy:
-      - If the schema has <= threshold_cols columns total, return the compact
-        full serialization (no point filtering -- it already fits well).
+      - If the schema has <= threshold_cols columns total, return the full
+        serialization in the requested style (no point filtering).
       - Otherwise: score every table by BM25 against the question, keep the
-        top `max_tables` tables, emit ALL their columns.
+        top `max_tables` tables, emit ALL their columns in the requested style.
       - If `gold_links` is provided (training time), force-include every
-        gold-referenced table in the kept set. This guarantees the model is
-        never asked to predict tables/columns that aren't in the prompt.
+        gold-referenced table in the kept set.
       - Tables NOT in the kept set are dropped from the prompt entirely.
+
+    `style` ∈ {'compact', 'types', 'keys', 'types_keys'}.  Mirrors the
+    standalone serializer helpers above.  IMPORTANT: must match the style
+    that the trained adapter was trained with -- different style at training
+    vs. inference is the #1 cause of fine-tuned-model regressions.
 
     NOTE: `gold_links` must NOT be passed at inference time. Pass None there.
     """
+    if style not in ('compact', 'types', 'keys', 'types_keys'):
+        raise ValueError(f"Unknown style: {style!r}")
+
     n_total = sum(len(c) for c in schema['columns'].values())
     if n_total <= threshold_cols:
-        return serialize_schema_compact(schema)
+        # Full serialization in the requested style.
+        if style == 'compact':
+            return serialize_schema_compact(schema)
+        if style == 'types':
+            return serialize_schema_with_types(schema)
+        if style == 'keys':
+            return serialize_schema_with_keys(schema)
+        # types_keys: combine
+        lines = []
+        for t in schema['tables']:
+            parts = _format_columns(t, schema, 'types_keys')
+            lines.append(f"{t}: {', '.join(parts)}")
+        return '\n'.join(lines)
 
     table_scores = _bm25_score_tables(schema, question)
     top_tables = [t for t, _ in sorted(table_scores.items(), key=lambda kv: -kv[1])[:max_tables]]
@@ -256,8 +300,8 @@ def serialize_schema_filtered(
     for t in schema['tables']:
         if t not in kept_tables:
             continue
-        cols = schema['columns'][t]
-        lines.append(f"{t}: {', '.join(cols)}")
+        parts = _format_columns(t, schema, style)
+        lines.append(f"{t}: {', '.join(parts)}")
     return '\n'.join(lines)
 
 

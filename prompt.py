@@ -41,19 +41,24 @@ def build_messages(
     gold_links: Optional[Dict[str, List[str]]] = None,
     max_tables: int = 20,
     threshold_cols: int = 500,
+    style: str = 'compact',
 ) -> List[Dict[str, str]]:
     """Returns a chat-format message list. The model's `apply_chat_template`
     will turn this into a single prompt string at train and inference time.
 
     Uses table-level BM25 filtering for big schemas (>threshold_cols cols);
-    full compact serialization for small schemas. Identical behavior at
-    train and inference -- the only difference is `gold_links`, which is
-    passed at training time (oracle-includes gold-referenced tables) and
-    None at inference time.
+    full serialization in the requested `style` for small schemas. Identical
+    behavior at train and inference -- the only difference is `gold_links`,
+    which is passed at training time (oracle-includes gold-referenced tables)
+    and None at inference time.
+
+    `style` ∈ {'compact', 'types', 'keys', 'types_keys'} -- see
+    `schema_utils.serialize_schema_filtered`. Inference must use the same
+    style the adapter was trained on.
     """
     schema_text = serialize_schema_filtered(
         schema, question, gold_links=gold_links,
-        max_tables=max_tables, threshold_cols=threshold_cols,
+        max_tables=max_tables, threshold_cols=threshold_cols, style=style,
     )
     return [
         {"role": "system", "content": SYSTEM_PROMPT},

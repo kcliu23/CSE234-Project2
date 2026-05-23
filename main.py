@@ -34,7 +34,8 @@ def predict_with_model(items: List[Dict],
                        adapter_dir: str,
                        max_new_tokens: int,
                        batch_size: int,
-                       max_tables: int = 20) -> List[Dict]:
+                       max_tables: int = 20,
+                       prompt_style: str = 'compact') -> List[Dict]:
     """Real-model inference path. Lazy-imports torch/transformers so that
     --mock works in environments without these installed."""
     import torch
@@ -77,7 +78,7 @@ def predict_with_model(items: List[Dict],
         for it in batch:
             sch = get_schema(it['db_id'])
             schemas.append(sch)
-            msgs = build_messages(it['db_id'], it['question'], sch, max_tables=max_tables)
+            msgs = build_messages(it['db_id'], it['question'], sch, max_tables=max_tables, style=prompt_style)
             prompt_text = tokenizer.apply_chat_template(
                 msgs, tokenize=False, add_generation_prompt=True,
                 enable_thinking=False,  # Qwen3: skip CoT preamble; ignored by other tokenizers
@@ -121,6 +122,10 @@ def main():
     ap.add_argument('--max_tables', type=int, default=20,
                     help='BM25 keep-cap when filtering large schemas. 40 covers 99.4%% '
                          'of val-set gold tables vs 91.8%% at the default 20.')
+    ap.add_argument('--prompt_style', default='compact',
+                    choices=['compact', 'types', 'keys', 'types_keys'],
+                    help='Schema serialization style. MUST match the style the loaded '
+                         'adapter was trained with -- adapter/ and adapter_v2/ are both compact.')
     ap.add_argument('--mock', action='store_true',
                     help='Skip model load; emit empty predictions (wiring smoke test).')
     args = ap.parse_args()
@@ -140,6 +145,7 @@ def main():
             max_new_tokens=args.max_new_tokens,
             batch_size=args.batch_size,
             max_tables=args.max_tables,
+            prompt_style=args.prompt_style,
         )
 
     with open(args.output, 'w') as f:

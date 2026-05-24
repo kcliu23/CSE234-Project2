@@ -80,45 +80,77 @@ def create_model(model_config):
 
 
 def build_config_group(max_seq_length: int, num_train_epochs: int):
-    """Sweep 9 (tight): designed to fit under the DSMLP kill window.
+    """Sweep 19: cosine-LR-schedule diversity-adapter for the ensemble.
 
-    Background: sweeps 5/6/7/8 all got SIGKILL'd by DSMLP process cleanup
-    around the 4-6h mark, before experiment.end() could flush rapidfire's
-    in-SHM checkpoints to disk -- so every weight was lost. Sweep 8 reached
-    264/300 steps on all 8 configs (~5h48m wall) before dying.
+    Champion is now a 3-way ensemble (sweep 13 + 15 + 18) at 0.6986 -- but the
+    remaining val failures are CORRELATED (all 3 ensemble members miss the
+    same hard examples).  Sweep 19 trains a 4th adapter with a different
+    optimization trajectory (cosine LR schedule instead of linear) so its
+    errors should be orthogonal to the existing 3.
 
-    Sweep 9 dials wall-time WAY down so end-to-end completes in ~1h, AND
-    sweep 10 fixes the rapidfireai "no checkpoint on disk" issue by setting
-    num_chunks=1 at launch:
-        - 1 base model (1.5B, the proven leader on train metrics from sweep 8
-          and the only one we have a real val number for: 0.6078 via the
-          single-config fallback)
-        - 2 LRs (2e-4 known-good on val; 3e-4 strong on sweep 8 train metrics
-          but untested on val)
-        - max_steps=200 (the 0.6078 adapter was already past the loss-elbow
-          at step 200; the extra 100 steps gave diminishing returns)
-        - num_chunks=1 at launch (see Sweep 9 post-mortem below)
+    Identical to sweep 13 (Coder + r=32+MLP, 301 train, 200 steps) EXCEPT:
+        - lr_scheduler_type='cosine'  (was 'linear')
+        - lr=3e-4 (same as sweep 13, NOT sweep 18)
 
-    Sweep 9 post-mortem (rapidfireai disk-flush gotcha): rapidfireai only
-    writes `final_checkpoint/<adapter>.safetensors` when
-    `is_run_finished == (chunk_id == num_chunks-1) AND (steps >= total_steps)`
-    -- see fit/backend/worker.py around L440. If max_steps is reached BEFORE
-    the run gets to the last chunk (which it almost always is with
-    num_chunks>1, since the scheduler interleaves chunks across configs),
-    the disk save never fires and the SHM-only adapter is lost on process
-    exit. Workaround: set num_chunks=1 so every run ends on "the last chunk"
-    by construction.
+    Sweep 18: learning-rate ablation on the sweep 13 recipe.
 
-    2 configs = 1 base model * 1 LoRA * 2 LRs.
+    All knob-direction conclusions so far (Coder-1.5B + r=32 + MLP, compact,
+    301 train, num_chunks=1):
+        - sweep 13 lr=3e-4, steps=200 -> 0.6648 (champion)
+        - sweep 16 lr=3e-4, steps=400 -> 0.6268 (overfit -- more steps hurt)
+        - sweep 14/15 augmentation -> neutral
+        - two-stage architecture (17a/b) -> -0.052 (worse)
+
+    Sweep 18 tries lr=2e-4 to test whether 3e-4 was too hot for r=32 + MLP.
+    Larger LoRA modules can require a smaller LR to converge cleanly --
+    r=32+MLP has ~3.5x more trainable params than the r=16 q/k/v/o config
+    that the lr=3e-4 sweep10 winner came from.  Identical to sweep 13
+    except lr is dropped from 3e-4 -> 2e-4.
+
+    Sweep 16: step-count ablation on the sweep 13 recipe.
+
+    Series so far (all Coder-1.5B unless noted, lr=3e-4, num_chunks=1, compact):
+        sweep 10  vanilla 1.5B  r=16 q/k/v/o   train=301  steps=200  -> 0.6229
+        sweep 11  vanilla 1.5B  r=16 q/k/v/o   types_keys steps=200  -> 0.5946 (worse)
+        sweep 12  Coder         r=16 q/k/v/o   train=301  steps=200  -> 0.6258
+        sweep 13  Coder         r=32 +MLP      train=301  steps=200  -> 0.6648 (champion)
+        sweep 14  Coder         r=32 +MLP      train=517  steps=200  -> 0.6379 (-0.027)
+        sweep 15  Coder         r=32 +MLP      train=517  steps=400  -> 0.6600 (-0.005 vs 13)
+
+    Sweep 15 recovered most of sweep 14's regression with 2x step budget,
+    but didn't beat sweep 13.  Open question: was the issue (a) augmented
+    data quality, or (b) just the step count?  Sweep 16 isolates by going
+    BACK to the original 301-example train data and bumping steps to 400:
+        - train data: data/train.jsonl  (original 301, pre-augmentation)
+        - max_steps=400 (was 200)
+        - Everything else identical to sweep 13
+
+    If sweep 16 > sweep 13 -> 200 steps was undertrained even on 301 examples;
+                              augmentation's job was just to bring more data
+                              that 400 steps could exploit, and sweep 15's
+                              ~tie with sweep 13 means augmentation was
+                              roughly neutral overall.
+    If sweep 16 == sweep 13 -> sweep 13's 200 steps was already converged;
+                               the augmented-data distribution shift IS
+                               what hurt sweep 14/15.
+    If sweep 16 < sweep 13 -> 200 steps was OPTIMAL; we're now overfitting
+                              on 301 examples at 400 steps.
+
+    Wall time: ~2h (400 steps on 301 examples = ~5.3 epochs).
+
+    Disk-flush gotcha (sweep 9 post-mortem): always launch with --num_chunks 1.
+
+    1 config = 1 base model * 1 LoRA * 1 LR.
     """
     from rapidfireai.automl import (
         List as RFList, RFLoraConfig, RFModelConfig, RFSFTConfig,
     )
 
-    # Single LoRA config -- the proven sweep 4/8 winner.
+    # Sweep 13: r=32 + MLP modules on top of the sweep 12 winner config.
     peft_config = RFLoraConfig(
-        r=16, lora_alpha=32, lora_dropout=0.05,
-        target_modules=['q_proj', 'k_proj', 'v_proj', 'o_proj'],
+        r=32, lora_alpha=64, lora_dropout=0.05,
+        target_modules=['q_proj', 'k_proj', 'v_proj', 'o_proj',
+                        'gate_proj', 'up_proj', 'down_proj'],
         bias='none', task_type='CAUSAL_LM',
     )
 
@@ -129,8 +161,8 @@ def build_config_group(max_seq_length: int, num_train_epochs: int):
     max_steps = 200
 
     sft = RFSFTConfig(
-        learning_rate=RFList([2e-4, 3e-4]),
-        lr_scheduler_type='linear',
+        learning_rate=3e-4,
+        lr_scheduler_type='cosine',
         warmup_ratio=0.05,
         max_steps=max_steps,
         num_train_epochs=num_train_epochs,
@@ -157,7 +189,7 @@ def build_config_group(max_seq_length: int, num_train_epochs: int):
 
     configs = RFList([
         RFModelConfig(
-            model_name='Qwen/Qwen2.5-1.5B-Instruct',
+            model_name='Qwen/Qwen2.5-Coder-1.5B-Instruct',
             peft_config=peft_config,
             training_args=sft,
             model_type='causal_lm',

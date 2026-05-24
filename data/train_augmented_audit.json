@@ -1,0 +1,1521 @@
+[
+  {
+    "db_id": "SBODemoUS-Banking",
+    "attempt": 1,
+    "question": "List all outgoing payment documents that were canceled, showing the document number, vendor code, payment method, and total amount in the document currency.",
+    "sql": "select DocNum, CardCode, PayMth, DocTotal from OVPM where Canceled = 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Banking",
+    "attempt": 1,
+    "question": "What is the total withholding tax withheld and the count of distinct vendors for payment execution records?",
+    "sql": "select sum(WtSum) totalWHeld, count(distinct VendorNum) vendorCount from OPEX",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Banking",
+    "attempt": 1,
+    "question": "Show the deposit number, total amount in functional currency, and commission amount for all deposits created after 2015-06-30.",
+    "sql": "select DeposNum, FcTotal, Comission from ODPS where CreateDate > '2015-06-30'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Banking",
+    "attempt": 1,
+    "question": "For each payment method, display the payment method code, description, and the default bank account associated with it.",
+    "sql": "select PayMethCod, Descript, DflAccount from OPYM",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Banking",
+    "attempt": 1,
+    "question": "Find all incoming checks that are non-transferable and have a check sum greater than 5000, listing the check number, bank code, and account number.",
+    "sql": "select CheckNum, BankCode, AcctNum from RCT1 where Trnsfrable = 0 and CheckSum > 5000",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Banking",
+    "attempt": 1,
+    "question": "Which credit card deposits have been transferred, and what are their absolute IDs, card names, and deposit amounts?",
+    "sql": "select AbsId, CardName, CreditSum from OCRH where Transfered = 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Banking",
+    "attempt": 1,
+    "question": "Calculate the average discount percentage and maximum payment amount for all active payment methods.",
+    "sql": "select avg(cast(DdctPrcnt as float)) avgDiscount, max(MaxAmount) maxPayAmount from OPYM where Active = 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Banking",
+    "attempt": 1,
+    "question": "Show the bank code, next check number, and locked status for all bank accounts in the country 'US'.",
+    "sql": "select BankCode, NextChckNo, Locked from OCHO where CountryCod = 'US'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Banking",
+    "attempt": 2,
+    "question": "Show the document number, bank code, and check sum for all checks that are marked as transferable and have a sum greater than 5000.",
+    "sql": "select DocNum, BankCode, CheckSum from OCHO where Trnsfrable = 1 and CheckSum > 5000",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Banking",
+    "attempt": 2,
+    "question": "What are the distinct payment methods and their default GL accounts used in outgoing payments?",
+    "sql": "select distinct PymMeth, GLAccCode from PWZ4",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Banking",
+    "attempt": 2,
+    "question": "List all bank accounts with their branch names and aliases where the country code is 'US'.",
+    "sql": "select Account, BranchName, AliasName from DSC1 where Country = 'US'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Banking",
+    "attempt": 2,
+    "question": "For each credit card type in the system, count how many payment vouchers have been recorded.",
+    "sql": "select CrTypeCode, count(*) voucherCount from RCT3 group by CrTypeCode",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Banking",
+    "attempt": 2,
+    "question": "Show the receipt document numbers along with the applied amounts in their functional currency for invoices where the applied VAT is greater than 100.",
+    "sql": "select ORCT.DocNum, RCT2.AppliedFC from ORCT join RCT2 on ORCT.DocNum = RCT2.DocNum where RCT2.vatApplied > 100",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Banking",
+    "attempt": 2,
+    "question": "Which vendors appear in outgoing payments with a document rate less than 0.95, and what are their names?",
+    "sql": "select distinct CardCode, CardName from OVPM where DocRate < 0.95",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Banking",
+    "attempt": 2,
+    "question": "Get the total cash discount sum for all payment documents that have been canceled, grouped by document type.",
+    "sql": "select DocType, sum(DdctSum) totalDiscount from OVPM where Canceled = 1 group by DocType",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Banking",
+    "attempt": 2,
+    "question": "Show the deposit ID, deposit number, and total in system currency for all deposits posted to a specific bank country with the series 'DEP001'.",
+    "sql": "select DeposId, DeposNum, SysTotal from ODPS where Series = 'DEP001' and BankCountr = 'US'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Banking",
+    "attempt": 3,
+    "question": "Show the bank code, account number, and branch for all bank accounts that have a maximum BOE amount greater than 50000.",
+    "sql": "select BankCode, Account, Branch from DSC1 where MaxAmntBOE > 50000",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Banking",
+    "attempt": 3,
+    "question": "For each payment method, display the payment method code, description, and the account it defaults to.",
+    "sql": "select PayMethCod, Descript, DflAccount from OPYM",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Banking",
+    "attempt": 3,
+    "question": "List all canceled checks along with their check numbers, amounts, and the vendors they were issued to.",
+    "sql": "select CheckNum, CheckSum, VendorName from OCHO where Canceled = 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Banking",
+    "attempt": 3,
+    "question": "How many total check lines exist across all bank accounts, and what is the sum of all check amounts by bank code?",
+    "sql": "select BankCode, count(*) as TotalCheckLines, sum(CheckSum) as TotalCheckAmount from OCHO group by BankCode",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Banking",
+    "attempt": 3,
+    "question": "Show the credit card number, cardholder name, and confirmation number for all credit card vouchers associated with incoming payments.",
+    "sql": "select CrCardNum, CardName, ConfNum from ORCT join RCT3 on ORCT.DocNum = RCT3.DocNum",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Banking",
+    "attempt": 3,
+    "question": "Find all deposits that were not canceled, including the deposit number, date, total in local currency, and the bank account used.",
+    "sql": "select DeposNum, DeposDate, LocTotal, BanckAcct from ODPS where Canceled = 0",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Banking",
+    "attempt": 3,
+    "question": "For outgoing payments, list the document number, vendor code, payment method used, and the total amount in foreign currency.",
+    "sql": "select DocNum, CardCode, PymMeth, DocTotalFC from OVPM",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Banking",
+    "attempt": 3,
+    "question": "What is the average credit sum and count of credit transactions by currency for all received credit card payments?",
+    "sql": "select CreditCurr, avg(CreditSum) as AvgCreditSum, count(*) as TransactionCount from OCRH group by CreditCurr",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Business Partners",
+    "attempt": 1,
+    "question": "Which business partners have a credit line greater than their current balance?",
+    "sql": "select CardCode, CardName, CreditLine, Balance from OCRD where CreditLine > Balance",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Business Partners",
+    "attempt": 1,
+    "question": "What are the contact names and email addresses for all active contacts in the sales department?",
+    "sql": "select FirstName, LastName, E_MailL from OCPR where Active = 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Business Partners",
+    "attempt": 1,
+    "question": "Show me all campaigns that are currently active and their target groups",
+    "sql": "select CpnNo, Name, TargetGrp from OCPN where Status = 'Active'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Business Partners",
+    "attempt": 1,
+    "question": "List the bank details including IBAN and account number for all business partners in Germany",
+    "sql": "select OCRB.CardCode, Account, IBAN from OCRB where Country = 'Germany'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Business Partners",
+    "attempt": 1,
+    "question": "How many business partners are in each industry category?",
+    "sql": "select Industry, count(*) as PartnerCount from OCRD where Industry is not null group by Industry",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Business Partners",
+    "attempt": 1,
+    "question": "What are the names and territories of all sales employees who are not locked in the system?",
+    "sql": "select SlpName, Telephone from OSLP where Locked = 0",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Business Partners",
+    "attempt": 1,
+    "question": "Show the target names and contact persons for all targets of type 'A' that belong to the 'Premium' target group",
+    "sql": "select TargetName, CntctPrsn from TGG1 join OTGG on TGG1.TargetCode = OTGG.TargetCode where TargetType = 'A' and GroupCode = 'Premium'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Business Partners",
+    "attempt": 1,
+    "question": "What are the company names and phone numbers for all vendors who have a debt line assigned?",
+    "sql": "select CardName, Phone1, DebtLine from OCRD where CardType = 'S' and DebtLine > 0",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Business Partners",
+    "attempt": 2,
+    "question": "List all active business partners and their account balances, sorted by balance in descending order",
+    "sql": "select CardCode, CardName, Balance from OCRD where Deleted = 'N' order by Balance desc",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Business Partners",
+    "attempt": 2,
+    "question": "What are the contact names and email addresses for all people associated with business partner C001?",
+    "sql": "select Name, E_MailL from OCPR where CardCode = 'C001'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Business Partners",
+    "attempt": 2,
+    "question": "Show me the territories and their descriptions for all active territories",
+    "sql": "select territryID, descript from OTER where inactive = 'N'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Business Partners",
+    "attempt": 2,
+    "question": "How many business partners are assigned to each sales employee, and what are their commission rates?",
+    "sql": "select OSLP.SlpCode, OSLP.SlpName, OSLP.Commission, count(OCRD.CardCode) as PartnerCount from OSLP left join OCRD on OSLP.SlpCode = OCRD.SlpCode group by OSLP.SlpCode, OSLP.SlpName, OSLP.Commission",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Business Partners",
+    "attempt": 2,
+    "question": "List all business partners in Germany with a credit line greater than 50000",
+    "sql": "select CardCode, CardName, Country, CreditLine from OCRD where Country = 'Germany' and CreditLine > 50000",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Business Partners",
+    "attempt": 2,
+    "question": "What priority codes and their descriptions are available in the system?",
+    "sql": "select PrioCode, PrioDesc from OBPP",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Business Partners",
+    "attempt": 2,
+    "question": "Show all campaigns with their names, owners, and target groups that are currently active",
+    "sql": "select CpnNo, Name, Owner, TargetGrp, Status from OCPN where Status = 'Active'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Business Partners",
+    "attempt": 2,
+    "question": "Get the IBAN and bank code for all business partners with IBAN values recorded",
+    "sql": "select distinct OCRB.CardCode, OCRB.IBAN, OCRB.BankCode from OCRB where OCRB.IBAN is not null",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Business Partners",
+    "attempt": 3,
+    "question": "List all business partners with a credit line greater than 50000 and show their card code, name, and current balance",
+    "sql": "select CardCode, CardName, CreditLine, Balance from OCRD where CreditLine > 50000",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Business Partners",
+    "attempt": 3,
+    "question": "What are the contact names and phone numbers for all active contacts in the database?",
+    "sql": "select Name, Tel1, Cellolar from OCPR where Active = 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Business Partners",
+    "attempt": 3,
+    "question": "Show me which sales employees have a commission rate greater than 5 percent",
+    "sql": "select SlpCode, SlpName, Commission from OSLP where Commission > 5",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Business Partners",
+    "attempt": 3,
+    "question": "Find all campaigns that started before 2023 and display the campaign name, type, and owner",
+    "sql": "select Name, Type, Owner from OCPN where StartDate < '2023-01-01'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Business Partners",
+    "attempt": 3,
+    "question": "How many business partners are assigned to each salesperson?",
+    "sql": "select SlpCode, count(*) as PartnerCount from OCRD group by SlpCode",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Business Partners",
+    "attempt": 3,
+    "question": "Get the list of all territories and their parent territory code",
+    "sql": "select territryID, descript, parent from OTER",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Business Partners",
+    "attempt": 3,
+    "question": "Which business partners have an email address and are located in the United States?",
+    "sql": "select CardCode, CardName, E_Mail from OCRD where E_Mail is not null and Country = 'United States'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Business Partners",
+    "attempt": 3,
+    "question": "Show the contact person name and email for each business partner in the Retail group",
+    "sql": "select OCRD.CardName, OCRD.CntctPrsn, OCRD.E_Mail from OCRD join OCRG on OCRD.GroupCode = OCRG.GroupCode where OCRG.GroupName = 'Retail'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Finance",
+    "attempt": 1,
+    "question": "What are the distinct depreciation areas and their descriptions?",
+    "sql": "select Code, Descr from ODPA",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Finance",
+    "attempt": 1,
+    "question": "List all tax codes with their corresponding state codes and tax types",
+    "sql": "select distinct TaxCode, StaCode, TaxType from TAX1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Finance",
+    "attempt": 1,
+    "question": "Show the account code and account name for all accounts that are marked as postable",
+    "sql": "select AcctCode, AcctName from OACT where Postable = 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Finance",
+    "attempt": 1,
+    "question": "How many fixed assets were acquired in each year?",
+    "sql": "select year(PostDate) AcqYear, count(*) AssetCount from OACQ group by year(PostDate)",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Finance",
+    "attempt": 1,
+    "question": "Which depreciation types have a depreciation method of 'SL' and what is their useful life?",
+    "sql": "select Code, Descr, UseLife from ADTP where DprMeth = 'SL'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Finance",
+    "attempt": 1,
+    "question": "Get the batch number, transaction ID, and total debit amount for all journal entry batches with a total debit greater than 50000",
+    "sql": "select BatchNum, TransId, sum(Debit) TotalDebit from JDT1 group by BatchNum, TransId having sum(Debit) > 50000",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Finance",
+    "attempt": 1,
+    "question": "Show all recurring postings that are not cancelled, ordered by next due date",
+    "sql": "select RcurCode, RcurDesc, NextDeu, Volume from ORCR where Cancelled is null order by NextDeu",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Finance",
+    "attempt": 1,
+    "question": "What is the total base sum and total VAT sum for each tax type in the current period?",
+    "sql": "select TaxType, sum(BaseSum) TotalBaseSum, sum(VatSum) TotalVatSum from UTX1 group by TaxType",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Finance",
+    "attempt": 2,
+    "question": "List all active fixed asset classes with their descriptions and limit ranges.",
+    "sql": "select Code, Name, AssetType, LimitFrom, LimitTo from OACS where Active = 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Finance",
+    "attempt": 2,
+    "question": "How many journal entries were posted for each transaction code in the current period?",
+    "sql": "select TransCode, count(*) as EntryCount from JDT1 group by TransCode order by EntryCount desc",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Finance",
+    "attempt": 2,
+    "question": "Find all depreciation areas that use the direct depreciation method.",
+    "sql": "select Code, Descr, AreaType from ODPA where DirectDpr = 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Finance",
+    "attempt": 2,
+    "question": "What are the postable account codes in financial framework accounts that have a parent node number of 5?",
+    "sql": "select Account, AcctName from OCFW where Postable = 1 and FatherNum = 5",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Finance",
+    "attempt": 2,
+    "question": "Show the total debit and credit amounts by account for all journal entries posted after 2022.",
+    "sql": "select Account, sum(Debit) as TotalDebits, sum(Credit) as TotalCredits from JDT1 where year(PostDate) > 2022 group by Account",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Finance",
+    "attempt": 2,
+    "question": "List all locked depreciation types with their calculation methods and applicable percentage.",
+    "sql": "select Code, Descr, DprMeth, sPercent from ODTP where ValidTo >= getdate()",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Finance",
+    "attempt": 2,
+    "question": "Find journal entries with gross values exceeding 10000 that are due in 2023, showing the account, amount, and due date.",
+    "sql": "select Account, GrossValue, DueDate from JDT1 where GrossValue > 10000 and year(DueDate) = 2023 order by GrossValue desc",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Finance",
+    "attempt": 2,
+    "question": "Which budget codes have allocated amounts greater than 50000 for the fiscal year 2023?",
+    "sql": "select distinct BgdCode from OBGT where FinancYear = 2023 and (DebLTotal + CredLTotal) > 50000",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Finance",
+    "attempt": 3,
+    "question": "List all asset classes with their descriptions and the number of acquisitions for each class",
+    "sql": "select OACS.Code, OACS.Name, count(ACQ1.DocEntry) AcquisitionCount from OACS left join ACQ1 on OACS.Code = ACQ1.AcctCode group by OACS.Code, OACS.Name",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Finance",
+    "attempt": 3,
+    "question": "Show the top 5 accounts by total debit amount in journal entries",
+    "sql": "select top 5 O.AcctCode, O.AcctName, sum(J.Debit) TotalDebit from OACT O join JDT1 J on O.AcctCode = J.Account group by O.AcctCode, O.AcctName order by TotalDebit desc",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Finance",
+    "attempt": 3,
+    "question": "Find all depreciation areas that are marked as direct depreciation",
+    "sql": "select Code, Descr, AreaType from ODPA where DirectDpr = 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Finance",
+    "attempt": 3,
+    "question": "Count the number of tax entries by tax type across all documents",
+    "sql": "select TaxType, count(*) EntryCount from TAX1 group by TaxType order by EntryCount desc",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Finance",
+    "attempt": 3,
+    "question": "Show accounts that have never been used in any journal entries",
+    "sql": "select AcctCode, AcctName from OACT where AcctCode not in (select distinct Account from JDT1)",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Finance",
+    "attempt": 3,
+    "question": "Get the name and code of all active projects along with the number of asset acquisitions linked to each",
+    "sql": "select O.PrjCode, O.PrjName, count(A.Project) ProjectAcquisitions from OPRJ O left join ACQ1 A on O.PrjCode = A.Project where O.Active = 1 group by O.PrjCode, O.PrjName",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Finance",
+    "attempt": 3,
+    "question": "Show dimensions that are currently active and the number of accounts relevant to each dimension",
+    "sql": "select DimCode, DimName, count(A.AcctCode) AccountCount from ODIM D left join OACT A on (D.DimCode = 'Dim1Relvnt' and A.Dim1Relvnt = 1) or (D.DimCode = 'Dim2Relvnt' and A.Dim2Relvnt = 1) where D.DimActive = 1 group by D.DimCode, D.DimName",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Finance",
+    "attempt": 3,
+    "question": "Display all fixed asset depreciation types and the percentage used for calculation",
+    "sql": "select Code, Descr, DprMeth, Percentage, ValidFrom, ValidTo from ADTP where ValidTo is null or ValidTo >= cast(getdate() as date)",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-General",
+    "attempt": 1,
+    "question": "Which projects have a status of 'Active' and were created after January 1st, 2023?",
+    "sql": "select AbsEntry, NAME, STATUS, CreateDate from OPMG where STATUS = 'Active' and CreateDate > '2023-01-01'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-General",
+    "attempt": 1,
+    "question": "What is the total invoiced amount in AP for each stage across all projects?",
+    "sql": "select StageID, sum(InvoicedAP) as TotalInvoicedAP from PMG1 group by StageID",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-General",
+    "attempt": 1,
+    "question": "List all resources with their names and resource types that belong to resource group RSG001.",
+    "sql": "select ResCode, ResName, ResType from ORSC where ResGrpCod = 'RSG001'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-General",
+    "attempt": 1,
+    "question": "How many stage dependencies exist for stages with an owner named 'John Smith'?",
+    "sql": "select count(*) as DependencyCount from PMG1 where OWNER = 'John Smith' and StageDep1 is not null",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-General",
+    "attempt": 1,
+    "question": "Show all activities associated with stage ID 5 along with their charge status.",
+    "sql": "select PMG6.ACTIVITYID, PMG6.Charged, PMG6.Chargeable from PMG6 where StageID = 5",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-General",
+    "attempt": 1,
+    "question": "What are the names and descriptions of all cockpits that are set as default?",
+    "sql": "select Code, Name, Descr from OCPT where IsDefault = 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-General",
+    "attempt": 1,
+    "question": "Get the task descriptions and owners for all project management stages that are overdue.",
+    "sql": "select Task, DSCRIPTION, OWNER from PMG1 where Overdue = 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-General",
+    "attempt": 1,
+    "question": "Which issues have a solution assigned and were closed in the last stage?",
+    "sql": "select AbsEntry, Task, SOLUTION, CLOSED from APM2 where SOLUTION is not null and CLOSED = 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-General",
+    "attempt": 2,
+    "question": "List all projects with their owners, names, and due dates where the status is active",
+    "sql": "select AbsEntry, OWNER, NAME, DUEDATE, STATUS from OPMG where STATUS = 'Active'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-General",
+    "attempt": 2,
+    "question": "What are the distinct resource types available in the system?",
+    "sql": "select distinct ResType from ORSC",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-General",
+    "attempt": 2,
+    "question": "Find all stages for project 5 along with their task descriptions and owners",
+    "sql": "select PMG1.LineID, PMG1.Task, PMG1.DSCRIPTION, PMG1.OWNER from PMG1 where PMG1.AbsEntry = 5",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-General",
+    "attempt": 2,
+    "question": "How many stages are currently open across all projects?",
+    "sql": "select count(*) as OpenStageCount from PMG1 where CLOSE is null",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-General",
+    "attempt": 2,
+    "question": "Show the resource code, resource name, and resource type for all resources assigned to employee 10",
+    "sql": "select ORSC.ResCode, ORSC.ResName, ORSC.ResType from ORSC join RSC4 on ORSC.ResCode = RSC4.ResCode where RSC4.EmpID = 10",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-General",
+    "attempt": 2,
+    "question": "What is the total budgeted amount and total actual cost for phases in project 7?",
+    "sql": "select sum(PHA1.PhBudget) as TotalBudget, sum(PHA1.ActPrCost) as TotalActualCost from PHA1 where PHA1.AbsEntry = 7",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-General",
+    "attempt": 2,
+    "question": "List all hidden functions and their types in the system",
+    "sql": "select FuncName, Type, Hidden from OHFC where Hidden = 'Y'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-General",
+    "attempt": 2,
+    "question": "Find the dashboard code and dashboard name for all dashboards that are enabled and have a status of active",
+    "sql": "select DashbdCode, DashbdName, Status from ODAB where Status = 'Active'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-General",
+    "attempt": 3,
+    "question": "List all projects with their owners and current status",
+    "sql": "select AbsEntry, OWNER, NAME, STATUS from OPMG",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-General",
+    "attempt": 3,
+    "question": "Which stages are associated with project 5 and what are their names and descriptions?",
+    "sql": "select PMC2.StageID, PMC2.Name, PMC2.Dscription from PMC2 where StageID in (select distinct StageID from PMG1 where AbsEntry = 5)",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-General",
+    "attempt": 3,
+    "question": "Show the resource code, resource name, and resource type for all resources in resource group RG001",
+    "sql": "select ResCode, ResName, ResType from ORSC where ResGrpCod = 'RG001'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-General",
+    "attempt": 3,
+    "question": "How many activities are charged for stage 3 in all projects?",
+    "sql": "select count(*) as ChargedActivitiesCount from PMG6 where StageID = 3 and Charged = 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-General",
+    "attempt": 3,
+    "question": "What is the total budgeted amount and total actual cost for all phases in project 12?",
+    "sql": "select sum(PhBudget) as TotalBudget, sum(ActICCost + ActRCCost + ActAddCost) as TotalActualCost from PHA8 where AbsEntry = 12",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-General",
+    "attempt": 3,
+    "question": "Find all cockpits that are marked as default and display their names and descriptions",
+    "sql": "select Code, Name, Descr from OCPT where IsDefault = 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-General",
+    "attempt": 3,
+    "question": "Show the task names and priority levels for all tasks that are marked as closed in stage 2",
+    "sql": "select PMG1.Task, PMC4.Name as PriorityName from PMG1 join PMC4 on PMG1.LineID = PMC4.PriorityID where PMG1.StageID = 2 and PMG1.CLOSED = 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-General",
+    "attempt": 3,
+    "question": "List all authorization groups with their group names and allowed start dates",
+    "sql": "select GroupId, GroupName, StartDate from OUGR order by GroupId",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Human Resources",
+    "attempt": 1,
+    "question": "List all employees in the Sales department along with their job titles and current salary.",
+    "sql": "select empID, lastName, firstName, jobTitle, salary from OHEM where dept = 'Sales'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Human Resources",
+    "attempt": 1,
+    "question": "How many employees are currently active in each branch?",
+    "sql": "select branch, count(*) as employee_count from OHEM where status = 'Active' group by branch",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Human Resources",
+    "attempt": 1,
+    "question": "Show the education history for the employee with ID 12345, including the institute, major, and diploma type.",
+    "sql": "select fromDate, toDate, institute, major, diploma from HEM2 where empID = 12345",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Human Resources",
+    "attempt": 1,
+    "question": "Which employees have a termination reason of 'Voluntary Resignation'?",
+    "sql": "select empID, lastName, firstName, termDate, termReason from OHEM where termReason = 'Voluntary Resignation'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Human Resources",
+    "attempt": 1,
+    "question": "Get all bank account information for the employee named John Smith.",
+    "sql": "select BankName, BankCode, BankAcct, ANCurrency from HEM7 where empID = (select empID from OHEM where firstName = 'John' and lastName = 'Smith')",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Human Resources",
+    "attempt": 1,
+    "question": "What are the average salaries by job title for employees in the Finance department?",
+    "sql": "select jobTitle, avg(cast(salary as float)) as avg_salary from OHEM where dept = 'Finance' group by jobTitle",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Human Resources",
+    "attempt": 1,
+    "question": "List all team members and their roles for team ID T001.",
+    "sql": "select HTM1.empID, OHEM.lastName, OHEM.firstName, HTM1.role from HTM1 join OHEM on HTM1.empID = OHEM.empID where HTM1.teamID = 'T001'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Human Resources",
+    "attempt": 1,
+    "question": "Show the employment history records for employees who worked at 'Acme Corp', including their positions and dates.",
+    "sql": "select HEM4.empID, OHEM.lastName, OHEM.firstName, HEM4.employer, HEM4.position, HEM4.fromDate, HEM4.toDate from HEM4 join OHEM on HEM4.empID = OHEM.empID where HEM4.employer = 'Acme Corp'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Human Resources",
+    "attempt": 2,
+    "question": "What are the names and job titles of all active employees in the Engineering department?",
+    "sql": "select firstName, lastName, jobTitle from OHEM where dept = 'Engineering' and Active = 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Human Resources",
+    "attempt": 2,
+    "question": "List the employee ID, start date, and termination reason for all employees who have been terminated.",
+    "sql": "select empID, startDate, termReason from OHEM where status = 'Terminated'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Human Resources",
+    "attempt": 2,
+    "question": "Show the team name and the count of employees on each team.",
+    "sql": "select t.name, count(tm.empID) as employee_count from OHTM t left join HTM1 tm on t.teamID = tm.teamID group by t.teamID, t.name",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Human Resources",
+    "attempt": 2,
+    "question": "What is the highest salary and lowest salary for employees in the Sales department?",
+    "sql": "select max(salary) as highest_salary, min(salary) as lowest_salary from OHEM where dept = 'Sales'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Human Resources",
+    "attempt": 2,
+    "question": "Find all employees who have a manager assigned and display their name, job title, and manager.",
+    "sql": "select firstName, lastName, jobTitle, manager from OHEM where manager is not null",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Human Resources",
+    "attempt": 2,
+    "question": "Show the education type names and how many times each education type appears in employee records.",
+    "sql": "select et.name, count(hem.empID) as count from OHED et left join HEM2 hem on et.edType = hem.type group by et.edType, et.name",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Human Resources",
+    "attempt": 2,
+    "question": "List the first name, last name, and bank account information for employees who have a bank account number on file.",
+    "sql": "select firstName, lastName, bankCode, bankBranch, bankAcount from OHEM where bankAcount is not null",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Human Resources",
+    "attempt": 2,
+    "question": "What are the average salary cost and total employee cost for each branch, ordered by branch?",
+    "sql": "select branch, avg(salary) as avg_salary, sum(emplCost) as total_emp_cost from OHEM group by branch order by branch",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Human Resources",
+    "attempt": 3,
+    "question": "List all employees in the IT department along with their job titles, salaries, and salary units.",
+    "sql": "select empID, lastName, firstName, jobTitle, salary, salaryUnit from OHEM where dept = 'IT'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Human Resources",
+    "attempt": 3,
+    "question": "How many employees are currently active in each branch?",
+    "sql": "select branch, count(*) as employee_count from OHEM where Active = 1 group by branch",
+    "status": "duplicate_question"
+  },
+  {
+    "db_id": "SBODemoUS-Human Resources",
+    "attempt": 3,
+    "question": "Show the team name and member count for all teams with more than 5 employees.",
+    "sql": "select emplTeams.name, count(teamMembers.empID) as member_count from OHTM emplTeams join HTM1 teamMembers on emplTeams.teamID = teamMembers.teamID group by emplTeams.name having count(teamMembers.empID) > 5",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Human Resources",
+    "attempt": 3,
+    "question": "What are the names and cost centers of employees who were hired in 2015?",
+    "sql": "select lastName, firstName, CostCenter from OHEM where year(startDate) = 2015",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Human Resources",
+    "attempt": 3,
+    "question": "Find all employees who have a termination date and show their termination reason and last name.",
+    "sql": "select lastName, firstName, termReason from OHEM where termDate is not null",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Human Resources",
+    "attempt": 3,
+    "question": "Show the education type names along with the number of employees holding each education type.",
+    "sql": "select educ.name, count(emp.empID) as employee_count from OHED educ left join HEM2 emp on educ.edType = emp.type group by educ.name",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Human Resources",
+    "attempt": 3,
+    "question": "List employees with their manager's information for all staff in the Finance department.",
+    "sql": "select emp.empID, emp.lastName, emp.firstName, emp.manager from OHEM emp where emp.dept = 'Finance'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Human Resources",
+    "attempt": 3,
+    "question": "What is the average salary by employment type for all active employees?",
+    "sql": "select type, avg(cast(salary as float)) as average_salary from OHEM where Active = 1 group by type",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Human Resources",
+    "attempt": 4,
+    "question": "Which employees have a termination reason and what are their names and termination dates?",
+    "sql": "select lastName, firstName, termDate, termReason from OHEM where termReason is not null",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Inventory and Production",
+    "attempt": 1,
+    "question": "Show all warehouses with their names and locations, excluding inactive ones.",
+    "sql": "select WhsCode, WhsName, Location from OWHS where Inactive = 0",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Inventory and Production",
+    "attempt": 1,
+    "question": "What are the item codes and names for all items in the 'Electronics' item group?",
+    "sql": "select OITM.ItemCode, OITM.ItemName from OITM join OITB on OITM.ItmsGrpCod = OITB.ItmsGrpCod where OITB.ItmsGrpNam = 'Electronics'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Inventory and Production",
+    "attempt": 1,
+    "question": "List all price lists with their list names and primary currencies.",
+    "sql": "select ListNum, ListName, PrimCurr from OPLN",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Inventory and Production",
+    "attempt": 1,
+    "question": "For items that are serialized, show the item code, serial number, lot number, and expiration date.",
+    "sql": "select ItemCode, MnfSerial, LotNumber, ExpDate from OSRN where Status is not null",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Inventory and Production",
+    "attempt": 1,
+    "question": "What is the total on-hand quantity for each item across all warehouses?",
+    "sql": "select ItemCode, sum(OnHand) as TotalOnHand from OITW group by ItemCode",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Inventory and Production",
+    "attempt": 1,
+    "question": "Show the item name, bin code, and warehouse code for all bins managed in the system.",
+    "sql": "select OITM.ItemName, OBIN.BinCode, OBIN.WhsCode from OBIN join OITM on OBIN.SpcItmCode = OITM.ItemCode where OBIN.Disabled = 0",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Inventory and Production",
+    "attempt": 1,
+    "question": "Which items have a minimum stock level set and what are their reorder quantities?",
+    "sql": "select ItemCode, ItemName, MinLevel, ReorderQty from OITM where MinLevel > 0",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Inventory and Production",
+    "attempt": 1,
+    "question": "Get the count of items for each unit of measurement type used in the system.",
+    "sql": "select UomName, count(distinct ItemCode) as ItemCount from ITM4 join OUOM on ITM4.UomEntry = OUOM.UomEntry group by UomName",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Inventory and Production",
+    "attempt": 2,
+    "question": "What are the item codes and names for all items in the item group 'Electronics' that have an on-hand quantity greater than 100 in warehouse 'WH01'?",
+    "sql": "select OITM.ItemCode, OITM.ItemName from OITM join OITW on OITM.ItemCode = OITW.ItemCode join OITB on OITM.ItmsGrpCod = OITB.ItmsGrpCod where OITB.ItmsGrpNam = 'Electronics' and OITW.WhsCode = 'WH01' and OITW.OnHand > 100",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Inventory and Production",
+    "attempt": 2,
+    "question": "How many active work orders are there per item, and what are the item names?",
+    "sql": "select OWOR.ItemCode, OITM.ItemName, count(*) as WorkOrderCount from OWOR join OITM on OWOR.ItemCode = OITM.ItemCode where OWOR.Status = 'Open' group by OWOR.ItemCode, OITM.ItemName",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Inventory and Production",
+    "attempt": 2,
+    "question": "List all bins in warehouse 'WH02' along with their descriptions and any disabled status.",
+    "sql": "select BinCode, Descr, Disabled from OBIN where WhsCode = 'WH02'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Inventory and Production",
+    "attempt": 2,
+    "question": "What is the average on-hand price for items that belong to the 'Raw Materials' item group, and show the item group name?",
+    "sql": "select OITB.ItmsGrpNam, avg(OITW.AvgPrice) as AvgOnHandPrice from OITW join OITM on OITW.ItemCode = OITM.ItemCode join OITB on OITM.ItmsGrpCod = OITB.ItmsGrpCod where OITB.ItmsGrpNam = 'Raw Materials' group by OITB.ItmsGrpNam",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Inventory and Production",
+    "attempt": 2,
+    "question": "Show the lot numbers, expiration dates, and quantities for all serial and batch tracked items currently in warehouse 'WH03'.",
+    "sql": "select OSRN.LotNumber, OSRN.ExpDate, OSRN.Quantity from OSRN where OSRN.ItemCode in (select OBTQ.ItemCode from OBTQ where OBTQ.WhsCode = 'WH03')",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Inventory and Production",
+    "attempt": 2,
+    "question": "What are the top 5 items by committed quantity across all warehouses?",
+    "sql": "select top 5 OITM.ItemCode, OITM.ItemName, sum(OITW.IsCommited) as TotalCommitted from OITM join OITW on OITM.ItemCode = OITW.ItemCode group by OITM.ItemCode, OITM.ItemName order by TotalCommitted desc",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Inventory and Production",
+    "attempt": 2,
+    "question": "Which items have a reorder quantity greater than their minimum order quantity, and what are those quantities?",
+    "sql": "select ItemCode, ItemName, ReorderQty, MinOrdrQty from OITM where ReorderQty > MinOrdrQty and MinOrdrQty > 0",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Inventory and Production",
+    "attempt": 2,
+    "question": "For each warehouse, show the warehouse code, name, and the number of distinct items stored there.",
+    "sql": "select OWHS.WhsCode, OWHS.WhsName, count(distinct OITW.ItemCode) as DistinctItems from OWHS left join OITW on OWHS.WhsCode = OITW.WhsCode group by OWHS.WhsCode, OWHS.WhsName",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Inventory and Production",
+    "attempt": 3,
+    "question": "What are the names and codes of all item groups that have items with a purchase unit of measurement?",
+    "sql": "select distinct OITB.ItmsGrpCod, OITB.ItmsGrpNam from OITB join OITM on OITB.ItmsGrpCod = OITM.ItmsGrpCod where OITM.PurUnitMsr is not null",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Inventory and Production",
+    "attempt": 3,
+    "question": "List all warehouses that have items with on-hand quantity greater than 100 units.",
+    "sql": "select distinct OWHS.WhsCode, OWHS.WhsName from OWHS join OITW on OWHS.WhsCode = OITW.WhsCode where OITW.OnHand > 100",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Inventory and Production",
+    "attempt": 3,
+    "question": "How many items are in each price list, ordered by list name?",
+    "sql": "select OPLN.ListName, count(*) as ItemCount from OPLN join ITM1 on OPLN.ListNum = ITM1.PriceList group by OPLN.ListName order by OPLN.ListName",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Inventory and Production",
+    "attempt": 3,
+    "question": "Show me all items that have a serial number requirement along with their item group names.",
+    "sql": "select OITM.ItemCode, OITM.ItemName, OITB.ItmsGrpNam from OITM join OITB on OITM.ItmsGrpCod = OITB.ItmsGrpCod where OITM.SerialNum = 'Y'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Inventory and Production",
+    "attempt": 3,
+    "question": "What is the total weight and volume for all packages that have a weight greater than 50 grams?",
+    "sql": "select sum(cast(Weight1 as float)) as TotalWeight, sum(cast(Volume as float)) as TotalVolume from OPKG where cast(Weight1 as float) > 50",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Inventory and Production",
+    "attempt": 3,
+    "question": "Find all units of measurement with their display names that have a volume unit defined.",
+    "sql": "select UomCode, UomName, UnitDisply from OUOM where VolUnit is not null",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Inventory and Production",
+    "attempt": 3,
+    "question": "Show the item code, item name, and customer group for all items assigned to customer group 'WHOLESALE' that are both purchasable and sellable.",
+    "sql": "select OITM.ItemCode, OITM.ItemName, OITM.CstGrpCode from OITM where OITM.CstGrpCode = 'WHOLESALE' and OITM.PrchseItem = 'Y' and OITM.SellItem = 'Y'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Inventory and Production",
+    "attempt": 3,
+    "question": "Which bins are designated as receive bins and what are their maximum weight capacities?",
+    "sql": "select BinCode, WhsCode, MaxWeight1, Wght1Unit from OBIN where ReceiveBin = 'Y' and MaxWeight1 is not null",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Reports",
+    "attempt": 1,
+    "question": "List all report document codes and their names where the orientation is landscape and the paper size is A4.",
+    "sql": "select DocCode, DocName from RDOC where Oreint = 'L' and PaperSize = 'A4'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Reports",
+    "attempt": 1,
+    "question": "How many reporting items are in each document, but only show documents that have more than 10 items?",
+    "sql": "select RITM.DocCode, count(*) as ItemCount from RITM group by RITM.DocCode having count(*) > 10",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Reports",
+    "attempt": 1,
+    "question": "Find all query categories and their query names for internal keys that start with 'Q'.",
+    "sql": "select QCategory, QName from OUQR where IntrnalKey like 'Q%'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Reports",
+    "attempt": 1,
+    "question": "What is the average and maximum width of all reporting items that have a left line and right line enabled?",
+    "sql": "select avg(Width) as AvgWidth, max(Width) as MaxWidth from RITM where LeftLine = 1 and RightLine = 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Reports",
+    "attempt": 1,
+    "question": "Get the object code, parent ID, and child ID for all relationships where the relationship type is 'PARENT'.",
+    "sql": "select XROBJ.RepObjId, XRREL.ParentId, XRREL.ChildId from XRREL join XROBJ on XRREL.ParentId = XROBJ.RepObjId where XRREL.RelType = 'PARENT'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Reports",
+    "attempt": 1,
+    "question": "Show the document code and the count of distinct field types for documents that have been modified after January 1, 2020.",
+    "sql": "select RDOC.DocCode, count(distinct RITM.FieldNum) as FieldTypeCount from RDOC join RITM on RDOC.DocCode = RITM.DocCode where RDOC.UpdateDate > '2020-01-01' group by RDOC.DocCode",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Reports",
+    "attempt": 1,
+    "question": "List the names and creators of all report objects that reference an external file and are marked as global.",
+    "sql": "select Name, Creator from XROBJ where Reference is not null and Global = 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Reports",
+    "attempt": 1,
+    "question": "Which report document codes use the leader code 'LDR01' and have shading enabled, and what are their categories?",
+    "sql": "select DocCode, DocName, Category from RDOC where LeaderCode = 'LDR01' and Shading = 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Reports",
+    "attempt": 2,
+    "question": "Which report objects have been modified more recently than they were created, and what are their names and descriptions?",
+    "sql": "select RepObjId, Name, Descriptio from XROBJ where ModifyDate > CreateDate",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Reports",
+    "attempt": 2,
+    "question": "List all distinct modules that appear in user-defined fields, along with the field attribute type for each.",
+    "sql": "select distinct Module, AttributeT from XRUDF",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Reports",
+    "attempt": 2,
+    "question": "For each sales order item wizard, show the wizard ID, document type, item code, and total amount, ordered by total amount descending.",
+    "sql": "select SOI5.WizardId, SOI4.DocType, SOI5.ItemCode, sum(SOI5.LineTotal) as TotalAmount from SOI5 join SOI4 on SOI5.WizardId = SOI4.WizardId and SOI5.SOINum = SOI4.SOINum group by SOI5.WizardId, SOI4.DocType, SOI5.ItemCode order by TotalAmount desc",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Reports",
+    "attempt": 2,
+    "question": "Show the action code, return code, and return string for all actions with a status of 'ERROR'.",
+    "sql": "select ActionCode, ReturnCode, ReturnStr from SRA2 where Status = 'ERROR'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Reports",
+    "attempt": 2,
+    "question": "What are the parent and child IDs for all relationships with a sequence number greater than 5?",
+    "sql": "select ParentId, ChildId, SeqNo from XRREL where SeqNo > 5",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Reports",
+    "attempt": 2,
+    "question": "Get the document code, item ID, and string value for all reporting strings in English language.",
+    "sql": "select DocCode, ItemId, String from SCRT where Language = 'EN'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Reports",
+    "attempt": 2,
+    "question": "Which bank payment methods involve the most document entries, and what are their means types?",
+    "sql": "select MeansType, count(distinct ApDocEntry) as DocCount from TRS1 where MeansType is not null group by MeansType order by DocCount desc",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Reports",
+    "attempt": 2,
+    "question": "List all reporting item containers and their types that have text wrapping enabled.",
+    "sql": "select distinct Container, Type from RITM where WRAP = 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Reports",
+    "attempt": 3,
+    "question": "What are the names and codes of all authorization groups that were created before January 1, 2020?",
+    "sql": "select AUTHGRPCD, AUTHGRPN from OQAG where CreateDate < '2020-01-01'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Reports",
+    "attempt": 3,
+    "question": "Find all user-defined fields in the Accounts module and display their IDs, attribute types, and descriptions.",
+    "sql": "select UDFID, AttributeT, Descriptio from XRUDF where Module = 'Accounts'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Reports",
+    "attempt": 3,
+    "question": "List the document code, document name, and the number of different report item types for each document.",
+    "sql": "select RDOC.DocCode, RDOC.DocName, count(distinct RITM.Type) as TypeCount from RDOC left join RITM on RDOC.DocCode = RITM.DocCode group by RDOC.DocCode, RDOC.DocName",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Reports",
+    "attempt": 3,
+    "question": "What are the tax source type and tax entry values for all journal entries with an absolute entry number greater than 5000?",
+    "sql": "select TaxSrcType, TaxEntry from TRB4 where AbsEntry > 5000",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Reports",
+    "attempt": 3,
+    "question": "Show the query name, query string, and database type for all queries in the 'Finance' category.",
+    "sql": "select QName, QString, DBType from OUQR where QCategory = 'Finance'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Reports",
+    "attempt": 3,
+    "question": "Get the parent table name and node string for all chart of accounts nodes under father ID 100.",
+    "sql": "select NodeStr, TableName from OCRT where FatherID = 100",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Reports",
+    "attempt": 3,
+    "question": "Which report objects have been modified after their creation, and what are their types and names?",
+    "sql": "select Name, ObjType, CreateDate, ModifyDate from XROBJ where ModifyDate > CreateDate",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Reports",
+    "attempt": 3,
+    "question": "Count the total number of filter rules by filter name, showing only filters with more than one rule.",
+    "sql": "select FilterName, count(*) as RuleCount from FLT1 group by FilterName having count(*) > 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "attempt": 1,
+    "question": "What are the names and total amounts of all cost centers that are currently locked?",
+    "sql": "select PrcCode, PrcName, OcrTotal from OPRC where Locked = 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "attempt": 1,
+    "question": "List all competitors with threat level 'High' and their associated memos",
+    "sql": "select CompetId, Name, ThreatLevl, Memo from OCMT where ThreatLevl = 'High'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "attempt": 1,
+    "question": "How many sales opportunities are in each step stage with the corresponding closing percentage?",
+    "sql": "select StepId, SalesStage, count(*) oppCount, avg(CloPrcnt) avgClosePrcnt from OOST group by StepId, SalesStage",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "attempt": 1,
+    "question": "Show all sales opportunities with their card names and salesperson codes that have a predicted close date in 2024",
+    "sql": "select OpprId, CardName, SlpCode, PredDate from OOPR where year(PredDate) = 2024",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "attempt": 1,
+    "question": "For each industry, what is the count of open sales opportunities and the maximum potential sales amount in local currency?",
+    "sql": "select Industry, count(OpprId) oppCount, max(MaxSumLoc) maxPotential from OOPR group by Industry",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "attempt": 1,
+    "question": "Which sales opportunities have related partners, and what are their order line relationship codes?",
+    "sql": "select o.OpprId, o2.ParterId, o2.OrlCode from AOPR o join OPR2 o2 on o.OpprId = o2.OpportId where o2.ParterId is not null",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "attempt": 1,
+    "question": "Show the profit center code, name, and balance for all active profit centers that are not locked and were last updated after January 1, 2023",
+    "sql": "select PrcCode, PrcName, Balance from APRC where Active = 1 and Locked = 0 and UpdateDate > '2023-01-01'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "attempt": 1,
+    "question": "List all cost center codes with their names and total amounts where the direct flag is set to 1 and the cost center is active",
+    "sql": "select OcrCode, OcrName, OcrTotal from AOCR where Direct = 1 and Active = 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "attempt": 2,
+    "question": "Which sales opportunities are currently locked and what are their associated cost center names?",
+    "sql": "select distinct o.OpprId, p.PrcName from OOPR o join APRC p on o.CprCode = p.PrcCode where p.Locked = 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "attempt": 2,
+    "question": "How many sales opportunities exist per salesperson, sorted by count descending?",
+    "sql": "select SlpCode, count(*) opportunityCount from OOPR group by SlpCode order by opportunityCount desc",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "attempt": 2,
+    "question": "What competitors are mentioned in opportunities with a threat level of 'High', and how many times do they appear?",
+    "sql": "select c.CompetId, c.Name, count(*) frequency from OPR3 o3 join OCMT c on o3.CompetId = c.CompetId where c.ThreatLevl = 'High' group by c.CompetId, c.Name",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "attempt": 2,
+    "question": "Show me all opportunities where the predicted close date is before the actual close date.",
+    "sql": "select OpprId, CardName, PredDate, CloseDate from OOPR where PredDate < CloseDate",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "attempt": 2,
+    "question": "What is the total and average price amount for each cost center code in active price records?",
+    "sql": "select OcrCode, sum(PrcAmount) totalAmount, avg(PrcAmount) avgAmount from AOC1 where OcrCode in (select OcrCode from AOCR where Active = 1) group by OcrCode",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "attempt": 2,
+    "question": "Which sales opportunities have a partner relationship, and what are the partner names and order roles?",
+    "sql": "select o2.OpportId, o2.ParterId, o2.RelatCard, r.OrlDesc from OPR2 o2 left join OORL r on o2.OrlCode = r.OrlCode",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "attempt": 2,
+    "question": "List all opportunities created in the last two years that have a status of 'Won' and show their real profit in system currency.",
+    "sql": "select OpprId, CardName, CreateDate, RealProfS from OOPR where Status = 'Won' and year(CreateDate) >= year(getdate()) - 2 order by CreateDate desc",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "attempt": 2,
+    "question": "For each industry, show the count of opportunities and the average weighted sum in local currency.",
+    "sql": "select Industry, count(*) opportunityCount, avg(WtSumLoc) avgWeightedLoc from OOPR group by Industry having Industry is not null",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "attempt": 3,
+    "question": "List all active price codes along with their names and current balance",
+    "sql": "select PrcCode, PrcName, Balance from APRC where Active = 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "attempt": 3,
+    "question": "How many sales opportunities are currently in each status?",
+    "sql": "select Status, count(*) opportunityCount from OOPR group by Status",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "attempt": 3,
+    "question": "Show the salesperson code and total predicted sales amount in local currency for each salesperson across all their opportunities",
+    "sql": "select SlpCode, sum(MaxSumLoc) totalPredictedLoc from OOPR group by SlpCode",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "attempt": 3,
+    "question": "What are the names and threat levels of all competitors?",
+    "sql": "select CompetId, Name, ThreatLevl from OCMT",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "attempt": 3,
+    "question": "Find sales opportunities with their card code, card name, and real profit amounts where the closing percentage is greater than 75",
+    "sql": "select CardCode, CardName, RealProfL, RealProfS, CloPrcnt from OOPR where CloPrcnt > 75",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "attempt": 3,
+    "question": "For each industry, show the average maximum sales amount in system currency and the count of opportunities",
+    "sql": "select Industry, avg(MaxSumSys) avgMaxSys, count(*) opportunityCount from OOPR where Industry is not null group by Industry",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "attempt": 3,
+    "question": "Show the opportunity ID, partner information, and relationship order type for all opportunities that have associated partners",
+    "sql": "select o.OpprId, o2.ParterId, o2.OrlCode from OOPR o join OPR2 o2 on o.OpprId = o2.OpportId",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "attempt": 3,
+    "question": "List all sales steps with their descriptions, closing percentage thresholds, and whether they are marked as canceled",
+    "sql": "select StepId, Descript, CloPrcnt, Canceled from OOST",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Service",
+    "attempt": 1,
+    "question": "What are all the active problem types available in the system?",
+    "sql": "select prblmTypID, Name, Descriptio from OSCP where Active = 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Service",
+    "attempt": 1,
+    "question": "Show me all service calls that were created after January 1st, 2023, including the call ID, subject, and customer name.",
+    "sql": "select callID, subject, custmrName, createDate from OSCL where createDate > '2023-01-01' order by createDate desc",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Service",
+    "attempt": 1,
+    "question": "Which contracts have a duration of more than 365 days? List the contract ID, customer name, and duration.",
+    "sql": "select ContractID, CstmrName, Duration from OCTR where Duration > 365",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Service",
+    "attempt": 1,
+    "question": "For each call type, how many service calls have been created? Include the call type name and count.",
+    "sql": "select OSCT.Name, count(*) callCount from OSCL join OSCT on OSCL.callType = OSCT.callTypeID group by OSCT.Name",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Service",
+    "attempt": 1,
+    "question": "What installations are currently under warranty? Show the installation ID, customer name, and warranty end date.",
+    "sql": "select insID, custmrName, wrrntyEnd from OINS where wrrntyEnd > cast(getdate() as date)",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Service",
+    "attempt": 1,
+    "question": "Show me all service calls assigned to a specific technician, ordered by the start date. Include call ID, subject, and start date.",
+    "sql": "select callID, subject, technician, StartDate from OSCL where technician is not null order by StartDate desc",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Service",
+    "attempt": 1,
+    "question": "How many items are included in each contract template? Include the template name and item count.",
+    "sql": "select OCTT.TmpltName, count(*) itemCount from OCTT left join CTR1 on OCTT.TmpltName = (select CntrcTmplt from OCTR where CntrcTmplt is not null) group by OCTT.TmpltName",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Service",
+    "attempt": 1,
+    "question": "List all service calls with high priority that are still open, showing the customer name, call ID, and status.",
+    "sql": "select customer, custmrName, callID, status from OSCL where priority = 'H' and status != 'Closed'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Service",
+    "attempt": 2,
+    "question": "List all active service call types with their names and descriptions.",
+    "sql": "select callTypeID, Name, Descriptio from OSCT where Active = 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Service",
+    "attempt": 2,
+    "question": "What are the total number of installations per customer? Show customer code and count.",
+    "sql": "select customer, count(*) installationCount from OINS group by customer",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Service",
+    "attempt": 2,
+    "question": "Find all service calls that are currently queued and show the queue ID, object type, and priority.",
+    "sql": "select queueID, objType, elementId, priority from QUE2",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Service",
+    "attempt": 2,
+    "question": "For each service call, display the call ID, customer name, and contract ID where the call status is 'Open'.",
+    "sql": "select callID, custmrName, contractID from OSCL where status = 'Open'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Service",
+    "attempt": 2,
+    "question": "Show all contracts that include parts and labor, grouped by contract type with a count of matching contracts.",
+    "sql": "select CntrcType, count(*) contractCount from OCTR where InclParts = 1 and InclWork = 1 group by CntrcType",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Service",
+    "attempt": 2,
+    "question": "What is the warranty start and end date for each installation at customer 'Acme Corp'? Include the internal serial number.",
+    "sql": "select internalSN, wrrntyStrt, wrrntyEnd from OINS where custmrName = 'Acme Corp'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Service",
+    "attempt": 2,
+    "question": "List problem types with their IDs and descriptions that are currently active in the system.",
+    "sql": "select prblmTypID, Name, Descriptio from OSCP where Active = 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Service",
+    "attempt": 2,
+    "question": "For each technician, count how many service calls they have handled. Include the technician name and call count.",
+    "sql": "select technician, count(*) handledCallCount from OSCL where technician is not null group by technician",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Service",
+    "attempt": 3,
+    "question": "List all service calls that are currently open with high priority, including the customer name and call subject.",
+    "sql": "select callID, custmrName, subject, priority from OSCL where status != 'Closed' and priority = 'H'",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Service",
+    "attempt": 3,
+    "question": "Which installed items have a warranty that is still active as of today?",
+    "sql": "select insID, customer, custmrName, itemName, wrrntyEnd from OINS where wrrntyEnd >= cast(getdate() as date)",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Service",
+    "attempt": 3,
+    "question": "Show me all service call types that are currently active.",
+    "sql": "select callTypeID, Name, Descriptio from OSCT where Active = 1",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Service",
+    "attempt": 3,
+    "question": "For each service contract template, list the template name, contract type, and how many actual contracts are using it.",
+    "sql": "select OCTT.TmpltName, OCTR.CntrcType, count(*) contractCount from OCTT join OCTR on OCTT.TmpltName = OCTR.CntrcTmplt group by OCTT.TmpltName, OCTR.CntrcType",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Service",
+    "attempt": 3,
+    "question": "What is the total number of items used (delivered) across all service calls?",
+    "sql": "select sum(Delivered) totalItemsDelivered from SCL2",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Service",
+    "attempt": 3,
+    "question": "Show all service call origins and their descriptions.",
+    "sql": "select originID, Name, Descriptio from OSCO",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Service",
+    "attempt": 3,
+    "question": "Find all contracts that are nearing expiration within the next 30 days, including the customer name and contract end date.",
+    "sql": "select ContractID, CstmrName, EndDate from OCTR where EndDate between cast(getdate() as date) and dateadd(day, 30, cast(getdate() as date))",
+    "status": "ok"
+  },
+  {
+    "db_id": "SBODemoUS-Service",
+    "attempt": 3,
+    "question": "For each problem type, count how many service calls have been logged with that problem type.",
+    "sql": "select OSCP.prblmTypID, OSCP.Name, count(*) callCount from OSCP left join OSCL on OSCP.prblmTypID = OSCL.problemTyp group by OSCP.prblmTypID, OSCP.Name",
+    "status": "ok"
+  }
+]

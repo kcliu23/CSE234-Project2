@@ -238,6 +238,53 @@ def _bm25_score_tables(schema: Dict, question: str, k1: float = 1.5, b: float = 
     return scores
 
 
+# Embedding-based table retriever -- alternative to BM25 keyword matching.
+# Lazy-loaded so that anything importing schema_utils for serialization only
+# doesn't pay the sentence-transformer import cost.
+_EMBED_MODEL = None
+_EMBED_TABLE_CACHE: Dict[int, Tuple[List[str], "any"]] = {}  # id(schema) -> (table_names, table_embs_tensor)
+
+
+def _get_embed_model():
+    global _EMBED_MODEL
+    if _EMBED_MODEL is None:
+        from sentence_transformers import SentenceTransformer
+        # BGE-small-en-v1.5: ~30MB, ~384-dim, strong on retrieval benchmarks.
+        # No auth required, downloads on first call.
+        _EMBED_MODEL = SentenceTransformer('BAAI/bge-small-en-v1.5')
+    return _EMBED_MODEL
+
+
+def _embed_score_tables(schema: Dict, question: str) -> Dict[str, float]:
+    """Embedding-based score per table: cosine similarity between the question
+    embedding and each table's "document" embedding (table name + column names).
+    Cached per schema id so the same schema isn't re-embedded per question."""
+    model = _get_embed_model()
+    cache_key = id(schema)
+    if cache_key not in _EMBED_TABLE_CACHE:
+        table_names = list(schema['tables'])
+        # Build a natural-language-ish doc per table for richer embeddings
+        # than raw identifiers (helps for camelCase / snake_case tokens).
+        docs = []
+        for t in table_names:
+            tokens = ' '.join(tokenize_identifier(t)) or t
+            col_tokens = ' '.join(' '.join(tokenize_identifier(c)) for c in schema['columns'][t])
+            docs.append(f"table {tokens} columns {col_tokens}")
+        # BGE recommends prefixing passages with a special instruction; not
+        # strictly required for v1.5 but slightly improves recall.
+        table_embs = model.encode(docs, normalize_embeddings=True, convert_to_tensor=True,
+                                  show_progress_bar=False)
+        _EMBED_TABLE_CACHE[cache_key] = (table_names, table_embs)
+    table_names, table_embs = _EMBED_TABLE_CACHE[cache_key]
+    # BGE recommends "Represent this sentence for searching relevant passages: ..."
+    # as the query prefix; omitted for v1.5 with negligible impact.
+    q_emb = model.encode([question], normalize_embeddings=True, convert_to_tensor=True,
+                         show_progress_bar=False)[0]
+    # Cosine sim = dot product (since both normalized)
+    sims = (table_embs @ q_emb).cpu().tolist()
+    return dict(zip(table_names, sims))
+
+
 def serialize_schema_filtered(
     schema: Dict,
     question: str,
@@ -245,6 +292,7 @@ def serialize_schema_filtered(
     max_tables: int = 20,
     threshold_cols: int = 500,
     style: str = 'compact',
+    retrieval: str = 'bm25',
 ) -> str:
     """Schema serialization with table-level BM25 filtering for big schemas.
 
@@ -283,8 +331,28 @@ def serialize_schema_filtered(
             lines.append(f"{t}: {', '.join(parts)}")
         return '\n'.join(lines)
 
-    table_scores = _bm25_score_tables(schema, question)
-    top_tables = [t for t, _ in sorted(table_scores.items(), key=lambda kv: -kv[1])[:max_tables]]
+    if retrieval == 'embed':
+        table_scores = _embed_score_tables(schema, question)
+        top_tables = [t for t, _ in sorted(table_scores.items(), key=lambda kv: -kv[1])[:max_tables]]
+    elif retrieval == 'bm25':
+        table_scores = _bm25_score_tables(schema, question)
+        top_tables = [t for t, _ in sorted(table_scores.items(), key=lambda kv: -kv[1])[:max_tables]]
+    elif retrieval == 'hybrid':
+        # Reciprocal Rank Fusion (RRF): combine BM25 and embed rankings via
+        # 1/(60+rank) summed across the two methods. Scale-free, no
+        # normalization needed. k=60 is the standard RRF constant from the
+        # Cormack et al. 2009 paper.
+        bm25_scores = _bm25_score_tables(schema, question)
+        embed_scores = _embed_score_tables(schema, question)
+        bm25_rank = {t: r for r, t in enumerate(sorted(bm25_scores, key=lambda x: -bm25_scores[x]))}
+        embed_rank = {t: r for r, t in enumerate(sorted(embed_scores, key=lambda x: -embed_scores[x]))}
+        K_RRF = 60
+        fused = {t: 1.0 / (K_RRF + bm25_rank.get(t, len(bm25_rank)))
+                  + 1.0 / (K_RRF + embed_rank.get(t, len(embed_rank)))
+                 for t in schema['tables']}
+        top_tables = [t for t, _ in sorted(fused.items(), key=lambda kv: -kv[1])[:max_tables]]
+    else:
+        raise ValueError(f"Unknown retrieval: {retrieval!r}")
     kept_tables = set(top_tables)
 
     # Oracle augmentation at training time: include every gold-referenced table.

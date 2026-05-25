@@ -41,8 +41,8 @@ def main():
 
     # ---- 1. question_id is per-file, not globally unique ----
     section("1. question_id per-file (no cross-file dedup)")
-    train = json.load(open('train.json'))
-    val = json.load(open('validation_input.json'))
+    train = json.load(open('data/train.json'))
+    val = json.load(open('data/validation_input.json'))
     train_ids = sorted({x['question_id'] for x in train})
     val_ids = sorted({x['question_id'] for x in val})
     all_ok &= assert_eq(train_ids[:3], [1, 2, 3], "train IDs start at 1")
@@ -54,7 +54,7 @@ def main():
     with tempfile.NamedTemporaryFile('w', suffix='.json', delete=False) as f:
         out_path = f.name
     subprocess.run(
-        [sys.executable, 'main.py', '--mock', '--input', 'validation_input.json', '--output', out_path],
+        [sys.executable, 'main.py', '--mock', '--input', 'data/validation_input.json', '--output', out_path],
         check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
     )
     preds = json.load(open(out_path))
@@ -103,7 +103,7 @@ def main():
     sys_msg = build_messages('NTSB', 'q', sch_ntsb)[0]['content']
     all_ok &= assert_eq('"t": []' in sys_msg, True, "system prompt explicitly instructs the model on the empty-list rule")
     # Real train.json examples with empty col lists round-trip correctly:
-    train_wildcards = [ex for ex in json.load(open('train.json'))
+    train_wildcards = [ex for ex in json.load(open('data/train.json'))
                        if any(not v for v in ex['schema_links'].values())]
     print(f"  (note) {len(train_wildcards)} training examples have at least one empty-column table")
     for ex in train_wildcards:
@@ -141,13 +141,13 @@ def main():
 
     # ---- 7. Output cardinality: 1:1 with input, order-independent ----
     section("7. Output: exactly one entry per input question_id")
-    n_in = len(json.load(open('validation_input.json')))
+    n_in = len(json.load(open('data/validation_input.json')))
     n_out = len(json.load(open('/tmp/preds_mock.json'))) if os.path.exists('/tmp/preds_mock.json') else None
     if n_out is None:
         with tempfile.NamedTemporaryFile('w', suffix='.json', delete=False) as f:
             out_path = f.name
         subprocess.run([sys.executable, 'main.py', '--mock',
-                       '--input', 'validation_input.json', '--output', out_path],
+                       '--input', 'data/validation_input.json', '--output', out_path],
                       check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         n_out = len(json.load(open(out_path)))
         os.unlink(out_path)

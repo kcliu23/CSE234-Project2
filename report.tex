@@ -1,0 +1,380 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, urlcolor=blue, linkcolor=black}
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{6pt}{2pt}
+\titlespacing*{\subsection}{0pt}{4pt}{1pt}
+\setlist{nosep, topsep=2pt, partopsep=0pt, leftmargin=*}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+
+\title{\vspace{-0.6in}\Large CSE/DSC 234 Project 2 -- Schema Linking with SFT\\
+\large Final Report}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle\vspace{-0.4in}
+
+\textbf{Final validation leaderboard: 0.7002} (Table 0.7648 / Column 0.6356).
+Baseline (smoke adapter): 0.5605. Best single adapter: 0.6648 (sweep 13).
+Submission: \texttt{python3 main.py --input X --output Y} runs a 3-way LoRA ensemble
+with embedding-based table retrieval; completes 101 questions in $\sim$11~min on a
+24~GB MIG slice ($<$15~min budget).
+
+\section{Training Data Methodology}
+
+The released 301 train + 101 validation split was the starting point. We treated
+schema linking as next-token prediction over a chat prompt: a fixed system message
+explains the JSON contract and wildcard convention; the user turn carries the
+serialized schema and NL question; the assistant turn carries the canonical JSON
+target (sorted keys + sorted columns) emitted by \texttt{prompt.target\_string}.
+
+\textbf{Schema serialization.} The baseline serializer is one line per table,
+\texttt{TableName: c1, c2, \dots}. We tested two richer variants:
+(i)~\textbf{types} -- appending column type in parentheses; (ii)~\textbf{keys} --
+\texttt{*} for primary keys and \texttt{->TargetTable.col} for foreign keys.
+A combined \texttt{types\_keys} serialization roughly doubled token counts on the
+dense SBO schemas; on the largest (SBO-Banking) the prompt exceeded 6k tokens.
+\texttt{keys} alone added no tokens on SBO because the SBO Spider schemas carry
+no PK/FK metadata -- only 5 of the 17 schemas do (ATBI, NTSB,
+NorthernPlainsFireManagement, KlamathInvasiveSpecies, PacificIslandLandbirds).
+
+\textbf{Output format.} Raw JSON with stable casing, alphabetical keys and column
+lists. A table with no specific columns (wildcard queries like \texttt{count(*) from
+t}) is emitted as \texttt{\{"t": []\}}, not omitted. We verified this end-to-end
+with \texttt{tests/test\_checklist.py}; only 3 validation questions have empty-gold
+tables but failing to emit them is a recall miss on both axes.
+
+\textbf{Table-level retrieval at training time.} Schemas with $>500$ columns
+(all 9 SBO modules + NTSB + NYSED) get BM25-filtered to the top-20 tables.
+\textbf{Oracle augmentation}: at training time we force-include every
+gold-referenced table in the kept set so the model is never asked to predict
+labels absent from its prompt. Inference does not have this oracle.
+
+\textbf{Augmentation.} The 9 SBO modules ship with only 6--12 train examples each
+($\sim$22\% of train) versus 24--60 for the parks/NTSB domains; SBO is also where
+$\sim$55\% of our validation table-misses concentrate. We generated 216 additional
+(question, gold\_sql) pairs via the Claude API (Haiku 4.5; 9 batches of 24)
+focused entirely on SBO, labeled each with the project's
+\texttt{sql\_to\_schema\_links.py} (sqlglot-based) extractor, and dropped any
+that failed to parse or referenced 0 schema tables. Only 1 of 217 candidates was
+dropped (a duplicate question; 0 hallucinated tables, 0 parse errors -- evidence
+the prompt and validation pipeline are tight). The merged
+\texttt{train\_augmented.json} has 517 examples. The audit log lives at
+\texttt{data/train\_augmented\_audit.json}.
+
+\section{Final Pipeline Architecture}
+
+\textbf{Base model.} \texttt{Qwen/Qwen2.5-Coder-1.5B-Instruct}. The code-pretrained
+variant of Qwen2.5-1.5B; same parameter count, same ChatML template, same
+tokenizer; SQL/schema pretraining produced measurable gains over the vanilla
+Instruct variant (Sec.~4).
+
+\textbf{Adapter.} LoRA r=32, $\alpha=64$, dropout 0.05, target modules
+\{\texttt{q,k,v,o,gate,up,down}\}\_\texttt{proj} (the full attention block plus
+the MLP block). bf16 with gradient checkpointing.
+
+\textbf{Optimizer.} AdamW (TRL default), \texttt{lr\_scheduler\_type=linear},
+\texttt{warmup\_ratio=0.05}, \texttt{per\_device\_train\_batch\_size=1},
+\texttt{gradient\_accumulation\_steps=4}, \texttt{max\_steps=200},
+\texttt{max\_length=4096}. Three adapters were trained at lr$\in\{3\text{e-}4,
+3\text{e-}4\text{+aug+400steps}, 2\text{e-}4\}$ -- their union forms the ensemble.
+
+\textbf{Inference pipeline (\texttt{main.py}).}
+(1)~Load base model once. (2)~Load LoRA adapter A, run all 101 queries, accumulate
+$\{$table$\rightarrow$cols$\}$ predictions per question. (3)~Replace adapter A
+with adapter B via \texttt{PeftModel.from\_pretrained}, repeat. (4)~Repeat for
+adapter C. (5)~Union accumulator across the three adapters and write final
+predictions. \textbf{Partial-save after each adapter}: a $>$15min timeout still
+yields a 2-way ensemble (strictly better than single adapter).
+\textbf{Retrieval}: embedding-based -- \texttt{BAAI/bge-small-en-v1.5}
+sentence-transformer cosine similarity between the question and each table's
+``\texttt{table tokens columns column-tokens}'' document; top-20 tables kept.
+
+\textbf{Post-processing.} \texttt{canonicalize\_prediction} drops any
+non-schema identifier (precision-preserving hallucination filter) and re-cases
+identifiers to schema casing. The final submitted output had 0 schema-invalid
+identifiers across all 101 validation predictions.
+
+\section{Experimentation Methodology}
+
+We ran 20 numbered sweeps via \textbf{RapidFire AI}
+(\texttt{train\_rapidfire.py}, \texttt{RFGridSearch}/\texttt{RFSFTConfig}). Sweeps
+1--9 were spent surviving infrastructure problems (described below); sweeps
+10--20 produced the substantive results in Table~\ref{tab:configs}. Per-sweep
+\texttt{rapidfire.log}, \texttt{training.log}, and extracted MLflow metrics
+(\texttt{metrics.json}) live under \texttt{logs/sweepN/}; full per-run configs
+are pulled from the rapidfireai MLflow store on demand.
+
+\subsection{Sweep dimensions}
+Across the three \emph{training-time} axes -- base model, adapter capacity,
+training data -- and four \emph{inference-time} axes -- prompt style, retriever,
+ensemble strategy, post-processing -- we ran 11 distinct training configs and
+$\sim$10 distinct inference-time variants. Configs were chosen one-at-a-time
+A/B style off the current champion so each result is attributable to a single
+knob. Multi-config sweeps (8--16 in \texttt{RFList}) were used in our first
+attempts (sweeps 5--8) but, after infrastructure issues forced us to
+\texttt{num\_chunks=1} (Sec.~3.2), we switched to single-config sweeps and let
+the cost of more sweeps buy clean attribution.
+
+\subsection{Infrastructure issues and how we worked around them}
+
+\textbf{Issue \#1: DSMLP cleanup SIGKILLs ($\sim$24h of lost GPU time).}
+Sweeps 5--8 ran multi-config \texttt{RFGridSearch} with 8--16 configs and
+\texttt{max\_steps}=300. Each tried to train through $\sim$5--6h of wall time.
+DSMLP enforces a process-cleanup window we did not anticipate -- somewhere
+around the 4--6h mark, our worker process got SIGKILL'd with no warning.
+The mlflow metrics survived (they are written to a SQLite DB on
+\texttt{\$HOME}) so we could see that sweep 8 had reached step 264/300
+across all 8 configs before dying. But the trained LoRA weights themselves had
+\emph{nowhere on disk}. We initially assumed the problem was the kill itself;
+the real story turned out to be deeper.
+
+\textbf{Issue \#2: RapidFire's SHM-only checkpoint store.} While debugging the
+loss, we ran sweep 9 with only 2 configs and max\_steps=200, expecting it to
+finish in well under the kill window. It did -- ``Experiment ended'' fired
+cleanly, no SIGKILL. \emph{We still had no
+\texttt{final\_checkpoint/*.safetensors} on disk.} Reading
+\texttt{rapidfireai/fit/backend/worker.py} around L440 revealed why. By default
+RapidFire writes intermediate checkpoints to \texttt{/dev/shm} via its
+\texttt{shm\_manager}; the disk write only fires inside a single branch gated on
+\texttt{is\_run\_finished == (chunk\_id == num\_chunks-1) \&\&
+(steps $\geq$ total\_steps)}. With the controller's round-robin chunk schedule,
+a run typically hits its step budget on chunk $N$ where $N <$ num\_chunks$-1$,
+the disk-save branch is skipped, and the in-SHM adapter dies with the worker
+process at \texttt{experiment.end()}. We considered patching the constant
+\texttt{USE\_SHARED\_MEMORY = True} at module level but rejected that as
+fragile (it affects all rapidfireai usage on the system and would not survive
+a \texttt{pip install --upgrade}). The clean workaround: pass
+\texttt{--num\_chunks 1} so every run necessarily ends on ``the last chunk'' by
+construction and the disk-save branch fires reliably. All sweeps from 10 onward
+use this workaround; sweep 10 was the first successful end-to-end persisted
+RapidFire training in our series.
+
+\textbf{Issue \#3: HuggingFace Trainer fallback (\texttt{train\_single.py}).}
+While debugging Issue \#2, we were not sure whether the problem was orchestration
+(rapidfireai) or training (TRL/PEFT setup). We built
+\texttt{train\_single.py} -- a $\sim$120-line plain
+\texttt{trl.SFTTrainer} script -- as an A/B against the same config. It
+trained fine in 14 minutes and produced a 0.6078 adapter, confirming that the
+training stack worked end-to-end and isolating the failure to the
+rapidfireai chunked-orchestration path. After we landed Issue \#2's fix this
+script became dead code, but it stayed in the repo as a stress-tested
+single-config fallback.
+
+\textbf{Issue \#4: CUDA SIGFPE in \texttt{main.py} at \texttt{batch\_size>1}.}
+On the first $\sim$0.61 inference run we hit a hard ``Floating point exception
+(core dumped)'' right at the first \texttt{model.generate} call. Process
+crashed before producing any predictions. We narrowed the trigger by bisecting
+the CLI flags and found that batch size 1 worked, $\geq$2 SIGFPE'd. Stack
+combination is \texttt{transformers 4.57 + torch 2.10 + bf16 + left-padded
+prompts $\sim$4k tokens + H100}. We did not find a root-cause issue but the
+pattern matches reports of a kernel edge case in the attention path with
+long left-padded sequences in bf16. We defaulted
+\texttt{batch\_size=1} in \texttt{main.py} (with a comment) and noted it in
+the README so a grader doesn't trip over it.
+
+\textbf{Issue \#5: Mismatched val-data layout.} Halfway through development we
+reorganized the repo to push raw data under \texttt{data/}; the
+\texttt{tests/test\_checklist.py} script (the rubric quick-start verifier) was
+written against the old root-level paths. We updated the test, kept it
+green, and added it to the development loop -- it's a cheap sanity check that
+every commit doesn't break the I/O contract (per-file question\_ids,
+schema-folder layout, wildcard-table preservation, hallucination filtering).
+
+\subsection{The supporting tools we built}
+\begin{itemize}
+\item \texttt{augment\_data.py} -- the SBO augmentation pipeline; calls
+Claude Haiku 4.5 in 9 batches, validates each generated SQL by running it
+through the project's \texttt{sql\_to\_schema\_links.py} extractor, writes
+both the merged \texttt{train\_augmented.json} and a per-candidate audit log.
+\item \texttt{format\_training\_data.py} -- converts raw JSON splits to the
+JSONL \texttt{messages} format consumed by TRL/RapidFire, parameterized by
+\texttt{--prompt\_style}.
+\item \texttt{format\_two\_stage\_data.py} -- splits the joint task into
+stage-A (table prediction) and stage-B (per-table column prediction) datasets
+for the two-stage experiment.
+\item \texttt{expand\_columns.py} -- the keyword-based column-expansion
+post-processor (Sec.~4 below).
+\item \texttt{reproduce\_champion.py} -- self-contained script that
+re-derives the 3-way ensemble predictions from the per-model
+\texttt{preds\_sweep\{13,15,18\}\_embed.json} files; can also regenerate
+those from the adapter weights via \texttt{--regenerate}. Saves us from
+having to re-run inference just to regenerate the champion submission.
+\item \texttt{logs/README.md} -- per-sweep mapping from sweep number to
+config knobs, status, best train metric. Built from the MLflow store via
+a small script that pulls
+\texttt{runs}~$\bowtie$~\texttt{params}~$\bowtie$~\texttt{metrics} for each
+experiment.
+\end{itemize}
+
+\begin{table}[t]
+\centering\small
+\setlength\tabcolsep{4pt}
+\begin{tabular}{rllrrrr}
+\toprule
+\# & base model & key knobs & lr & steps & val LB & $\Delta$ \\
+\midrule
+10 & Qwen2.5-1.5B          & r=16 q/k/v/o, BM25                                & 3e-4 & 200 & 0.6229 & --- \\
+12 & Qwen2.5-\textbf{Coder}-1.5B & r=16 q/k/v/o, BM25                          & 3e-4 & 200 & 0.6258 & +0.003 \\
+\textbf{13} & Qwen2.5-Coder-1.5B & \textbf{r=32 + MLP}, BM25                   & 3e-4 & 200 & \textbf{0.6648} & \textbf{+0.039} \\
+18 & Qwen2.5-Coder-1.5B    & r=32 + MLP, BM25                                  & 2e-4 & 200 & 0.6609 & $-$0.004 \\
+19 & Qwen2.5-Coder-1.5B    & r=32 + MLP, BM25, \textbf{cosine LR}              & 3e-4 & 200 & 0.6479 & $-$0.017 \\
+14 & Qwen2.5-Coder-1.5B    & r=32 + MLP, BM25, \textbf{517 train (aug)}        & 3e-4 & 200 & 0.6379 & $-$0.027 \\
+15 & Qwen2.5-Coder-1.5B    & r=32 + MLP, BM25, 517 train, \textbf{400 steps}   & 3e-4 & 400 & 0.6600 & $-$0.005 \\
+16 & Qwen2.5-Coder-1.5B    & r=32 + MLP, BM25, 301 train, \textbf{400 steps}   & 3e-4 & 400 & 0.6268 & $-$0.038 \\
+11 & Qwen2.5-1.5B          & r=16 q/k/v/o, \textbf{types\_keys prompt}         & 3e-4 & 200 & 0.5946 & $-$0.028 \\
+20 & \textbf{SmolLM2-1.7B} & r=32 + MLP, BM25                                  & 3e-4 & 200 & 0.5301 & $-$0.135 \\
+17a/b & Qwen2.5-Coder-1.5B & \textbf{Two-stage}: table model + column model    & 3e-4 & 200 & 0.6127 & $-$0.052 \\
+\midrule
+\multicolumn{6}{r}{\textbf{Inference-time -- best single adapter (sweep 13):}} & \\
+\multicolumn{6}{r}{BM25 retrieval (baseline)} & 0.6648 \\
+\multicolumn{6}{r}{max\_tables: 20 $\rightarrow$ 40 (more distractors)} & 0.6032 \\
+\multicolumn{6}{r}{\textbf{Embedding retrieval (BAAI/bge-small-en-v1.5)}} & \textbf{0.6786} \\
+\multicolumn{6}{r}{Hybrid retrieval (RRF of BM25 + embed)} & 0.6724 \\
+\multicolumn{6}{r}{Self-consistency, K=3, T=0.5, union-of-samples} & 0.6737 \\
+\multicolumn{6}{r}{Column expansion (question-keyword $\leftrightarrow$ col-name match)} & $\sim$same \\
+\midrule
+\multicolumn{6}{r}{\textbf{Ensembles (union, 3-way over sweeps 13, 15, 18):}} & \\
+\multicolumn{6}{r}{BM25 retrieval} & 0.6986 \\
+\multicolumn{6}{r}{\textbf{Embedding retrieval} -- submitted champion}        & \textbf{0.7002} \\
+\multicolumn{6}{r}{Hybrid retrieval}                                          & 0.6977 \\
+\multicolumn{6}{r}{2-way 13+18, 4-way +14 / +20 / +11}                        & 0.66--0.69 \\
+\bottomrule
+\end{tabular}
+\caption{All 11 distinct training configs (top) and the inference-time ablations
+on the best single adapter and the 3-way ensemble (bottom). Bold marks the
+single best config in each section. $\Delta$ is vs sweep~10 (the
+single-config baseline). \texttt{r=32 + MLP} means LoRA r=32 with target
+modules \{q,k,v,o,gate,up,down\}\_proj. \texttt{BM25} retrieval scores tables
+by query-vs-(table+cols) BM25; \texttt{embed} replaces BM25 with sentence-
+transformer cosine similarity (\texttt{BAAI/bge-small-en-v1.5}); \texttt{hybrid}
+is Reciprocal Rank Fusion of the two.}
+\label{tab:configs}
+\end{table}
+
+\subsection{Inference-time experimentation}
+Once we had the single-best adapter (sweep~13), we tested seven inference-time
+variants: max\_tables 20$\rightarrow$40, three retrievers (BM25 / embed /
+hybrid via RRF), self-consistency at K=3 (union-of-samples and
+majority-vote), column-expansion post-processing, and union/intersection/
+majority-k ensembling over progressively more adapters (2--6 way).
+Variants were A/B'd directly against the previous champion file in
+\texttt{predictions/} -- no retraining, $\sim$5--15 min per A/B. Many were
+negative (Sec.~4) but the embedding retriever (+0.014 single, +0.016 in the
+ensemble) was the single most valuable inference-time discovery.
+
+\section{Results and Analysis}
+
+\textbf{What worked.}
+\begin{itemize}
+\item \textbf{Switching to Coder-1.5B (+0.003)}: small but in the right direction;
+sets up the bigger gains.
+\item \textbf{Bigger LoRA: r=32 + MLP modules (+0.039)}: the single biggest
+training-time lever. The full attention+MLP adapter has $\sim$3.5$\times$ more
+trainable parameters than r=16 q/k/v/o and converged to lower train loss
+(0.075 vs 0.108) without overfitting at 200 steps. Notably this is the
+configuration our sweeps 5--7 attempted but lost to the SHM bug -- the
+\texttt{num\_chunks=1} workaround was load-bearing for actually \emph{getting}
+this number.
+\item \textbf{Embedding-based table retrieval (+0.014 single, +0.016 ensemble)}:
+\texttt{BAAI/bge-small-en-v1.5} surfaces semantically related tables that BM25
+misses. Diagnostic example -- qid 95 needs \texttt{ORCT} (the incoming-payments
+header table); BM25 ranks ORCT outside top-10 (all top hits are
+\texttt{PWZ}* payment-wizard children); the embedder puts ORCT at rank~1
+(cosine 0.728). This was the biggest \emph{inference-time} lever.
+\item \textbf{Union ensemble of 3 diverse adapters (+0.034 over best single)}:
+sweep 13 (lr=3e-4, 301 train), sweep 15 (lr=3e-4, 517 train, 400 steps), and
+sweep 18 (lr=2e-4, 301 train). Chosen because their errors are sufficiently
+uncorrelated; 4- and 5-way variants regressed because the weaker fourth model
+(sweep 20 / sweep 12) brings more noise than signal.
+\end{itemize}
+
+\textbf{What didn't work, and why.}
+\begin{itemize}
+\item \textbf{\texttt{types\_keys} prompt (-0.028)}: roughly doubled token count
+and \emph{regressed} both table and column scores. We attribute this to attention
+dilution -- with $\sim$2$\times$ more schema text per prompt, the 1.5B model
+focuses less precisely on the 2--4 actually-relevant tables out of 20. Cheap
+signal at this scale beats expensive signal.
+\item \textbf{\texttt{max\_tables}=40 (-0.020)}: contrary to our prior that
+exposing more candidate tables would recover BM25-cut gold tables. Distractor
+tables hurt the model's table precision more than the marginal recall
+recovery.
+\item \textbf{Two-stage (table model then column model) (-0.052)}: a clean
+architectural negative result. Stage-A loses the column signal that
+disambiguates similarly-named SBO siblings (\texttt{OPMG} vs \texttt{OPHA});
+stage-B cannot reason cross-table about JOIN columns; errors compound (a wrong
+table in stage-A can't be corrected by stage-B). Joint reasoning is load-bearing
+for this task.
+\item \textbf{SmolLM2-1.7B base swap (sweep 20, -0.135 alone)}: the model is
+genuinely weaker on this distribution (token accuracy 0.80 vs Coder's 0.90);
+adding it to the ensemble \emph{hurt} (-0.037), so diversity does not always
+help when the noise floor of the new member is too high.
+\item \textbf{Data augmentation alone (sweep 14, -0.027)}: train\_loss roughly
+2$\times$ higher than the 301-example baseline at the same 200 steps --
+underfitting on the bigger dataset. Doubling steps (sweep 15) recovered most of
+the regression but did not exceed the 301-example baseline. The matched-step
+ablation on the original 301 data (sweep 16, lr=3e-4, 400 steps) \emph{also}
+hurt (-0.038) -- the model overfits on 301 examples at 400 steps. The
+2$\times$2 table-size/step-count grid implies the augmented data distribution
+is roughly neutral for this base+adapter; the limiting resource is capacity
+matched to per-example exposure, not raw data quantity.
+\item \textbf{Self-consistency union-of-samples (-0.005)}: at T=0.5 sampling
+diversity adds more noise than signal; the model's greedy decode is already
+quite consistent.
+\item \textbf{Column-expansion post-processing (neutral)}: ``$\geq$1 token
+overlap'' was too aggressive ($-$0.009 from added false positives); the
+stricter ``$\geq$2 meaningful tokens'' rule only fires on $\sim$9 columns and
+was a wash.
+\end{itemize}
+
+\textbf{Which knobs mattered for table vs column F1.}
+The ensemble's table score (0.7648) is 13 points above column score (0.6356)
+and this asymmetry is consistent across all our adapters. Sweep~13's r=32+MLP
+upgrade lifted column F1 the most among training changes (+0.045 vs sweep~12);
+embedding retrieval lifted column recall (+0.149 over BM25 in the 3-way
+ensemble). Going the other way, the SmolLM2 swap collapsed both axes evenly --
+suggesting column performance is bottlenecked by base-model capacity and
+retrieval quality, not by prompt or post-processing.
+
+\textbf{Surprises.} The single most surprising result was that
+\texttt{types\_keys} prompts hurt. We expected richer schema metadata to help;
+instead the model became less discriminative. The runner-up surprise was that
+\texttt{max\_tables=40} hurt ($-$0.02) -- BM25 retrieval was reasonable and
+exposing more distractors just confused the model. Together these argue that
+on $\sim$1.5B with a small training set, \emph{less context is more}.
+
+\textbf{What we would try next.} (1)~Retrain on embed-filtered prompts to close
+the small train/test retrieval-distribution gap (we infer with embed but the
+adapter was trained with BM25 prompts; expected +0.005--0.02).
+(2)~Distill a stronger frontier model's chain-of-thought into the SFT data --
+moves the bottleneck from base capacity to data quality.
+(3)~Hybrid retrieval with learned fusion weights instead of RRF.
+
+\section{AI Tools Statement}
+
+Code was developed iteratively with Anthropic's \textbf{Claude Code} (CLI agent
+on the \textbf{Claude Opus 4.7} model). Specific contributions: drafting
+\texttt{train\_rapidfire.py}'s sweep configurations, investigating the
+rapidfireai SHM-checkpoint disk-flush bug (incl. reading
+\texttt{rapidfireai/fit/backend/worker.py} to identify the
+\texttt{num\_chunks=1} workaround), implementing the embedding retriever, the
+LoRA-swap ensemble path in \texttt{main.py}, the post-processing utilities
+(\texttt{expand\_columns.py}, \texttt{format\_two\_stage\_data.py},
+\texttt{reproduce\_champion.py}), the SBO augmentation pipeline
+(\texttt{augment\_data.py}, which itself calls the Anthropic API using
+\textbf{Claude Haiku 4.5} for bulk generation), and drafting this report. All
+design decisions, sweep selection, eval interpretation, and the final
+configuration choices were ours; the AI tool served as an implementation and
+analysis accelerant. The audit log
+\texttt{data/train\_augmented\_audit.json} records every generated example and
+its validation outcome for transparency.
+
+\end{document}

@@ -80,7 +80,26 @@ def create_model(model_config):
 
 
 def build_config_group(max_seq_length: int, num_train_epochs: int):
-    """Sweep 19: cosine-LR-schedule diversity-adapter for the ensemble.
+    """Sweep 20: cross-family base model for ensemble diversity.
+
+    The 3-way ensemble (13+15+18, all Qwen-Coder-1.5B + r=32+MLP) is at
+    0.6986. Sweep 19 (same family + cosine LR) was too correlated and
+    hurt the ensemble. To break the correlation, sweep 20 swaps the
+    base model to a different family entirely:
+        - base: HuggingFaceTB/SmolLM2-1.7B-Instruct
+          (Meta-like Llama-architecture, but pretrained on a different
+          corpus -- so tokenizer, embedding space, and pretraining biases
+          all differ from Qwen-Coder. Should produce different error modes.)
+        - rubric suggested it explicitly; <=2B cap satisfied (1.7B).
+
+    Identical to sweep 13 otherwise (compact prompt, r=32 + q/k/v/o + MLP,
+    lr=3e-4, 200 steps, num_chunks=1). Llama-arch SmolLM2 has the same
+    target_module names so the LoRA config carries over cleanly.
+
+    If sweep 20 lands ~0.62+ AND its errors differ from sweep 13/15/18,
+    ensembling it in should push past 0.70.
+
+    Sweep 19: cosine-LR-schedule diversity-adapter for the ensemble.
 
     Champion is now a 3-way ensemble (sweep 13 + 15 + 18) at 0.6986 -- but the
     remaining val failures are CORRELATED (all 3 ensemble members miss the
@@ -162,7 +181,7 @@ def build_config_group(max_seq_length: int, num_train_epochs: int):
 
     sft = RFSFTConfig(
         learning_rate=3e-4,
-        lr_scheduler_type='cosine',
+        lr_scheduler_type='linear',
         warmup_ratio=0.05,
         max_steps=max_steps,
         num_train_epochs=num_train_epochs,
@@ -189,7 +208,7 @@ def build_config_group(max_seq_length: int, num_train_epochs: int):
 
     configs = RFList([
         RFModelConfig(
-            model_name='Qwen/Qwen2.5-Coder-1.5B-Instruct',
+            model_name='HuggingFaceTB/SmolLM2-1.7B-Instruct',
             peft_config=peft_config,
             training_args=sft,
             model_type='causal_lm',

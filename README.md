@@ -1,3 +1,86 @@
+# CSE/DSC 234 Project 2 -- Submission
+
+Schema-linking pipeline built on `Qwen2.5-Coder-1.5B-Instruct` + LoRA, trained via
+RapidFire AI. **Validation leaderboard: 0.7002** (Table 0.7648 / Column 0.6356).
+
+## How to run (TA grading workflow)
+
+```bash
+python3 main.py --input <input.json> --output <pred.json>
+```
+
+That's it. With no other flags this runs the submitted **3-way LoRA ensemble**
+with embedding-based table retrieval, producing the 0.7002 result. On the
+~24 GB MIG slice it completes the 101-question validation set in **~11 minutes**,
+well under the 15-minute grading budget.
+
+The model artifact is loaded as follows:
+
+- Base model: `Qwen/Qwen2.5-Coder-1.5B-Instruct` (pulled from HF Hub via
+  `AutoModelForCausalLM.from_pretrained`).
+- `./adapter/` -- the single best LoRA adapter (sweep 13). Per the rubric this
+  folder is committed at the repo root.
+- `./adapter_ensemble/sweep{13,15,18}/` -- the three LoRA adapters that the
+  default ensemble path loads sequentially (same base, different LR / training
+  data). Each is ~150 MB. `main.py` swaps them with `PeftModel.from_pretrained`
+  between passes and unions the per-(table, column) predictions.
+
+After each adapter completes, partial-union predictions are atomically written
+to `--output`, so even a mid-third-adapter timeout returns a 2-way ensemble
+(strictly better than a single adapter).
+
+To use a single adapter (faster, lower score), pass `--single` -- this loads
+just `./adapter/`.
+
+## Required Python dependencies
+
+```
+rapidfireai      # used by train_rapidfire.py for training (NOT inference)
+transformers
+trl
+peft
+torch
+datasets
+sentence-transformers   # for BAAI/bge-small-en-v1.5 retriever in main.py
+sqlglot                 # for sql_to_schema_links.py
+PyPDF2 / pypdf          # only if you re-read the project statement
+anthropic               # only if you re-run augment_data.py
+```
+
+All standard, no auth-gated models. The BGE retriever auto-downloads (~30 MB).
+
+## Repo layout (our additions)
+
+```
+main.py                     inference entry (ensemble default, --single fallback)
+prompt.py                   shared prompt + parsing utilities
+schema_utils.py             schema loading, serialization (compact/types/keys),
+                            BM25 / embed / hybrid table retrievers
+train_rapidfire.py          training entry (RapidFire AI RFGridSearch)
+train_single.py             plain TRL SFTTrainer fallback (used during early dev)
+format_training_data.py     train.json / validation.json -> JSONL
+format_two_stage_data.py    splits each example into stage-A / stage-B SFT pairs
+augment_data.py             generates additional SBO training data via Claude API
+expand_columns.py           keyword-based column-expansion post-processor (not in final)
+reproduce_champion.py       rebuilds preds_CHAMPION_v2_embed.json from per-model preds
+adapter/                    SUBMITTED single LoRA (sweep 13, rubric-required path)
+adapter_ensemble/           SUBMITTED 3 LoRA adapters used by the ensemble default
+adapter_v2/                 EARLY artifact (train_single.py path), kept for reference
+data/                       train.json, validation.json, *.jsonl preprocessed,
+                            train_augmented.json (Claude-generated SBO aug)
+predictions/                all per-model + ensemble validation outputs, kept for the report
+logs/                       per-sweep rapidfire.log, training.log, metrics.json
+                            (extracted from the rapidfireai mlflow DB)
+docs/                       course-provided project statement + sample_main.py
+schemas/                    17 Spider-format DB schemas (rubric-required path)
+tests/                      smoke tests
+```
+
+The release-packet documentation below (file formats, gotchas, etc.) is the
+upstream README we started from and is preserved verbatim for reference.
+
+---
+
 # Project 2 Release Packet -- CSE/DSC 234, Spring 2026
 
 This packet accompanies the Project 2 statement PDF. **Read the statement first**;

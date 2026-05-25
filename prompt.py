@@ -42,6 +42,7 @@ def build_messages(
     max_tables: int = 20,
     threshold_cols: int = 500,
     style: str = 'compact',
+    retrieval: str = 'bm25',
 ) -> List[Dict[str, str]]:
     """Returns a chat-format message list. The model's `apply_chat_template`
     will turn this into a single prompt string at train and inference time.
@@ -59,6 +60,7 @@ def build_messages(
     schema_text = serialize_schema_filtered(
         schema, question, gold_links=gold_links,
         max_tables=max_tables, threshold_cols=threshold_cols, style=style,
+        retrieval=retrieval,
     )
     return [
         {"role": "system", "content": SYSTEM_PROMPT},

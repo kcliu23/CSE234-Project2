@@ -2,7 +2,7 @@
 
 A schema-linking pipeline built on `Qwen2.5-Coder-1.5B-Instruct` fine-tuned with LoRA adapters via RapidFire AI.
 
-**Validation leaderboard score: 0.7002** (Table F1: 0.7648 / Column F1: 0.6356)
+**Validation leaderboard score: 0.7006** (Table F1: 0.7648 / Column F1: 0.6356)
 
 ---
 
@@ -12,7 +12,7 @@ A schema-linking pipeline built on `Qwen2.5-Coder-1.5B-Instruct` fine-tuned with
 python3 main.py --input <input.json> --output <pred.json>
 ```
 
-By default, this runs the submitted **3-way LoRA ensemble** with embedding-based table retrieval, reproducing the 0.7002 validation result. On a ~24 GB MIG slice, inference over the 101-question validation set completes in approximately **11 minutes** — well within the 15-minute grading budget.
+By default, this runs the submitted **3-way LoRA ensemble** with embedding-based table retrieval, reproducing the 0.7006 validation result. On a ~24 GB MIG slice, inference over the 101-question validation set completes in approximately **11 minutes** — well within the 15-minute grading budget.
 
 To use a single adapter (faster, slightly lower score):
 

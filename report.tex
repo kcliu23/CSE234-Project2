@@ -21,11 +21,12 @@
 \begin{document}
 \maketitle\vspace{-0.4in}
 
-\textbf{Final validation leaderboard: 0.7002} (Table 0.7648 / Column 0.6356).
+\textbf{Final validation leaderboard: 0.7006} (Table 0.7676 / Column 0.6335).
 Baseline (smoke adapter): 0.5605. Best single adapter: 0.6648 (sweep 13).
 Submission: \texttt{python3 main.py --input X --output Y} runs a 3-way LoRA ensemble
 with embedding-based table retrieval; completes 101 questions in $\sim$11~min on a
-24~GB MIG slice ($<$15~min budget).
+24~GB MIG slice ($<$15~min budget). Verified end-to-end from a fresh
+\texttt{git clone} of the submitted repo: 0.7006 reproduces exactly in 10m58s.
 
 \section{Training Data Methodology}
 
@@ -78,7 +79,11 @@ Instruct variant (Sec.~4).
 
 \textbf{Adapter.} LoRA r=32, $\alpha=64$, dropout 0.05, target modules
 \{\texttt{q,k,v,o,gate,up,down}\}\_\texttt{proj} (the full attention block plus
-the MLP block). bf16 with gradient checkpointing.
+the MLP block). bf16 with gradient checkpointing during training. Adapter
+safetensors are shipped as \textbf{fp16} (PEFT's default fp32 save was 148~MB
+per adapter, above GitHub's 100~MB per-file limit; fp16 halves that to 74~MB
+and we verified the score is preserved within $\pm 0.001$ of fp32). The 3
+adapters together fit in $\sim$220 MB of repo size.
 
 \textbf{Optimizer.} AdamW (TRL default), \texttt{lr\_scheduler\_type=linear},
 \texttt{warmup\_ratio=0.05}, \texttt{per\_device\_train\_batch\_size=1},
@@ -202,6 +207,10 @@ stage-A (table prediction) and stage-B (per-table column prediction) datasets
 for the two-stage experiment.
 \item \texttt{expand\_columns.py} -- the keyword-based column-expansion
 post-processor (Sec.~4 below).
+\item \texttt{generate\_cot\_traces.py} -- calls Claude Haiku 4.5 once per
+train example to produce a brief, schema-grounded rationale; validates that
+the rationale references at least one gold table; produces
+\texttt{data/train\_cot.json} for sweep 21's CoT-distillation experiment.
 \item \texttt{reproduce\_champion.py} -- self-contained script that
 re-derives the 3-way ensemble predictions from the per-model
 \texttt{preds\_sweep\{13,15,18\}\_embed.json} files; can also regenerate
@@ -232,6 +241,7 @@ experiment.
 11 & Qwen2.5-1.5B          & r=16 q/k/v/o, \textbf{types\_keys prompt}         & 3e-4 & 200 & 0.5946 & $-$0.028 \\
 20 & \textbf{SmolLM2-1.7B} & r=32 + MLP, BM25                                  & 3e-4 & 200 & 0.5301 & $-$0.135 \\
 17a/b & Qwen2.5-Coder-1.5B & \textbf{Two-stage}: table model + column model    & 3e-4 & 200 & 0.6127 & $-$0.052 \\
+21 & Qwen2.5-Coder-1.5B    & r=32 + MLP, \textbf{CoT-distilled} training data  & 3e-4 & 200 & 0.6103 & $-$0.054 \\
 \midrule
 \multicolumn{6}{r}{\textbf{Inference-time -- best single adapter (sweep 13):}} & \\
 \multicolumn{6}{r}{BM25 retrieval (baseline)} & 0.6648 \\
@@ -333,6 +343,18 @@ quite consistent.
 overlap'' was too aggressive ($-$0.009 from added false positives); the
 stricter ``$\geq$2 meaningful tokens'' rule only fires on $\sim$9 columns and
 was a wash.
+\item \textbf{Chain-of-thought distillation (sweep 21, -0.054)}: we generated
+brief ($\sim$50 token) reasoning traces from Claude Haiku 4.5 for each train
+example via \texttt{generate\_cot\_traces.py} (300/301 examples passed
+schema-grounding validation: the rationale had to reference at least one
+gold table). The CoT-trained adapter ($\sim$0.61) was strictly worse than
+sweep 13 (0.66) alone and adding it to the ensemble regressed by 0.007.
+Hypotheses: (a) the model's gradient budget is now spent learning to write
+reasoning tokens rather than getting more accurate at JSON tokens; (b)
+Haiku's short rationales are descriptive ("X contains Y") rather than
+structurally disambiguating, so they don't add new knowledge; (c) the
+model commits to a reasoning path early and is then constrained to match
+it -- when the reasoning is wrong, the JSON is wrong too.
 \end{itemize}
 
 \textbf{Which knobs mattered for table vs column F1.}
@@ -354,9 +376,13 @@ on $\sim$1.5B with a small training set, \emph{less context is more}.
 \textbf{What we would try next.} (1)~Retrain on embed-filtered prompts to close
 the small train/test retrieval-distribution gap (we infer with embed but the
 adapter was trained with BM25 prompts; expected +0.005--0.02).
-(2)~Distill a stronger frontier model's chain-of-thought into the SFT data --
-moves the bottleneck from base capacity to data quality.
-(3)~Hybrid retrieval with learned fusion weights instead of RRF.
+(2)~Longer CoT traces ($\sim$200 tokens) with explicit table-disambiguation
+language -- the brief CoT we tried in sweep 21 was too generic; a longer
+trace that names sibling tables and explains why each was/wasn't selected
+might actually teach the model new structure.
+(3)~Hybrid retrieval with learned fusion weights instead of RRF, possibly
+with a small cross-encoder reranker over the union of BM25 + embed
+top-30 candidates.
 
 \section{AI Tools Statement}
 
@@ -369,8 +395,9 @@ rapidfireai SHM-checkpoint disk-flush bug (incl. reading
 LoRA-swap ensemble path in \texttt{main.py}, the post-processing utilities
 (\texttt{expand\_columns.py}, \texttt{format\_two\_stage\_data.py},
 \texttt{reproduce\_champion.py}), the SBO augmentation pipeline
-(\texttt{augment\_data.py}, which itself calls the Anthropic API using
-\textbf{Claude Haiku 4.5} for bulk generation), and drafting this report. All
+(\texttt{augment\_data.py}) and the CoT-trace generator
+(\texttt{generate\_cot\_traces.py}) -- both of which call the Anthropic
+API using \textbf{Claude Haiku 4.5} -- and drafting this report. All
 design decisions, sweep selection, eval interpretation, and the final
 configuration choices were ours; the AI tool served as an implementation and
 analysis accelerant. The audit log

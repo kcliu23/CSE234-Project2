@@ -27,7 +27,7 @@ python3 main.py --input <input.json> --output <pred.json> --single
 | `./adapter/` | Single best LoRA adapter (sweep 13) — required by rubric |
 | `./adapter_ensemble/sweep{13,15,18}/` | Three LoRA adapters used by the default ensemble path |
 
-The base model (`Qwen/Qwen2.5-Coder-1.5B-Instruct`) is pulled from Hugging Face Hub via `AutoModelForCausalLM.from_pretrained`. Each ensemble adapter is ~150 MB and is loaded sequentially using `PeftModel.from_pretrained`.
+The base model (`Qwen/Qwen2.5-Coder-1.5B-Instruct`) is pulled from Hugging Face Hub via `AutoModelForCausalLM.from_pretrained`. Each ensemble adapter is ~74 MB and is loaded sequentially using `PeftModel.from_pretrained`.
 
 After each adapter completes, partial-union predictions are atomically written to `--output`. A mid-third-adapter timeout will still return a 2-way ensemble result, which is strictly better than a single-adapter result.
 

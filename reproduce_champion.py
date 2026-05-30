@@ -33,11 +33,18 @@ import subprocess
 from typing import Dict, List
 
 ADAPTER_DIRS = {
-    'sweep13': 'adapter_ensemble/sweep13',
-    'sweep15': 'adapter_ensemble/sweep15',
-    'sweep18': 'adapter_ensemble/sweep18',
+    'sweep13': 'adapter_ensemble/sweep13',  # Qwen-Coder-1.5B
+    'sweep15': 'adapter_ensemble/sweep15',  # Qwen-Coder-1.5B
+    'sweep22': 'adapter_ensemble/sweep22',  # Qwen3-1.7B (cross-family diversity)
 }
-BASE_MODEL = 'Qwen/Qwen2.5-Coder-1.5B-Instruct'
+# Per-adapter base model -- main.py auto-detects from adapter_config.json
+# but reproduce_champion.py uses this when --regenerate calls main.py directly.
+ADAPTER_BASE = {
+    'sweep13': 'Qwen/Qwen2.5-Coder-1.5B-Instruct',
+    'sweep15': 'Qwen/Qwen2.5-Coder-1.5B-Instruct',
+    'sweep22': 'Qwen/Qwen3-1.7B',
+}
+BASE_MODEL = 'Qwen/Qwen2.5-Coder-1.5B-Instruct'  # fallback only
 DEFAULT_PREDS_DIR = 'predictions'
 
 
@@ -46,13 +53,15 @@ def regenerate_per_model_preds(input_path: str, preds_dir: str) -> None:
     os.makedirs(preds_dir, exist_ok=True)
     for name, adir in ADAPTER_DIRS.items():
         out = os.path.join(preds_dir, f'preds_{name}.json')
-        print(f"[reproduce] regenerating {out} via main.py + {adir}")
+        base = ADAPTER_BASE.get(name, BASE_MODEL)
+        print(f"[reproduce] regenerating {out} via main.py + {adir} (base={base})")
         cmd = [
             'python', 'main.py',
+            '--single',
             '--input', input_path,
             '--output', out,
             '--adapter_dir', adir,
-            '--base_model', BASE_MODEL,
+            '--base_model', base,
             '--batch_size', '1',
         ]
         subprocess.run(cmd, check=True)

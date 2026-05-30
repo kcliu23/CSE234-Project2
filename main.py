@@ -92,10 +92,13 @@ def predict_two_stage(items: List[Dict],
 
     base = AutoModelForCausalLM.from_pretrained(
         base_model,
-        torch_dtype=torch.bfloat16 if torch.cuda.is_available() else torch.float32,
+        dtype=torch.bfloat16 if torch.cuda.is_available() else torch.float32,
         device_map='auto' if torch.cuda.is_available() else None,
     )
     base.eval()
+    for attr in ('temperature', 'top_p', 'top_k'):
+        if hasattr(base.generation_config, attr):
+            setattr(base.generation_config, attr, None)
 
     schema_cache: Dict[str, Dict] = {}
     def get_schema(db_id: str) -> Dict:
@@ -191,39 +194,61 @@ def _write_preds_atomic(path: str, preds):
     os.replace(tmp, path)
 
 
+def _read_adapter_base(adapter_dir: str) -> str:
+    """Return base_model_name_or_path from an adapter's adapter_config.json."""
+    with open(os.path.join(adapter_dir, 'adapter_config.json')) as f:
+        cfg = json.load(f)
+    return cfg.get('base_model_name_or_path') or cfg.get('base_model_name', '')
+
+
+def _parse_ensemble_spec(spec: str, default_retrieval: str):
+    """Parse `path1:retriever1,path2:retriever2,...` into [(path, retriever), ...].
+    If no `:retriever` segment is given, falls back to default_retrieval.
+    Empty entries are skipped. Returns list of (adapter_dir, retrieval) tuples.
+    """
+    out = []
+    for raw in spec.split(','):
+        raw = raw.strip()
+        if not raw:
+            continue
+        if ':' in raw:
+            path, retr = raw.rsplit(':', 1)
+            out.append((path.strip(), retr.strip()))
+        else:
+            out.append((raw, default_retrieval))
+    return out
+
+
 def predict_ensemble(items: List[Dict],
                      schemas_dir: str,
                      base_model: str,
-                     adapter_dirs: List[str],
+                     adapter_dirs,                # list[str] OR list[tuple(str, str)]
                      max_new_tokens: int,
                      max_tables: int = 20,
                      prompt_style: str = 'compact',
                      retrieval: str = 'embed',
                      save_partial_to: str = None) -> List[Dict]:
-    """Ensemble inference: load base ONCE, iterate over adapters, union the
-    {table:[cols]} predictions across all adapters for each question.
+    """Ensemble inference: union the {table:[cols]} predictions across all
+    given adapters for each question.
+
+    Adapters MAY come from different base models. Each adapter's required
+    base is read from its adapter_config.json. Adapters are GROUPED by base
+    model so each base is loaded only once; within a group we use PEFT's
+    multi-adapter API (load_adapter + set_adapter) to swap LoRAs without
+    re-wrapping. Between groups the base is freed and the GPU cache cleared.
 
     After each adapter completes, writes the running union to disk
     (save_partial_to) so that if the process gets killed (e.g. exceeded the
     15-minute grading budget), the partial union of completed adapters is
-    still graded by the TA.
+    still graded.
+
+    `base_model` is used only as a fallback for adapters whose
+    adapter_config.json lacks an explicit base_model_name_or_path.
     """
     import torch
+    from collections import OrderedDict
     from transformers import AutoModelForCausalLM, AutoTokenizer
     from peft import PeftModel
-
-    print(f"[main] [ensemble] Loading base model: {base_model}", file=sys.stderr)
-    tokenizer = AutoTokenizer.from_pretrained(base_model)
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
-    tokenizer.padding_side = 'left'
-
-    base = AutoModelForCausalLM.from_pretrained(
-        base_model,
-        torch_dtype=torch.bfloat16 if torch.cuda.is_available() else torch.float32,
-        device_map='auto' if torch.cuda.is_available() else None,
-    )
-    base.eval()
 
     schema_cache: Dict[str, Dict] = {}
     def get_schema(db_id: str) -> Dict:
@@ -231,46 +256,94 @@ def predict_ensemble(items: List[Dict],
             schema_cache[db_id] = load_schema(schemas_dir, db_id)
         return schema_cache[db_id]
 
+    # Normalize adapter_dirs to [(path, retrieval), ...]. If the entries are
+    # bare strings, fall back to the function-level `retrieval` arg.
+    normalized = []
+    for entry in adapter_dirs:
+        if isinstance(entry, tuple):
+            normalized.append(entry)
+        else:
+            normalized.append((entry, retrieval))
+
+    # Group (adapter_dir, retrieval) pairs by their declared base model
+    # (stable insertion order). Multiple pairs may share a base model.
+    groups: 'OrderedDict[str, List[tuple]]' = OrderedDict()
+    for path, retr in normalized:
+        bm = _read_adapter_base(path) or base_model
+        groups.setdefault(bm, []).append((path, retr))
+
     # Per-question accumulators (case-insensitive de-dup; canonical casing preserved)
     accum_tables: Dict[int, Dict[str, str]] = {}            # qid -> {tlc -> canonical T}
     accum_cols:   Dict[int, Dict[str, Dict[str, str]]] = {} # qid -> {tlc -> {clc -> canonical c}}
 
-    for ai, adapter_dir in enumerate(adapter_dirs, 1):
-        print(f"[main] [ensemble] [{ai}/{len(adapter_dirs)}] Loading adapter: {adapter_dir}", file=sys.stderr)
-        model = PeftModel.from_pretrained(base, adapter_dir)
+    total_adapters = sum(len(v) for v in groups.values())
+    completed = 0
+
+    for gi, (group_base, group_pairs) in enumerate(groups.items(), 1):
+        print(f"[main] [ensemble] === group {gi}/{len(groups)}: base={group_base} ({len(group_pairs)} adapter[s]) ===",
+              file=sys.stderr)
+        tokenizer = AutoTokenizer.from_pretrained(group_base)
+        if tokenizer.pad_token is None:
+            tokenizer.pad_token = tokenizer.eos_token
+        tokenizer.padding_side = 'left'
+
+        base = AutoModelForCausalLM.from_pretrained(
+            group_base,
+            dtype=torch.bfloat16 if torch.cuda.is_available() else torch.float32,
+            device_map='auto' if torch.cuda.is_available() else None,
+        )
+        base.eval()
+        for attr in ('temperature', 'top_p', 'top_k'):
+            if hasattr(base.generation_config, attr):
+                setattr(base.generation_config, attr, None)
+
+        # Load every adapter in this group as a named PEFT adapter, then
+        # swap between them via set_adapter() per pass.
+        model = None
+        adapter_names = [f'g{gi}_a{ai}' for ai in range(len(group_pairs))]
+        for (adapter_dir, _retr), name in zip(group_pairs, adapter_names):
+            if model is None:
+                model = PeftModel.from_pretrained(base, adapter_dir, adapter_name=name)
+            else:
+                model.load_adapter(adapter_dir, adapter_name=name)
         model.eval()
 
-        n = len(items)
-        for qi, it in enumerate(items):
-            sch = get_schema(it['db_id'])
-            msgs = build_messages(it['db_id'], it['question'], sch,
-                                  max_tables=max_tables, style=prompt_style, retrieval=retrieval)
-            prompt_text = _apply_template(tokenizer, msgs)
-            text = _generate(model, tokenizer, prompt_text, max_new_tokens)
-            raw = parse_model_output(text)
-            links = canonicalize_prediction(raw, sch)
+        for (adapter_dir, this_retrieval), name in zip(group_pairs, adapter_names):
+            completed += 1
+            print(f"[main] [ensemble] [{completed}/{total_adapters}] Activating adapter: {adapter_dir}  (retrieval={this_retrieval})",
+                  file=sys.stderr)
+            model.set_adapter(name)
 
-            qid = it['question_id']
-            accum_tables.setdefault(qid, {})
-            accum_cols.setdefault(qid, {})
-            for t, c_list in links.items():
-                tlc = t.lower()
-                accum_tables[qid].setdefault(tlc, t)
-                accum_cols[qid].setdefault(tlc, {})
-                for c in (c_list or []):
-                    accum_cols[qid][tlc].setdefault(c.lower(), c)
+            n = len(items)
+            for qi, it in enumerate(items):
+                sch = get_schema(it['db_id'])
+                msgs = build_messages(it['db_id'], it['question'], sch,
+                                      max_tables=max_tables, style=prompt_style, retrieval=this_retrieval)
+                prompt_text = _apply_template(tokenizer, msgs)
+                text = _generate(model, tokenizer, prompt_text, max_new_tokens)
+                raw = parse_model_output(text)
+                links = canonicalize_prediction(raw, sch)
 
-            if (qi + 1) % 25 == 0 or qi + 1 == n:
-                print(f"[main] [ensemble] [{ai}/{len(adapter_dirs)}] {qi+1}/{n} done", file=sys.stderr)
+                qid = it['question_id']
+                accum_tables.setdefault(qid, {})
+                accum_cols.setdefault(qid, {})
+                for t, c_list in links.items():
+                    tlc = t.lower()
+                    accum_tables[qid].setdefault(tlc, t)
+                    accum_cols[qid].setdefault(tlc, {})
+                    for c in (c_list or []):
+                        accum_cols[qid][tlc].setdefault(c.lower(), c)
 
-        # Save the running union after each adapter so we have a graded-ready
-        # output even if we get killed before all adapters finish.
-        if save_partial_to is not None:
-            _write_preds_atomic(save_partial_to, _build_preds_from_accum(items, accum_tables, accum_cols))
-            print(f"[main] [ensemble] [{ai}/{len(adapter_dirs)}] partial preds -> {save_partial_to}", file=sys.stderr)
+                if (qi + 1) % 25 == 0 or qi + 1 == n:
+                    print(f"[main] [ensemble] [{completed}/{total_adapters}] {qi+1}/{n} done", file=sys.stderr)
 
-        # Free PEFT wrapper before next adapter swap to avoid stacked adapters.
+            if save_partial_to is not None:
+                _write_preds_atomic(save_partial_to, _build_preds_from_accum(items, accum_tables, accum_cols))
+                print(f"[main] [ensemble] [{completed}/{total_adapters}] partial preds -> {save_partial_to}", file=sys.stderr)
+
+        # Free this group's base + PeftModel before loading the next base.
         del model
+        del base
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
 
@@ -301,9 +374,12 @@ def predict_with_model(items: List[Dict],
 
     model = AutoModelForCausalLM.from_pretrained(
         base_model,
-        torch_dtype=torch.bfloat16 if torch.cuda.is_available() else torch.float32,
+        dtype=torch.bfloat16 if torch.cuda.is_available() else torch.float32,
         device_map='auto' if torch.cuda.is_available() else None,
     )
+    for attr in ('temperature', 'top_p', 'top_k'):
+        if hasattr(model.generation_config, attr):
+            setattr(model.generation_config, attr, None)
 
     if adapter_dir and os.path.isdir(adapter_dir):
         from peft import PeftModel
@@ -439,9 +515,13 @@ def main():
     ap.add_argument('--single', action='store_true',
                     help='Disable ensemble; just load --adapter_dir as a single adapter. '
                          'Use this for ablations or as a faster fallback.')
-    ap.add_argument('--ensemble_dirs', default='./adapter_ensemble/sweep13,./adapter_ensemble/sweep15,./adapter_ensemble/sweep18',
-                    help='Comma-separated LoRA adapter dirs to ensemble (union of predictions). '
-                         'Ignored when --single is set.')
+    ap.add_argument('--ensemble_dirs', default='./adapter_ensemble/sweep13:embed,./adapter_ensemble/sweep15:bm25,./adapter_ensemble/sweep22:embed',
+                    help='Comma-separated LoRA adapter specs to ensemble (union of predictions). '
+                         'Each entry is "path[:retriever]". If retriever is omitted, --retrieval is used. '
+                         'Adapters may use different base models; main.py reads each adapter\'s '
+                         'adapter_config.json to group them by base model and loads each base once. '
+                         'Default uses the empirical-best mix: sw13 embed + sw15 BM25 + sw22 embed '
+                         '(probed val leaderboard 0.7147). Ignored when --single is set.')
     args = ap.parse_args()
 
     with open(args.input) as f:
@@ -461,8 +541,8 @@ def main():
         )
     elif not args.single:
         # Default path: 3-way ensemble (the submitted champion).
-        adapter_dirs = [d.strip() for d in args.ensemble_dirs.split(',') if d.strip()]
-        missing = [d for d in adapter_dirs if not os.path.isdir(d)]
+        adapter_specs = _parse_ensemble_spec(args.ensemble_dirs, args.retrieval)
+        missing = [p for p, _ in adapter_specs if not os.path.isdir(p)]
         if missing:
             print(f"[main] WARN missing ensemble dirs: {missing}; falling back to --single mode",
                   file=sys.stderr)
@@ -478,7 +558,7 @@ def main():
                 items,
                 schemas_dir=args.schemas_dir,
                 base_model=args.base_model,
-                adapter_dirs=adapter_dirs,
+                adapter_dirs=adapter_specs,  # list of (path, retrieval) tuples
                 max_new_tokens=args.max_new_tokens,
                 max_tables=args.max_tables,
                 prompt_style=args.prompt_style,

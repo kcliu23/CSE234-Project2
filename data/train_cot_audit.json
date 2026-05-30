@@ -1,0 +1,1808 @@
+[
+  {
+    "question_id": 1,
+    "db_id": "NTSB",
+    "reasoning": "The INJURY table contains both REGION (body region classification) and AIS (injury severity code where 5 indicates critical), enabling filtering and grouping to count critical injuries by anatomical region.",
+    "status": "ok"
+  },
+  {
+    "question_id": 2,
+    "db_id": "PacificIslandLandbirds",
+    "reasoning": "tbl_Stations contains the station name field needed in the answer, while tbl_Stations_UTMs contains the X_final and Y_final coordinates used to filter for the specific location; they join on Station_ID.",
+    "status": "ok"
+  },
+  {
+    "question_id": 3,
+    "db_id": "SBODemoUS-Service",
+    "reasoning": "OCTR contains service contracts with ContractID, and CTR1 contains line items for each contract; joining on ContractID and grouping by it counts items per contract.",
+    "status": "ok"
+  },
+  {
+    "question_id": 4,
+    "db_id": "NTSB",
+    "reasoning": "TIRE table provides tire models and vehicle identifiers, while TIREDAMAGE table filters for vehicles with damage observations (excluding unknown value 9), requiring a join on CASEID and VEHNO to count distinct vehicles per tire model.",
+    "status": "ok"
+  },
+  {
+    "question_id": 5,
+    "db_id": "SBODemoUS-Human Resources",
+    "reasoning": "HEM6 contains roleID linked by empID to OHEM which stores employee salary data, enabling filtering employees with salary < 5000 and retrieving their role IDs.",
+    "status": "ok"
+  },
+  {
+    "question_id": 6,
+    "db_id": "ASIS_20161108_HerpInv_Database",
+    "reasoning": "tblFieldDataMinnowTrapSurveys contains the trap survey records with Count values to sum, LocationID to group by location, and Trap_# to differentiate traps within each location.",
+    "status": "ok"
+  },
+  {
+    "question_id": 7,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "ACC_HS_Participation_Rate contains participation RATE data and ACC_HS_Graduation_Rate contains GRAD_RATE data for high schools; both tables filter by ENTITY_NAME (Brooklyn Collegiate), SUBGROUP_NAME (All Students), YEAR (2022), and join on INSTITUTION_ID, ENTITY_CD, and SUBGROUP_NAME to correlate participation and graduation metrics.",
+    "status": "ok"
+  },
+  {
+    "question_id": 8,
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "reasoning": "OPR1 is the sales opportunity table containing OpenDate and CloseDate columns for opportunity records, plus ClosePrcnt which filters for closing percentages of six or less.",
+    "status": "ok"
+  },
+  {
+    "question_id": 9,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "Annual_NYSESLAT contains the New York State English as a Second Language Achievement Test data with columns for proficiency levels (PER_ENT, PER_EMER, PER_TRAN, PER_EXP), filterable by SUBGROUP_NAME, SUBJECT, ENTITY_NAME, and YEAR.",
+    "status": "ok"
+  },
+  {
+    "question_id": 10,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "Teachers_Teaching_Out_of_Certification contains NUM_OUT_CERT (teacher counts), and BOCES_and_N/RC contains COUNTY_NAME mapped via ENTITY_CD to aggregate out-of-certification teachers by county.",
+    "status": "ok"
+  },
+  {
+    "question_id": 11,
+    "db_id": "NTSB",
+    "reasoning": "The CDC table contains DAMAPILLAR (A pillar damage indicator) and CASEID/VEHNO (to uniquely identify and count distinct vehicles).",
+    "status": "ok"
+  },
+  {
+    "question_id": 12,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "ACC_EM_ELP contains ELL student data filtered by SUBGROUP_NAME='white' and ELL_COUNT, while Institution_Grouping identifies public schools via GROUP_NAME='Public School', joined on ENTITY_CD to count matching elementary school entities.",
+    "status": "ok"
+  },
+  {
+    "question_id": 13,
+    "db_id": "KlamathInvasiveSpecies",
+    "reasoning": "The query needs contact information (Position_Title, City, State_Code, Zip_Code) filtered by First_Name and Last_Name, all of which are fields in tlu_Contacts that stores contact details.",
+    "status": "ok"
+  },
+  {
+    "question_id": 14,
+    "db_id": "ATBI",
+    "reasoning": "tbl_Locations provides the location details (Plot_ID, coordinates, directions); tbl_Events links locations to events; tbl_Nests counts nested observations per event to identify the event with the most nests.",
+    "status": "ok"
+  },
+  {
+    "question_id": 15,
+    "db_id": "KlamathInvasiveSpecies",
+    "reasoning": "tbl_Locations contains both the County field to filter for Shasta and the Loc_Type field to group counts by location type.",
+    "status": "ok"
+  },
+  {
+    "question_id": 16,
+    "db_id": "NTSB",
+    "reasoning": "TIREPLAC contains manufacturer tire recommendations (RECFRONT1 for first recommended front tire size and RECFRPRESS1 for corresponding pressure), which directly answer the question about average pressures grouped by front tire sizes.",
+    "status": "ok"
+  },
+  {
+    "question_id": 17,
+    "db_id": "NTSB",
+    "reasoning": "The CDC table contains HEADINGANG (vehicle-to-vehicle heading angle) needed to filter crashes between 0-90 degrees, and CASEID to count distinct crashes matching that condition.",
+    "status": "ok"
+  },
+  {
+    "question_id": 18,
+    "db_id": "ASIS_20161108_HerpInv_Database",
+    "reasoning": "tluStage provides the stage descriptions needed for grouping and display, while tblFieldDataMinnowTrapSurveys contains the individual minnow trap survey records with stage codes to count and aggregate.",
+    "status": "ok"
+  },
+  {
+    "question_id": 19,
+    "db_id": "ASIS_20161108_HerpInv_Database",
+    "reasoning": "tblFieldDataTurtleMeasurements contains the Age column needed to filter for five year old turtles and count the measurement records.",
+    "status": "ok"
+  },
+  {
+    "question_id": 20,
+    "db_id": "NTSB",
+    "reasoning": "The INTRUSION table contains INTMAG (intrusion magnitude categories) to group crashes by, and CASEID to count distinct crashes per magnitude category.",
+    "status": "ok"
+  },
+  {
+    "question_id": 21,
+    "db_id": "KlamathInvasiveSpecies",
+    "reasoning": "To find the contact's first name associated with the most unique events, join tlu_Contacts (for First_Name) with xref_Event_Contacts (for Contact_ID and Event_ID linkage) and count distinct events per contact.",
+    "status": "ok"
+  },
+  {
+    "question_id": 22,
+    "db_id": "NTSB",
+    "reasoning": "The INJURY table contains REGION (to filter for spine=6) and AIS (injury severity scale) columns needed to count injuries grouped by severity for the specified body region.",
+    "status": "ok"
+  },
+  {
+    "question_id": 23,
+    "db_id": "CratersWildlifeObservations",
+    "reasoning": "The Roadkill table contains Species and HWY_Mile_Marker columns needed to filter roadkill incidents at the specified highway location and return distinct species.",
+    "status": "ok"
+  },
+  {
+    "question_id": 24,
+    "db_id": "SBODemoUS-General",
+    "reasoning": "The CDIC table stores key-value pairs in its _Key and _Value columns, so querying _Value where _Key matches 'HomePage' retrieves the associated dictionary values.",
+    "status": "ok"
+  },
+  {
+    "question_id": 25,
+    "db_id": "PacificIslandLandbirds",
+    "reasoning": "tbl_Habitat contains the canopy and understory composition data needed, while tbl_Events provides the entered_by filter for Caitlin Jensen; they join on Event_ID to correlate entries with their compositions.",
+    "status": "ok"
+  },
+  {
+    "question_id": 26,
+    "db_id": "CratersWildlifeObservations",
+    "reasoning": "The query counts Roadkill records by matching their Date column against any VERTEBRATES record's Date column, requiring both tables and their Date fields to identify overlapping observation dates.",
+    "status": "ok"
+  },
+  {
+    "question_id": 27,
+    "db_id": "SBODemoUS-Human Resources",
+    "reasoning": "OHEM is the employee master table containing personal demographic information including martStatus, homeStreet, homeBlock, homeZip, and homeState fields, filtered by lastName to identify employee Bridi.",
+    "status": "ok"
+  },
+  {
+    "question_id": 28,
+    "db_id": "ATBI",
+    "reasoning": "tbl_Deadwood contains the MPD (midpoint diameter) and Decay columns needed to find the lowest diameter's decay stage, while tlu_DecayStage maps the Decay ID to its DecayStage_Descr description.",
+    "status": "ok"
+  },
+  {
+    "question_id": 29,
+    "db_id": "NorthernPlainsFireManagement",
+    "reasoning": "The question asks for a count of decay stages, which are enumerated in the tlu_DecayStage lookup table that contains all decay stage definitions; no specific columns need to be selected since only the row count is needed.",
+    "status": "ok"
+  },
+  {
+    "question_id": 30,
+    "db_id": "KlamathInvasiveSpecies",
+    "reasoning": "The question asks for site coordinate boundaries, which are stored in tbl_Sites as Site_Start_X, Site_Start_Y, Site_End_X, Site_End_Y, filtered by Site_Name matching 'Nobles Pass C'.",
+    "status": "ok"
+  },
+  {
+    "question_id": 31,
+    "db_id": "KlamathInvasiveSpecies",
+    "reasoning": "To count events per site with site details, join tbl_Sites (for Site_Name, Site_Desc) via tbl_Locations (Site_ID bridge) to tbl_Events (Location_ID to aggregate event counts).",
+    "status": "ok"
+  },
+  {
+    "question_id": 32,
+    "db_id": "NorthernPlainsFireManagement",
+    "reasoning": "The tlu_PlaceNames table contains State and place records; grouping by State and counting records directly answers how many places exist per state.",
+    "status": "ok"
+  },
+  {
+    "question_id": 33,
+    "db_id": "PacificIslandLandbirds",
+    "reasoning": "tbl_Stations provides the station names needed for output grouping, while tbl_Events contains Station_ID to join and count events per station.",
+    "status": "ok"
+  },
+  {
+    "question_id": 34,
+    "db_id": "ASIS_20161108_HerpInv_Database",
+    "reasoning": "The question asks for the meaning of evidence code \"DOR\", which requires looking up the code in tluEvidenceCode table and retrieving its Text field that contains the definition.",
+    "status": "ok"
+  },
+  {
+    "question_id": 35,
+    "db_id": "NTSB",
+    "reasoning": "The INJURY table contains REGION field identifying body regions where injuries occurred, and counting rows grouped by REGION directly answers the question about injury distribution across anatomical areas.",
+    "status": "ok"
+  },
+  {
+    "question_id": 36,
+    "db_id": "NorthernPlainsFireManagement",
+    "reasoning": "tbl_Deadwood contains the Length and MPD fields needed for the answer, while tlu_DecayStage provides the DecayStage_Descr to filter by 'log is flat', joined on Decay and DecayStage_ID.",
+    "status": "ok"
+  },
+  {
+    "question_id": 37,
+    "db_id": "SBODemoUS-Finance",
+    "reasoning": "OACT provides account master data (AcctCode, AcctName) to look up the account details, while JDT1 contains individual journal entry line items (Account) that must be joined and counted to find entries for the specified account code.",
+    "status": "ok"
+  },
+  {
+    "question_id": 38,
+    "db_id": "NTSB",
+    "reasoning": "The GLAZING table tracks windshield damage by location, where GLAZLOC=1 represents the windshield position, enabling a count of vehicles with windshield glazing damage.",
+    "status": "ok"
+  },
+  {
+    "question_id": 39,
+    "db_id": "CratersWildlifeObservations",
+    "reasoning": "The Roadkill table contains Big_Game and Location columns needed to filter for 'yes' values and group counts by location.",
+    "status": "ok"
+  },
+  {
+    "question_id": 40,
+    "db_id": "PacificIslandLandbirds",
+    "reasoning": "tbl_Stations_UTMs contains the Datum column which specifies coordinate system datums (WGS84, NAD83) for each station location, enabling direct filtering and counting by datum type.",
+    "status": "ok"
+  },
+  {
+    "question_id": 41,
+    "db_id": "CratersWildlifeObservations",
+    "reasoning": "The question asks for UTM coordinates (UTMN, UTME) filtered by invertebrate Common_Name, so INVERTEBRATES table is needed since it contains all three required columns: Common_Name for filtering and UTMN/UTME for the coordinate output.",
+    "status": "ok"
+  },
+  {
+    "question_id": 42,
+    "db_id": "NTSB",
+    "reasoning": "The TIRE table contains TIREMODEL to filter for 'WRANGLER' tires, and CASEID and VEHNO are needed to uniquely identify and count distinct vehicles.",
+    "status": "ok"
+  },
+  {
+    "question_id": 43,
+    "db_id": "NorthernPlainsFireManagement",
+    "reasoning": "tbl_Nests contains the nested subplot observations linked to Event_ID 30 via SpCode, and tlu_PlantSpecies provides the genus, species, and CommonName details for those species codes.",
+    "status": "ok"
+  },
+  {
+    "question_id": 44,
+    "db_id": "NTSB",
+    "reasoning": "GV provides SPEEDLIMIT and VEHNO for each vehicle; EDRPRECRASH contains event data recorder speeds via PVALUE (where PCODE=1010 indicates speed) that must be joined on CASEID and VEHNO to compute the difference.",
+    "status": "ok"
+  },
+  {
+    "question_id": 45,
+    "db_id": "KlamathInvasiveSpecies",
+    "reasoning": "The question asks for yearly counts of distinct species in Redwood National Parks, so tlu_Species_REDW provides both the SampleYear grouping column and Species values to count distinctly.",
+    "status": "ok"
+  },
+  {
+    "question_id": 46,
+    "db_id": "ASIS_20161108_HerpInv_Database",
+    "reasoning": "The tluMicroHabitat table contains the Habitat and Description columns needed to retrieve micro habitat names and their definitions filtered by the specified pond types.",
+    "status": "ok"
+  },
+  {
+    "question_id": 47,
+    "db_id": "PacificIslandLandbirds",
+    "reasoning": "tlu_Contacts stores contact information including First_Name, Last_Name, and Organization to filter for National Park Service members, while xref_Event_Contacts links contacts to events via Contact_ID to enable counting logged events per person.",
+    "status": "ok"
+  },
+  {
+    "question_id": 48,
+    "db_id": "CratersWildlifeObservations",
+    "reasoning": "The query needs INVERTEBRATES table to access Family and Number columns, filtering out NULL numbers and grouping by family to find the maximum number per family.",
+    "status": "ok"
+  },
+  {
+    "question_id": 49,
+    "db_id": "NorthernPlainsFireManagement",
+    "reasoning": "tlu_Can_Pos provides canopy position names and codes; tbl_Overstory links observations to canopy positions and species codes; tlu_PlantSpecies maps species codes to the common name 'Red Maple' for filtering.",
+    "status": "ok"
+  },
+  {
+    "question_id": 50,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "The BOCES_and_N/RC table directly contains SCHOOL_NAME and COUNTY_NAME fields needed to count schools per county, filtered by YEAR 2020.",
+    "status": "ok"
+  },
+  {
+    "question_id": 51,
+    "db_id": "CratersWildlifeObservations",
+    "reasoning": "The question asks for invertebrate observation counts by location filtered by observer name, so INVERTEBRATES table is needed for its Location and Observer columns to filter and group results.",
+    "status": "ok"
+  },
+  {
+    "question_id": 52,
+    "db_id": "SBODemoUS-Inventory and Production",
+    "reasoning": "The OPKG table stores package definitions with PkgType identifying the package category and Volume containing the dimensional measurement; filtering by PkgType='Box' and selecting Volume directly answers the query.",
+    "status": "ok"
+  },
+  {
+    "question_id": 53,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "Accountability_Levels contains INDICATOR, SUBGROUP_NAME, and LEVEL columns needed to filter by 'HS Grad Rate' indicator and 'Multiracial' subgroup, while INSTITUTION_ID and ENTITY_NAME provide the requested output fields, with ENTITY_NAME supporting the 'friendship' name filter.",
+    "status": "ok"
+  },
+  {
+    "question_id": 54,
+    "db_id": "NTSB",
+    "reasoning": "TIRE table provides tire location (TIRELOC) and actual tire size (TIRESIZE) per vehicle, while TIREPLAC table contains the manufacturer's recommended front tire size (RECFRONT1); joining on CASEID and VEHNO filters for left front (LF) matches.",
+    "status": "ok"
+  },
+  {
+    "question_id": 55,
+    "db_id": "NTSB",
+    "reasoning": "The INTRUSION table contains all requested fields (CASEID, VEHNO, INTCOMP, INTMAG, INTDIRECT) and supports filtering by CASEID < 20392 to satisfy the query requirements.",
+    "status": "ok"
+  },
+  {
+    "question_id": 56,
+    "db_id": "PacificIslandLandbirds",
+    "reasoning": "tbl_Locations contains Island information and Site_ID to link sites, while tbl_Sites contains Site_Name, requiring a join on Site_ID to retrieve site names grouped by island.",
+    "status": "ok"
+  },
+  {
+    "question_id": 57,
+    "db_id": "KlamathInvasiveSpecies",
+    "reasoning": "The question asks for event counts grouped by Hydrology type; tbl_MacroHabitat contains the Hydrology column and links to events via Event_ID, enabling aggregation of events per hydrology classification.",
+    "status": "ok"
+  },
+  {
+    "question_id": 58,
+    "db_id": "SBODemoUS-Inventory and Production",
+    "reasoning": "OITM provides ItemName to filter for 'Printer Paper A4 White', OBCD contains BcdCode and UomEntry to retrieve barcodes matching the specified unit of measurement entries (3 or 4), joined via ItemCode.",
+    "status": "ok"
+  },
+  {
+    "question_id": 59,
+    "db_id": "NorthernPlainsFireManagement",
+    "reasoning": "The tsys_App_Releases table contains all requested fields (Database_title, File_name, Release_notes, Author_email, Author_org_name) and the Release_date column needed to filter for 2015 releases.",
+    "status": "ok"
+  },
+  {
+    "question_id": 60,
+    "db_id": "KlamathInvasiveSpecies",
+    "reasoning": "tbl_Db_Revisions stores revision reasons and descriptions, requiring join to tlu_Contacts via Revision_Contact_ID to filter by contact's First_Name and Last_Name to identify Allison S's revisions.",
+    "status": "ok"
+  },
+  {
+    "question_id": 61,
+    "db_id": "SBODemoUS-Human Resources",
+    "reasoning": "OHEM contains employee data including lastName, nChildren, and the type field; OHTY maps type IDs to names, enabling filtering for employees where name='Technician'; StatusOfE (education status) is also in OHEM.",
+    "status": "ok"
+  },
+  {
+    "question_id": 62,
+    "db_id": "CratersWildlifeObservations",
+    "reasoning": "The INVERTEBRATES table contains Genus_species to identify the specific species and Location to retrieve all observation sites for Trichodes ornatus.",
+    "status": "ok"
+  },
+  {
+    "question_id": 63,
+    "db_id": "ATBI",
+    "reasoning": "tbl_Overstory contains tree condition data (TreeCond) and tree tags; tlu_Tree_Cond maps condition codes to 'down'; tlu_PlantSpecies provides species common names via the SpCode join key.",
+    "status": "ok"
+  },
+  {
+    "question_id": 64,
+    "db_id": "SBODemoUS-Banking",
+    "reasoning": "OUDP stores department information (Code, Name) to filter by 'General', while OPEX contains all payee details (PayeeName, PayeeZip, PayeeCity, PayeeStree, PayCountry, PayeeState) linked via the Department column.",
+    "status": "ok"
+  },
+  {
+    "question_id": 65,
+    "db_id": "NTSB",
+    "reasoning": "TIREPLAC contains GVWR (gross vehicle weight rating) field, which directly corresponds to the question's requirement to filter vehicles by weight rating below 4000.",
+    "status": "ok"
+  },
+  {
+    "question_id": 66,
+    "db_id": "ATBI",
+    "reasoning": "tbl_Saplings provides sapling records with Condition field; tlu_Tree_Cond maps condition codes to TreeCond_Text descriptions needed for grouping and displaying the count results.",
+    "status": "ok"
+  },
+  {
+    "question_id": 67,
+    "db_id": "SBODemoUS-Finance",
+    "reasoning": "OACT contains account names and current balances (AcctName, CurrTotal) while OACG stores category names (Name); joining on category field (OACT.category = OACG.AbsId) filters for cash category accounts.",
+    "status": "ok"
+  },
+  {
+    "question_id": 68,
+    "db_id": "NTSB",
+    "reasoning": "VPICDECODE provides vehicle MAKE and identifies vehicles by CASEID/VEHNO; DISTRACT table contains DISTRACTN field to identify distracted drivers, enabling join to count distraction cases per make and calculate proportions.",
+    "status": "ok"
+  },
+  {
+    "question_id": 69,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "ACC_EM_Core_and_Weighted_Performance contains the SUBGROUP_NAME and ENTITY_CD needed to filter for 'multiracial' entities, while Institution_Grouping's GROUP_NAME and ENTITY_CD identify which entities are public schools.",
+    "status": "ok"
+  },
+  {
+    "question_id": 70,
+    "db_id": "PacificIslandLandbirds",
+    "reasoning": "tbl_Locations contains both Loc_Name to filter for 'Northwest Kahuku' and Island to retrieve the answer.",
+    "status": "ok"
+  },
+  {
+    "question_id": 71,
+    "db_id": "NTSB",
+    "reasoning": "The OCC table tracks individual occupants and their medical treatment details; EMSDATA=1 indicates emergency medical services were provided, so counting these records answers the question about occupants receiving emergency attention.",
+    "status": "ok"
+  },
+  {
+    "question_id": 72,
+    "db_id": "KlamathInvasiveSpecies",
+    "reasoning": "tbl_Events contains the event records, so counting all rows in this table directly answers how many events exist in the database.",
+    "status": "ok"
+  },
+  {
+    "question_id": 73,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "ACC_EM_ELP contains elementary school ELL assessment data with ELL_COUNT, BENCHMARK, PROGRESS_RATE, and SUCCESS_RATIO columns; filtered by ENTITY_NAME for 'PINE BUSH' and SUBGROUP_NAME for 'All Students'.",
+    "status": "ok"
+  },
+  {
+    "question_id": 74,
+    "db_id": "NTSB",
+    "reasoning": "The OCC table contains occupant demographic data including SEX, while EJECT tracks ejection events; joining on CASEID, VEHNO, and OCCNO links occupants to their ejections, enabling aggregation of ejection counts grouped by sex.",
+    "status": "ok"
+  },
+  {
+    "question_id": 75,
+    "db_id": "SBODemoUS-General",
+    "reasoning": "PMG1 contains project management stage data with DSCRIPTION and EXPCOSTS columns needed for the answer, and START date field for filtering stages before October 20th, 2021.",
+    "status": "ok"
+  },
+  {
+    "question_id": 76,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "ACC_EM_NYSESLAT_for_Participation contains elementary (EM) NYSESLAT assessment data, and SUBJECT column lists all distinct test subjects for this elementary-level English language learner assessment.",
+    "status": "ok"
+  },
+  {
+    "question_id": 77,
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "reasoning": "OOPR contains both CardGroup for grouping opportunities and MaxSumLoc for the maximum sales amount in local currency, enabling direct aggregation of average potential per card group.",
+    "status": "ok"
+  },
+  {
+    "question_id": 78,
+    "db_id": "ASIS_20161108_HerpInv_Database",
+    "reasoning": "tblEventDataHerps contains both Weather (for grouping) and AirTemp (for averaging) fields directly from herpetological survey events.",
+    "status": "ok"
+  },
+  {
+    "question_id": 79,
+    "db_id": "NTSB",
+    "reasoning": "The CRASH table contains CRASHMONTH which directly provides the month information needed to group crashes, and counting records gives the number of crashes per month.",
+    "status": "ok"
+  },
+  {
+    "question_id": 80,
+    "db_id": "ATBI",
+    "reasoning": "tlu_Can_Pos contains canopy position names and numeric codes; tbl_Overstory records individual trees with their canopy positions, enabling aggregation by joining on CanPos_Num to get name-to-count mappings.",
+    "status": "ok"
+  },
+  {
+    "question_id": 81,
+    "db_id": "CratersWildlifeObservations",
+    "reasoning": "The question asks for a count of habitat codes, which are stored as records in the HABITAT_CODES table, so we count rows from that table without needing to filter by any specific columns.",
+    "status": "ok"
+  },
+  {
+    "question_id": 82,
+    "db_id": "NorthernPlainsFireManagement",
+    "reasoning": "tbl_Locations contains all requested output columns (SiteDescription, Slope, Aspect, Slope_shape, Elevation) and the Topo_Position field to filter by; tlu_topo_position provides the lookup table mapping Topo_Position IDs to the 'Midslope' text value needed for the WHERE clause.",
+    "status": "ok"
+  },
+  {
+    "question_id": 83,
+    "db_id": "KlamathInvasiveSpecies",
+    "reasoning": "The query requires site details (Site_Name, Site_ID, Site_Desc, Length, Route) filtered and sorted by Site_Start_Y coordinate, all found in tbl_Sites.",
+    "status": "ok"
+  },
+  {
+    "question_id": 84,
+    "db_id": "NTSB",
+    "reasoning": "The DISTRACT table contains distraction records linked to cases via CASEID, so counting distinct CASEIDs identifies how many unique accidents involved distracted driving.",
+    "status": "ok"
+  },
+  {
+    "question_id": 85,
+    "db_id": "NTSB",
+    "reasoning": "GV provides CURBWT for filtering vehicles by weight range and VPICDECODE provides Make and Model details, joined via CASEID and VEHNO to retrieve the requested vehicle attributes.",
+    "status": "ok"
+  },
+  {
+    "question_id": 86,
+    "db_id": "NTSB",
+    "reasoning": "The GV table contains MODELYR which directly provides vehicle model year information needed to count vehicles by year and sort them chronologically.",
+    "status": "ok"
+  },
+  {
+    "question_id": 87,
+    "db_id": "NorthernPlainsFireManagement",
+    "reasoning": "tbl_Nests contains Event_ID and Presence_First values for event 30; tlu_Presence maps Presence_First codes to Pres_Text descriptions needed for grouping and display.",
+    "status": "ok"
+  },
+  {
+    "question_id": 88,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "ACC_HS_Chronic_Absenteeism provides absent_count and absent_rate filtered by year, subgroup, and enrollment; Institution_Grouping identifies public schools via group_name to find the entity_cd with highest enrollment.",
+    "status": "ok"
+  },
+  {
+    "question_id": 89,
+    "db_id": "SBODemoUS-Banking",
+    "reasoning": "RCT2 stores incoming invoice payment applications and contains vatApplied column which represents the applied value added tax amount needed to filter records exceeding 700.",
+    "status": "ok"
+  },
+  {
+    "question_id": 90,
+    "db_id": "SBODemoUS-Service",
+    "reasoning": "OINS contains installation records with custmrName to filter by customer 'Microchips', itemCode to filter by 'A00006', and internalSN to retrieve the requested serial numbers.",
+    "status": "ok"
+  },
+  {
+    "question_id": 91,
+    "db_id": "CratersWildlifeObservations",
+    "reasoning": "WILDLIFE_MASTERLIST contains both COMMON_NAME (to filter for \"moose\") and SCIENTIFIC_NAME (to retrieve the answer), making it the only table needed.",
+    "status": "ok"
+  },
+  {
+    "question_id": 92,
+    "db_id": "SBODemoUS-Human Resources",
+    "reasoning": "OHEM is the employee master table containing all required demographic fields (birthDate, brthCountr, homeCity, homeCounty, homeCountr) and the job title filter criterion to identify accountants.",
+    "status": "ok"
+  },
+  {
+    "question_id": 93,
+    "db_id": "KlamathInvasiveSpecies",
+    "reasoning": "tbl_Event_Details contains Event_Notes, tbl_Events contains Location_ID and Start_Date for filtering by August 5th 2011, and they join on Event_ID.",
+    "status": "ok"
+  },
+  {
+    "question_id": 94,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "ACC_EM_Chronic_Absenteeism contains enrollment, absent_count, and absent_rate metrics filtered by entity_name (school), year, and subgroup_name (Students with disabilities).",
+    "status": "ok"
+  },
+  {
+    "question_id": 95,
+    "db_id": "CratersWildlifeObservations",
+    "reasoning": "The query needs Scientific_Name from WILDLIFE_MASTERLIST to get all scientific names, then excludes those found in VERTEBRATES's Scientific_Name column to identify names not in the vertebrates table.",
+    "status": "ok"
+  },
+  {
+    "question_id": 96,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "The BOCES_and_N/RC table contains BOCES_NAME to identify each board of cooperative educational services, SCHOOL_NAME to count distinct schools per BOCES, and YEAR to filter for 2020 records.",
+    "status": "ok"
+  },
+  {
+    "question_id": 97,
+    "db_id": "NTSB",
+    "reasoning": "VPICDECODE contains vehicle make, model, and year to filter Honda Civics before 2012; TIREPLAC contains the recommended front/rear tire sizes and pressures (RECFRONT1, RECREAR1, RECFRPRESS1, RECRRPRESS1) linked via CASEID and VEHNO.",
+    "status": "ok"
+  },
+  {
+    "question_id": 98,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "Annual_EM_Science contains the assessment results with LEVEL1-4_%TESTED percentages by SUBGROUP_NAME and ASSESSMENT_NAME; Institution_Grouping filters for public schools via GROUP_NAME by matching ENTITY_CD.",
+    "status": "ok"
+  },
+  {
+    "question_id": 99,
+    "db_id": "PacificIslandLandbirds",
+    "reasoning": "tbl_Locations contains both the Island column to group results by and Site_ID to count distinct sites per island.",
+    "status": "ok"
+  },
+  {
+    "question_id": 100,
+    "db_id": "NTSB",
+    "reasoning": "TIRE provides tire location (TIRELOC) and actual size (TIRESIZE) for left front wheels; TIREPLAC contains manufacturer's recommended front tire size (RECFRONT1); VPICDECODE supplies vehicle make and model; all joined via CASEID and VEHNO to match tire data with vehicle specifications and recommendations.",
+    "status": "ok"
+  },
+  {
+    "question_id": 101,
+    "db_id": "NTSB",
+    "reasoning": "The VPICDECODE table contains the Make column with decoded vehicle information, providing comprehensive manufacturer data that the GV table's Make field doesn't guarantee for all records.",
+    "status": "ok"
+  },
+  {
+    "question_id": 102,
+    "db_id": "ATBI",
+    "reasoning": "To find trail names for an event, we join tbl_Events on Event_ID to locate the associated Location_ID, then join tbl_Locations using that Location_ID to retrieve the Trail field, and finally join tlu_Roads_and_Trails matching on ListedName to get both ListedName and ValidName.",
+    "status": "ok"
+  },
+  {
+    "question_id": 103,
+    "db_id": "ASIS_20161108_HerpInv_Database",
+    "reasoning": "tblFieldDataCoverBoard contains board numbers and types; tblLocations contains SiteID to filter by '18CB1'; they join via LocationID to retrieve boards at the specified site.",
+    "status": "ok"
+  },
+  {
+    "question_id": 104,
+    "db_id": "SBODemoUS-Reports",
+    "reasoning": "RDOC stores document configuration including EmailFont, ScreenFont, and TypeCode fields, making it the sole table needed to retrieve documents using 'Tahoma' email font and their associated type codes and screen fonts.",
+    "status": "ok"
+  },
+  {
+    "question_id": 105,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "The Inexperienced_Teachers_and_Principals table contains TOT_TEACH_LOW and TOT_PRINC_LOW columns tracking total teachers and principals in low-poverty schools, which directly answer the question about average counts statewide.",
+    "status": "ok"
+  },
+  {
+    "question_id": 106,
+    "db_id": "NTSB",
+    "reasoning": "EDRPRECRASH contains event data recorder speed values (PVALUE) filtered by code 1010 to identify speed records, while VPICDECODE provides vehicle make/model details; both tables join on CASEID and VEHNO to correlate speeds with vehicle identities.",
+    "status": "ok"
+  },
+  {
+    "question_id": 107,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "ACC_EM_ELP contains ELL_COUNT, LEVEL, and SUBGROUP_NAME to filter for level 2 programs with non-zero ELL students in all students subgroup; ACC_EM_NYSESLAT_for_Participation filters for non-participation (NYSESLAT_PART = '0'); Institution_Grouping identifies public schools via GROUP_NAME.",
+    "status": "ok"
+  },
+  {
+    "question_id": 108,
+    "db_id": "SBODemoUS-Banking",
+    "reasoning": "ORCT stores incoming check (receipt) transactions with WTOnhldPst and CheckSumFC fields; RCT1 contains check line details including AcctNum and CountryCod for filtering by 'CA'; DocNum links both tables.",
+    "status": "ok"
+  },
+  {
+    "question_id": 109,
+    "db_id": "CratersWildlifeObservations",
+    "reasoning": "INVERTEBRATES provides the invertebrate records with their Date, Habitat, Observer, and Common_Name; VERTEBRATES is queried to find matching Date and Habitat values for the filtering condition.",
+    "status": "ok"
+  },
+  {
+    "question_id": 110,
+    "db_id": "KlamathInvasiveSpecies",
+    "reasoning": "tbl_Edit_Log tracks all database modifications and directly contains the reason, table name, field name, and timestamp of each edit; ordering by Date_Change descending and selecting top 1 retrieves the most-recent change's details.",
+    "status": "ok"
+  },
+  {
+    "question_id": 111,
+    "db_id": "NTSB",
+    "reasoning": "JKWGT contains JKWGT5 (the adjusted jackknife replicate weight 5) and CATEGORY, which are needed to calculate the average weight grouped by case category.",
+    "status": "ok"
+  },
+  {
+    "question_id": 112,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "Annual_NYSAA contains New York State Alternate Assessment records and YEAR column filters for records from 2022, enabling a count of matching assessment records.",
+    "status": "ok"
+  },
+  {
+    "question_id": 113,
+    "db_id": "SBODemoUS-General",
+    "reasoning": "ODAB contains dashboard metadata (DashbdName, DashbdPath, Status) and links to queries via AbsEntry, while DAB1 stores query details (QryName) with query category filter (QryCtgry=2) and joins on DsbEntry.",
+    "status": "ok"
+  },
+  {
+    "question_id": 114,
+    "db_id": "ASIS_20161108_HerpInv_Database",
+    "reasoning": "tblEventDataHerps contains the weather condition, air temperature, and water temperature fields needed to count events grouped by weather and calculate average temperatures.",
+    "status": "ok"
+  },
+  {
+    "question_id": 115,
+    "db_id": "NTSB",
+    "reasoning": "EDREVENT contains ignition cycle counts (IGCYCRASH) and vehicle identifiers (CASEID, VEHNO) for filtering crashes with <200 cycles, while VPICDECODE provides vehicle details (MAKE, MODEL, MODELYEAR) joinable by CASEID and VEHNO.",
+    "status": "ok"
+  },
+  {
+    "question_id": 116,
+    "db_id": "ATBI",
+    "reasoning": "The question asks for x and y coordinates of a specific tree tag, so tbl_Tree_Tags is needed because it contains the Tag column for filtering and both Xcoord and Ycoord columns for the requested coordinates.",
+    "status": "ok"
+  },
+  {
+    "question_id": 117,
+    "db_id": "SBODemoUS-Banking",
+    "reasoning": "OCTG stores payment term group configurations where PymntGroup identifies the term code 'Net30', and ExtraDays, InstNum, and VATFirst provide the requested attributes about additional days, installment count, and VAT application on first installment.",
+    "status": "ok"
+  },
+  {
+    "question_id": 118,
+    "db_id": "NTSB",
+    "reasoning": "The GV table contains vehicle-level data including the DRPRESENT column which directly indicates whether a driver was present in each vehicle, enabling a count of vehicles where DRPRESENT equals 0.",
+    "status": "ok"
+  },
+  {
+    "question_id": 119,
+    "db_id": "NorthernPlainsFireManagement",
+    "reasoning": "tbl_Overstory contains DBH (diameter) measurements linked via Event_ID; tbl_Events filters by specific Event_IDs (15, 16); tlu_PlantSpecies matches the species name 'montana' to its SpeciesCode for joining.",
+    "status": "ok"
+  },
+  {
+    "question_id": 120,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "ACC_EM_Participation_Rate contains the MET_95_PERCENT flag to identify schools meeting the threshold, Institution_Grouping filters for public schools via GROUP_NAME, and ENTITY_CD links both tables to count distinct elementary school entities.",
+    "status": "ok"
+  },
+  {
+    "question_id": 121,
+    "db_id": "NorthernPlainsFireManagement",
+    "reasoning": "The question asks for counts grouped by layer where valid names contain \"Balsam\", so tlu_Roads_and_Trails is required for its Layer and ValidName columns to filter and aggregate the data.",
+    "status": "ok"
+  },
+  {
+    "question_id": 122,
+    "db_id": "SBODemoUS-Human Resources",
+    "reasoning": "OHEM contains employee master records with StatusOfP (professional status), citizenshp (citizenship), passportNo (passport number), and lastName fields needed to filter and retrieve the requested information for employee Buyer.",
+    "status": "ok"
+  },
+  {
+    "question_id": 123,
+    "db_id": "SBODemoUS-Business Partners",
+    "reasoning": "OCRG contains GroupName and GroupCode to identify business partner groups, while OCRD contains CardCode records with GroupCode to link each business partner to their group, enabling aggregation by group name.",
+    "status": "ok"
+  },
+  {
+    "question_id": 124,
+    "db_id": "PacificIslandLandbirds",
+    "reasoning": "To find which island has the fewest stations, join tbl_Locations (Island grouping), tbl_Transect (links locations to stations), and tbl_Stations (count entities) through their foreign keys, then aggregate by Island and order by station count ascending.",
+    "status": "ok"
+  },
+  {
+    "question_id": 125,
+    "db_id": "PacificIslandLandbirds",
+    "reasoning": "To find bird families and species codes during rainy events, join tlu_Species (for Family and Species_Code) through tbl_Observations (species-event link) and tbl_Events to tbl_Event_Details (which contains the Rain filter condition).",
+    "status": "ok"
+  },
+  {
+    "question_id": 126,
+    "db_id": "ATBI",
+    "reasoning": "tbl_Locations contains the Elevation column to filter locations above 4000 feet, and SiteDescription and Loc_Notes columns to retrieve the requested descriptive information.",
+    "status": "ok"
+  },
+  {
+    "question_id": 127,
+    "db_id": "ATBI",
+    "reasoning": "tbl_Seedlings contains seedling density records linked to events via Event_ID; counting distinct Event_ID values identifies how many unique events recorded this data.",
+    "status": "ok"
+  },
+  {
+    "question_id": 128,
+    "db_id": "SBODemoUS-Human Resources",
+    "reasoning": "OHEM contains employee professional/educational statuses (StatusOfP, StatusOfE) and street numbers (StreetNoW, StreetNoH); HTM1 links employees to teams via empID and teamID; OHTM identifies the Purchasing team by name.",
+    "status": "ok"
+  },
+  {
+    "question_id": 129,
+    "db_id": "SBODemoUS-Finance",
+    "reasoning": "ORCR contains recurring posting records with NextDeu (next due date), which is extracted by year to group and count postings by execution year.",
+    "status": "ok"
+  },
+  {
+    "question_id": 130,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "ACC_EM_Core_and_Weighted_Performance contains elementary performance data filtered by entity_name for the school, subject for 'combined', and subgroup_name for 'Students with Disabilities', with core_cohort and weighted_cohort columns providing the requested performance scores.",
+    "status": "ok"
+  },
+  {
+    "question_id": 131,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "ACC_HS_Core_and_Weighted_Performance provides WEIGHTED_INDEX and SUBJECT (filtered to SCIENCE) for schools, while Institution_Grouping filters by GROUP_NAME to identify public school districts via ENTITY_CD join.",
+    "status": "ok"
+  },
+  {
+    "question_id": 132,
+    "db_id": "NorthernPlainsFireManagement",
+    "reasoning": "tbl_Seedlings contains the Density metric needed to identify the highest density, while tlu_PlantSpecies provides the taxonomic details (Genus, species, CommonName) linked via SpCode.",
+    "status": "ok"
+  },
+  {
+    "question_id": 133,
+    "db_id": "NTSB",
+    "reasoning": "The JKWGT table contains jackknife weight entries and the CATEGORY column filters for cases in category 3, allowing us to count matching records.",
+    "status": "ok"
+  },
+  {
+    "question_id": 134,
+    "db_id": "KlamathInvasiveSpecies",
+    "reasoning": "tbl_MacroHabitat contains the requested habitat attributes (MacroHab, MicroHab, Hydrology, LandUse, Slope, Aspect), while tbl_Events provides Start_Date for filtering events from July 2015; they join on Event_ID.",
+    "status": "ok"
+  },
+  {
+    "question_id": 135,
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "reasoning": "OOPR contains the sales opportunity records with CreateDate for grouping by year and SumProfL for the gross profit in local currency needed to compute the average.",
+    "status": "ok"
+  },
+  {
+    "question_id": 136,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "ACC_HS_ELP is the high school English Language Program table containing ELL_COUNT, BENCHMARK, PROGRESS_RATE, SUCCESS_RATIO, and LEVEL columns filtered by ENTITY_NAME for the school, SUBGROUP_NAME for all students, and YEAR for 2022.",
+    "status": "ok"
+  },
+  {
+    "question_id": 137,
+    "db_id": "PacificIslandLandbirds",
+    "reasoning": "tlu_Species is the only table containing habitat classification and species taxonomic information (Family, Scientific_Name, Common_Name); filtering by Habitat='Forest Bird' directly identifies species occupying that habitat type.",
+    "status": "ok"
+  },
+  {
+    "question_id": 138,
+    "db_id": "SBODemoUS-Reports",
+    "reasoning": "ECM4 contains the ObjXPath and FieldXPath for mapping determinations, while OECM provides the Descr field to filter by 'PEPPOL'; joining on Code links parameters to their descriptions.",
+    "status": "ok"
+  },
+  {
+    "question_id": 139,
+    "db_id": "PacificIslandLandbirds",
+    "reasoning": "To count stations per island, join tbl_Locations (Island column) \u2192 tbl_Transect (Location_ID foreign key) \u2192 tbl_Stations (Transect_ID foreign key) to traverse the hierarchy from islands to stations, then group by Island and count.",
+    "status": "ok"
+  },
+  {
+    "question_id": 140,
+    "db_id": "NorthernPlainsFireManagement",
+    "reasoning": "The question asks for a count of distinct slope shapes, which are stored as lookup values in tlu_Slope_Shape table; no columns need to be specified since we're counting all rows in the table.",
+    "status": "ok"
+  },
+  {
+    "question_id": 141,
+    "db_id": "NorthernPlainsFireManagement",
+    "reasoning": "The question asks for event counts by year, requiring tbl_Events (which contains all event records) and its Event_Date column (to extract year and group events temporally).",
+    "status": "ok"
+  },
+  {
+    "question_id": 142,
+    "db_id": "KlamathInvasiveSpecies",
+    "reasoning": "tbl_Event_Details contains Event_Notes; tbl_Events contains Start_Date and links to Location_ID; tbl_Locations contains Loc_Name; these three tables joined via Event_ID and Location_ID satisfy the request for notes and names filtered by August 5th, 2011.",
+    "status": "ok"
+  },
+  {
+    "question_id": 143,
+    "db_id": "ASIS_20161108_HerpInv_Database",
+    "reasoning": "To find observer initials for cover board events, we join Observer_LU (ObsInits) through tlinkObservers (EventID, ObsInits) to tblEvents (EventID) to tblFieldDataCoverBoard (EventID), linking observers to the specific cover board observations they logged.",
+    "status": "ok"
+  },
+  {
+    "question_id": 144,
+    "db_id": "PacificIslandLandbirds",
+    "reasoning": "tbl_Events contains event records while tbl_Observations links observations to events via Event_ID; joining on Event_ID and grouping allows counting observations per event to filter those exceeding 7.",
+    "status": "ok"
+  },
+  {
+    "question_id": 145,
+    "db_id": "ATBI",
+    "reasoning": "The question asks for directions to a plot's location, requiring tbl_Locations.Directions; finding the specific tree with tag number 6 requires tbl_Tree_Tags.Tree_Tag_ID and Location_ID to join the tables.",
+    "status": "ok"
+  },
+  {
+    "question_id": 146,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "Annual_Regents_Exams contains regents exam results with ENTITY_NAME for school identification, YEAR/SUBJECT for filtering to 2022 Algebra I, TESTED for student count, PER_LEVEL1-5 for percent distributions across proficiency levels, and SUBGROUP_NAME for demographic breakdown.",
+    "status": "ok"
+  },
+  {
+    "question_id": 147,
+    "db_id": "ATBI",
+    "reasoning": "tlu_PlantSpecies provides genus and species names linked via SpeciesCode, which joins to tbl_WitnessTrees on Witness_SpCode to count observations per species.",
+    "status": "ok"
+  },
+  {
+    "question_id": 148,
+    "db_id": "ATBI",
+    "reasoning": "tbl_Deadwood contains decay observations linked to events; tlu_DecayStage provides decay stage descriptions; joining on Decay=DecayStage_ID and filtering by Event_ID with maximum log count answers the query.",
+    "status": "ok"
+  },
+  {
+    "question_id": 149,
+    "db_id": "SBODemoUS-General",
+    "reasoning": "OBOB stores business object metadata with DescField containing field descriptions and TableName identifying the object; filtering DescField for 'Memo' retrieves tables whose description fields mention Memo.",
+    "status": "ok"
+  },
+  {
+    "question_id": 150,
+    "db_id": "KlamathInvasiveSpecies",
+    "reasoning": "To find events with both micro and macro habitat observations, join tbl_MacroHabitat and tbl_MicroHabitat on their shared Event_ID column, which links observations to the same event.",
+    "status": "ok"
+  },
+  {
+    "question_id": 151,
+    "db_id": "CratersWildlifeObservations",
+    "reasoning": "The INVERTEBRATES table contains both the Class column (to filter for 'Insecta') and the Order column (to retrieve the taxonomic orders), with DISTINCT applied to avoid duplicate rows.",
+    "status": "ok"
+  },
+  {
+    "question_id": 152,
+    "db_id": "CratersWildlifeObservations",
+    "reasoning": "The query finds observers exclusively in INVERTEBRATES by excluding those who appear in VERTEBRATES, requiring both tables' Observer columns to identify who observed only one type of animal.",
+    "status": "ok"
+  },
+  {
+    "question_id": 153,
+    "db_id": "SBODemoUS-Human Resources",
+    "reasoning": "HTM1 contains teamID and empID to identify team membership; OHEM contains CPF to match the employee with fiscal ID '51B', requiring a join on empID to connect team assignment to the specific employee.",
+    "status": "ok"
+  },
+  {
+    "question_id": 154,
+    "db_id": "ATBI",
+    "reasoning": "tbl_Deadwood contains the Decay classification and MPD (midpoint diameter) measurements needed to group deadwood by decay type and find the maximum diameter for each.",
+    "status": "ok"
+  },
+  {
+    "question_id": 155,
+    "db_id": "ASIS_20161108_HerpInv_Database",
+    "reasoning": "The tluParkCode table stores park metadata with PARKCODE as the lookup key and PARKTYPE as the attribute directly answering what type of park ASIS is.",
+    "status": "ok"
+  },
+  {
+    "question_id": 156,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "The Expenditures_per_Pupil table contains PUPIL_COUNT_TOT, FEDERAL_EXP, and PER_FEDERAL_EXP columns, and can be filtered by ENTITY_NAME and YEAR to retrieve 2022 data for the specified school.",
+    "status": "ok"
+  },
+  {
+    "question_id": 157,
+    "db_id": "CratersWildlifeObservations",
+    "reasoning": "HABITAT_CODES provides habitat definitions to display; VERTEBRATES and INVERTEBRATES both contain Habitat codes to count records grouped by habitat type.",
+    "status": "ok"
+  },
+  {
+    "question_id": 158,
+    "db_id": "NorthernPlainsFireManagement",
+    "reasoning": "The question asks for ecology notes, coordinate metadata, and datum filtered by a specific plot, which are all location attributes stored together in tbl_Locations, accessible via the Plot_ID key column.",
+    "status": "ok"
+  },
+  {
+    "question_id": 159,
+    "db_id": "NorthernPlainsFireManagement",
+    "reasoning": "tbl_Tree_Tags contains tree tag records with SpCode and Location_ID; tbl_Locations provides Elevation filtering; tlu_PlantSpecies maps SpeciesCode to genus and CommonName for grouping and display.",
+    "status": "ok"
+  },
+  {
+    "question_id": 160,
+    "db_id": "NTSB",
+    "reasoning": "The INJURY table contains the AIS column which represents injury severity levels, allowing us to group and count injuries by their severity classification.",
+    "status": "ok"
+  },
+  {
+    "question_id": 161,
+    "db_id": "ATBI",
+    "reasoning": "tbl_Deadwood contains the Decay type and Length measurements needed to group deadwood records by decay stage and find the maximum length for each decay type.",
+    "status": "ok"
+  },
+  {
+    "question_id": 162,
+    "db_id": "PacificIslandLandbirds",
+    "reasoning": "The tbl_Locations table contains the Island column which stores island information, allowing a distinct count to answer the question of how many islands exist in the database.",
+    "status": "ok"
+  },
+  {
+    "question_id": 163,
+    "db_id": "CratersWildlifeObservations",
+    "reasoning": "INVERTEBRATES and VERTEBRATES provide Observer records for each observation type matched on Date and Habitat; HABITAT_CODES supplies the Definition for the matching Habitat Code.",
+    "status": "ok"
+  },
+  {
+    "question_id": 164,
+    "db_id": "NorthernPlainsFireManagement",
+    "reasoning": "tbl_Seedlings contains Density measurements linked via Event_ID to tbl_Events which has Event_Date; grouping by month of Event_Date and ordering by average Density identifies the month with highest average seedling density.",
+    "status": "ok"
+  },
+  {
+    "question_id": 165,
+    "db_id": "KlamathInvasiveSpecies",
+    "reasoning": "The question asks for Dominic D's position title, which requires looking up a contact by first and last name in tlu_Contacts table, filtering on First_Name and Last_Name columns and selecting the Position_Title column.",
+    "status": "ok"
+  },
+  {
+    "question_id": 166,
+    "db_id": "SBODemoUS-Reports",
+    "reasoning": "RDOC contains document metadata (DocCode, DocName, TypeCode) to filter by type and display results; RITM contains reporting elements linked by DocCode to enable counting elements per document.",
+    "status": "ok"
+  },
+  {
+    "question_id": 167,
+    "db_id": "ASIS_20161108_HerpInv_Database",
+    "reasoning": "tblFieldDataTurtleMeasurements contains the Gravid column which directly records whether a turtle was carrying eggs or young (indicated by value 1), allowing us to count matching records.",
+    "status": "ok"
+  },
+  {
+    "question_id": 168,
+    "db_id": "CratersWildlifeObservations",
+    "reasoning": "INVERTEBRATES contains the Class column to filter for Arachnida and the Common_Name and Genus_species columns to retrieve the requested invertebrate information.",
+    "status": "ok"
+  },
+  {
+    "question_id": 169,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "The question asks for core/weighted cohorts and performance indexes for a specific high school, subject, subgroup, and year, which are all directly provided as columns in ACC_HS_Core_and_Weighted_Performance with matching filter criteria (YEAR, SUBJECT, SUBGROUP_NAME, ENTITY_NAME).",
+    "status": "ok"
+  },
+  {
+    "question_id": 170,
+    "db_id": "ASIS_20161108_HerpInv_Database",
+    "reasoning": "tblFieldDataMinnowTrapSurveys contains the Count field for minnow observations and LocationID to group results by location, enabling aggregation of total minnow counts per site.",
+    "status": "ok"
+  },
+  {
+    "question_id": 171,
+    "db_id": "SBODemoUS-Service",
+    "reasoning": "OSCL contains service call records with customer ID, customer name, and priority fields needed to filter by medium priority (M) and group results by customer.",
+    "status": "ok"
+  },
+  {
+    "question_id": 172,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "ACC_EM_NYSESLAT_for_Participation contains participation data with NYSESLAT_PART indicating zero participation, while Institution_Grouping filters for public schools via GROUP_NAME, and ENTITY_CD links and identifies distinct elementary school entities meeting both criteria.",
+    "status": "ok"
+  },
+  {
+    "question_id": 173,
+    "db_id": "CratersWildlifeObservations",
+    "reasoning": "The Roadkill table contains HWY_Mile_Marker, Location, and Year columns needed to filter 2021 observations, group by highway marker, count observations per marker, and return the marker with the most roadkill incidents.",
+    "status": "ok"
+  },
+  {
+    "question_id": 174,
+    "db_id": "NTSB",
+    "reasoning": "The JKWGT table contains JKWGT3, the adjusted jackknife replicate weight 3 column, which is needed to calculate the average weight requested in the question.",
+    "status": "ok"
+  },
+  {
+    "question_id": 175,
+    "db_id": "SBODemoUS-Human Resources",
+    "reasoning": "OHEM contains employee records with firstName and lastName to identify Maria Bridi, and FNameSP and SurnameSP fields that store the spouse's first and last names.",
+    "status": "ok"
+  },
+  {
+    "question_id": 176,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "ACC_EM_ELP contains ELL_COUNT data and ENTITY_NAME/SUBGROUP_NAME filters needed to find English language learner counts for the 'all students' subgroup at schools with \"preparatory\" in their name.",
+    "status": "ok"
+  },
+  {
+    "question_id": 177,
+    "db_id": "ATBI",
+    "reasoning": "tbl_Events provides event records, tbl_Deadwood tracks decayed logs per event via Event_ID, and tbl_Nests records nested subplots per event via Event_ID; joining on Event_ID enables counting both observations per event.",
+    "status": "ok"
+  },
+  {
+    "question_id": 178,
+    "db_id": "ASIS_20161108_HerpInv_Database",
+    "reasoning": "tblFieldDataMinnowTrapSurveys contains minnow trap survey records with Count (quantity caught), Stage (life stage), and LocationID (to filter for ASIS_HERPS_20H), enabling aggregation of counts by stage.",
+    "status": "ok"
+  },
+  {
+    "question_id": 179,
+    "db_id": "NTSB",
+    "reasoning": "The TIREDAMAGE table contains vehicle damage records; CASEID and VEHNO uniquely identify each vehicle to count distinct vehicles with tire damage.",
+    "status": "ok"
+  },
+  {
+    "question_id": 180,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "The Accountability_Status table directly contains OVERALL_STATUS and MADE_PROGRESS fields filtered by ENTITY_NAME and YEAR, which directly match the question's request for accountability status and progress status of a specific school in 2022.",
+    "status": "ok"
+  },
+  {
+    "question_id": 181,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "Annual_NYSESLAT contains SUBJECT field representing distinct subjects tested in the New York State English as a Second Language Achievement Test, enabling a direct count of unique subjects.",
+    "status": "ok"
+  },
+  {
+    "question_id": 182,
+    "db_id": "NTSB",
+    "reasoning": "The EMSCARE table contains the NOTIFIED column which records the time when emergency services were notified after a crash, enabling calculation of the average notification time while filtering out outliers exceeding 1000.",
+    "status": "ok"
+  },
+  {
+    "question_id": 183,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "Annual_NYSESLAT contains NYSESLAT proficiency level data (NUM_ENT, NUM_EMER, NUM_TRAN, NUM_EXP) filtered by ENTITY_NAME, SUBGROUP_NAME, SUBJECT, and YEAR to identify students in the specified school, subgroup, assessment subject, and year.",
+    "status": "ok"
+  },
+  {
+    "question_id": 184,
+    "db_id": "SBODemoUS-Human Resources",
+    "reasoning": "OHEM contains VacCurYear for vacation data and empID to join; HTM1 links employees to teams via empID and teamID; OHTM identifies the Sales team by name and teamID.",
+    "status": "ok"
+  },
+  {
+    "question_id": 185,
+    "db_id": "NTSB",
+    "reasoning": "The CDC table contains DOORSILLDIFF, which directly represents the difference between door sill and door structure crush measurements; filtering excludes invalid codes 888 and 999.",
+    "status": "ok"
+  },
+  {
+    "question_id": 186,
+    "db_id": "SBODemoUS-Business Partners",
+    "reasoning": "OSLP contains sales employee names (SlpName) and their group assignments (GroupCode); OCOG maps groups to names (GroupName) and identifies the \"High Commission\" group, requiring a join on GroupCode to filter and retrieve matching employee names.",
+    "status": "ok"
+  },
+  {
+    "question_id": 187,
+    "db_id": "ATBI",
+    "reasoning": "The tsys_App_Defaults table stores project-level configuration settings including Datum, which directly answers the query about the default datum for this project.",
+    "status": "ok"
+  },
+  {
+    "question_id": 188,
+    "db_id": "KlamathInvasiveSpecies",
+    "reasoning": "The question asks for a description of a specific enumeration code within the Land Use group, which requires filtering tlu_Enumerations by Enum_Group and Enum_Code, then retrieving the Enum_Description.",
+    "status": "ok"
+  },
+  {
+    "question_id": 189,
+    "db_id": "SBODemoUS-Human Resources",
+    "reasoning": "OHEM contains employee records with MunKey, TaxClass, and InTaxLiabi fields; OHTY provides the type lookup table to filter for employees where the type name equals 'Accountant' via typeID join.",
+    "status": "ok"
+  },
+  {
+    "question_id": 190,
+    "db_id": "SBODemoUS-Inventory and Production",
+    "reasoning": "OITM contains individual items with ItmsGrpCod to identify their group, while OITB contains group master data with ItmsGrpNam and ItmsGrpCod; joining on ItmsGrpCod enables counting items per group name.",
+    "status": "ok"
+  },
+  {
+    "question_id": 191,
+    "db_id": "NTSB",
+    "reasoning": "The GLAZING table contains the GLAZPRE column which stores glazing pre-crash status codes, and DISTINCT retrieves unique values to answer what category codes exist.",
+    "status": "ok"
+  },
+  {
+    "question_id": 192,
+    "db_id": "ASIS_20161108_HerpInv_Database",
+    "reasoning": "tblFieldDataMinnowTrapSurveys contains trap survey records with LocationID identifying each location and Trap_# identifying individual traps; counting distinct trap numbers grouped by location yields trap counts per location.",
+    "status": "ok"
+  },
+  {
+    "question_id": 193,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "ACC_HS_ELP provides high school ELL counts by subgroup to identify the school with highest ELL_COUNT; Expenditures_per_Pupil provides federal expenditure per student (PER_FED_STATE_LOCAL_EXP); Institution_Grouping filters for public school districts; all joined on ENTITY_CD and YEAR=2022.",
+    "status": "ok"
+  },
+  {
+    "question_id": 194,
+    "db_id": "NorthernPlainsFireManagement",
+    "reasoning": "The tlu_PlaceNames lookup table contains place name information with geographic coordinates (utmE, utmN) and attributes (Name, County, State); ordering by utmN descending identifies the northmost location.",
+    "status": "ok"
+  },
+  {
+    "question_id": 195,
+    "db_id": "NTSB",
+    "reasoning": "The GV table contains TRAFDEV, which codes traffic control devices present in the environment; TRAFDEV=3 represents yield signs, so counting vehicles with this value answers the question.",
+    "status": "ok"
+  },
+  {
+    "question_id": 196,
+    "db_id": "ASIS_20161108_HerpInv_Database",
+    "reasoning": "tblFieldDataGreenCardObservations contains Species_Code records from green card observations, so counting distinct Species_Code values directly answers how many distinct species were documented on reptile survey green cards.",
+    "status": "ok"
+  },
+  {
+    "question_id": 197,
+    "db_id": "NTSB",
+    "reasoning": "VPICDECODE provides vehicle make/model identifiers, CHILDSEAT identifies vehicles with child seats via CASEID/VEHNO join, and DISTRACT captures distracted driver incidents to count per vehicle group.",
+    "status": "ok"
+  },
+  {
+    "question_id": 198,
+    "db_id": "ASIS_20161108_HerpInv_Database",
+    "reasoning": "tblFieldDataSnakeDataCollection contains both the Behavior field for grouping and CaptureMethod field for filtering to coverboard captures, making it the sole source needed to count records by behavior type.",
+    "status": "ok"
+  },
+  {
+    "question_id": 199,
+    "db_id": "ASIS_20161108_HerpInv_Database",
+    "reasoning": "tblFieldDataCoverBoard contains board records with SnakeID and Board_# data; tblLocations links via LocationID to filter by SiteID '18CB1'; tblLocationsPoints provides the PointID and UTM coordinates (UTMX, UTMY) for those locations.",
+    "status": "ok"
+  },
+  {
+    "question_id": 200,
+    "db_id": "NorthernPlainsFireManagement",
+    "reasoning": "tlu_DecayStage provides decay stage descriptions and IDs, while tbl_Deadwood contains individual deadwood observations linked via the Decay column, enabling aggregation by decay stage description.",
+    "status": "ok"
+  },
+  {
+    "question_id": 201,
+    "db_id": "NTSB",
+    "reasoning": "VPICDECODE provides vehicle manufacturer names via MAKE column, INJURY table contains neck injury data via REGION column (where REGION=3 indicates neck), and both tables join on CASEID and VEHNO to match injuries to their vehicles.",
+    "status": "ok"
+  },
+  {
+    "question_id": 202,
+    "db_id": "ATBI",
+    "reasoning": "tbl_Locations stores location coordinates (X_Coord, Y_Coord) and a foreign key (Topo_Position) to tlu_topo_position, which contains the ID and TopoPosition description needed to answer the query.",
+    "status": "ok"
+  },
+  {
+    "question_id": 203,
+    "db_id": "SBODemoUS-Service",
+    "reasoning": "OQUE is the queue master table containing descript, manager, and email fields that directly answer the request for queue information without requiring joins to other tables.",
+    "status": "ok"
+  },
+  {
+    "question_id": 204,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "The question asks for high schools with \"good standing\" accountability status filtered by subgroup and year, requiring Accountability_Status_by_Subgroup table which contains SCHOOL_TYPE to filter 'HS', SUBGROUP_NAME for 'Multiracial', and YEAR for 2021.",
+    "status": "ok"
+  },
+  {
+    "question_id": 205,
+    "db_id": "PacificIslandLandbirds",
+    "reasoning": "The question asks for Patrick Hart's position and organization, which are stored as Position_Title and Organization attributes in tlu_Contacts, filtered by matching First_Name and Last_Name.",
+    "status": "ok"
+  },
+  {
+    "question_id": 206,
+    "db_id": "NTSB",
+    "reasoning": "VPICDECODE provides vehicle MAKE to group crashes, while FIRE table contains FIRE indicator and shared CASEID/VEHNO keys to join and count fire occurrences per make.",
+    "status": "ok"
+  },
+  {
+    "question_id": 207,
+    "db_id": "KlamathInvasiveSpecies",
+    "reasoning": "The question asks for coordinate and location details of a specific named location, which are all stored in tbl_Locations: Loc_Name identifies the record, while X_Coord, Y_Coord, Coord_Units, Coord_System, Datum, Est_H_Error, Accuracy_Notes, and Loc_Type provide the requested geographic and metadata information.",
+    "status": "ok"
+  },
+  {
+    "question_id": 208,
+    "db_id": "NTSB",
+    "reasoning": "VPICDECODE contains standardized vehicle identification data with Make and Model columns needed to filter for Toyota brand vehicles and Tacoma model specifically, then count matching records.",
+    "status": "ok"
+  },
+  {
+    "question_id": 209,
+    "db_id": "ATBI",
+    "reasoning": "tbl_Nests contains nest observations with SpCode identifying species, and tlu_PlantSpecies maps species codes to genus names, enabling aggregation of genera across nested subplot observations.",
+    "status": "ok"
+  },
+  {
+    "question_id": 210,
+    "db_id": "SBODemoUS-Service",
+    "reasoning": "OCTR is the contract master table containing ContractID to identify contracts, CstmrName to filter by customer 'Maxi-Teq', and Renewal to retrieve the renewal status.",
+    "status": "ok"
+  },
+  {
+    "question_id": 211,
+    "db_id": "SBODemoUS-Human Resources",
+    "reasoning": "HLD1 contains holiday records with StrDate and EndDate fields to filter 2014 holidays, and Rmrks field provides the requested remarks for each holiday period.",
+    "status": "ok"
+  },
+  {
+    "question_id": 212,
+    "db_id": "ATBI",
+    "reasoning": "The question asks for a count of saplings records where diameter class 3 exceeds 10, so tbl_Saplings is necessary as the source table and DClass3 is the specific column being filtered.",
+    "status": "ok"
+  },
+  {
+    "question_id": 213,
+    "db_id": "ASIS_20161108_HerpInv_Database",
+    "reasoning": "tblFieldDataCoverBoard provides cover board records with Type field, tblEventDataHerps contains AirTemp and Weather conditions linked by EventID, and tblLocations matches SiteID to filter for site 30CB2.",
+    "status": "ok"
+  },
+  {
+    "question_id": 214,
+    "db_id": "SBODemoUS-Human Resources",
+    "reasoning": "OHEM is the employee master table containing all required fields: empID and lastName for employee identification, plus HeaInsName, HeaInsCode, and HeaInsType for health insurance details.",
+    "status": "ok"
+  },
+  {
+    "question_id": 215,
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "reasoning": "OOPR contains card-level opportunity data with CardName identifying each card, RealSumLoc/RealSumSys for real total amounts, RealProfL/RealProfS for real closing gross profit, and CloPrcnt for closing percentage needed for aggregation.",
+    "status": "ok"
+  },
+  {
+    "question_id": 216,
+    "db_id": "NorthernPlainsFireManagement",
+    "reasoning": "The question asks for directions to a specific trail, so we need tbl_Locations which stores Trail names and their corresponding Directions.",
+    "status": "ok"
+  },
+  {
+    "question_id": 217,
+    "db_id": "SBODemoUS-Banking",
+    "reasoning": "OCRH contains credit card receipt headers with RctAbs (receipt number), DepNum (deposit number/internal ID), CardCode (card account code), and DeposDate (deposit date) to filter for the specific 2012-01-31 deposit.",
+    "status": "ok"
+  },
+  {
+    "question_id": 218,
+    "db_id": "SBODemoUS-Service",
+    "reasoning": "OCTR contains contract templates and customer codes/names, while OSCL contains service calls linked by customer code; joining these tables enables counting calls per customer for the Silver Warranty contract template.",
+    "status": "ok"
+  },
+  {
+    "question_id": 219,
+    "db_id": "SBODemoUS-Finance",
+    "reasoning": "JDT1 contains journal entry line-level financial data with Debit and Credit amount columns needed to sum debits and credits, and DueDate column to filter for entries due in 2021.",
+    "status": "ok"
+  },
+  {
+    "question_id": 220,
+    "db_id": "ASIS_20161108_HerpInv_Database",
+    "reasoning": "tblFieldDataTurtleTrapSurveys contains Trap_Type and LocationID to filter for crab traps and identify locations; tblLocations provides LocationID to join and contextualize the location data.",
+    "status": "ok"
+  },
+  {
+    "question_id": 221,
+    "db_id": "NTSB",
+    "reasoning": "TIRE table contains TIREMODEL; VPICDECODE contains Make and Model to filter for Jeep Wranglers; join via CASEID and VEHNO to match tire records to vehicles.",
+    "status": "ok"
+  },
+  {
+    "question_id": 222,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "Accountability_Status_by_Subgroup is the only table containing OVERALL_STATUS (accountability status types) and SUBGROUP_NAME to filter for 'All Students', with YEAR for grouping counts by year.",
+    "status": "ok"
+  },
+  {
+    "question_id": 223,
+    "db_id": "ASIS_20161108_HerpInv_Database",
+    "reasoning": "To find observers in turtle measurement events, join Observer_LU (for names/initials) via tlinkObservers (linking observers to EventIDs) with tblFieldDataTurtleMeasurements (which records turtle measurement events).",
+    "status": "ok"
+  },
+  {
+    "question_id": 224,
+    "db_id": "NTSB",
+    "reasoning": "EDREVENT contains IGCYCRASH (ignition cycles from event data recorder) which directly measures vehicle ignition cycles, and CASEID/VEHNO identify distinct vehicles to count.",
+    "status": "ok"
+  },
+  {
+    "question_id": 225,
+    "db_id": "CratersWildlifeObservations",
+    "reasoning": "VERTEBRATES contains the Observer and Survey columns needed to filter for 'stefanic' and group observation counts by survey category.",
+    "status": "ok"
+  },
+  {
+    "question_id": 226,
+    "db_id": "SBODemoUS-Reports",
+    "reasoning": "OQAG stores authorization group metadata including AUTHGRPCD (code identifier), AUTHGRPN (group description), LogInstanc, UpdateDate, and CreateDate, making it the sole table needed to retrieve all requested fields for the 'Group4' code filter.",
+    "status": "ok"
+  },
+  {
+    "question_id": 227,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "The BOCES_and_N/RC table contains BOCES_NAME and COUNTY_NAME fields needed to group boards by name, count their distinct counties, and filter for those serving multiple counties.",
+    "status": "ok"
+  },
+  {
+    "question_id": 228,
+    "db_id": "SBODemoUS-General",
+    "reasoning": "ODAB stores dashboard entries identified by DashbdCode, and DAB1 contains queries associated with dashboards via DsbEntry that links to ODAB.AbsEntry, enabling a count of queries per dashboard.",
+    "status": "ok"
+  },
+  {
+    "question_id": 229,
+    "db_id": "NTSB",
+    "reasoning": "The EMSCARE table directly contains emergency services response timing data (NOTIFIED, SCENEARR, SCENEDEP, ARRMEDICAL) and can be filtered by EMSTYPE=1 for ambulances, with CASEID identifying each crash.",
+    "status": "ok"
+  },
+  {
+    "question_id": 230,
+    "db_id": "SBODemoUS-Business Partners",
+    "reasoning": "TGG1 contains target contact information including E_Mail and LicTradNum (federal tax ID) with Position filtering, while OTGG provides TargetType to filter for type 'C', joined via TargetCode.",
+    "status": "ok"
+  },
+  {
+    "question_id": 231,
+    "db_id": "ASIS_20161108_HerpInv_Database",
+    "reasoning": "tblFieldDataWaterProperties contains water quality metrics (TempC, Salinity, Conductivity, pH) while tblFieldDataTurtleTrapSurveys identifies turtle observation records; joining by RecordID links water measurements to turtle surveys for aggregation.",
+    "status": "ok"
+  },
+  {
+    "question_id": 232,
+    "db_id": "ATBI",
+    "reasoning": "The tlu_Live_Dead lookup table stores the mapping between condition numbers and condition text descriptions, so Cond_Num and Cond_Text are needed to retrieve the numeric code associated with the 'Dead' condition.",
+    "status": "ok"
+  },
+  {
+    "question_id": 233,
+    "db_id": "PacificIslandLandbirds",
+    "reasoning": "tbl_Events contains all event records with Repeat_Sample indicating repeat samples, Verified_by for the verifier name, and the three requested output columns Event_ID, Station_ID, and Start_Date.",
+    "status": "ok"
+  },
+  {
+    "question_id": 234,
+    "db_id": "NorthernPlainsFireManagement",
+    "reasoning": "tbl_Tree_Tags provides the Tag column to filter by tag number >220, while tbl_Overstory provides TreeCond to group results and TreeTag to join the tables.",
+    "status": "ok"
+  },
+  {
+    "question_id": 235,
+    "db_id": "CratersWildlifeObservations",
+    "reasoning": "The VERTEBRATES table contains Common_Name and Scientific_Name fields to return, filtered by UTMN and UTME coordinates matching the specified UTM location.",
+    "status": "ok"
+  },
+  {
+    "question_id": 236,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "Teachers_Teaching_Out_of_Certification contains NUM_OUT_CERT and YEAR to filter 2021 data and rank by teacher count; Institution_Grouping filters for public school districts via GROUP_NAME; ENTITY_NAME and ENTITY_CD join the tables to identify the district.",
+    "status": "ok"
+  },
+  {
+    "question_id": 237,
+    "db_id": "KlamathInvasiveSpecies",
+    "reasoning": "tbl_Locations provides Loc_Name and Location_ID to identify each location, while tbl_Events provides Location_ID to join and count events per location.",
+    "status": "ok"
+  },
+  {
+    "question_id": 238,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "ACC_HS_Core_and_Weighted_Performance contains high school weighted performance index scores by subject and subgroup; Institution_Grouping filters for public schools; joining on ENTITY_CD enables filtering by GROUP_NAME='Public School' while selecting top ENTITY_NAMEs ordered by WEIGHTED_INDEX for MATH, 'All Students', and year 2022.",
+    "status": "ok"
+  },
+  {
+    "question_id": 239,
+    "db_id": "SBODemoUS-Inventory and Production",
+    "reasoning": "OITM contains the item name to filter by 'Printer Paper A4 White', while ITM4 contains the packaging dimensions (Height1, Width1, Length1, Volume) and QtyPerPack to match the quantity of 24 requirement.",
+    "status": "ok"
+  },
+  {
+    "question_id": 240,
+    "db_id": "KlamathInvasiveSpecies",
+    "reasoning": "The query needs tbl_Events to retrieve Event_ID and tbl_Locations to filter by Watershed and Subwatershed columns, joining via Location_ID to connect events with their geographic attributes.",
+    "status": "ok"
+  },
+  {
+    "question_id": 241,
+    "db_id": "PacificIslandLandbirds",
+    "reasoning": "The query joins geographic hierarchy (Locations\u2192Sites\u2192Transect\u2192Stations) with observational data (Events\u2192Observations\u2192Species) and contact/alternate name cross-references to assemble complete sighting records with location context, observer identity, and taxonomic details.",
+    "status": "failed_validation"
+  },
+  {
+    "question_id": 242,
+    "db_id": "CratersWildlifeObservations",
+    "reasoning": "The question asks for observation type and count of invertebrate records grouped by observation type, requiring only the INVERTEBRATES table's OBS_TYPE column to group and aggregate the data.",
+    "status": "ok"
+  },
+  {
+    "question_id": 243,
+    "db_id": "CratersWildlifeObservations",
+    "reasoning": "VERTEBRATES contains the species, Common_Name, Scientific_Name, Number, and Habitat fields needed for vertebrate observations, joined with HABITAT_CODES on the Habitat/Code fields to retrieve the habitat Definition, filtered by Number > 100.",
+    "status": "ok"
+  },
+  {
+    "question_id": 244,
+    "db_id": "CratersWildlifeObservations",
+    "reasoning": "The INVERTEBRATES table contains both the Location column (to filter for \"Hot springs\") and OBS_TYPE column (to group observations by type), plus the implicit count of rows needed for aggregation.",
+    "status": "ok"
+  },
+  {
+    "question_id": 245,
+    "db_id": "SBODemoUS-Inventory and Production",
+    "reasoning": "ITM2 contains vendor codes to filter by V1010, while OITM contains the item names, consignment status, and last purchase price needed; joined on ItemCode to match items to their vendor.",
+    "status": "ok"
+  },
+  {
+    "question_id": 246,
+    "db_id": "SBODemoUS-Finance",
+    "reasoning": "OFRC is the financial report categories table; FatherNum identifies hierarchical relationships between categories, and Name contains the category names to display.",
+    "status": "ok"
+  },
+  {
+    "question_id": 247,
+    "db_id": "CratersWildlifeObservations",
+    "reasoning": "VERTEBRATES contains the Common_Name field to filter for gray wolf observations, the Ownership field to filter for BLM records, and the Notes field to retrieve the requested information.",
+    "status": "ok"
+  },
+  {
+    "question_id": 248,
+    "db_id": "NTSB",
+    "reasoning": "TIREPLAC contains axle weight rating columns (GAWRFRONT, GAWRREAR) and gross vehicle weight rating (GVWR) needed to filter vehicles by weight range and return their front/rear axle ratings.",
+    "status": "ok"
+  },
+  {
+    "question_id": 249,
+    "db_id": "NTSB",
+    "reasoning": "The CDC table contains crush measurements (C1-C6 for different points and CMAX for maximum) along with case identifiers (CASEID, VEHNO), and filtering out codes 888/999 ensures only cases with actual measurements are returned.",
+    "status": "ok"
+  },
+  {
+    "question_id": 250,
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "reasoning": "The question asks for the dimension code of a cost center by name, so OPRC is queried for its DimCode column filtered by PrcName matching 'General Center 3'.",
+    "status": "ok"
+  },
+  {
+    "question_id": 251,
+    "db_id": "NTSB",
+    "reasoning": "The EMSCARE table tracks emergency medical services data including SCENEARR which records the time emergency services arrived at the crash scene, allowing calculation of the average arrival time while filtering out values exceeding 1600.",
+    "status": "ok"
+  },
+  {
+    "question_id": 252,
+    "db_id": "PacificIslandLandbirds",
+    "reasoning": "To count observations by species habitat, we join tbl_Observations on Species_ID to tlu_Species which contains both the Species_ID foreign key and the Habitat attribute needed for grouping.",
+    "status": "ok"
+  },
+  {
+    "question_id": 253,
+    "db_id": "SBODemoUS-Business Partners",
+    "reasoning": "OSLP contains sales employee data (SlpName, Mobil, Email) grouped by GroupCode, while OCOG maps GroupCode to GroupName to filter for the 'High Commission' group.",
+    "status": "ok"
+  },
+  {
+    "question_id": 254,
+    "db_id": "NTSB",
+    "reasoning": "The OCC table contains BELTUSE to categorize occupants by belt usage and MORTALITY to identify fatal cases (value 1), enabling aggregation of total and fatal occupant counts per belt use category.",
+    "status": "ok"
+  },
+  {
+    "question_id": 255,
+    "db_id": "NTSB",
+    "reasoning": "VPICDECODE contains the Make column needed to group crashes by vehicle manufacturer, and counting rows from this table directly aggregates crashes per make.",
+    "status": "ok"
+  },
+  {
+    "question_id": 256,
+    "db_id": "NTSB",
+    "reasoning": "The GV table contains STRKLENGTH, which represents the length of the first object struck when a vehicle departs the shoulder or roadway, and we filter for valid values between 0-120 centimeters before calculating the average.",
+    "status": "ok"
+  },
+  {
+    "question_id": 257,
+    "db_id": "SBODemoUS-Inventory and Production",
+    "reasoning": "ITM7 contains depreciation parameters including UsefulLife, RemainLife, and RemainDays columns, filtered by the DprArea column which stores depreciation area codes like 'GAAP'.",
+    "status": "ok"
+  },
+  {
+    "question_id": 258,
+    "db_id": "NorthernPlainsFireManagement",
+    "reasoning": "tbl_Deadwood and tbl_Overstory both contain Event_ID to link records to specific events; counting distinct Event_IDs in tbl_Deadwood that also appear in tbl_Overstory identifies events with both data types.",
+    "status": "ok"
+  },
+  {
+    "question_id": 259,
+    "db_id": "SBODemoUS-Business Partners",
+    "reasoning": "OCRD contains business partner master data including CardName to identify \"Microchips\", while OCRB stores bank account details with BankCode, Country, Account, Branch, and City fields needed for the bank details request.",
+    "status": "ok"
+  },
+  {
+    "question_id": 260,
+    "db_id": "KlamathInvasiveSpecies",
+    "reasoning": "tbl_MicroHabitat contains the requested metrics (LightIndex, Evergreen, Litter, VegHeight); tbl_Events provides the date filter (Start_Date) and links to locations; tbl_Locations supplies the elevation for ordering and filtering the highest elevation event.",
+    "status": "ok"
+  },
+  {
+    "question_id": 261,
+    "db_id": "ATBI",
+    "reasoning": "tbl_Overstory contains DBH measurements for individual trees and SpCode identifiers, which link via SpeciesCode to tlu_PlantSpecies where genus classifications filter for Acer trees.",
+    "status": "ok"
+  },
+  {
+    "question_id": 262,
+    "db_id": "NorthernPlainsFireManagement",
+    "reasoning": "The tlu_PlantSpecies table contains the SpeciesNotes column to filter for 'native' text and the genus column to group species counts by their taxonomic classification.",
+    "status": "ok"
+  },
+  {
+    "question_id": 263,
+    "db_id": "ATBI",
+    "reasoning": "To get overstory tree species data filtered by Swain county, join tlu_PlantSpecies (genus, species, CommonName) through tbl_Overstory (SpCode link) and tbl_Tree_Tags (TreeTag link) to tbl_Locations (PlaceNameID link) and tlu_PlaceNames (County filter).",
+    "status": "ok"
+  },
+  {
+    "question_id": 264,
+    "db_id": "PacificIslandLandbirds",
+    "reasoning": "To find the island with the most Pacific Kingfisher sightings, we need tbl_Locations for island names, tbl_Transect and tbl_Stations to link locations to events, tbl_Events and tbl_Observations to connect events to species records, and tlu_Species to filter by Common_Name, with xref_Event_Contacts and tlu_Contacts joining the event chain.",
+    "status": "ok"
+  },
+  {
+    "question_id": 265,
+    "db_id": "SBODemoUS-Business Partners",
+    "reasoning": "OCRD contains account Balance and Currency fields needed to filter by EUR/CAN, plus PymCode to match 'Incoming BT' payment method for the target business partner.",
+    "status": "ok"
+  },
+  {
+    "question_id": 266,
+    "db_id": "KlamathInvasiveSpecies",
+    "reasoning": "tbl_Sites contains Site_Name to filter by 'North A', tbl_Locations contains the location details (Loc_Name, X_Coord, Y_Coord) linked via Site_ID.",
+    "status": "ok"
+  },
+  {
+    "question_id": 267,
+    "db_id": "NTSB",
+    "reasoning": "The GV table contains vehicle inspection data with INSPTYPE field, which directly captures inspection type classifications needed to count and group vehicle inspections by their type.",
+    "status": "ok"
+  },
+  {
+    "question_id": 268,
+    "db_id": "SBODemoUS-Banking",
+    "reasoning": "ORCT contains incoming payments (receipts), RCT3 contains credit card voucher details with FirstSum representing first partial payment amounts; join on DocNum to match payments with their voucher details and aggregate FirstSum for the average.",
+    "status": "ok"
+  },
+  {
+    "question_id": 269,
+    "db_id": "ATBI",
+    "reasoning": "The question asks for the text description of a presence number, so tlu_Presence is queried to retrieve Pres_Text where Pres_Num equals 3.",
+    "status": "ok"
+  },
+  {
+    "question_id": 270,
+    "db_id": "KlamathInvasiveSpecies",
+    "reasoning": "The question asks for a count of codes grouped by enumeration group, which directly maps to tlu_Enumerations containing the Enum_Group column needed for grouping and implicit distinct code counts.",
+    "status": "ok"
+  },
+  {
+    "question_id": 271,
+    "db_id": "SBODemoUS-Sales Opportunities",
+    "reasoning": "OOPR contains the Status field for opportunity status codes and OpenDate field for opportunity start dates, enabling grouping by status and finding the maximum date per group.",
+    "status": "ok"
+  },
+  {
+    "question_id": 272,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "The Annual_EM_MATH table contains elementary school math assessment data, and ASSESSMENT_NAME is the column that identifies distinct assessment types, so counting its distinct values answers the question.",
+    "status": "ok"
+  },
+  {
+    "question_id": 273,
+    "db_id": "ASIS_20161108_HerpInv_Database",
+    "reasoning": "tblFieldDataTurtleMeasurements contains individual turtle measurement records, so grouping by LocationID and counting records gives the number of turtles measured at each location.",
+    "status": "ok"
+  },
+  {
+    "question_id": 274,
+    "db_id": "SBODemoUS-General",
+    "reasoning": "OCPT stores cockpit metadata including Name to filter by 'Purchase', and CPT1 contains the subtable layout coordinates (_Left, _Right, _Top, _Bottom) linked via AbsEntry.",
+    "status": "ok"
+  },
+  {
+    "question_id": 275,
+    "db_id": "PacificIslandLandbirds",
+    "reasoning": "tbl_Events contains Entered_by and Updated_by filters to identify events by Cari Squibb and Seth Judge; tbl_Event_Details contains the weather condition columns (Cloud, Rain, Wind, Gust) linked via Event_ID.",
+    "status": "ok"
+  },
+  {
+    "question_id": 276,
+    "db_id": "NTSB",
+    "reasoning": "EMSCARE contains ARRMEDICAL, which records the arrival time of emergency medical services at the medical facility, enabling calculation of the average arrival time filtered by the 1600 threshold.",
+    "status": "ok"
+  },
+  {
+    "question_id": 277,
+    "db_id": "PacificIslandLandbirds",
+    "reasoning": "To count stations, we need tbl_Stations which contains one row per station with Station_ID as the unique identifier, requiring no columns in the select clause beyond the count aggregation.",
+    "status": "ok"
+  },
+  {
+    "question_id": 278,
+    "db_id": "NTSB",
+    "reasoning": "The ICS table contains BRI (Body Region Injury) which directly maps injuries to specific body regions, allowing grouped counting of injuries per region.",
+    "status": "ok"
+  },
+  {
+    "question_id": 279,
+    "db_id": "NTSB",
+    "reasoning": "The AVOID table tracks crash avoidance equipment; EQUIP identifies specific equipment types and AVAIL filters for available/deployed features, enabling frequency analysis to find the most common one.",
+    "status": "ok"
+  },
+  {
+    "question_id": 280,
+    "db_id": "NTSB",
+    "reasoning": "The OCC table contains occupant-level injury data including FETALMORT which indicates fetal mortality status, and CASEID identifies unique crashes; filtering for FETALMORT=1 and counting distinct CASEIDs yields crashes with fetal deaths.",
+    "status": "ok"
+  },
+  {
+    "question_id": 281,
+    "db_id": "ASIS_20161108_HerpInv_Database",
+    "reasoning": "The question asks for record counts by turtle trap type, which requires the tblFieldDataTurtleTrapSurveys table that contains both the Trap_Type field for grouping and individual records to count.",
+    "status": "ok"
+  },
+  {
+    "question_id": 282,
+    "db_id": "SBODemoUS-Reports",
+    "reasoning": "RITM contains all color properties (BGRed, BGGreen, BGBlue, FGRed, FGGreen, FGBlue, MrkrRed, MrkrGreen, MrkrBlue, BrdrRed, BrdrGreen, BrdrBlue) and Height field needed to filter reporting elements by height range.",
+    "status": "ok"
+  },
+  {
+    "question_id": 283,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "Annual_EM_ELA contains ELA assessment results with ASSESSMENT_NAME (ELA4), ENTITY_NAME (school filter), YEAR (2021), SUBGROUP_NAME (demographics), and PCT_NOT_TESTED (target metric).",
+    "status": "ok"
+  },
+  {
+    "question_id": 284,
+    "db_id": "SBODemoUS-Finance",
+    "reasoning": "OPRJ is the projects master table containing PrjCode and PrjName; ValidFrom filters for projects with validity starting after 2020.",
+    "status": "ok"
+  },
+  {
+    "question_id": 285,
+    "db_id": "PacificIslandLandbirds",
+    "reasoning": "The tlu_Species table contains a Source column that documents where each species record originated, making it the direct source for answering what sources exist in the dataset.",
+    "status": "ok"
+  },
+  {
+    "question_id": 286,
+    "db_id": "KlamathInvasiveSpecies",
+    "reasoning": "The question asks for species from the Lava Beds National Monument (LABE) lookup table filtered by year 2017, so tlu_Species_LABE is the sole relevant table, requiring only the Species column for output and SampleYear column for filtering.",
+    "status": "ok"
+  },
+  {
+    "question_id": 287,
+    "db_id": "NTSB",
+    "reasoning": "EMSCARE contains SCENEDEP which records the time emergency services depart the scene, necessary for calculating average departure time while filtering out outliers above 1600.",
+    "status": "ok"
+  },
+  {
+    "question_id": 288,
+    "db_id": "ASIS_20161108_HerpInv_Database",
+    "reasoning": "The query joins tblFieldDataTurtleTrapSurveys and tblFieldDataTurtleMeasurements on RecordID to compare Sex columns between trap surveys and measurements, filtering mismatches, then returns RecordID and Comments from measurements.",
+    "status": "ok"
+  },
+  {
+    "question_id": 289,
+    "db_id": "NTSB",
+    "reasoning": "The CDC table contains PDOF (Principal Direction of Force) which directly measures force direction in degrees, and CASEID/VEHNO identify unique vehicles needed for the COUNT(DISTINCT) aggregation.",
+    "status": "ok"
+  },
+  {
+    "question_id": 290,
+    "db_id": "SBODemoUS-Reports",
+    "reasoning": "RDOC contains both GridSize (filter condition) and Width (target measurement) for documents, making it the only table needed to find the widest document with grid size 10.",
+    "status": "ok"
+  },
+  {
+    "question_id": 291,
+    "db_id": "NTSB",
+    "reasoning": "The GV table contains RUMBROAD which tracks road rumble strip presence on vehicles, enabling grouping and counting vehicles by this road surface characteristic.",
+    "status": "ok"
+  },
+  {
+    "question_id": 292,
+    "db_id": "NTSB",
+    "reasoning": "The GV table contains driver demographic information including ZIP code, so filtering by ZIP=95020 and counting distinct vehicles yields the required count.",
+    "status": "ok"
+  },
+  {
+    "question_id": 293,
+    "db_id": "NTSB",
+    "reasoning": "DISTRACT table identifies accidents involving distracted driving, while CHILDSEAT with non-null OCCNO indicates occupied child seats; joining on CASEID counts accidents meeting both criteria.",
+    "status": "ok"
+  },
+  {
+    "question_id": 294,
+    "db_id": "PacificIslandLandbirds",
+    "reasoning": "tlu_Contacts contains the Organization field needed to group contacts and count them by their respective organizations.",
+    "status": "ok"
+  },
+  {
+    "question_id": 295,
+    "db_id": "PacificIslandLandbirds",
+    "reasoning": "tbl_Events contains Station_ID and Event_ID; grouping by Station_ID and counting rows gives event count per station.",
+    "status": "ok"
+  },
+  {
+    "question_id": 296,
+    "db_id": "NorthernPlainsFireManagement",
+    "reasoning": "tbl_Seedlings contains the Density measurements, tlu_PlantSpecies contains genus classification, and joining on SpCode and SpeciesCode links seedling records to their plant species for filtering by Acer genus.",
+    "status": "ok"
+  },
+  {
+    "question_id": 297,
+    "db_id": "CratersWildlifeObservations",
+    "reasoning": "The query needs Roadkill.Species to identify roadkill animals and VERTEBRATES.Common_Name to check which species appear in that table, enabling a NOT IN comparison to find roadkill species absent from vertebrates.",
+    "status": "ok"
+  },
+  {
+    "question_id": 298,
+    "db_id": "NTSB",
+    "reasoning": "The FIRE table contains fire incident records linked to crashes via CASEID, so counting distinct CASEIDs identifies unique crashes with reported fires.",
+    "status": "ok"
+  },
+  {
+    "question_id": 299,
+    "db_id": "NYSED_SRC2022",
+    "reasoning": "ACC_EM_Chronic_Absenteeism contains elementary school absenteeism data with ABSENT_RATE, ENROLLMENT, ENTITY_NAME, and SUBGROUP_NAME needed to answer the question filtered by YEAR; Institution_Grouping links via ENTITY_CD to filter for public schools using GROUP_NAME.",
+    "status": "ok"
+  },
+  {
+    "question_id": 300,
+    "db_id": "NorthernPlainsFireManagement",
+    "reasoning": "tbl_Overstory contains DBH measurements and species codes; tbl_Events provides Event_Date for grouping by month; tlu_PlantSpecies identifies 'fraseri' species by matching SpeciesCode, enabling filtering and aggregation of diameter measurements by month.",
+    "status": "ok"
+  },
+  {
+    "question_id": 301,
+    "db_id": "ATBI",
+    "reasoning": "tbl_Nests contains the nested subplot records to count, and tlu_Cover_Cls provides the cover class text descriptions that map to the R2 field in tbl_Nests via CoverClass_Num.",
+    "status": "ok"
+  }
+]

@@ -80,7 +80,55 @@ def create_model(model_config):
 
 
 def build_config_group(max_seq_length: int, num_train_epochs: int):
-    """Sweep 20: cross-family base model for ensemble diversity.
+    """Sweep 26: Qwen3-1.7B + LoRA r=64 (bigger LoRA capacity, untried on any base).
+    Identical to sweep 22 (the Qwen3 cross-family member of the champion
+    ensemble) except r=64 + alpha=128 (preserving alpha=2r). Goal: test whether
+    a wider LoRA gives the Qwen3 side another usable adapter for the ensemble
+    -- the previous Qwen3 variants we trained (sw24 lr=2e-4, sw25 augmented)
+    both regressed ensembles. Capacity is the only Qwen3 dimension we haven't
+    probed yet.
+
+    Sweep 25: Qwen3-1.7B + augmented data + max_length=3072 + 200 steps.
+    Retry of sweep 23 (which OOM'd at max_length=4096) with a tighter sequence
+    cap and the shorter 200-step budget. Goal: get a Qwen3 adapter trained on
+    augmented SBO data so the ensemble has both cross-family AND cross-data
+    diversity for the Qwen3 side. Sweep 24 (Qwen3 + lr=2e-4) regressed
+    ensembles -- the LR-only variation was too similar to sweep 22; this is
+    the cross-data variation instead.
+
+    Sweep 24: Qwen3-1.7B + lr=2e-4 + original data -- regressed ensembles.
+    Sweep 23: Qwen3-1.7B + augmented data + 400 steps -- OOM'd, abandoned.
+    Sweep 22: Qwen3-1.7B base model (cross-generation diversity probe).
+
+    The project statement specifically lists Qwen3-1.7B as an option (with
+    enable_thinking=False to suppress its CoT preamble). We never tried it
+    until now -- our SmolLM2-1.7B attempt (sweep 20) was the only non-Qwen2.5
+    base swap, and it was too weak alone (0.53) to help the ensemble. Qwen3
+    is a different pretraining corpus + architecture from Qwen2.5-Coder, so
+    its errors should be at least partially uncorrelated -- exactly what
+    our 3-way Coder ensemble champion is bottlenecked on.
+
+    Identical to sweep 13 otherwise (r=32 + MLP, lr=3e-4, 200 steps,
+    compact prompt, num_chunks=1, original 301 train data). main.py's
+    _apply_template already passes enable_thinking=False when the tokenizer
+    supports it, so inference will avoid Qwen3's thinking preamble.
+
+    Sweep 21: chain-of-thought distillation on the sweep 13 recipe.
+
+    Re-uses the proven sweep-13 config (Qwen-Coder-1.5B + r=32 + MLP +
+    lr=3e-4 + 200 steps) but trains on CoT-augmented data: for each train
+    example we generated a brief (~50-token) rationale via Claude Haiku 4.5
+    (see generate_cot_traces.py) and prepend it to the assistant turn.
+    The model learns to emit reasoning before the JSON. At inference,
+    parse_model_output picks up the first balanced JSON block, so the
+    reasoning preamble is harmless. Target: better Mode-B (SBO sibling)
+    disambiguation via forced reasoning.
+
+    Launch:
+        python train_rapidfire.py --train data/train_cot.jsonl --val data/validation.jsonl \\
+            --experiment_name schema-linking-sft-sweep21 --num_chunks 1
+
+    Sweep 20: cross-family base model for ensemble diversity.
 
     The 3-way ensemble (13+15+18, all Qwen-Coder-1.5B + r=32+MLP) is at
     0.6986. Sweep 19 (same family + cosine LR) was too correlated and
@@ -165,9 +213,9 @@ def build_config_group(max_seq_length: int, num_train_epochs: int):
         List as RFList, RFLoraConfig, RFModelConfig, RFSFTConfig,
     )
 
-    # Sweep 13: r=32 + MLP modules on top of the sweep 12 winner config.
+    # Sweep 26: r=64 + MLP modules (double the rank vs sweep 13/22).
     peft_config = RFLoraConfig(
-        r=32, lora_alpha=64, lora_dropout=0.05,
+        r=64, lora_alpha=128, lora_dropout=0.05,
         target_modules=['q_proj', 'k_proj', 'v_proj', 'o_proj',
                         'gate_proj', 'up_proj', 'down_proj'],
         bias='none', task_type='CAUSAL_LM',
@@ -208,7 +256,7 @@ def build_config_group(max_seq_length: int, num_train_epochs: int):
 
     configs = RFList([
         RFModelConfig(
-            model_name='HuggingFaceTB/SmolLM2-1.7B-Instruct',
+            model_name='Qwen/Qwen3-1.7B',
             peft_config=peft_config,
             training_args=sft,
             model_type='causal_lm',

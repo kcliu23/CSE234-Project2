@@ -4,19 +4,14 @@
     "schema_links": {
       "RDOC": [
         "AlgnFooter",
-        "DocCode",
-        "ForMobile",
-        "TypeCode"
+        "CanChange",
+        "CsUrl",
+        "ExtOnErr",
+        "IsIMCE",
+        "NumRepArs"
       ],
       "OQAG": [
-        "AUTHGRPCD",
-        "AUTHGRPN",
-        "CreateDate"
-      ],
-      "SRA2": [
-        "ActionCode",
-        "ResDag",
-        "ReturnCode"
+        "AUTHGRPCD"
       ]
     }
   },
@@ -26,6 +21,11 @@
       "CDC": [
         "CASEID",
         "CMAX"
+      ],
+      "VEHMEAS": [
+        "CASEID",
+        "FRNTHOOD",
+        "VEHNO"
       ]
     }
   },
@@ -33,8 +33,14 @@
     "question_id": 3,
     "schema_links": {
       "AVOID": [
+        "AVAIL",
         "CASEID",
-        "EQUIP"
+        "EQUIP",
+        "VEHNO"
+      ],
+      "VPICDECODE": [
+        "CASEID",
+        "VehicleType"
       ]
     }
   },
@@ -42,13 +48,15 @@
     "question_id": 4,
     "schema_links": {
       "tblFieldDataTimeConstrainedSearches": [
-        "EventID",
-        "LocationID"
+        "LocationID",
+        "RecordID"
       ],
       "tblLocations": [
         "LocationID",
         "StartUTMX",
-        "StartUTMY"
+        "StartUTMY",
+        "StopUTMX",
+        "StopUTMY"
       ],
       "tblLocationsPoints": [
         "LocationID",
@@ -63,7 +71,6 @@
     "schema_links": {
       "EDREVENT": [
         "CASEID",
-        "IGCYCRASH",
         "VEHNO"
       ],
       "VPICDECODE": [
@@ -84,13 +91,17 @@
       "tbl_Nests": [
         "Cover",
         "Event_ID",
-        "R1",
+        "Nest_ID",
         "R2",
         "SpCode"
       ],
       "tlu_Cover_Cls": [
         "CoverClass_Num",
         "CoverClass_Text"
+      ],
+      "tlu_PlantSpecies": [
+        "SpeciesCode",
+        "species"
       ]
     }
   },
@@ -102,7 +113,8 @@
         "Wind"
       ],
       "tbl_Events": [
-        "Event_ID"
+        "Event_ID",
+        "Start_Time"
       ]
     }
   },
@@ -120,7 +132,12 @@
     "schema_links": {
       "tbl_Locations": [
         "Loc_Notes",
+        "Location_ID",
         "Other_Disturbance"
+      ],
+      "tbl_Events": [
+        "Event_ID",
+        "Location_ID"
       ]
     }
   },
@@ -155,13 +172,32 @@
     "question_id": 12,
     "schema_links": {
       "APM1": [
-        "AbsEntry",
-        "OpenAmtAR"
+        "AbsEntry"
       ],
       "OPMG": [
         "AbsEntry",
-        "NAME",
-        "REASON"
+        "NAME"
+      ],
+      "OPHA": [
+        "AbsEntry",
+        "NAME"
+      ],
+      "PMG2": [
+        "AbsEntry",
+        "CLOSED",
+        "SOLUTION",
+        "SOLUTIONID"
+      ],
+      "APHA": [
+        "Code",
+        "ProjectID",
+        "TYP"
+      ],
+      "APM2": [
+        "AbsEntry",
+        "REMARKS",
+        "SOLUTION",
+        "SOLUTIONID"
       ]
     }
   },
@@ -171,13 +207,20 @@
       "CRASH": [
         "CASEID"
       ],
-      "TIREPLAC": [
-        "CASEID",
-        "GVWR"
+      "GV": [
+        "LIGHTCOND"
       ],
       "FIRE": [
         "CASEID",
-        "FIRE"
+        "FIRE",
+        "FIREORGIN",
+        "VEHNO"
+      ],
+      "VEHMEAS": [
+        "CASEID",
+        "VEHNO",
+        "WBLEFT",
+        "WBRIGHT"
       ]
     }
   },
@@ -211,7 +254,8 @@
         "LEVEL1_%TESTED",
         "LEVEL2_%TESTED",
         "LEVEL3_%TESTED",
-        "LEVEL4_%TESTED"
+        "LEVEL4_%TESTED",
+        "SUBGROUP_NAME"
       ],
       "Institution_Grouping": [
         "ENTITY_CD",
@@ -233,6 +277,10 @@
       ],
       "tblEventDataHerps": [
         "AirTemp"
+      ],
+      "tblFieldDataWaterProperties": [
+        "EventID",
+        "TempC"
       ]
     }
   },
@@ -250,7 +298,6 @@
     "schema_links": {
       "tlu_Species_CRLA": [
         "Park",
-        "SampleYear",
         "Species"
       ],
       "tlu_Species_LAVO": [
@@ -258,7 +305,15 @@
       ],
       "tlu_Species_LABE": [
         "Park",
-        "SampleYear",
+        "Species"
+      ],
+      "tlu_Species_ORCA": [
+        "Species"
+      ],
+      "tlu_Species_REDW": [
+        "Species"
+      ],
+      "tlu_Species_WHIS": [
         "Species"
       ]
     }
@@ -294,6 +349,9 @@
       "tbl_Stations": [
         "Station_ID",
         "Transect_ID"
+      ],
+      "tlu_Species": [
+        "Species_ID"
       ]
     }
   },
@@ -305,6 +363,11 @@
         "DataSource",
         "Rate",
         "RateDate"
+      ],
+      "ODTP": [
+        "Code",
+        "DataSource",
+        "sPercent"
       ]
     }
   },
@@ -314,10 +377,10 @@
       "Roadkill": [
         "Big_Game",
         "Date",
-        "Location",
         "Month",
         "Species",
-        "Year"
+        "Year",
+        "number_killed"
       ]
     }
   },
@@ -367,6 +430,12 @@
         "createDate",
         "origin",
         "resolDate"
+      ],
+      "OCTR": [
+        "CstmrName",
+        "EndDate",
+        "StartDate",
+        "Status"
       ]
     }
   },
@@ -374,25 +443,12 @@
     "question_id": 28,
     "schema_links": {
       "tbl_Observations": [
-        "Event_ID",
         "Species_ID"
       ],
       "tlu_Species": [
         "Common_Name",
         "Scientific_Name",
         "Species_ID"
-      ],
-      "tbl_Events": [
-        "Event_ID",
-        "Station_ID"
-      ],
-      "tbl_Stations": [
-        "Station_ID",
-        "Transect_ID"
-      ],
-      "tbl_Transect": [
-        "Location_ID",
-        "Transect_ID"
       ],
       "tlu_Contacts": [
         "Contact_ID",
@@ -419,11 +475,6 @@
         "CASEID",
         "RECFRONT1",
         "VEHNO"
-      ],
-      "VEHMEAS": [
-        "CASEID",
-        "FRNTBUMP",
-        "VEHNO"
       ]
     }
   },
@@ -442,11 +493,15 @@
     "question_id": 31,
     "schema_links": {
       "ORSC": [
-        "ResCode"
+        "ResCode",
+        "ResGrpCod",
+        "ResName",
+        "ResType"
       ],
-      "OUGR": [
-        "GroupId",
-        "GroupName"
+      "OCPT": [
+        "AbsEntry",
+        "Code",
+        "Name"
       ]
     }
   },
@@ -481,9 +536,19 @@
         "CASEID",
         "VEHNO"
       ],
-      "EDRSUMM": [
+      "EDRPRECRASH": [
+        "CASEID",
+        "PCODE",
+        "PVALUE",
+        "VEHNO"
+      ],
+      "EDRPOSTCRASH": [
         "CASEID",
         "EDRSUMMNO",
+        "VEHNO"
+      ],
+      "EDRSUMM": [
+        "CASEID",
         "VEHNO"
       ]
     }
@@ -499,10 +564,6 @@
         "CASEID",
         "Make",
         "ModelYear",
-        "VEHNO"
-      ],
-      "VEHSPEC": [
-        "CASEID",
         "VEHNO"
       ]
     }
@@ -525,8 +586,16 @@
       ],
       "tbl_Locations": [
         "Location_ID",
-        "Plot_ID",
         "SiteDescription"
+      ],
+      "tbl_Overstory": [
+        "Event_ID",
+        "Overstory_ID"
+      ],
+      "tlu_PlantSpecies": [
+        "SpeciesCode",
+        "genus",
+        "species"
       ]
     }
   },
@@ -542,9 +611,7 @@
         "MunKey",
         "empID",
         "homeCity",
-        "officeTel",
-        "salesPrson",
-        "workCity"
+        "salesPrson"
       ],
       "OHTM": [
         "name",
@@ -556,6 +623,7 @@
     "question_id": 39,
     "schema_links": {
       "tbl_Nests": [
+        "Cover",
         "Event_ID",
         "R2"
       ],
@@ -571,10 +639,6 @@
       "GV": [
         "CASEID",
         "VEHNO"
-      ],
-      "VEHMEAS": [
-        "CASEID",
-        "VEHNO"
       ]
     }
   },
@@ -582,11 +646,13 @@
     "question_id": 41,
     "schema_links": {
       "CHO1": [
+        "LineAcct",
         "LineId"
       ],
       "OCHO": [
         "AcctNum"
       ],
+      "PWZ3": [],
       "OCHH": [
         "AcctNum",
         "CheckNum"
@@ -603,18 +669,15 @@
         "RealProfS",
         "WtSumLoc",
         "WtSumSys"
-      ],
-      "OPR1": [
-        "CloseDate",
-        "WtSumLoc",
-        "WtSumSys"
       ]
     }
   },
   {
     "question_id": 43,
     "schema_links": {
-      "tblFieldDataTurtleMeasurements": [],
+      "tblFieldDataTurtleMeasurements": [
+        "RecordID"
+      ],
       "Observer_LU": []
     }
   },
@@ -623,7 +686,6 @@
     "schema_links": {
       "INJURY": [
         "CASEID",
-        "INJNO",
         "OCCNO",
         "VEHNO"
       ],
@@ -632,7 +694,7 @@
         "OCCNO",
         "VEHNO"
       ],
-      "VEHMEAS": [
+      "VPICDECODE": [
         "CASEID",
         "VEHNO"
       ]
@@ -657,9 +719,6 @@
         "Location_ID",
         "X_Coord",
         "Y_Coord"
-      ],
-      "tlu_PlantSpecies": [
-        "SpeciesCode"
       ]
     }
   },
@@ -668,6 +727,7 @@
     "schema_links": {
       "tbl_WitnessTrees": [
         "Location_ID",
+        "Witness_DBH",
         "Witness_SpCode",
         "Witness_stake"
       ],
@@ -676,8 +736,9 @@
         "X_Coord",
         "Y_Coord"
       ],
-      "tlu_PlantSpecies": [
-        "SpeciesCode"
+      "tbl_Overstory": [
+        "DBH",
+        "SpCode"
       ]
     }
   },
@@ -704,7 +765,6 @@
     "question_id": 49,
     "schema_links": {
       "OQCN": [
-        "CatName",
         "CategoryId"
       ],
       "OUQR": []
@@ -733,6 +793,7 @@
       "Accountability_Status_by_Subgroup": [
         "ENTITY_CD",
         "OVERALL_STATUS",
+        "SCHOOL_TYPE",
         "YEAR"
       ]
     }
@@ -758,6 +819,7 @@
     "question_id": 53,
     "schema_links": {
       "tblFieldDataSnakeDataCollection": [
+        "Behavior",
         "SVL",
         "Sex",
         "Weight"
@@ -768,6 +830,7 @@
     "question_id": 54,
     "schema_links": {
       "tbl_Locations": [
+        "Elevation",
         "X_Coord",
         "Y_Coord"
       ]
@@ -778,7 +841,8 @@
     "schema_links": {
       "GLAZING": [
         "CASEID",
-        "GLAZIMP"
+        "GLAZIMP",
+        "VEHNO"
       ]
     }
   },
@@ -795,18 +859,15 @@
     "schema_links": {
       "OCLG": [
         "CardCode",
-        "CloseDate",
-        "CntctCode",
-        "endDate"
+        "CloseDate"
       ],
       "OCPR": [
-        "CardCode",
-        "CntctCode",
-        "Name"
+        "CardCode"
       ],
-      "CRD2": [
+      "CRD9": [
         "CardCode",
-        "PymCode"
+        "ISState",
+        "ISTransMod"
       ]
     }
   },
@@ -814,14 +875,16 @@
     "question_id": 58,
     "schema_links": {
       "tbl_Overstory": [
-        "SpCode"
+        "SpCode",
+        "TreeTag"
       ],
       "tbl_Saplings": [
         "spcode"
       ],
       "tlu_PlantSpecies": [
         "CommonName",
-        "SpeciesCode"
+        "SpeciesCode",
+        "genus"
       ]
     }
   },
@@ -830,8 +893,8 @@
     "schema_links": {
       "CDC": [
         "CASEID",
-        "CMAXLOCATION",
         "DOORSILLDIFF",
+        "DVSPEED",
         "VEHNO"
       ]
     }
@@ -862,15 +925,10 @@
   {
     "question_id": 62,
     "schema_links": {
-      "OAGP": [
-        "AgentCode",
-        "AgentName",
-        "Memo"
-      ],
-      "OISR": [
-        "Answer",
-        "Contact",
-        "Open_Date"
+      "ORCI": [
+        "Active",
+        "Code",
+        "Name"
       ]
     }
   },
@@ -884,6 +942,10 @@
       "tbl_Events": [
         "Event_ID",
         "Start_Date"
+      ],
+      "tbl_Observations": [
+        "Event_ID",
+        "Observation_ID"
       ]
     }
   },
@@ -933,8 +995,13 @@
       ],
       "INJURY": [
         "AIS",
-        "AISCODE",
         "CASEID",
+        "REGION",
+        "VEHNO"
+      ],
+      "ICS": [
+        "CASEID",
+        "ICSCONFIDENCE",
         "VEHNO"
       ]
     }
@@ -945,6 +1012,7 @@
       "Postsecondary_Enrollment": [
         "ENTITY_CD",
         "ENTITY_NAME",
+        "INSTITUTION_ID",
         "MEMBERSHIP_DESC",
         "NYS_PVT_4_YR_CNT",
         "SUBGROUP_NAME",
@@ -952,7 +1020,8 @@
       ],
       "Institution_Grouping": [
         "ENTITY_CD",
-        "GROUP_NAME"
+        "GROUP_NAME",
+        "INSTITUTION_ID"
       ]
     }
   },
@@ -960,16 +1029,11 @@
     "question_id": 69,
     "schema_links": {
       "tbl_Nests": [
-        "Event_ID",
         "SpCode"
       ],
       "tlu_PlantSpecies": [
         "CommonName",
         "SpeciesCode"
-      ],
-      "tbl_Overstory": [
-        "Event_ID",
-        "SpCode"
       ]
     }
   },
@@ -989,7 +1053,14 @@
         "Event_ID"
       ],
       "tlu_DecayStage": [
+        "DecayStage_Descr",
         "DecayStage_ID"
+      ],
+      "tbl_Events": [
+        "Event_ID"
+      ],
+      "tbl_Overstory": [
+        "Event_ID"
       ]
     }
   },
@@ -999,13 +1070,8 @@
       "OCC": [
         "BELTUSE",
         "CASEID",
-        "MORTALITY",
         "OCCNO",
-        "VEHNO"
-      ],
-      "SEAT": [
-        "CASEID",
-        "SEATLOC"
+        "PARBELTUSE"
       ]
     }
   },
@@ -1014,6 +1080,7 @@
     "schema_links": {
       "tbl_MicroHabitat": [
         "CoverClass",
+        "CoverPercent",
         "Deciduous",
         "Event_ID",
         "Evergreen",
@@ -1044,6 +1111,13 @@
       "Institution_Grouping": [
         "ENTITY_CD",
         "GROUP_NAME"
+      ],
+      "ACC_HS_Graduation_Rate": [
+        "COHORT_COUNT",
+        "ENTITY_CD",
+        "GRAD_COUNT",
+        "SUBGROUP_NAME",
+        "YEAR"
       ]
     }
   },
@@ -1055,7 +1129,6 @@
         "NUM_PRINC_INEXP",
         "NUM_TEACH",
         "NUM_TEACH_INEXP",
-        "PER_PRINC_INEXP",
         "PER_TEACH_INEXP",
         "YEAR"
       ]
@@ -1099,11 +1172,16 @@
       "Inexperienced_Teachers_and_Principals": [
         "ENTITY_CD",
         "ENTITY_NAME",
+        "NUM_TEACH_INEXP",
         "PER_TEACH_INEXP"
       ],
       "BOCES_and_N/RC": [
         "DISTRICT_NAME",
         "ENTITY_CD"
+      ],
+      "Institution_Grouping": [
+        "ENTITY_CD",
+        "GROUP_NAME"
       ]
     }
   },
@@ -1125,14 +1203,6 @@
       ],
       "OJDT": [
         "BatchNum"
-      ],
-      "JDT1": [
-        "Account",
-        "Credit",
-        "Debit"
-      ],
-      "ODPA": [
-        "DirRevPost"
       ]
     }
   },
@@ -1167,6 +1237,17 @@
         "Model",
         "ModelYear",
         "VEHNO"
+      ],
+      "TIRE": [
+        "CASEID",
+        "TIRELOC",
+        "TIREMODEL",
+        "TIRESIZE",
+        "VEHNO"
+      ],
+      "VEHSPEC": [
+        "CASEID",
+        "VEHNO"
       ]
     }
   },
@@ -1176,6 +1257,7 @@
       "Accountability_Status_by_Subgroup": [
         "ENTITY_NAME",
         "OVERALL_STATUS",
+        "SCHOOL_TYPE",
         "SUBGROUP_NAME",
         "YEAR"
       ]
@@ -1190,9 +1272,9 @@
         "PriceList"
       ],
       "OITM": [
-        "IsCommited",
         "ItemCode",
-        "ItemName"
+        "ItemName",
+        "OnHand"
       ]
     }
   },
@@ -1218,8 +1300,9 @@
   {
     "question_id": 87,
     "schema_links": {
-      "OITM": [],
-      "ITM1": []
+      "OITM": [
+        "ItemCode"
+      ]
     }
   },
   {
@@ -1239,7 +1322,11 @@
     "question_id": 89,
     "schema_links": {
       "OCPN": [
-        "Name"
+        "CpnNo",
+        "Name",
+        "TargetGrp",
+        "Type",
+        "Url"
       ],
       "TGG1": [
         "CardCode",
@@ -1247,11 +1334,9 @@
       ],
       "OCPR": [
         "CardCode",
-        "Name",
+        "FirstName",
+        "LastName",
         "Position"
-      ],
-      "OCLG": [
-        "CntctCode"
       ]
     }
   },
@@ -1292,6 +1377,10 @@
     "schema_links": {
       "EDRPRECRASH": [
         "CASEID"
+      ],
+      "EDREVENT": [
+        "CASEID",
+        "EDREVENTNO"
       ]
     }
   },
@@ -1301,7 +1390,8 @@
       "tbl_Nests": [
         "Event_ID",
         "Module",
-        "R1"
+        "R1",
+        "SpCode"
       ],
       "tlu_Presence": [
         "Pres_Num",
@@ -1317,24 +1407,36 @@
       "tbl_Locations": [
         "Location_ID"
       ],
-      "tlu_PlantSpecies": []
+      "tlu_Can_Pos": [
+        "CanPos_Name",
+        "CanPos_Num"
+      ],
+      "tlu_Cover_Cls": [
+        "CoverClass_Num",
+        "CoverClass_Text"
+      ]
     }
   },
   {
     "question_id": 95,
     "schema_links": {
       "PWZ1": [
-        "BPCurrency",
         "CardCode",
-        "CardName",
-        "Checked"
+        "CardName"
       ],
       "OPYM": [
         "Descript",
         "PayMethCod"
       ],
+      "OITR": [
+        "CreateDate",
+        "ReconNum"
+      ],
       "OCHH": [
         "CardCode",
+        "CardName",
+        "CheckDate",
+        "CheckSum",
         "Currency"
       ]
     }
@@ -1348,6 +1450,7 @@
       ],
       "VERTEBRATES": [
         "Common_Name",
+        "Number",
         "Species"
       ]
     }
@@ -1357,7 +1460,6 @@
     "schema_links": {
       "tbl_Density": [
         "Density_ID",
-        "Event_ID",
         "Half_meter"
       ],
       "tbl_Events": [
@@ -1385,7 +1487,6 @@
       "OOPR": [
         "CardCode",
         "CloPrcnt",
-        "IntRate",
         "OpprId"
       ],
       "OPR3": [
@@ -1425,7 +1526,17 @@
       ],
       "tlu_Species": [
         "Common_Name",
-        "Family",
+        "Species_ID"
+      ],
+      "tbl_Stations_UTMs": [
+        "Station_ID"
+      ],
+      "xref_Event_Contacts": [
+        "Contact_ID",
+        "Event_ID"
+      ],
+      "xref_Species_Alternate_Names": [
+        "Alternate_Name",
         "Species_ID"
       ]
     }
@@ -1436,6 +1547,7 @@
       "Annual_NYSESLAT": [
         "ENTITY_CD",
         "PER_EMER",
+        "SUBGROUP_NAME",
         "SUBJECT",
         "YEAR"
       ]

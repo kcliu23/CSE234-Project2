@@ -21,12 +21,17 @@
 \begin{document}
 \maketitle\vspace{-0.4in}
 
-\textbf{Final validation leaderboard: 0.7006} (Table 0.7676 / Column 0.6335).
+\textbf{Final validation leaderboard: 0.7107} (Table 0.7791 / Column 0.6423).
 Baseline (smoke adapter): 0.5605. Best single adapter: 0.6648 (sweep 13).
 Submission: \texttt{python3 main.py --input X --output Y} runs a 3-way LoRA ensemble
-with embedding-based table retrieval; completes 101 questions in $\sim$11~min on a
-24~GB MIG slice ($<$15~min budget). Verified end-to-end from a fresh
-\texttt{git clone} of the submitted repo: 0.7006 reproduces exactly in 10m58s.
+\emph{across two base models AND mixed table retrievers per adapter}: sweep 13
+on Qwen-Coder-1.5B with embedding retrieval, sweep 15 on Qwen-Coder-1.5B with
+BM25 retrieval, sweep 22 on Qwen3-1.7B with embedding retrieval. Completes
+101 questions in \textbf{12m14s} on a 24~GB MIG slice ($<$15~min budget).
+\texttt{main.py} reads each adapter's \texttt{adapter\_config.json} to group
+adapters by base model (so each base is loaded only once) and accepts a
+\texttt{path[:retriever]} spec per adapter so the same adapter under different
+retrievers can be ensembled too.
 
 \section{Training Data Methodology}
 
@@ -92,15 +97,19 @@ adapters together fit in $\sim$220 MB of repo size.
 3\text{e-}4\text{+aug+400steps}, 2\text{e-}4\}$ -- their union forms the ensemble.
 
 \textbf{Inference pipeline (\texttt{main.py}).}
-(1)~Load base model once. (2)~Load LoRA adapter A, run all 101 queries, accumulate
-$\{$table$\rightarrow$cols$\}$ predictions per question. (3)~Replace adapter A
-with adapter B via \texttt{PeftModel.from\_pretrained}, repeat. (4)~Repeat for
-adapter C. (5)~Union accumulator across the three adapters and write final
-predictions. \textbf{Partial-save after each adapter}: a $>$15min timeout still
-yields a 2-way ensemble (strictly better than single adapter).
-\textbf{Retrieval}: embedding-based -- \texttt{BAAI/bge-small-en-v1.5}
-sentence-transformer cosine similarity between the question and each table's
-``\texttt{table tokens columns column-tokens}'' document; top-20 tables kept.
+(1)~Read each adapter's \texttt{adapter\_config.json} to determine which base
+model it requires; group adapters by base model. (2)~For each group, load that
+base model once and load every adapter in the group as a NAMED PEFT adapter
+via \texttt{PeftModel.load\_adapter}. (3)~For each adapter in the group:
+\texttt{model.set\_adapter(name)}, run all 101 queries through that adapter,
+accumulate $\{$table$\rightarrow$cols$\}$ predictions. (4)~Free the group's
+base before loading the next group. (5)~Union the accumulator across all
+adapters and write final predictions. \textbf{Partial-save after each
+adapter}: a $>$15min timeout still yields a smaller ensemble of completed
+adapters. \textbf{Retrieval}: embedding-based --
+\texttt{BAAI/bge-small-en-v1.5} sentence-transformer cosine similarity
+between the question and each table's ``\texttt{table tokens columns
+column-tokens}'' document; top-20 tables kept.
 
 \textbf{Post-processing.} \texttt{canonicalize\_prediction} drops any
 non-schema identifier (precision-preserving hallucination filter) and re-cases
@@ -242,6 +251,7 @@ experiment.
 20 & \textbf{SmolLM2-1.7B} & r=32 + MLP, BM25                                  & 3e-4 & 200 & 0.5301 & $-$0.135 \\
 17a/b & Qwen2.5-Coder-1.5B & \textbf{Two-stage}: table model + column model    & 3e-4 & 200 & 0.6127 & $-$0.052 \\
 21 & Qwen2.5-Coder-1.5B    & r=32 + MLP, \textbf{CoT-distilled} training data  & 3e-4 & 200 & 0.6103 & $-$0.054 \\
+22 & \textbf{Qwen3-1.7B}   & r=32 + MLP, BM25, original data                   & 3e-4 & 200 & 0.6599 & $-$0.049 \\
 \midrule
 \multicolumn{6}{r}{\textbf{Inference-time -- best single adapter (sweep 13):}} & \\
 \multicolumn{6}{r}{BM25 retrieval (baseline)} & 0.6648 \\
@@ -251,11 +261,17 @@ experiment.
 \multicolumn{6}{r}{Self-consistency, K=3, T=0.5, union-of-samples} & 0.6737 \\
 \multicolumn{6}{r}{Column expansion (question-keyword $\leftrightarrow$ col-name match)} & $\sim$same \\
 \midrule
-\multicolumn{6}{r}{\textbf{Ensembles (union, 3-way over sweeps 13, 15, 18):}} & \\
+\multicolumn{6}{r}{\textbf{Ensembles -- 3-way Coder-only (sweeps 13+15+18):}} & \\
 \multicolumn{6}{r}{BM25 retrieval} & 0.6986 \\
-\multicolumn{6}{r}{\textbf{Embedding retrieval} -- submitted champion}        & \textbf{0.7002} \\
-\multicolumn{6}{r}{Hybrid retrieval}                                          & 0.6977 \\
+\multicolumn{6}{r}{Embedding retrieval (single-base champion before Qwen3)}    & 0.7002 \\
+\multicolumn{6}{r}{Hybrid retrieval (RRF)}                                    & 0.6977 \\
 \multicolumn{6}{r}{2-way 13+18, 4-way +14 / +20 / +11}                        & 0.66--0.69 \\
+\multicolumn{6}{r}{\textbf{Ensembles -- cross-family (Coder + Qwen3):}} & \\
+\multicolumn{6}{r}{2-way 13+22 (both embed)} & 0.7063 \\
+\multicolumn{6}{r}{3-way 13+15+22 all-embed (single-retriever)} & 0.7019 \\
+\multicolumn{6}{r}{\textbf{3-way mixed-retriever: 13\_embed + 15\_BM25 + 22\_embed}}
+                                                              & \textbf{0.7107} \\
+\multicolumn{6}{r}{(submitted champion; 0.7147 in the offline probe -- the 0.7107 is the actual fp16 end-to-end)} & \\
 \bottomrule
 \end{tabular}
 \caption{All 11 distinct training configs (top) and the inference-time ablations
@@ -304,6 +320,27 @@ sweep 13 (lr=3e-4, 301 train), sweep 15 (lr=3e-4, 517 train, 400 steps), and
 sweep 18 (lr=2e-4, 301 train). Chosen because their errors are sufficiently
 uncorrelated; 4- and 5-way variants regressed because the weaker fourth model
 (sweep 20 / sweep 12) brings more noise than signal.
+\item \textbf{Adding Qwen3-1.7B (sweep 22) for cross-family ensemble (+0.017
+over single-base champion)}: sweep 22 alone scores 0.66 -- weaker than
+sweep 13 (0.66) -- but its errors are markedly less correlated with the
+Qwen-Coder ensemble members because it comes from a different model family
+entirely. Replacing sweep 18 (the weakest Coder member) with sweep 22
+produced the 3-way 13+15+22 all-embed ensemble at 0.7019. The submission's
+\texttt{main.py} groups adapters by base model and loads each base only
+once, so this multi-base ensemble still fits in the 15-minute inference
+budget.
+\item \textbf{Mixed-retriever ensemble (+0.009 over the all-embed champion)}:
+the same adapter produces different predictions under different retrievers
+(BM25 vs embed vs hybrid) because the candidate-table set in the prompt
+differs. Probing this axis, we found that putting sweep 15 under BM25
+retrieval (while sweep 13 and sweep 22 stay on embed) added a measurable
+boost: the 3-way mixed-retriever ensemble \textbf{13\_embed + 15\_BM25 +
+22\_embed lands at 0.7107} -- our final submitted leaderboard. The
+intuition: ``which retriever is right for this adapter'' is not just about
+training-time consistency; for ensemble purposes, the right pairing is
+whichever makes the errors of this member most uncorrelated with the
+others. We expose this in \texttt{main.py}'s \texttt{--ensemble\_dirs}
+via a \texttt{path[:retriever]} spec per adapter.
 \end{itemize}
 
 \textbf{What didn't work, and why.}

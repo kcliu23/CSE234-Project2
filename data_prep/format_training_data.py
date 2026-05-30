@@ -19,8 +19,10 @@ other is the #1 source of fine-tuned-model regressions.
 import argparse
 import json
 import os
+import sys
 from typing import Dict, List
 
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from prompt import build_messages, target_string
 from schema_utils import load_schema
 

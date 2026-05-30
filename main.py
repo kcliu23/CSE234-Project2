@@ -186,6 +186,44 @@ def _build_preds_from_accum(items, accum_tables, accum_cols):
     return out
 
 
+def _build_preds_with_aggregation(items, accum_tables, accum_cols,
+                                    table_votes, tablecol_votes,
+                                    lead_tables, lead_pairs, mode):
+    """Apply maj2 / maj2_or_lead aggregation on top of the accumulated votes.
+
+    mode='union'        : every accumulated identifier kept (legacy behavior).
+    mode='maj2'         : keep tables/(table,col) pairs with >=2 votes.
+    mode='maj2_or_lead' : maj2 union'd with everything the lead model emitted.
+    """
+    out = []
+    for it in items:
+        qid = it['question_id']
+        ats = accum_tables.get(qid, {})
+        acc = accum_cols.get(qid, {})
+        if mode == 'union':
+            sl = {ats[tlc]: sorted(acc[tlc].values()) for tlc in ats}
+        else:
+            tvotes = table_votes.get(qid, {})
+            cvotes = tablecol_votes.get(qid, {})
+            keep_t = {tlc for tlc, v in tvotes.items() if v >= 2}
+            keep_c = {tc for tc, v in cvotes.items() if v >= 2}
+            if mode == 'maj2_or_lead':
+                keep_t |= lead_tables.get(qid, set())
+                keep_c |= lead_pairs.get(qid, set())
+            keep_t |= {t for (t, _) in keep_c}
+            sl = {}
+            for tlc in keep_t:
+                if tlc in ats:
+                    sl[ats[tlc]] = []
+            for (tlc, clc) in keep_c:
+                if tlc in ats and tlc in acc and clc in acc[tlc]:
+                    sl[ats[tlc]].append(acc[tlc][clc])
+            for t in sl:
+                sl[t] = sorted(sl[t])
+        out.append({'question_id': qid, 'schema_links': sl})
+    return out
+
+
 def _write_preds_atomic(path: str, preds):
     """Write JSON atomically -- if killed mid-write, the existing file is untouched."""
     tmp = path + '.tmp'
@@ -227,6 +265,7 @@ def predict_ensemble(items: List[Dict],
                      max_tables: int = 20,
                      prompt_style: str = 'compact',
                      retrieval: str = 'embed',
+                     aggregation: str = 'union',
                      save_partial_to: str = None) -> List[Dict]:
     """Ensemble inference: union the {table:[cols]} predictions across all
     given adapters for each question.
@@ -275,6 +314,12 @@ def predict_ensemble(items: List[Dict],
     # Per-question accumulators (case-insensitive de-dup; canonical casing preserved)
     accum_tables: Dict[int, Dict[str, str]] = {}            # qid -> {tlc -> canonical T}
     accum_cols:   Dict[int, Dict[str, Dict[str, str]]] = {} # qid -> {tlc -> {clc -> canonical c}}
+    # Vote counts (per-adapter, deduped within an adapter's own output) for maj2 aggregation.
+    table_votes:    Dict[int, Dict[str, int]] = {}                   # qid -> {tlc -> count}
+    tablecol_votes: Dict[int, Dict[tuple, int]] = {}                 # qid -> {(tlc,clc) -> count}
+    # Lead-model snapshot (first adapter's emissions) for maj2_or_lead.
+    lead_tables: Dict[int, set] = {}                                 # qid -> {tlc}
+    lead_pairs:  Dict[int, set] = {}                                 # qid -> {(tlc, clc)}
 
     total_adapters = sum(len(v) for v in groups.values())
     completed = 0
@@ -327,18 +372,51 @@ def predict_ensemble(items: List[Dict],
                 qid = it['question_id']
                 accum_tables.setdefault(qid, {})
                 accum_cols.setdefault(qid, {})
+                table_votes.setdefault(qid, {})
+                tablecol_votes.setdefault(qid, {})
+                is_lead = (completed == 1)
+                if is_lead:
+                    lead_tables.setdefault(qid, set())
+                    lead_pairs.setdefault(qid, set())
+                seen_t_this_adapter = set()
+                seen_c_this_adapter = set()
                 for t, c_list in links.items():
                     tlc = t.lower()
                     accum_tables[qid].setdefault(tlc, t)
                     accum_cols[qid].setdefault(tlc, {})
+                    if tlc not in seen_t_this_adapter:
+                        table_votes[qid][tlc] = table_votes[qid].get(tlc, 0) + 1
+                        seen_t_this_adapter.add(tlc)
+                        if is_lead:
+                            lead_tables[qid].add(tlc)
                     for c in (c_list or []):
-                        accum_cols[qid][tlc].setdefault(c.lower(), c)
+                        clc = c.lower()
+                        accum_cols[qid][tlc].setdefault(clc, c)
+                        tc = (tlc, clc)
+                        if tc not in seen_c_this_adapter:
+                            tablecol_votes[qid][tc] = tablecol_votes[qid].get(tc, 0) + 1
+                            seen_c_this_adapter.add(tc)
+                            if is_lead:
+                                lead_pairs[qid].add(tc)
 
                 if (qi + 1) % 25 == 0 or qi + 1 == n:
                     print(f"[main] [ensemble] [{completed}/{total_adapters}] {qi+1}/{n} done", file=sys.stderr)
 
             if save_partial_to is not None:
-                _write_preds_atomic(save_partial_to, _build_preds_from_accum(items, accum_tables, accum_cols))
+                # Use union for early partials (best output with few adapters),
+                # but switch to the requested aggregation on the LAST adapter so
+                # the on-disk file always matches the final result. Otherwise a
+                # kill in the microsecond window between the final partial-write
+                # and main()'s overwrite would ship a worse 4-way union.
+                if completed == total_adapters and aggregation != 'union':
+                    partial_preds = _build_preds_with_aggregation(
+                        items, accum_tables, accum_cols,
+                        table_votes, tablecol_votes,
+                        lead_tables, lead_pairs, aggregation,
+                    )
+                else:
+                    partial_preds = _build_preds_from_accum(items, accum_tables, accum_cols)
+                _write_preds_atomic(save_partial_to, partial_preds)
                 print(f"[main] [ensemble] [{completed}/{total_adapters}] partial preds -> {save_partial_to}", file=sys.stderr)
 
         # Free this group's base + PeftModel before loading the next base.
@@ -347,7 +425,11 @@ def predict_ensemble(items: List[Dict],
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
 
-    return _build_preds_from_accum(items, accum_tables, accum_cols)
+    return _build_preds_with_aggregation(
+        items, accum_tables, accum_cols,
+        table_votes, tablecol_votes,
+        lead_tables, lead_pairs, aggregation,
+    )
 
 
 def predict_with_model(items: List[Dict],
@@ -515,7 +597,21 @@ def main():
     ap.add_argument('--single', action='store_true',
                     help='Disable ensemble; just load --adapter_dir as a single adapter. '
                          'Use this for ablations or as a faster fallback.')
-    ap.add_argument('--ensemble_dirs', default='./adapter_ensemble/sweep13:embed,./adapter_ensemble/sweep15:bm25,./adapter_ensemble/sweep22:embed',
+    ap.add_argument('--aggregation', default='maj2',
+                    choices=['union', 'maj2', 'maj2_or_lead'],
+                    help='How to combine per-adapter predictions. "union" = legacy partial-union '
+                         '(every emission kept); "maj2" = keep identifiers with >=2 votes across '
+                         'adapters; "maj2_or_lead" = maj2 union\'d with the first adapter\'s outputs. '
+                         'Partial preds written during inference always use union — only the final '
+                         'write applies the requested aggregation, so a mid-run kill leaves a safe '
+                         'union fallback.')
+    # Adapter order matters for the partial-write safety contract: predict_ensemble
+    # groups adapters by base model, so sweep22 (Qwen3 base) leads to keep the Qwen3
+    # group first. After adapter 3 completes the on-disk partial = union(sweep22_embed,
+    # sweep13_embed, sweep15_bm25) = the original locked-champion configuration (0.7107).
+    # Adapter 4 (sweep13_hybrid) lifts the final maj2 to 0.7230 — but a mid-adapter-4
+    # kill still leaves the locked champion on disk. Do not reorder.
+    ap.add_argument('--ensemble_dirs', default='./adapter_ensemble/sweep22:embed,./adapter_ensemble/sweep13:embed,./adapter_ensemble/sweep15:bm25,./adapter_ensemble/sweep13:hybrid',
                     help='Comma-separated LoRA adapter specs to ensemble (union of predictions). '
                          'Each entry is "path[:retriever]". If retriever is omitted, --retrieval is used. '
                          'Adapters may use different base models; main.py reads each adapter\'s '
@@ -563,6 +659,7 @@ def main():
                 max_tables=args.max_tables,
                 prompt_style=args.prompt_style,
                 retrieval=args.retrieval,
+                aggregation=args.aggregation,
                 save_partial_to=args.output,  # write partial after each adapter
             )
     else:

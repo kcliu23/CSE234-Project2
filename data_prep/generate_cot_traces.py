@@ -41,6 +41,7 @@ import sys
 import time
 from typing import Dict, List
 
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from schema_utils import load_schema, serialize_schema_filtered
 
 

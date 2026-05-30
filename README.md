@@ -1,8 +1,8 @@
 # CSE/DSC 234 Project 2 — Schema Linking
 
-A schema-linking pipeline built on a **mixed-base, mixed-retriever 3-way LoRA ensemble** across `Qwen2.5-Coder-1.5B-Instruct` (sweeps 13 and 15) and `Qwen3-1.7B` (sweep 22), all fine-tuned with LoRA adapters via RapidFire AI.
+A schema-linking pipeline built on a **mixed-base, mixed-retriever 4-way LoRA ensemble** with majority-2 aggregation, across `Qwen2.5-Coder-1.5B-Instruct` (sweeps 13 and 15) and `Qwen3-1.7B` (sweep 22), all fine-tuned with LoRA adapters via RapidFire AI.
 
-**Validation leaderboard score: 0.7107** (Table F1: 0.7791 / Column F1: 0.6423)
+**Validation leaderboard score: 0.7270** (Table Score: 0.7911 / Column Score: 0.6630)
 
 ---
 
@@ -12,9 +12,11 @@ A schema-linking pipeline built on a **mixed-base, mixed-retriever 3-way LoRA en
 python3 main.py --input <input.json> --output <pred.json>
 ```
 
-By default, this runs the submitted **3-way LoRA ensemble** with mixed table retrievers (sweep 13 + embed, sweep 15 + BM25, sweep 22 + embed), reproducing the 0.7107 validation result. On a ~24 GB MIG slice, inference over the 101-question validation set completes in approximately **12 minutes** — well within the 15-minute grading budget.
+By default, this runs the submitted **4-way LoRA ensemble** (sweep 22 + embed, sweep 13 + embed, sweep 15 + BM25, sweep 13 + hybrid) with **majority-2 aggregation** — an identifier survives only if it appears in at least 2 of the 4 per-(adapter, retriever) predictions. On a ~24 GB MIG slice, inference over the 101-question validation set completes in approximately **13 minutes** — within the 15-minute grading budget.
 
-The ensemble groups adapters by their base model (read from each adapter's `adapter_config.json`) so each base is loaded only once: Qwen-Coder-1.5B for sweeps 13 and 15, then Qwen3-1.7B for sweep 22. The `--ensemble_dirs` flag accepts a `path[:retriever]` spec per adapter, so the same adapter under different retrievers (BM25 / embed / hybrid) can be ensembled too.
+The ensemble groups adapters by their base model (read from each adapter's `adapter_config.json`) so each base is loaded only once. The default `--ensemble_dirs` order is deliberate: Qwen3 leads with sweep 22, then the Coder base loads for the three Qwen-Coder adapters. This guarantees that after the first 3 adapters complete, the on-disk partial-union is the same 3-way config (sweep 22 / sweep 13 / sweep 15) as the previous locked champion (0.7107) — so a mid-adapter-4 kill ships the locked baseline rather than a degraded 3-way of all-Coder adapters. After adapter 4 completes, the partial-write switches to majority-2 (the 0.7270 result).
+
+The 4th entry reuses sweep 13's weights with the hybrid retriever — pure post-hoc diversity, no extra training. The `--ensemble_dirs` flag accepts a `path[:retriever]` spec per adapter; `--aggregation` accepts `union` (legacy 3-way behavior), `maj2` (the default), or `maj2_or_lead` (maj2 union'd with the first adapter's outputs).
 
 To use a single adapter (faster, slightly lower score):
 
@@ -24,14 +26,15 @@ python3 main.py --input <input.json> --output <pred.json> --single
 
 ### Model artifacts
 
-| Path | Description |
+| Path | Used at inference as |
 |---|---|
 | `./adapter/` | Single best LoRA adapter (sweep 13) — required by rubric |
-| `./adapter_ensemble/sweep13/` | LoRA on Qwen2.5-Coder-1.5B-Instruct, used at inference with embedding retrieval |
-| `./adapter_ensemble/sweep15/` | LoRA on Qwen2.5-Coder-1.5B-Instruct, used at inference with BM25 retrieval |
-| `./adapter_ensemble/sweep22/` | LoRA on Qwen3-1.7B, used at inference with embedding retrieval |
+| `./adapter_ensemble/sweep22/` | Pass 1: Qwen3-1.7B base, embedding retrieval |
+| `./adapter_ensemble/sweep13/` | Pass 2: Qwen-Coder-1.5B base, embedding retrieval |
+| `./adapter_ensemble/sweep15/` | Pass 3: Qwen-Coder-1.5B base, BM25 retrieval |
+| `./adapter_ensemble/sweep13/` (reused) | Pass 4: Qwen-Coder-1.5B base, hybrid retrieval |
 
-Both base models (`Qwen/Qwen2.5-Coder-1.5B-Instruct` and `Qwen/Qwen3-1.7B`) are pulled from Hugging Face Hub via `AutoModelForCausalLM.from_pretrained`. The sweep 13 and sweep 15 adapters share the Coder base (one load); the sweep 22 adapter loads the Qwen3 base. Each adapter is ~70 MB. Within each base group, adapters are loaded as named PEFT adapters and swapped via `model.set_adapter(name)`.
+Both base models (`Qwen/Qwen2.5-Coder-1.5B-Instruct` and `Qwen/Qwen3-1.7B`) are pulled from Hugging Face Hub via `AutoModelForCausalLM.from_pretrained`. Qwen3 loads first (pass 1), is freed, then the Coder base loads for passes 2–4. Within the Coder group, the three adapters (sweep 13 loaded twice for embed + hybrid passes, sweep 15 loaded once) are wrapped as named PEFT adapters and swapped via `model.set_adapter(name)` between passes. Each adapter is ~70 MB.
 
 After each adapter completes, partial-union predictions are atomically written to `--output`. A mid-third-adapter timeout will still return a 2-way ensemble result, which is strictly better than a single-adapter result.
 
@@ -40,29 +43,36 @@ After each adapter completes, partial-union predictions are atomically written t
 ## Repository Layout
 
 ```
-main.py                     Inference entry point (ensemble default; --single for single adapter)
+main.py                     Inference entry point (4-way maj2 ensemble default; --single for one adapter)
+eval.py                     Course-provided evaluation script (table-/column-level P/R/F1)
 prompt.py                   Shared prompt construction and output parsing utilities
 schema_utils.py             Schema loading, serialization (compact/types/keys),
                             BM25 / embedding / hybrid table retrievers
-train_rapidfire.py          Training entry point (RapidFire AI RFGridSearch)
-train_single.py             Plain TRL SFTTrainer fallback (used during early development)
-format_training_data.py     Converts train.json / validation.json to JSONL format
-format_two_stage_data.py    Splits each example into stage-A / stage-B SFT pairs
-augment_data.py             Generates additional SBO training examples via the Claude API
-expand_columns.py           Keyword-based column-expansion post-processor (not in final submission)
-reproduce_champion.py       Rebuilds the champion ensemble predictions from per-model files
-generate_cot_traces.py      Generates chain-of-thought rationales via Claude API (used by sweep 21)
+training/                   Training-side scripts (NOT used at inference)
+  ├── train_rapidfire.py    Training entry point (RapidFire AI RFGridSearch)
+  ├── train_single.py       Plain TRL SFTTrainer fallback (used during early development)
+  └── reproduce_champion.py Rebuilds the champion ensemble predictions from per-(adapter, retriever) files
+data_prep/                  One-off data conversion / augmentation scripts (NOT used at inference)
+  ├── format_training_data.py    Converts train.json / validation.json to JSONL chat-message format
+  ├── format_two_stage_data.py   Splits each example into stage-A / stage-B SFT pairs
+  ├── augment_data.py            Generates SBO training examples via the Claude API
+  ├── generate_cot_traces.py     Generates chain-of-thought rationales via the Claude API (sweep 21)
+  ├── expand_columns.py          Keyword-based column-expansion post-processor (exploratory)
+  └── sql_to_schema_links.py     Extracts schema-link gold labels from SQL via sqlglot
+scripts/                    Analysis / probe scripts (NOT used at inference)
+  └── probe_ensembles.py    Combinatorial search over (adapter, retriever) ensemble configs
 adapter/                    Submitted single LoRA adapter (sweep 13; rubric-required path)
-adapter_ensemble/           Submitted 3-adapter ensemble used by the default inference path
+adapter_ensemble/           Submitted 3-directory ensemble: sweep13, sweep15, sweep22
+                            (sweep 13 is loaded twice at inference under embed + hybrid retrievers)
 adapter_v2/                 Early artifact from the train_single.py path (kept for reference)
 data/                       train.json, validation.json, preprocessed JSONL files,
                             and train_augmented.json (Claude-generated SBO augmentations)
-predictions/                Per-model and ensemble validation outputs (kept for the report)
+predictions/                Per-(adapter, retriever) and ensemble validation outputs
 logs/                       Per-sweep rapidfire.log, training.log, and metrics.json
                             (extracted from the RapidFire AI MLflow database)
 docs/                       Course-provided project statement and sample_main.py
 schemas/                    17 Spider-format database schemas (rubric-required path)
-tests/                      Smoke tests
+tests/                      Smoke tests (test_checklist.py exercises the rubric quick-start invariants)
 ```
 
 ---

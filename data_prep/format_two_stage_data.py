@@ -35,8 +35,11 @@ Run:
 """
 import argparse
 import json
+import os
+import sys
 from typing import Dict, List
 
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from schema_utils import load_schema, tokenize_identifier, _bm25_score_tables
 
 

@@ -21,17 +21,20 @@
 \begin{document}
 \maketitle\vspace{-0.4in}
 
-\textbf{Final validation leaderboard: 0.7107} (Table 0.7791 / Column 0.6423).
+\textbf{Final validation leaderboard: 0.7270} (Table 0.7911 / Column 0.6630).
 Baseline (smoke adapter): 0.5605. Best single adapter: 0.6648 (sweep 13).
-Submission: \texttt{python3 main.py --input X --output Y} runs a 3-way LoRA ensemble
-\emph{across two base models AND mixed table retrievers per adapter}: sweep 13
-on Qwen-Coder-1.5B with embedding retrieval, sweep 15 on Qwen-Coder-1.5B with
-BM25 retrieval, sweep 22 on Qwen3-1.7B with embedding retrieval. Completes
-101 questions in \textbf{12m14s} on a 24~GB MIG slice ($<$15~min budget).
+Submission: \texttt{python3 main.py --input X --output Y} runs a \textbf{4-way
+LoRA ensemble with majority-2 aggregation} \emph{across two base models AND
+mixed retrievers per adapter}: sweep 22 on Qwen3-1.7B + embed, sweep 13 on
+Qwen-Coder-1.5B + embed, sweep 15 on Qwen-Coder-1.5B + BM25, and sweep 13
+\emph{reused} on Qwen-Coder-1.5B with hybrid retrieval. An identifier
+survives iff it is emitted by $\geq$2 of the 4 passes. Completes 101
+questions in \textbf{13m9s} on a 24~GB MIG slice ($<$15~min budget).
 \texttt{main.py} reads each adapter's \texttt{adapter\_config.json} to group
 adapters by base model (so each base is loaded only once) and accepts a
-\texttt{path[:retriever]} spec per adapter so the same adapter under different
-retrievers can be ensembled too.
+\texttt{path[:retriever]} spec per adapter, so the same adapter under
+different retrievers can be ensembled too. The 4th pass is exactly that --
+pure post-hoc diversity, no extra training.
 
 \section{Training Data Methodology}
 
@@ -68,7 +71,7 @@ labels absent from its prompt. Inference does not have this oracle.
 $\sim$55\% of our validation table-misses concentrate. We generated 216 additional
 (question, gold\_sql) pairs via the Claude API (Haiku 4.5; 9 batches of 24)
 focused entirely on SBO, labeled each with the project's
-\texttt{sql\_to\_schema\_links.py} (sqlglot-based) extractor, and dropped any
+\texttt{data\_prep/sql\_to\_schema\_links.py} (sqlglot-based) extractor, and dropped any
 that failed to parse or referenced 0 schema tables. Only 1 of 217 candidates was
 dropped (a duplicate question; 0 hallucinated tables, 0 parse errors -- evidence
 the prompt and validation pipeline are tight). The merged
@@ -93,23 +96,35 @@ adapters together fit in $\sim$220 MB of repo size.
 \textbf{Optimizer.} AdamW (TRL default), \texttt{lr\_scheduler\_type=linear},
 \texttt{warmup\_ratio=0.05}, \texttt{per\_device\_train\_batch\_size=1},
 \texttt{gradient\_accumulation\_steps=4}, \texttt{max\_steps=200},
-\texttt{max\_length=4096}. Three adapters were trained at lr$\in\{3\text{e-}4,
-3\text{e-}4\text{+aug+400steps}, 2\text{e-}4\}$ -- their union forms the ensemble.
+\texttt{max\_length=4096}. Three adapters are shipped: sweep 13 (Qwen-Coder-1.5B,
+lr=3e-4, 301 train), sweep 15 (Qwen-Coder-1.5B, lr=3e-4 + augmented data,
+400 steps), and sweep 22 (Qwen3-1.7B, lr=3e-4, 301 train). The 4th inference
+pass reuses sweep 13's weights with a different retriever -- so the 4-way
+ensemble runs over 3 trained adapters, not 4.
 
 \textbf{Inference pipeline (\texttt{main.py}).}
 (1)~Read each adapter's \texttt{adapter\_config.json} to determine which base
 model it requires; group adapters by base model. (2)~For each group, load that
 base model once and load every adapter in the group as a NAMED PEFT adapter
-via \texttt{PeftModel.load\_adapter}. (3)~For each adapter in the group:
-\texttt{model.set\_adapter(name)}, run all 101 queries through that adapter,
-accumulate $\{$table$\rightarrow$cols$\}$ predictions. (4)~Free the group's
-base before loading the next group. (5)~Union the accumulator across all
-adapters and write final predictions. \textbf{Partial-save after each
-adapter}: a $>$15min timeout still yields a smaller ensemble of completed
-adapters. \textbf{Retrieval}: embedding-based --
+via \texttt{PeftModel.load\_adapter}. (3)~For each (adapter, retriever) pass
+in the group: \texttt{model.set\_adapter(name)}, run all 101 queries,
+accumulate $\{$table$\rightarrow$cols$\}$ predictions \emph{and} per-pass
+vote counts. (4)~Free the group's base before loading the next group.
+(5)~Apply the requested aggregation (\texttt{maj2} by default --
+identifiers with $\geq$2 votes; \texttt{union} kept as a legacy mode) and
+write final predictions. \textbf{Safety contract for partial-save}: writes
+fire after each pass with a deliberate fallback policy -- passes 1--3 write
+the running \emph{union} (a strict superset of the original 3-way locked
+champion at 0.7107 once the same 3 members complete), and only pass 4's
+partial-write applies \texttt{maj2}. Combined with the deliberate adapter
+order (Qwen3 first, then Coder), this means a kill at any point during
+pass 4 leaves the 0.7107 baseline on disk; a clean completion ships the
+0.7270 \texttt{maj2} result. \textbf{Retrieval}: embedding-based --
 \texttt{BAAI/bge-small-en-v1.5} sentence-transformer cosine similarity
 between the question and each table's ``\texttt{table tokens columns
-column-tokens}'' document; top-20 tables kept.
+column-tokens}'' document; top-20 tables kept. Sweep 15's pass uses BM25
+and sweep 13's 4th pass uses hybrid (RRF of BM25 + embed) -- the diversity
+across retrievers in the prompt is what \texttt{maj2} converts into score.
 
 \textbf{Post-processing.} \texttt{canonicalize\_prediction} drops any
 non-schema identifier (precision-preserving hallucination filter) and re-cases
@@ -119,7 +134,7 @@ identifiers across all 101 validation predictions.
 \section{Experimentation Methodology}
 
 We ran 20 numbered sweeps via \textbf{RapidFire AI}
-(\texttt{train\_rapidfire.py}, \texttt{RFGridSearch}/\texttt{RFSFTConfig}). Sweeps
+(\texttt{training/train\_rapidfire.py}, \texttt{RFGridSearch}/\texttt{RFSFTConfig}). Sweeps
 1--9 were spent surviving infrastructure problems (described below); sweeps
 10--20 produced the substantive results in Table~\ref{tab:configs}. Per-sweep
 \texttt{rapidfire.log}, \texttt{training.log}, and extracted MLflow metrics
@@ -171,10 +186,10 @@ construction and the disk-save branch fires reliably. All sweeps from 10 onward
 use this workaround; sweep 10 was the first successful end-to-end persisted
 RapidFire training in our series.
 
-\textbf{Issue \#3: HuggingFace Trainer fallback (\texttt{train\_single.py}).}
+\textbf{Issue \#3: HuggingFace Trainer fallback (\texttt{training/train\_single.py}).}
 While debugging Issue \#2, we were not sure whether the problem was orchestration
 (rapidfireai) or training (TRL/PEFT setup). We built
-\texttt{train\_single.py} -- a $\sim$120-line plain
+\texttt{training/train\_single.py} -- a $\sim$120-line plain
 \texttt{trl.SFTTrainer} script -- as an A/B against the same config. It
 trained fine in 14 minutes and produced a 0.6078 adapter, confirming that the
 training stack worked end-to-end and isolating the failure to the
@@ -204,27 +219,33 @@ schema-folder layout, wildcard-table preservation, hallucination filtering).
 
 \subsection{The supporting tools we built}
 \begin{itemize}
-\item \texttt{augment\_data.py} -- the SBO augmentation pipeline; calls
-Claude Haiku 4.5 in 9 batches, validates each generated SQL by running it
-through the project's \texttt{sql\_to\_schema\_links.py} extractor, writes
-both the merged \texttt{train\_augmented.json} and a per-candidate audit log.
-\item \texttt{format\_training\_data.py} -- converts raw JSON splits to the
-JSONL \texttt{messages} format consumed by TRL/RapidFire, parameterized by
-\texttt{--prompt\_style}.
-\item \texttt{format\_two\_stage\_data.py} -- splits the joint task into
-stage-A (table prediction) and stage-B (per-table column prediction) datasets
-for the two-stage experiment.
-\item \texttt{expand\_columns.py} -- the keyword-based column-expansion
-post-processor (Sec.~4 below).
-\item \texttt{generate\_cot\_traces.py} -- calls Claude Haiku 4.5 once per
-train example to produce a brief, schema-grounded rationale; validates that
-the rationale references at least one gold table; produces
+\item \texttt{data\_prep/augment\_data.py} -- the SBO augmentation pipeline;
+calls Claude Haiku 4.5 in 9 batches, validates each generated SQL by running
+it through \texttt{data\_prep/sql\_to\_schema\_links.py}, writes both the
+merged \texttt{train\_augmented.json} and a per-candidate audit log.
+\item \texttt{data\_prep/format\_training\_data.py} -- converts raw JSON
+splits to the JSONL \texttt{messages} format consumed by TRL/RapidFire,
+parameterized by \texttt{--prompt\_style}.
+\item \texttt{data\_prep/format\_two\_stage\_data.py} -- splits the joint task
+into stage-A (table prediction) and stage-B (per-table column prediction)
+datasets for the two-stage experiment.
+\item \texttt{data\_prep/expand\_columns.py} -- the keyword-based
+column-expansion post-processor (Sec.~4 below).
+\item \texttt{data\_prep/generate\_cot\_traces.py} -- calls Claude Haiku 4.5
+once per train example to produce a brief, schema-grounded rationale;
+validates that the rationale references at least one gold table; produces
 \texttt{data/train\_cot.json} for sweep 21's CoT-distillation experiment.
-\item \texttt{reproduce\_champion.py} -- self-contained script that
-re-derives the 3-way ensemble predictions from the per-model
-\texttt{preds\_sweep\{13,15,18\}\_embed.json} files; can also regenerate
-those from the adapter weights via \texttt{--regenerate}. Saves us from
-having to re-run inference just to regenerate the champion submission.
+\item \texttt{training/reproduce\_champion.py} -- self-contained script that
+re-derives the 4-way + \texttt{maj2} champion predictions from the per-(adapter,
+retriever) prediction files (\texttt{preds\_sweep13\_embed.json},
+\texttt{preds\_sweep15.json}, \texttt{preds\_sweep22.json},
+\texttt{preds\_sweep13\_hybrid.json}). Saves us from having to re-run
+inference just to regenerate the champion submission.
+\item \texttt{scripts/probe\_ensembles.py} -- the combinatorial probe that
+discovered the 4-way + \texttt{maj2} configuration. Enumerates all
+(combo, aggregation) cells over the per-(adapter, retriever) prediction
+files we had accumulated, calls \texttt{eval.py} on each, ranks by
+leaderboard score. Pure post-hoc rescoring -- no model loads.
 \item \texttt{logs/README.md} -- per-sweep mapping from sweep number to
 config knobs, status, best train metric. Built from the MLflow store via
 a small script that pulls
@@ -269,9 +290,12 @@ experiment.
 \multicolumn{6}{r}{\textbf{Ensembles -- cross-family (Coder + Qwen3):}} & \\
 \multicolumn{6}{r}{2-way 13+22 (both embed)} & 0.7063 \\
 \multicolumn{6}{r}{3-way 13+15+22 all-embed (single-retriever)} & 0.7019 \\
-\multicolumn{6}{r}{\textbf{3-way mixed-retriever: 13\_embed + 15\_BM25 + 22\_embed}}
-                                                              & \textbf{0.7107} \\
-\multicolumn{6}{r}{(submitted champion; 0.7147 in the offline probe -- the 0.7107 is the actual fp16 end-to-end)} & \\
+\multicolumn{6}{r}{3-way mixed-retriever: 13\_embed + 15\_BM25 + 22\_embed (previous champion)}
+                                                              & 0.7107 \\
+\multicolumn{6}{r}{4-way + \texttt{maj2}: above three + 13\_hybrid, $\geq$2-vote aggregation} & \\
+\multicolumn{6}{r}{\textbf{(submitted champion: same adapters, no extra training; 13m9s wall time)}}
+                                                              & \textbf{0.7270} \\
+\multicolumn{6}{r}{$~~~$same 4-way under partial-union aggregation (regression -- shows \texttt{maj2} is doing the work)} & 0.7034 \\
 \bottomrule
 \end{tabular}
 \caption{All 11 distinct training configs (top) and the inference-time ablations
@@ -286,15 +310,20 @@ is Reciprocal Rank Fusion of the two.}
 \end{table}
 
 \subsection{Inference-time experimentation}
-Once we had the single-best adapter (sweep~13), we tested seven inference-time
+Once we had the single-best adapter (sweep~13), we tested eight inference-time
 variants: max\_tables 20$\rightarrow$40, three retrievers (BM25 / embed /
 hybrid via RRF), self-consistency at K=3 (union-of-samples and
-majority-vote), column-expansion post-processing, and union/intersection/
-majority-k ensembling over progressively more adapters (2--6 way).
+majority-vote), column-expansion post-processing, union/intersection/
+majority-k ensembling over progressively more adapters (2--6 way), and
+\emph{mixed-retriever passes over the same adapter} (sweep 13 once with
+embed and once with hybrid as separate ensemble members).
 Variants were A/B'd directly against the previous champion file in
-\texttt{predictions/} -- no retraining, $\sim$5--15 min per A/B. Many were
-negative (Sec.~4) but the embedding retriever (+0.014 single, +0.016 in the
-ensemble) was the single most valuable inference-time discovery.
+\texttt{predictions/} -- no retraining, $\sim$5--15 min per A/B; the
+4-way + maj2 search was a combinatorial offline probe over 138 (combo,
+aggregation) cells against the per-(adapter, retriever) prediction files
+we had accumulated. Many variants were negative (Sec.~4) but two stood out:
+embedding retrieval (+0.014 single, +0.016 in the ensemble), and the
+4-way + \texttt{maj2} combination (+0.016 over the 3-way mixed-retriever).
 
 \section{Results and Analysis}
 
@@ -334,13 +363,29 @@ the same adapter produces different predictions under different retrievers
 (BM25 vs embed vs hybrid) because the candidate-table set in the prompt
 differs. Probing this axis, we found that putting sweep 15 under BM25
 retrieval (while sweep 13 and sweep 22 stay on embed) added a measurable
-boost: the 3-way mixed-retriever ensemble \textbf{13\_embed + 15\_BM25 +
-22\_embed lands at 0.7107} -- our final submitted leaderboard. The
-intuition: ``which retriever is right for this adapter'' is not just about
-training-time consistency; for ensemble purposes, the right pairing is
-whichever makes the errors of this member most uncorrelated with the
-others. We expose this in \texttt{main.py}'s \texttt{--ensemble\_dirs}
-via a \texttt{path[:retriever]} spec per adapter.
+boost: the 3-way mixed-retriever ensemble 13\_embed + 15\_BM25 +
+22\_embed lands at 0.7107. The intuition: ``which retriever is right for
+this adapter'' is not just about training-time consistency; for ensemble
+purposes, the right pairing is whichever makes the errors of this member
+most uncorrelated with the others. We expose this in \texttt{main.py}'s
+\texttt{--ensemble\_dirs} via a \texttt{path[:retriever]} spec per adapter.
+\item \textbf{4-way + majority-2 aggregation (+0.016 over the 3-way mixed
+retriever)}: by the end we had per-pass predictions for every
+(adapter, retriever) pair on disk. A combinatorial offline probe over those
+files found that \emph{adding a 4th pass} -- sweep 13 reused under hybrid
+retrieval -- and switching the aggregation from partial-union to
+\textbf{majority-2} (an identifier survives iff $\geq$2 of the 4 passes
+emit it) lifts the leaderboard to \textbf{0.7270}. The same 4-way config
+under union actually \emph{regresses} to 0.7034 (more passes $=$ more noise
+under union); \texttt{maj2} is doing the work. Mechanically this is exactly
+the precision/recall trade-off we needed: union maximizes recall (and
+table F1 was already 0.79), \texttt{maj2} reins in column-level false
+positives -- column F1 went 0.6423$\rightarrow$0.6630, the table side also
+went up. Notable: the 4th pass uses \emph{the same sweep 13 adapter
+weights} as the 1st pass, just with a different retriever in the prompt
+-- the diversity that \texttt{maj2} converts into score is purely
+inference-time, no extra training. End-to-end wall time 13m9s (vs 12m14s
+for the 3-way), inside the 15-min budget.
 \end{itemize}
 
 \textbf{What didn't work, and why.}
@@ -395,13 +440,18 @@ it -- when the reasoning is wrong, the JSON is wrong too.
 \end{itemize}
 
 \textbf{Which knobs mattered for table vs column F1.}
-The ensemble's table score (0.7648) is 13 points above column score (0.6356)
-and this asymmetry is consistent across all our adapters. Sweep~13's r=32+MLP
-upgrade lifted column F1 the most among training changes (+0.045 vs sweep~12);
-embedding retrieval lifted column recall (+0.149 over BM25 in the 3-way
-ensemble). Going the other way, the SmolLM2 swap collapsed both axes evenly --
-suggesting column performance is bottlenecked by base-model capacity and
-retrieval quality, not by prompt or post-processing.
+The submitted 4-way's table score (0.7911) is 13 points above its column
+score (0.6630), and this asymmetry is consistent across all our adapters
+and across the iterative champions (3-way locked: 0.7648 / 0.6356; 4-way
+maj2: 0.7911 / 0.6630). Sweep~13's r=32+MLP upgrade lifted column F1 the
+most among training changes (+0.045 vs sweep~12); embedding retrieval
+lifted column recall (+0.149 over BM25 in the 3-way ensemble). The
+\texttt{maj2} switch was the first inference-time lever that improved
+\emph{both} axes (table +0.012, column +0.021): it shaves the union's
+column-level false positives without losing the recall that drove the
+3-way's table side. Going the other way, the SmolLM2 swap collapsed both
+axes evenly -- suggesting column performance is bottlenecked by base-model
+capacity and retrieval quality, not by prompt or post-processing.
 
 \textbf{Surprises.} The single most surprising result was that
 \texttt{types\_keys} prompts hurt. We expected richer schema metadata to help;
@@ -425,17 +475,22 @@ top-30 candidates.
 
 Code was developed iteratively with Anthropic's \textbf{Claude Code} (CLI agent
 on the \textbf{Claude Opus 4.7} model). Specific contributions: drafting
-\texttt{train\_rapidfire.py}'s sweep configurations, investigating the
+\texttt{training/train\_rapidfire.py}'s sweep configurations, investigating the
 rapidfireai SHM-checkpoint disk-flush bug (incl. reading
 \texttt{rapidfireai/fit/backend/worker.py} to identify the
 \texttt{num\_chunks=1} workaround), implementing the embedding retriever, the
-LoRA-swap ensemble path in \texttt{main.py}, the post-processing utilities
-(\texttt{expand\_columns.py}, \texttt{format\_two\_stage\_data.py},
-\texttt{reproduce\_champion.py}), the SBO augmentation pipeline
-(\texttt{augment\_data.py}) and the CoT-trace generator
-(\texttt{generate\_cot\_traces.py}) -- both of which call the Anthropic
-API using \textbf{Claude Haiku 4.5} -- and drafting this report. All
-design decisions, sweep selection, eval interpretation, and the final
+LoRA-swap ensemble path in \texttt{main.py} (including the
+\texttt{--aggregation maj2} flag, the partial-write safety contract, and the
+reordered ensemble spec that keeps a kill anywhere strictly $\geq$ the locked
+champion), the \texttt{scripts/probe\_ensembles.py} combinatorial probe that
+discovered the 4-way + maj2 lift to 0.7270, the post-processing utilities
+(\texttt{data\_prep/expand\_columns.py},
+\texttt{data\_prep/format\_two\_stage\_data.py},
+\texttt{training/reproduce\_champion.py}), the SBO augmentation pipeline
+(\texttt{data\_prep/augment\_data.py}) and the CoT-trace generator
+(\texttt{data\_prep/generate\_cot\_traces.py}) -- both of which call the
+Anthropic API using \textbf{Claude Haiku 4.5} -- and drafting this report.
+All design decisions, sweep selection, eval interpretation, and the final
 configuration choices were ours; the AI tool served as an implementation and
 analysis accelerant. The audit log
 \texttt{data/train\_augmented\_audit.json} records every generated example and

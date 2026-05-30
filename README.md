@@ -1,8 +1,8 @@
 # CSE/DSC 234 Project 2 — Schema Linking
 
-A schema-linking pipeline built on `Qwen2.5-Coder-1.5B-Instruct` fine-tuned with LoRA adapters via RapidFire AI.
+A schema-linking pipeline built on a **mixed-base, mixed-retriever 3-way LoRA ensemble** across `Qwen2.5-Coder-1.5B-Instruct` (sweeps 13 and 15) and `Qwen3-1.7B` (sweep 22), all fine-tuned with LoRA adapters via RapidFire AI.
 
-**Validation leaderboard score: 0.7006** (Table F1: 0.7648 / Column F1: 0.6356)
+**Validation leaderboard score: 0.7107** (Table F1: 0.7791 / Column F1: 0.6423)
 
 ---
 
@@ -12,7 +12,9 @@ A schema-linking pipeline built on `Qwen2.5-Coder-1.5B-Instruct` fine-tuned with
 python3 main.py --input <input.json> --output <pred.json>
 ```
 
-By default, this runs the submitted **3-way LoRA ensemble** with embedding-based table retrieval, reproducing the 0.7006 validation result. On a ~24 GB MIG slice, inference over the 101-question validation set completes in approximately **11 minutes** — well within the 15-minute grading budget.
+By default, this runs the submitted **3-way LoRA ensemble** with mixed table retrievers (sweep 13 + embed, sweep 15 + BM25, sweep 22 + embed), reproducing the 0.7107 validation result. On a ~24 GB MIG slice, inference over the 101-question validation set completes in approximately **12 minutes** — well within the 15-minute grading budget.
+
+The ensemble groups adapters by their base model (read from each adapter's `adapter_config.json`) so each base is loaded only once: Qwen-Coder-1.5B for sweeps 13 and 15, then Qwen3-1.7B for sweep 22. The `--ensemble_dirs` flag accepts a `path[:retriever]` spec per adapter, so the same adapter under different retrievers (BM25 / embed / hybrid) can be ensembled too.
 
 To use a single adapter (faster, slightly lower score):
 
@@ -25,9 +27,11 @@ python3 main.py --input <input.json> --output <pred.json> --single
 | Path | Description |
 |---|---|
 | `./adapter/` | Single best LoRA adapter (sweep 13) — required by rubric |
-| `./adapter_ensemble/sweep{13,15,18}/` | Three LoRA adapters used by the default ensemble path |
+| `./adapter_ensemble/sweep13/` | LoRA on Qwen2.5-Coder-1.5B-Instruct, used at inference with embedding retrieval |
+| `./adapter_ensemble/sweep15/` | LoRA on Qwen2.5-Coder-1.5B-Instruct, used at inference with BM25 retrieval |
+| `./adapter_ensemble/sweep22/` | LoRA on Qwen3-1.7B, used at inference with embedding retrieval |
 
-The base model (`Qwen/Qwen2.5-Coder-1.5B-Instruct`) is pulled from Hugging Face Hub via `AutoModelForCausalLM.from_pretrained`. Each ensemble adapter is ~74 MB and is loaded sequentially using `PeftModel.from_pretrained`.
+Both base models (`Qwen/Qwen2.5-Coder-1.5B-Instruct` and `Qwen/Qwen3-1.7B`) are pulled from Hugging Face Hub via `AutoModelForCausalLM.from_pretrained`. The sweep 13 and sweep 15 adapters share the Coder base (one load); the sweep 22 adapter loads the Qwen3 base. Each adapter is ~70 MB. Within each base group, adapters are loaded as named PEFT adapters and swapped via `model.set_adapter(name)`.
 
 After each adapter completes, partial-union predictions are atomically written to `--output`. A mid-third-adapter timeout will still return a 2-way ensemble result, which is strictly better than a single-adapter result.
 
@@ -46,7 +50,8 @@ format_training_data.py     Converts train.json / validation.json to JSONL forma
 format_two_stage_data.py    Splits each example into stage-A / stage-B SFT pairs
 augment_data.py             Generates additional SBO training examples via the Claude API
 expand_columns.py           Keyword-based column-expansion post-processor (not in final submission)
-reproduce_champion.py       Rebuilds preds_CHAMPION_v2_embed.json from per-model predictions
+reproduce_champion.py       Rebuilds the champion ensemble predictions from per-model files
+generate_cot_traces.py      Generates chain-of-thought rationales via Claude API (used by sweep 21)
 adapter/                    Submitted single LoRA adapter (sweep 13; rubric-required path)
 adapter_ensemble/           Submitted 3-adapter ensemble used by the default inference path
 adapter_v2/                 Early artifact from the train_single.py path (kept for reference)

@@ -403,12 +403,21 @@ def predict_ensemble(items: List[Dict],
                     print(f"[main] [ensemble] [{completed}/{total_adapters}] {qi+1}/{n} done", file=sys.stderr)
 
             if save_partial_to is not None:
-                # Use union for early partials (best output with few adapters),
-                # but switch to the requested aggregation on the LAST adapter so
-                # the on-disk file always matches the final result. Otherwise a
-                # kill in the microsecond window between the final partial-write
-                # and main()'s overwrite would ship a worse 4-way union.
-                if completed == total_adapters and aggregation != 'union':
+                # Use union for early partials (best output with few adapters);
+                # switch to the requested aggregation once we have at least
+                # 4 voters AND we're in the final two passes. This means:
+                #   - 4-way (total=4): maj2 only on pass 4 (same as before).
+                #   - 5-way (total=5): maj2 on passes 4 AND 5. Pass 4's maj2
+                #     gives the previous 4-way result as a safe fallback if
+                #     pass 5 is killed mid-execution.
+                # maj2 at fewer than 4 voters is too strict (>=50% threshold
+                # = empties most predictions), so we always union below 4.
+                use_maj2 = (
+                    aggregation != 'union'
+                    and completed >= 4
+                    and completed >= total_adapters - 1
+                )
+                if use_maj2:
                     partial_preds = _build_preds_with_aggregation(
                         items, accum_tables, accum_cols,
                         table_votes, tablecol_votes,

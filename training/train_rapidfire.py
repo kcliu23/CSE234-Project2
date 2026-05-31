@@ -213,9 +213,14 @@ def build_config_group(max_seq_length: int, num_train_epochs: int):
         List as RFList, RFLoraConfig, RFModelConfig, RFSFTConfig,
     )
 
-    # Sweep 26: r=64 + MLP modules (double the rank vs sweep 13/22).
+    # Shipping recipe (sweep 13): Qwen-Coder-1.5B + LoRA r=32 with attention
+    # AND MLP target modules + lr=3e-4 linear warmup + 200 steps + max_length
+    # 4096. Same recipe produced sweeps 13 (Coder + 301 train) and 15 (Coder +
+    # 517 augmented train, 400 steps) -- the three Coder adapters in the
+    # shipping 4-way ensemble. For sweep 22 (Qwen3-1.7B) the model_name below
+    # is swapped to 'Qwen/Qwen3-1.7B'. Caller controls which JSONL via --train.
     peft_config = RFLoraConfig(
-        r=64, lora_alpha=128, lora_dropout=0.05,
+        r=32, lora_alpha=64, lora_dropout=0.05,
         target_modules=['q_proj', 'k_proj', 'v_proj', 'o_proj',
                         'gate_proj', 'up_proj', 'down_proj'],
         bias='none', task_type='CAUSAL_LM',
@@ -256,7 +261,7 @@ def build_config_group(max_seq_length: int, num_train_epochs: int):
 
     configs = RFList([
         RFModelConfig(
-            model_name='Qwen/Qwen3-1.7B',
+            model_name='Qwen/Qwen2.5-Coder-1.5B-Instruct',
             peft_config=peft_config,
             training_args=sft,
             model_type='causal_lm',

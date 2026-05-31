@@ -1,0 +1,30 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Training Data Methodology}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Final Pipeline Architecture}{1}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experimentation Methodology}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Sweep dimensions}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Infrastructure issues and how we worked around them}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}The supporting tools we built}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Inference-time experimentation}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results and Analysis}{3}{section.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces All 13 distinct training configs (top) and the inference-time ablations on the best single adapter and the 3-way ensemble (bottom). Bold marks the single best config in each section. $\Delta $ is vs sweep\nobreakspace  {}10 (the single-config baseline). \texttt  {r=32 + MLP} means LoRA r=32 with target modules \{q,k,v,o,gate,up,down\}\_proj. \texttt  {BM25} retrieval scores tables by query-vs-(table+cols) BM25; \texttt  {embed} replaces BM25 with sentence- transformer cosine similarity (\texttt  {BAAI/bge-small-en-v1.5}); \texttt  {hybrid} is Reciprocal Rank Fusion of the two.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:configs}{{1}{4}{All 13 distinct training configs (top) and the inference-time ablations on the best single adapter and the 3-way ensemble (bottom). Bold marks the single best config in each section. $\Delta $ is vs sweep~10 (the single-config baseline). \texttt {r=32 + MLP} means LoRA r=32 with target modules \{q,k,v,o,gate,up,down\}\_proj. \texttt {BM25} retrieval scores tables by query-vs-(table+cols) BM25; \texttt {embed} replaces BM25 with sentence- transformer cosine similarity (\texttt {BAAI/bge-small-en-v1.5}); \texttt {hybrid} is Reciprocal Rank Fusion of the two}{table.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}AI Tools Statement}{5}{section.5}\protected@file@percent }
+\gdef \@abspage@last{5}

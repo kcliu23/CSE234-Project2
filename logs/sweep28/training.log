@@ -1,0 +1,6 @@
+[train] train=301  val=101
+The previously running experiment schema-linking-sft-sweep27 was forcibly ended. Created a new experiment 'schema-linking-sft-sweep28' with Experiment ID: 29 and Metric Experiment ID: schema-linking-sft-sweep28 at /home/kal115/rapidfireai/rapidfire_experiments/schema-linking-sft-sweep28
+Started 1 worker processes successfully
+Created workers
+Experiment schema-linking-sft-sweep28 ended
+Workers stopped

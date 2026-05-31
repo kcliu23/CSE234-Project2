@@ -28,7 +28,7 @@ from schema_utils import load_schema
 
 
 def format_split(input_path: str, schemas_dir: str, output_path: str, style: str = 'compact',
-                 use_cot: bool = False) -> None:
+                 retrieval: str = 'bm25', use_cot: bool = False) -> None:
     with open(input_path) as f:
         items = json.load(f)
 
@@ -44,9 +44,10 @@ def format_split(input_path: str, schemas_dir: str, output_path: str, style: str
             sch = schema_cache[db_id]
 
             # Pass gold_links so the filtered serializer oracle-includes any
-            # gold columns that BM25 missed. Inference passes gold_links=None.
+            # gold columns that the retriever missed. Inference passes gold_links=None.
             msgs: List[Dict[str, str]] = build_messages(
-                db_id, ex['question'], sch, gold_links=ex['schema_links'], style=style,
+                db_id, ex['question'], sch, gold_links=ex['schema_links'],
+                style=style, retrieval=retrieval,
             )
 
             json_str = target_string(ex['schema_links'])
@@ -83,11 +84,15 @@ def main():
     ap.add_argument('--prompt_style', default='compact',
                     choices=['compact', 'types', 'keys', 'types_keys'],
                     help='Schema serialization style. MUST match the style main.py uses at inference.')
+    ap.add_argument('--retrieval', default='bm25', choices=['bm25', 'embed', 'hybrid'],
+                    help='Table-retrieval method used to filter big schemas in the prompt. '
+                         'MUST match the retriever main.py uses at inference for this adapter.')
     ap.add_argument('--cot', action='store_true',
                     help='If set, expect a "reasoning" field on each input example and prepend '
                          'it to the assistant target. Use with data produced by generate_cot_traces.py.')
     args = ap.parse_args()
-    format_split(args.input, args.schemas_dir, args.output, style=args.prompt_style, use_cot=args.cot)
+    format_split(args.input, args.schemas_dir, args.output,
+                 style=args.prompt_style, retrieval=args.retrieval, use_cot=args.cot)
 
 
 if __name__ == '__main__':

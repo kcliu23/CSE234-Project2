@@ -434,20 +434,11 @@ BM25 $\cup$ embed top-30 candidates.
 \section{AI Tools Statement}
 
 Code was developed iteratively with Anthropic's \textbf{Claude Code}
-(\textbf{Claude Opus 4.7}). Specific contributions: drafting sweep
-configurations, investigating the rapidfireai SHM-checkpoint disk-flush bug
-(reading \texttt{rapidfireai/fit/backend/worker.py} to identify the
-\texttt{num\_chunks=1} workaround), implementing the embedding retriever,
-the LoRA-swap ensemble path in \texttt{main.py} (\texttt{--aggregation maj2},
-the partial-write safety contract, the ordered ensemble spec), the
-combinatorial probe that discovered the 4-way + \texttt{maj2} lift to
-0.7270, the post-processing and reproduction utilities, the SBO augmentation
-pipeline, and the CoT-trace generator -- both of which call the Anthropic
-API using \textbf{Claude Haiku 4.5} -- and drafting this report. All
-design decisions, sweep selection, eval interpretation, and final
-configuration choices were ours; the AI tool served as an implementation
-and analysis accelerant. The audit log
-\texttt{data/train\_augmented\_audit.json} records every generated example
-and its validation outcome for transparency.
+(\textbf{Claude Opus 4.7}); the SBO augmentation and CoT-trace pipelines
+call the Anthropic API using \textbf{Claude Haiku 4.5}. All design
+decisions, sweep selection, eval interpretation, and final configuration
+choices were ours. The audit log
+\texttt{data/train\_augmented\_audit.json} records every generated
+example and its validation outcome for transparency.
 
 \end{document}

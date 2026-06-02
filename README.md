@@ -6,6 +6,40 @@ A schema-linking pipeline built on a **mixed-base, mixed-retriever 4-way LoRA en
 
 ---
 
+## Setup
+
+From the repo root on a 24 GB DSMLP MIG slice (CUDA 12.x):
+
+```bash
+pip install -r requirements.txt
+```
+
+The seven pinned packages in `requirements.txt` are the exact versions used to
+produce the submitted validation predictions
+(`predictions/preds_4way_maj2.json`); they cover everything `main.py` imports
+at inference time. The commented-out block at the bottom of the file lists
+the additional packages (`trl`, `rapidfireai`, `datasets`, `sqlglot`) needed
+**only** to re-run training or the data-augmentation pipeline — the rubric
+notes TAs will not re-train, so they are not required to grade.
+
+### First-run HuggingFace download
+
+`main.py` loads both base models via `AutoModelForCausalLM.from_pretrained`
+(the mechanism the rubric specifies in §5.3):
+
+- `Qwen/Qwen2.5-Coder-1.5B-Instruct`  (~3.0 GB)
+- `Qwen/Qwen3-1.7B`                   (~3.8 GB)
+- `BAAI/bge-small-en-v1.5`            (~0.13 GB — the embedding retriever)
+
+On a fresh pod the first run will download these from the HuggingFace Hub
+(~7 GB total; one or two minutes on DSMLP) into the default HF cache
+(`$HOME/.cache/huggingface/hub/` or `$XDG_CACHE_HOME/huggingface/hub/`).
+Subsequent runs reuse the cache. The trained LoRA adapters
+(`adapter/`, `adapter_ensemble/`) are committed to the repo as 70 MB fp16
+safetensors files — nothing else needs to be downloaded.
+
+---
+
 ## Inference
 
 ```bash

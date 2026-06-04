@@ -575,10 +575,10 @@ def _ensure_adapters():
     # Maps local adapter dir -> Google Drive file ID of its .zip archive.
     # Replace each PLACEHOLDER_* with the real file ID before submitting.
     GDRIVE_IDS = {
-        './adapter':                  'PLACEHOLDER_adapter',
-        './adapter_ensemble/sweep13': 'PLACEHOLDER_sweep13',
-        './adapter_ensemble/sweep15': 'PLACEHOLDER_sweep15',
-        './adapter_ensemble/sweep22': 'PLACEHOLDER_sweep22',
+        './adapter':                  '1yhTrNn9Q-QGhG3vfVQuaVhs2PRlq5Whx',
+        './adapter_ensemble/sweep13': '1gr_POtamwkEL0mZ8x6MCSe5K4UiTeRhH',
+        './adapter_ensemble/sweep15': '1mIyPx-8WtNJraA0FByFLK6HcgHqNNZXD',
+        './adapter_ensemble/sweep22': '1kytBwUSuLewt2L6hBJWGD3wjVOvQ3MjD',
     }
 
     for adapter_dir, file_id in GDRIVE_IDS.items():
@@ -591,12 +591,30 @@ def _ensure_adapters():
             continue
         print(f"[main] Downloading {adapter_dir} from Google Drive ...", file=sys.stderr)
         os.makedirs(adapter_dir, exist_ok=True)
-        zip_path = adapter_dir.rstrip('/') + '_download.zip'
+        zip_path = adapter_dir.rstrip('/').replace('/', '_') + '_download.zip'
         gdown.download(id=file_id, output=zip_path, quiet=False)
+        # Inspect the zip's internal layout and extract to the location where
+        # the entries' leading path matches what we want on disk. The uploaded
+        # zips were created with different leading paths (some carry just
+        # `adapter/`, some carry `adapter_ensemble/sweepNN/`), so a single
+        # fixed extract_root would only handle one shape correctly.
         with zipfile.ZipFile(zip_path, 'r') as z:
-            z.extractall(os.path.dirname(os.path.abspath(adapter_dir)))
+            top = {n.split('/', 1)[0] for n in z.namelist() if n}
+            target_basename = os.path.basename(adapter_dir.rstrip('/'))
+            if target_basename in top:
+                # Zip carries `<basename>/...` -> extract to dir's parent
+                extract_root = os.path.dirname(os.path.abspath(adapter_dir)) or '.'
+            else:
+                # Zip carries a deeper prefix (e.g. `adapter_ensemble/sweep22/...`)
+                # -> extract to repo root so the prefix lines up
+                extract_root = os.getcwd()
+            z.extractall(extract_root)
         os.remove(zip_path)
-        print(f"[main] {adapter_dir} ready.", file=sys.stderr)
+        if not os.path.isfile(safetensors):
+            print(f"[main] WARN: download finished but {safetensors} still missing -- "
+                  "the zip layout may not match GDRIVE_IDS keys", file=sys.stderr)
+        else:
+            print(f"[main] {adapter_dir} ready.", file=sys.stderr)
 
 
 def main():

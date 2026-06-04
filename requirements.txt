@@ -10,6 +10,8 @@ sentence-transformers==5.1.0
 safetensors==0.7.0
 accelerate==1.13.0
 numpy==2.2.6
+gdown==6.1.0           # only used by main.py:_ensure_adapters() fallback if a
+                       # LoRA adapter folder is missing locally (e.g. partial clone)
 
 # --- Training-time only (NOT required for inference / grading) ---
 # Uncomment to reproduce training (training/train_rapidfire.py, data_prep/):

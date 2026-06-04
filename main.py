@@ -557,6 +557,48 @@ def predict_with_model(items: List[Dict],
     return preds
 
 
+def _ensure_adapters():
+    """Download adapter checkpoints from Google Drive if not present locally.
+
+    Upload each adapter folder as a .zip to Google Drive, share it as
+    'Anyone with the link can view', copy the file ID from the share URL
+    (the long string between /d/ and /view), and paste it below.
+    """
+    import zipfile
+    try:
+        import gdown
+    except ImportError:
+        print("[main] gdown not installed; skipping adapter download. "
+              "Run: pip install gdown", file=sys.stderr)
+        return
+
+    # Maps local adapter dir -> Google Drive file ID of its .zip archive.
+    # Replace each PLACEHOLDER_* with the real file ID before submitting.
+    GDRIVE_IDS = {
+        './adapter':                  'PLACEHOLDER_adapter',
+        './adapter_ensemble/sweep13': 'PLACEHOLDER_sweep13',
+        './adapter_ensemble/sweep15': 'PLACEHOLDER_sweep15',
+        './adapter_ensemble/sweep22': 'PLACEHOLDER_sweep22',
+    }
+
+    for adapter_dir, file_id in GDRIVE_IDS.items():
+        safetensors = os.path.join(adapter_dir, 'adapter_model.safetensors')
+        if os.path.isfile(safetensors):
+            continue
+        if file_id.startswith('PLACEHOLDER'):
+            print(f"[main] WARN: {adapter_dir} missing and no Drive ID configured — "
+                  "fill in GDRIVE_IDS in main.py", file=sys.stderr)
+            continue
+        print(f"[main] Downloading {adapter_dir} from Google Drive ...", file=sys.stderr)
+        os.makedirs(adapter_dir, exist_ok=True)
+        zip_path = adapter_dir.rstrip('/') + '_download.zip'
+        gdown.download(id=file_id, output=zip_path, quiet=False)
+        with zipfile.ZipFile(zip_path, 'r') as z:
+            z.extractall(os.path.dirname(os.path.abspath(adapter_dir)))
+        os.remove(zip_path)
+        print(f"[main] {adapter_dir} ready.", file=sys.stderr)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--input',  required=True)
@@ -628,6 +670,8 @@ def main():
                          'Default uses the empirical-best mix: sw13 embed + sw15 BM25 + sw22 embed '
                          '(probed val leaderboard 0.7147). Ignored when --single is set.')
     args = ap.parse_args()
+
+    _ensure_adapters()
 
     with open(args.input) as f:
         items = json.load(f)

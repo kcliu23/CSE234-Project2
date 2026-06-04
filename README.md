@@ -120,6 +120,7 @@ peft
 torch
 datasets
 sentence-transformers   # BAAI/bge-small-en-v1.5 retriever used in main.py
+gdown                   # auto-downloads adapter checkpoints from Google Drive if absent
 sqlglot                 # used by sql_to_schema_links.py
 rapidfireai             # used by train_rapidfire.py (training only, not inference)
 anthropic               # used by augment_data.py (data augmentation only)
